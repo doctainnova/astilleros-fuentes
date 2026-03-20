@@ -1,8 +1,19 @@
 ---
 import { models } from '../data/models';
+
+interface Props {
+  isFixed?: boolean;
+}
+
+const { isFixed = false } = Astro.props;
 ---
 
-<header id="navbar" class="fixed top-0 left-0 right-0 z-50 navbar-hidden" style="height: 72px;">
+<header
+  id="navbar"
+  class={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isFixed ? 'navbar-visible' : 'navbar-hidden'}`}
+  style="height: 72px;"
+  data-is-fixed={isFixed.toString()}
+>
   <div class="container-site h-full flex items-center justify-between">
 
     <!-- Logo -->
@@ -76,7 +87,7 @@ import { models } from '../data/models';
         <div id="mobile-models-submenu" class="hidden flex-col" style="background: rgba(255,255,255,0.03);">
           {models.map(model => (
             <a
-              href={`/modelos/${model.slug}`}
+              href={`/classer/${model.slug}`}
               class="flex items-center justify-between"
               style="
                 padding: 0.75rem 1rem;
@@ -111,7 +122,7 @@ import { models } from '../data/models';
   <div class="max-w-6xl mx-auto flex flex-row justify-center" style="gap: 2px; align-items: flex-start;">
     {models.map(model => (
       <a
-        href={`/modelos/${model.slug}`}
+        href={`/classer/${model.slug}`}
         class="mega-card group flex flex-col items-center"
       >
         <!-- Thumbnail -->
@@ -231,6 +242,8 @@ import { models } from '../data/models';
 
   // ── Navbar reveal on scroll — vanilla JS ─────────────────────
   function updateNavbar(): void {
+    if (navbar?.dataset.isFixed === 'true') return;
+    
     const threshold = introHeader?.offsetHeight ?? 200;
     if (window.scrollY > threshold) {
       navbar?.classList.remove('navbar-hidden');

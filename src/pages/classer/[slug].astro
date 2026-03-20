@@ -1,0 +1,239 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import SpecGrid from '../../components/SpecGrid.astro';
+import GalleryCollage from '../../components/GalleryCollage.astro';
+import VersionsTable from '../../components/VersionsTable.astro';
+import Configurador from '../../components/Configurador.astro';
+import { models, getModelBySlug } from '../../data/models';
+
+export function getStaticPaths() {
+  return models.map(m => ({ params: { slug: m.slug } }));
+}
+
+const { slug } = Astro.params;
+const model = getModelBySlug(slug!);
+
+if (!model) {
+  return Astro.redirect('/classer');
+}
+---
+
+<Layout
+  title={`${model.name} — CLASSER | Astillero Fuentes`}
+  description={model.tagline}
+  fixedNavbar={true}
+>
+  <!-- STICKY SECONDARY NAV -->
+  <div id="model-subnav" class="fixed top-[72px] left-0 right-0 z-40 bg-bg-white border-b border-black/10 shadow-sm translate-y-[-100%] opacity-0 transition-none" aria-label="Navegación del modelo">
+    <div class="container-site py-3 flex items-center justify-between gap-4">
+      <!-- Model name -->
+      <div class="flex items-center gap-4">
+        <span class="font-display font-bold italic text-xl text-text-dark">{model.name.replace('Classer ', '')}</span>
+        <div class="w-px h-6 bg-black/20" aria-hidden="true"></div>
+      </div>
+      <!-- Tabs -->
+      <nav class="hidden md:flex items-center gap-6" aria-label="Secciones del modelo">
+        {['Especificaciones', 'Exterior', 'Interior', 'Galería'].map(tab => (
+          <a href={`#${tab.toLowerCase()}`} class="text-text-muted text-xs font-medium uppercase tracking-wide hover:text-accent-blue transition-colors cursor-pointer">
+            {tab}
+          </a>
+        ))}
+      </nav>
+      <!-- Brochure CTA -->
+      <a
+        href="#"
+        class="hidden md:inline-flex items-center gap-2 bg-accent-blue hover:bg-accent-cyan text-white text-xs font-medium px-4 py-2 rounded-full transition-colors duration-200 cursor-pointer"
+        aria-label="Descargar brochure del modelo"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Descargar brochure
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="relative" style="height: 70vh; min-height: 500px;" aria-label={`Presentación ${model.name}`}>
+    <img
+      src={model.heroUrl}
+      alt={model.name}
+      width="1440"
+      height="700"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" aria-hidden="true"></div>
+    <div class="absolute bottom-12 left-0 right-0 container-site">
+      <SectionLabel text={model.line} class="mb-2 block" />
+      <h1 class="font-display font-bold italic text-white leading-none" style="font-size: clamp(3rem, 8vw, 6rem);">
+        {model.name.replace('Classer ', '')}
+      </h1>
+    </div>
+  </section>
+
+  <!-- SPECS GRID -->
+  <section id="especificaciones" class="bg-bg-deep py-0" aria-label="Especificaciones técnicas">
+    <SpecGrid specs={model.specs} dark={true} />
+
+    {model.specsExtra.length > 0 && (
+      <div class="container-site py-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-white/10 pt-8">
+          {model.specsExtra.map(spec => (
+            <div class="flex flex-col items-center text-center gap-1">
+              <span class="font-barlow text-[0.6rem] uppercase tracking-widest text-text-muted">{spec.label}</span>
+              <span class="font-display font-bold text-xl text-white">{spec.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </section>
+
+  <!-- EXTERIOR DIAGRAM -->
+  {model.exteriorFeatures.length > 0 && (
+    <section id="exterior" class="py-20 bg-bg-light" aria-label="Características exteriores">
+      <div class="container-site">
+        <div class="text-center mb-10 reveal">
+          <SectionLabel text="EXTERIOR" class="mb-3 block" />
+          <h2 class="font-display font-bold text-3xl text-text-dark">Cada detalle importa.</h2>
+        </div>
+
+        <!-- Technical diagram -->
+        <div class="reveal mb-10">
+          <img
+            src="https://placehold.co/700x480/f4f4f2/6b7a99?text=Technical+Diagram"
+            alt={`Diagrama técnico ${model.name}`}
+            width="700"
+            height="480"
+            class="w-full max-w-3xl mx-auto rounded-lg block"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Feature grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-3xl mx-auto reveal">
+          {model.exteriorFeatures.map((feature, i) => (
+            <div class="flex items-center gap-3 py-2 border-b border-black/8">
+              <span class="text-accent-blue font-bold text-sm flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
+              <span class="text-text-dark text-sm">{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- INTERIOR GALLERY -->
+  {model.interiorImages.length > 0 && (
+    <section id="interior" class="py-20 bg-bg-deep" aria-label="Galería interior">
+      <div class="container-site">
+        <div class="text-center mb-10 reveal">
+          <h2 class="font-display font-bold italic text-3xl md:text-4xl text-white mb-3">Interior</h2>
+          <p class="text-text-secondary text-sm max-w-md mx-auto">
+            Un interior pensado para el confort sin comprometer el rendimiento.
+          </p>
+        </div>
+        <div class="flex gap-3 h-64 md:h-80 reveal">
+          {model.interiorImages.map((img, i) => (
+            <div class={`overflow-hidden rounded-lg flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'}`}>
+              <img src={img.url} alt={`Interior ${model.name} — imagen ${i + 1}`} width={img.w} height={img.h} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- EXTERIOR GALLERY -->
+  {model.exteriorImages.length > 0 && (
+    <section id="galeria" class="py-20 bg-bg-mid" aria-label="Galería exterior">
+      <div class="container-site">
+        <div class="text-center mb-10 reveal">
+          <h2 class="font-display font-bold italic text-3xl md:text-4xl text-white mb-3">Exterior</h2>
+          <p class="text-text-secondary text-sm max-w-md mx-auto">
+            Líneas que cortan el agua con elegancia y propósito.
+          </p>
+        </div>
+        <div class="flex gap-3 h-64 md:h-80 reveal">
+          {model.exteriorImages.map((img, i) => (
+            <div class={`overflow-hidden rounded-lg flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'}`}>
+              <img src={img.url} alt={`Exterior ${model.name} — imagen ${i + 1}`} width={img.w} height={img.h} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- VERSIONS TABLE -->
+  {model.versions.length > 0 && (
+    <VersionsTable
+      modelName={model.name.replace('Classer ', '')}
+      features={model.versions[0].features}
+      diagramUrl="https://placehold.co/700x480/f4f4f2/6b7a99?text=Technical+Diagram"
+    />
+  )}
+
+  <!-- CONFIGURADOR -->
+  {model.gelcoatColors.length > 0 && (
+    <Configurador
+      modelName={model.name.replace('Classer ', '')}
+      gelcoatColors={model.gelcoatColors}
+      tapiceriaColors={model.tapiceriaColors}
+      pisoColors={model.pisoColors}
+    />
+  )}
+
+  <!-- CTA WHATSAPP -->
+  <section class="bg-bg-dark py-20 text-center">
+    <div class="container-site reveal">
+      <SectionLabel text="¿LISTO PARA NAVEGAR?" class="mb-3 block" />
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">
+        Hacé realidad tu {model.name}.
+      </h2>
+      <p class="text-text-secondary text-sm mb-8 max-w-md mx-auto">
+        Un asesor Classer te contactará para ayudarte con la configuración y financiamiento.
+      </p>
+      <a
+        href="https://wa.me/5493534781206"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-accent-blue hover:bg-accent-cyan text-white font-barlow font-medium uppercase tracking-[0.12em] text-sm px-8 py-3 rounded transition-colors duration-200 cursor-pointer"
+      >
+        Solicitar información por WhatsApp
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script is:inline>
+  // Sticky subnav GSAP behavior
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      const subnav = document.getElementById('model-subnav');
+      if (subnav) {
+        ScrollTrigger.create({
+          trigger: '#especificaciones',
+          start: 'top top+=72',
+          onEnter: () => {
+            gsap.to(subnav, { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' });
+          },
+          onLeaveBack: () => {
+            gsap.to(subnav, { y: '-100%', opacity: 0, duration: 0.3, ease: 'power2.in' });
+          },
+        });
+      }
+
+      // Reveal animations
+      document.querySelectorAll('.reveal').forEach(el => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 82%' },
+          }
+        );
+      });
+    }
+  });
+</script>
