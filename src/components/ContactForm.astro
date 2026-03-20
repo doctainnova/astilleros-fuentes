@@ -1,0 +1,57 @@
+---
+interface Props {
+  compact?: boolean;
+}
+const { compact = true } = Astro.props;
+---
+
+<form class="flex flex-col gap-4 w-full max-w-md mx-auto" aria-label="Formulario de contacto" novalidate>
+  <div class="flex flex-col gap-1">
+    <label for="form-nombre" class="text-text-muted text-xs uppercase tracking-wide">Nombre Completo</label>
+    <input
+      id="form-nombre"
+      name="nombre"
+      type="text"
+      placeholder="Juan Pérez"
+      autocomplete="name"
+      required
+      class="bg-transparent border-b border-white/30 focus:border-accent-blue outline-none text-white placeholder-text-muted py-2 text-sm transition-colors"
+      aria-required="true"
+    />
+  </div>
+  <div class="flex flex-col gap-1">
+    <label for="form-tel" class="text-text-muted text-xs uppercase tracking-wide">Teléfono / WhatsApp</label>
+    <input
+      id="form-tel"
+      name="telefono"
+      type="tel"
+      placeholder="+54 9 ..."
+      autocomplete="tel"
+      required
+      class="bg-transparent border-b border-white/30 focus:border-accent-blue outline-none text-white placeholder-text-muted py-2 text-sm transition-colors"
+      aria-required="true"
+    />
+  </div>
+  <div class="flex flex-col gap-1">
+    <label for="form-email" class="text-text-muted text-xs uppercase tracking-wide">Correo Electrónico</label>
+    <input
+      id="form-email"
+      name="email"
+      type="email"
+      placeholder="juanperez@gmail.com"
+      autocomplete="email"
+      required
+      class="bg-transparent border-b border-white/30 focus:border-accent-blue outline-none text-white placeholder-text-muted py-2 text-sm transition-colors"
+      aria-required="true"
+    />
+  </div>
+  <button
+    type="submit"
+    class="mt-2 w-full bg-accent-blue hover:bg-accent-cyan text-white font-barlow font-medium uppercase tracking-[0.12em] text-sm py-3 rounded transition-colors duration-200 cursor-pointer"
+  >
+    CONTACTAR A UN ASESOR
+  </button>
+  <p class="text-text-muted text-[0.65rem] text-center leading-relaxed">
+    Al enviar este formulario aceptás nuestra política de privacidad. Tus datos no serán compartidos con terceros.
+  </p>
+</form>

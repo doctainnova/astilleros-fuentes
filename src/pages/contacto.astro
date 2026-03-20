@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import { models } from '../data/models';
+---
+
+<Layout
+  title="Contacto — CLASSER | Astillero Fuentes"
+  description="Contactá a un asesor Classer. Estamos en Villa María, Córdoba, Argentina."
+>
+  <section class="min-h-screen pt-24 pb-0 bg-bg-white" aria-label="Contacto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+
+      <!-- LEFT: FORM -->
+      <div class="flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20 bg-bg-white">
+        <div class="max-w-md w-full">
+          <div class="reveal mb-8">
+            <SectionLabel text="CONTACTO" class="mb-3 block" />
+            <h1 class="font-display font-bold text-4xl md:text-5xl text-text-dark leading-tight mb-3">
+              Empezá tu viaje
+            </h1>
+            <p class="text-text-muted text-sm leading-relaxed">
+              Nuestro equipo de expertos está a tu disposición para asesorarte sin compromiso.
+              Completá el formulario y nos ponemos en contacto a la brevedad.
+            </p>
+          </div>
+
+          <form class="reveal flex flex-col gap-5" aria-label="Formulario de contacto" novalidate>
+            <div class="flex flex-col gap-1">
+              <label for="c-nombre" class="text-text-muted text-xs uppercase tracking-wide font-barlow">Nombre completo</label>
+              <input
+                id="c-nombre"
+                name="nombre"
+                type="text"
+                placeholder="Juan Pérez"
+                autocomplete="name"
+                required
+                class="border-b border-black/20 focus:border-accent-blue outline-none bg-transparent text-text-dark placeholder-text-muted py-2.5 text-sm transition-colors"
+                aria-required="true"
+              />
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="c-email" class="text-text-muted text-xs uppercase tracking-wide font-barlow">Correo electrónico</label>
+              <input
+                id="c-email"
+                name="email"
+                type="email"
+                placeholder="juanperez@gmail.com"
+                autocomplete="email"
+                required
+                class="border-b border-black/20 focus:border-accent-blue outline-none bg-transparent text-text-dark placeholder-text-muted py-2.5 text-sm transition-colors"
+                aria-required="true"
+              />
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="c-interes" class="text-text-muted text-xs uppercase tracking-wide font-barlow">Interés</label>
+              <select
+                id="c-interes"
+                name="interes"
+                class="border-b border-black/20 focus:border-accent-blue outline-none bg-transparent text-text-dark py-2.5 text-sm transition-colors cursor-pointer appearance-none"
+              >
+                <option value="">Seleccionar modelo...</option>
+                {models.map(m => (
+                  <option value={m.slug}>{m.name}</option>
+                ))}
+                <option value="general">Consulta general</option>
+              </select>
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="c-mensaje" class="text-text-muted text-xs uppercase tracking-wide font-barlow">Mensaje adicional</label>
+              <textarea
+                id="c-mensaje"
+                name="mensaje"
+                placeholder="Contanos más sobre vos..."
+                rows="4"
+                class="border-b border-black/20 focus:border-accent-blue outline-none bg-transparent text-text-dark placeholder-text-muted py-2.5 text-sm transition-colors resize-none"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="mt-2 w-full bg-text-dark hover:bg-bg-mid text-white font-barlow font-semibold uppercase tracking-[0.15em] text-sm py-4 rounded transition-colors duration-200 cursor-pointer"
+            >
+              ENVIAR SOLICITUD
+            </button>
+            <p class="text-text-muted text-[0.65rem] text-center leading-relaxed">
+              Al enviar aceptás nuestra política de privacidad. Tus datos son tratados con confidencialidad.
+            </p>
+          </form>
+
+          <!-- Contact info -->
+          <div class="reveal mt-12 pt-8 border-t border-black/10 flex flex-col gap-3">
+            <a href="https://wa.me/5493534781206" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group cursor-pointer">
+              <div class="w-9 h-9 border border-accent-blue/40 rounded flex items-center justify-center group-hover:bg-accent-blue/10 transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#1e90d4" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.849L0 24l6.335-1.509A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894c-1.943 0-3.747-.536-5.289-1.467l-.379-.225-3.756.895.952-3.655-.246-.389A9.862 9.862 0 012.105 12C2.105 6.529 6.529 2.105 12 2.105S21.895 6.529 21.895 12 17.471 21.894 12 21.894z"/></svg>
+              </div>
+              <span class="text-text-dark text-sm group-hover:text-accent-blue transition-colors">+54 9 3534 78-1206</span>
+            </a>
+            <a href="https://instagram.com/astillero.fuentes" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group cursor-pointer">
+              <div class="w-9 h-9 border border-accent-blue/40 rounded flex items-center justify-center group-hover:bg-accent-blue/10 transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1e90d4" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#1e90d4" stroke="none"/></svg>
+              </div>
+              <span class="text-text-dark text-sm group-hover:text-accent-blue transition-colors">@astillero.fuentes</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: MAP + PHOTO -->
+      <div class="flex flex-col bg-bg-light">
+        <div class="flex flex-col justify-center px-8 md:px-12 py-16 flex-1">
+          <div class="reveal mb-8">
+            <h2 class="font-display font-bold text-3xl text-text-dark mb-2">Vení a visitarnos</h2>
+            <p class="text-text-muted text-sm">Estamos ubicados en Villa María, Córdoba.</p>
+          </div>
+
+          <!-- Map placeholder -->
+          <div class="reveal mb-6">
+            <img
+              src="https://placehold.co/600x300/e8e8e6/6b7a99?text=Google+Maps+—+Villa+María%2C+Córdoba"
+              alt="Mapa de ubicación — Villa María, Córdoba, Argentina"
+              width="600"
+              height="300"
+              class="w-full rounded-lg"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Address card -->
+          <div class="reveal bg-white rounded-lg p-5 shadow-sm border border-black/5 mb-6">
+            <p class="text-text-muted text-xs uppercase tracking-wide font-barlow mb-2">Dirección</p>
+            <p class="text-text-dark text-sm font-medium">Villa María, Córdoba, Argentina</p>
+            <p class="text-text-muted text-xs mt-1">Horario: Lunes a Viernes 9:00–18:00 | Sábados 9:00–13:00</p>
+          </div>
+
+          <!-- Lifestyle photo -->
+          <div class="reveal">
+            <img
+              src="https://placehold.co/600x400/d0d0ce/6b7a99?text=Experiencia+Classer+en+el+agua"
+              alt="Pareja disfrutando en una embarcación Classer"
+              width="600"
+              height="400"
+              class="w-full rounded-lg object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

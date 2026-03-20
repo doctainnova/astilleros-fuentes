@@ -1,0 +1,273 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroSlider from '../components/HeroSlider.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import NewsCard from '../components/NewsCard.astro';
+import ContactForm from '../components/ContactForm.astro';
+import ModelCard from '../components/ModelCard.astro';
+import { models } from '../data/models';
+import { newsArticles } from '../data/news';
+
+// Map models to catalog display
+const surfModels = models.filter(m => m.line === 'LINEA SURF' || m.slug === '246');
+const ftxModels = models.filter(m => m.line === 'LINEA FTX');
+
+const catalogModels = [
+  { name: '246 SURF', line: 'LINEA SURF', motorizacion: '250-350hp', eslora: '7.40 m', personas: '14', imageUrl: 'https://placehold.co/320x180/0a0e1a/a8b3c8?text=246+SURF+Illustration', href: '/modelos/246' },
+  { name: '246 OB', line: 'LINEA OB', motorizacion: '250-350hp OB', eslora: '7.80 m', personas: '14', imageUrl: 'https://placehold.co/320x180/0a0e1a/a8b3c8?text=246+OB+Illustration', href: '/modelos/246-ob' },
+  { name: '206 FTX', line: 'LINEA FTX', motorizacion: '150-200hp', eslora: '6.08 m', personas: '9', imageUrl: 'https://placehold.co/320x180/0a0e1a/a8b3c8?text=206+FTX+Illustration', href: '/modelos/206-ftx' },
+];
+---
+
+<Layout title="CLASSER — Lanchas de Lujo | Astillero Fuentes">
+  <!-- SECTION 1: HERO SLIDER -->
+  <HeroSlider />
+
+  <!-- SECTION 2: MODELS THUMBNAILS BAR -->
+  <section class="bg-bg-light py-10" aria-label="Modelos disponibles">
+    <div class="container-site">
+      <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2" id="models-bar">
+        {models.map(model => (
+          <a
+            href={`/modelos/${model.slug}`}
+            class="group flex-shrink-0 flex flex-col items-center gap-2 cursor-pointer"
+            aria-label={`Ver ${model.name}`}
+          >
+            <div class="relative w-[200px] h-[140px] overflow-hidden rounded-lg bg-bg-mid">
+              <img
+                src={model.thumbnailUrl}
+                alt={model.name}
+                width="200"
+                height="140"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
+              />
+              {model.badge && (
+                <span class={`absolute top-2 right-2 text-[0.6rem] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wide ${model.badge === 'NUEVO' ? 'bg-accent-cyan text-bg-dark' : 'bg-bg-dark text-text-secondary border border-white/20'}`}>
+                  {model.badge}
+                </span>
+              )}
+            </div>
+            <div class="text-center">
+              <p class="font-display font-bold text-text-dark text-sm group-hover:text-accent-blue transition-colors">{model.name}</p>
+              <p class="text-text-muted text-xs">{model.eslora}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: FILOSOFÍA -->
+  <section class="bg-bg-white py-24 text-center" aria-label="Nuestra filosofía">
+    <div class="container-site max-w-3xl mx-auto">
+      <div class="reveal">
+        <SectionLabel text="LA FILOSOFÍA" class="mb-4 block" />
+        <blockquote class="font-display font-bold text-2xl md:text-3xl text-text-dark leading-snug mt-4 mb-6">
+          "Para dar al usuario experiencias <em class="text-accent-blue not-italic">trascendentales</em> en el agua."
+        </blockquote>
+        <p class="text-text-muted text-sm leading-relaxed max-w-xl mx-auto">
+          Cada Classer es el resultado de décadas de maestría artesanal, innovación en diseño y una pasión
+          inquebrantable por la excelencia náutica. Construimos embarcaciones que trascienden el tiempo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: MODELS CATALOG HORIZONTAL SCROLL -->
+  <section class="bg-bg-light py-20" aria-label="Catálogo de modelos">
+    <div class="container-site">
+      <!-- Sub-headers -->
+      <div class="flex items-center gap-6 mb-8 reveal">
+        <span class="font-display font-bold text-lg text-text-dark uppercase tracking-wide">SURF</span>
+        <div class="flex-1 h-px bg-black/15"></div>
+        <span class="font-display font-bold text-lg text-text-dark uppercase tracking-wide">LINEA OB</span>
+      </div>
+
+      <!-- Horizontal catalog -->
+      <div
+        class="flex gap-6 overflow-x-auto hide-scrollbar pb-4 drag-scroll"
+        id="catalog-scroll"
+        role="region"
+        aria-label="Desplazar para ver modelos"
+      >
+        {catalogModels.map(m => (
+          <article class="flex-shrink-0 w-72 flex flex-col bg-white rounded-lg overflow-hidden shadow-card hover:shadow-deep transition-all duration-300 hover:scale-[1.02] cursor-pointer group">
+            <a href={m.href} class="block overflow-hidden">
+              <img src={m.imageUrl} alt={`Ilustración ${m.name}`} width="320" height="180" class="w-full object-cover h-44 transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            </a>
+            <div class="p-5 flex flex-col gap-3">
+              <h3 class="font-display font-bold italic text-2xl text-text-dark group-hover:text-accent-blue transition-colors">
+                <a href={m.href}>{m.name}</a>
+              </h3>
+              <div class="flex gap-2 flex-wrap">
+                <span class="bg-bg-light text-text-muted text-[0.6rem] px-2.5 py-1 rounded-sm uppercase tracking-wide border border-black/10">MOTORIZACIÓN: {m.motorizacion}</span>
+                <span class="bg-bg-light text-text-muted text-[0.6rem] px-2.5 py-1 rounded-sm uppercase tracking-wide border border-black/10">ESLORA: {m.eslora}</span>
+                <span class="bg-bg-light text-text-muted text-[0.6rem] px-2.5 py-1 rounded-sm uppercase tracking-wide border border-black/10">PERSONAS: {m.personas}</span>
+              </div>
+              <a href={m.href} class="text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors inline-flex items-center gap-1 mt-1">
+                Ver modelo
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- View all -->
+      <div class="mt-8 text-center reveal">
+        <a href="/modelos" class="inline-flex items-center gap-2 border border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white text-sm font-medium px-6 py-2.5 rounded transition-all duration-200 cursor-pointer">
+          Ver todos los modelos
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: FABRICACIÓN PROPIA -->
+  <section class="bg-bg-dark py-24" aria-label="Fabricación propia">
+    <div class="container-site">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <!-- Left: craftsman image -->
+        <div class="reveal">
+          <img
+            src="https://placehold.co/480x600/0a0e1a/a8b3c8?text=Maestro+Artesano"
+            alt="Maestro artesano trabajando en una embarcación Classer"
+            width="480"
+            height="600"
+            class="w-full h-full object-cover rounded-lg"
+            loading="lazy"
+          />
+        </div>
+        <!-- Right: content -->
+        <div class="reveal flex flex-col gap-6">
+          <SectionLabel text="FABRICACIÓN PROPIA" />
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-white leading-tight">
+            Maestría en cada detalle.
+          </h2>
+          <p class="text-text-secondary text-sm leading-relaxed">
+            El verdadero lujo no se puede subcontratar. Cada embarcación Classer nace en nuestras
+            instalaciones de Villa María, Córdoba, bajo la supervisión directa de maestros artesanos
+            con décadas de experiencia. Controlamos cada proceso, desde la laminación del casco
+            hasta el acabado final del interior.
+          </p>
+          <!-- 3 icon columns -->
+          <div class="grid grid-cols-3 gap-6 mt-2">
+            {[
+              { icon: '⚓', label: 'Legado', sub: 'Desde 1972' },
+              { icon: '◆', label: 'Calidad', sub: 'Control total' },
+              { icon: '✦', label: 'Diseño', sub: 'Made in Italy' },
+            ].map(item => (
+              <div class="flex flex-col items-center text-center gap-2">
+                <div class="w-10 h-10 border border-accent-blue/40 rounded flex items-center justify-center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e90d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    {item.label === 'Legado' && <><path d="M12 2L8 6H4l2 4-2 4h4l4 4 4-4h4l-2-4 2-4h-4l-4-4z"/></>}
+                    {item.label === 'Calidad' && <><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></>}
+                    {item.label === 'Diseño' && <><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="12" cy="12" r="2"/></>}
+                  </svg>
+                </div>
+                <p class="text-white text-sm font-semibold">{item.label}</p>
+                <p class="text-text-muted text-xs">{item.sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: PARTNERS OFICIALES -->
+  <section class="bg-bg-deep py-20 text-center" aria-label="Partners oficiales">
+    <div class="container-site">
+      <div class="reveal">
+        <SectionLabel text="PARTNERS OFICIALES" class="mb-3 block" />
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">Potencia y Confianza</h2>
+        <p class="text-text-secondary text-sm max-w-lg mx-auto mb-12 leading-relaxed">
+          Trabajamos exclusivamente con las marcas líderes en motorización marina, garantizando
+          rendimiento, durabilidad y soporte técnico de nivel mundial.
+        </p>
+        <div class="flex items-center justify-center gap-16">
+          <div class="flex flex-col items-center gap-3">
+            <img src="https://placehold.co/200x60/0a0e1a/ffffff?text=MERCURY" alt="Mercury Marine — partner oficial" width="200" height="60" loading="lazy" class="opacity-80 hover:opacity-100 transition-opacity" />
+          </div>
+          <div class="w-px h-12 bg-white/20" aria-hidden="true"></div>
+          <div class="flex flex-col items-center gap-3">
+            <img src="https://placehold.co/200x60/0a0e1a/ffffff?text=YAMAHA" alt="Yamaha Marine — partner oficial" width="200" height="60" loading="lazy" class="opacity-80 hover:opacity-100 transition-opacity" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: NOTICIAS Y EVENTOS -->
+  <section class="bg-bg-dark py-20" aria-label="Noticias y eventos">
+    <div class="container-site">
+      <div class="text-center mb-10 reveal">
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-white">Noticias y eventos</h2>
+      </div>
+      <div class="flex gap-6 overflow-x-auto hide-scrollbar pb-4" id="news-slider">
+        {newsArticles.map((article, i) => (
+          <div class="flex-shrink-0 w-72 md:w-80">
+            <NewsCard
+              category={article.category}
+              date={article.date}
+              title={article.title}
+              excerpt={article.excerpt}
+              imageUrl={article.imageUrl}
+              href={`/eventos#${article.slug}`}
+              featured={i === 0}
+            />
+          </div>
+        ))}
+      </div>
+      <div class="flex justify-center gap-2 mt-6" aria-label="Indicadores de noticias">
+        {newsArticles.map((_, i) => (
+          <div class={`h-1 rounded-full transition-all ${i === 0 ? 'w-6 bg-accent-cyan' : 'w-3 bg-white/30'}`} aria-hidden="true"></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: CTA CONTACTO -->
+  <section class="bg-bg-deep py-24 text-center" aria-label="Contactar un asesor">
+    <div class="container-site">
+      <div class="reveal max-w-xl mx-auto">
+        <SectionLabel text="TU PRÓXIMA AVENTURA" class="mb-3 block" />
+        <h2 class="font-display font-bold text-2xl md:text-3xl text-white mb-3 leading-snug">
+          Descubrí tu lancha. Un especialista de Classer te contactará para asesorarte sin compromiso.
+        </h2>
+        <p class="text-text-secondary text-sm mb-10">Completá el formulario y nos comunicamos a la brevedad.</p>
+        <ContactForm compact={true} />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script is:inline>
+  // Drag-to-scroll for catalog
+  document.addEventListener('DOMContentLoaded', () => {
+    const catalogs = document.querySelectorAll('#catalog-scroll, #models-bar, #news-slider');
+    catalogs.forEach(el => {
+      let isDown = false;
+      let startX = 0;
+      let scrollLeft = 0;
+
+      el.addEventListener('mousedown', (e) => {
+        isDown = true;
+        el.classList.add('drag-scroll');
+        startX = e.pageX - el.offsetLeft;
+        scrollLeft = el.scrollLeft;
+      });
+
+      el.addEventListener('mouseleave', () => { isDown = false; });
+      el.addEventListener('mouseup', () => { isDown = false; });
+      el.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - el.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        el.scrollLeft = scrollLeft - walk;
+      });
+    });
+  });
+</script>

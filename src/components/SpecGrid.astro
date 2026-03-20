@@ -1,0 +1,90 @@
+---
+interface Props {
+  specs: { label: string; value: string; icon: string }[];
+  dark?: boolean;
+}
+const { specs, dark = true } = Astro.props;
+---
+
+<div
+  class={`grid grid-cols-2 md:grid-cols-3 gap-px ${dark ? 'bg-white/10' : 'bg-black/10'}`}
+  id="spec-grid"
+  role="list"
+  aria-label="Especificaciones técnicas"
+>
+  {specs.map((spec, i) => (
+    <div
+      class={`spec-tile flex flex-col items-center justify-center gap-2 p-8 ${dark ? 'bg-bg-deep' : 'bg-bg-light'}`}
+      role="listitem"
+    >
+      <!-- Icon placeholder (blue stroke icon) -->
+      <div class="w-10 h-10 flex items-center justify-center text-accent-blue" aria-hidden="true">
+        {spec.icon === 'ruler' && (
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.5 7L14 14.5M3 3l18 18M7 7l2.5 2.5M10 10l2.5 2.5M13 13l2.5 2.5M16 16l2.5 2.5"/>
+          </svg>
+        )}
+        {spec.icon === 'arrows-horizontal' && (
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 12H3m0 0l3-3m-3 3l3 3M16 12h5m0 0l-3-3m3 3l-3 3"/>
+          </svg>
+        )}
+        {spec.icon === 'arrow-up' && (
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5m-7 7l7-7 7 7"/>
+          </svg>
+        )}
+        {spec.icon === 'lightning' && (
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        )}
+        {spec.icon === 'drop' && (
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C6.48 2 4 8 4 13a8 8 0 0016 0c0-5-2.48-11-8-11z"/>
+          </svg>
+        )}
+        {spec.icon === 'users' && (
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        )}
+        {spec.icon === 'gauge' && (
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        )}
+      </div>
+      <span class={`font-barlow text-[0.6rem] uppercase tracking-widest ${dark ? 'text-text-muted' : 'text-text-muted'}`}>{spec.label}</span>
+      <span class={`spec-value font-display font-bold text-2xl md:text-3xl ${dark ? 'text-white' : 'text-text-dark'}`} data-value={spec.value}>
+        {spec.value}
+      </span>
+    </div>
+  ))}
+</div>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const grid = document.getElementById('spec-grid');
+  if (grid) {
+    const tiles = grid.querySelectorAll('.spec-tile');
+    gsap.fromTo(tiles,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: grid,
+          start: 'top 80%',
+        },
+      }
+    );
+  }
+</script>

@@ -1,0 +1,57 @@
+---
+interface Props {
+  name: string;
+  line: string;
+  eslora: string;
+  motorizacion: string;
+  personas: string;
+  imageUrl: string;
+  href: string;
+  badge?: string;
+}
+const { name, line, eslora, motorizacion, personas, imageUrl, href, badge } = Astro.props;
+---
+
+<article class="model-card group flex-shrink-0 w-72 md:w-80 flex flex-col bg-bg-mid rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-deep cursor-pointer">
+  <a href={href} class="block overflow-hidden relative">
+    <img
+      src={imageUrl}
+      alt={name}
+      width="320"
+      height="180"
+      class="w-full object-cover h-44 transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+    />
+    {badge && (
+      <span class={`absolute top-3 right-3 text-[0.6rem] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wide ${badge === 'NUEVO' ? 'bg-accent-cyan text-bg-dark' : 'bg-bg-mid text-text-secondary border border-white/20'}`}>
+        {badge}
+      </span>
+    )}
+    <!-- Line-art overlay label -->
+    <div class="absolute inset-0 flex items-end p-3 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <span class="font-barlow text-[0.6rem] uppercase tracking-wide text-white/70">{line}</span>
+    </div>
+  </a>
+  <div class="p-5 flex flex-col gap-3">
+    <h3 class="font-display font-bold italic text-2xl text-white leading-tight group-hover:text-accent-cyan transition-colors">
+      <a href={href}>{name.replace('Classer ', '')}</a>
+    </h3>
+    <div class="flex gap-2 flex-wrap">
+      <span class="bg-bg-deep text-text-secondary text-[0.65rem] px-2.5 py-1 rounded-sm uppercase tracking-wide border border-white/10">
+        {motorizacion}
+      </span>
+      <span class="bg-bg-deep text-text-secondary text-[0.65rem] px-2.5 py-1 rounded-sm uppercase tracking-wide border border-white/10">
+        {eslora}
+      </span>
+      <span class="bg-bg-deep text-text-secondary text-[0.65rem] px-2.5 py-1 rounded-sm uppercase tracking-wide border border-white/10">
+        {personas} pers.
+      </span>
+    </div>
+    <a href={href} class="text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors inline-flex items-center gap-1 mt-1">
+      Ver modelo
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</article>

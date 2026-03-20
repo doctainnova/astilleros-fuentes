@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import NewsCard from '../components/NewsCard.astro';
+import { newsArticles } from '../data/news';
+
+const featured = newsArticles.find(a => a.featured);
+const rest = newsArticles.filter(a => !a.featured);
+---
+
+<Layout
+  title="Noticias y Eventos — CLASSER | Astillero Fuentes"
+  description="Las últimas noticias, lanzamientos y eventos de Astillero Fuentes y la línea CLASSER."
+>
+  <!-- HERO -->
+  <section class="pt-36 pb-20 bg-bg-dark text-center" aria-label="Noticias y eventos">
+    <div class="container-site">
+      <div class="reveal">
+        <SectionLabel text="ACTUALIDAD" class="mb-3 block" />
+        <h1 class="font-display font-bold text-4xl md:text-5xl text-white mb-4">Noticias y eventos</h1>
+        <p class="text-text-secondary text-sm max-w-lg mx-auto leading-relaxed">
+          Enterate de todo lo que pasa en el mundo Classer: lanzamientos, eventos náuticos y novedades de la marca.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLE -->
+  {featured && (
+    <section class="py-20 bg-bg-deep" aria-label="Artículo destacado" id={featured.slug}>
+      <div class="container-site">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <!-- Image -->
+          <div class="reveal">
+            <img
+              src="https://placehold.co/560x400/0f1525/a8b3c8?text=Lanzamiento+Classer+246"
+              alt={featured.title}
+              width="560"
+              height="400"
+              class="w-full rounded-lg object-cover"
+              loading="lazy"
+            />
+          </div>
+          <!-- Content -->
+          <div class="reveal flex flex-col gap-4">
+            <div class="flex items-center gap-3">
+              <span class="font-barlow text-[0.6rem] uppercase tracking-[0.12em] px-2.5 py-1 rounded-full bg-accent-blue/20 text-accent-blue font-medium">
+                {featured.category}
+              </span>
+              <span class="text-text-muted text-xs">{featured.date}</span>
+            </div>
+            <h2 class="font-display font-bold italic text-3xl md:text-4xl text-white leading-tight">
+              {featured.title}
+            </h2>
+            {featured.body.split('\n\n').map(paragraph => (
+              <p class="text-text-secondary text-sm leading-relaxed">{paragraph.trim()}</p>
+            ))}
+            <a
+              href="https://wa.me/5493534781206"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 border border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white text-sm font-medium px-5 py-2.5 rounded transition-all duration-200 cursor-pointer mt-2 self-start"
+            >
+              Consultar disponibilidad
+            </a>
+          </div>
+        </div>
+
+        <!-- Event photo collage -->
+        <div class="mt-16 reveal">
+          <p class="font-barlow text-[0.65rem] uppercase tracking-[0.15em] text-accent-blue mb-6">GALERÍA DEL EVENTO</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="md:col-span-2 md:row-span-2">
+              <img src="https://placehold.co/700x480/0f1525/a8b3c8?text=Evento+Lanzamiento+1" alt="Evento lanzamiento Classer 246 — foto 1" width="700" height="480" class="w-full h-full object-cover rounded-lg min-h-[200px]" loading="lazy" />
+            </div>
+            <div>
+              <img src="https://placehold.co/340x480/0f1525/a8b3c8?text=Evento+2" alt="Evento lanzamiento — foto 2" width="340" height="480" class="w-full h-48 object-cover rounded-lg" loading="lazy" />
+            </div>
+            <div>
+              <img src="https://placehold.co/340x480/0f1525/a8b3c8?text=Evento+3" alt="Evento lanzamiento — foto 3" width="340" height="480" class="w-full h-48 object-cover rounded-lg" loading="lazy" />
+            </div>
+            <div>
+              <img src="https://placehold.co/340x480/0f1525/a8b3c8?text=Evento+4" alt="Evento lanzamiento — foto 4" width="340" height="480" class="w-full h-48 object-cover rounded-lg" loading="lazy" />
+            </div>
+            <div>
+              <img src="https://placehold.co/340x480/0f1525/a8b3c8?text=Evento+5" alt="Evento lanzamiento — foto 5" width="340" height="480" class="w-full h-48 object-cover rounded-lg" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- MORE ARTICLES -->
+  <section class="py-20 bg-bg-dark" aria-label="Más noticias">
+    <div class="container-site">
+      <h2 class="font-display font-bold text-2xl text-white mb-10 reveal">Más noticias</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {newsArticles.map((article, i) => (
+          <div class="reveal">
+            <NewsCard
+              category={article.category}
+              date={article.date}
+              title={article.title}
+              excerpt={article.excerpt}
+              imageUrl={article.imageUrl}
+              href={`#${article.slug}`}
+              featured={false}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

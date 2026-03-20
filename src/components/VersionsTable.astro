@@ -1,0 +1,106 @@
+---
+interface Feature {
+  label: string;
+  ltd: boolean | 'optional';
+  flyer: boolean | 'optional';
+}
+interface Props {
+  modelName: string;
+  features: Feature[];
+  diagramUrl: string;
+}
+const { modelName, features, diagramUrl } = Astro.props;
+---
+
+<section class="py-20 bg-bg-light" aria-label="Versiones y equipamiento">
+  <div class="container-site">
+    <div class="flex flex-col md:flex-row gap-12 items-start">
+      <!-- Diagram side -->
+      <div class="md:w-1/2 reveal">
+        <img
+          src={diagramUrl}
+          alt={`Diagrama técnico ${modelName}`}
+          width="700"
+          height="480"
+          class="w-full rounded-lg"
+          loading="lazy"
+        />
+        <p class="text-text-muted text-xs mt-3 text-center">Vista técnica — {modelName}</p>
+      </div>
+
+      <!-- Table side -->
+      <div class="md:w-1/2 reveal">
+        <p class="font-barlow text-[0.65rem] uppercase tracking-[0.15em] text-accent-blue mb-2">Versiones</p>
+        <h2 class="font-display font-bold italic text-3xl text-text-dark mb-6">{modelName}</h2>
+
+        <table class="w-full text-sm" aria-label={`Comparación de versiones ${modelName}`}>
+          <thead>
+            <tr class="border-b border-black/10">
+              <th class="text-left py-3 font-medium text-text-muted uppercase text-[0.65rem] tracking-wide">Equipamiento</th>
+              <th class="text-center py-3 font-medium text-text-dark uppercase text-[0.65rem] tracking-wide">LTD</th>
+              <th class="text-center py-3 font-medium text-text-dark uppercase text-[0.65rem] tracking-wide">Flyer</th>
+            </tr>
+          </thead>
+          <tbody>
+            {features.map((feature, i) => (
+              <tr class={`border-b border-black/5 ${i % 2 === 0 ? '' : 'bg-black/3'}`}>
+                <td class="py-3 text-text-dark text-sm">{feature.label}</td>
+                <td class="py-3 text-center">
+                  {feature.ltd === true && (
+                    <span class="text-green-600 font-bold text-base" aria-label="Incluye">✓</span>
+                  )}
+                  {feature.ltd === false && (
+                    <span class="text-red-500 text-base" aria-label="No incluye">✗</span>
+                  )}
+                  {feature.ltd === 'optional' && (
+                    <span class="text-accent-blue text-base" aria-label="Opcional">✦</span>
+                  )}
+                </td>
+                <td class="py-3 text-center">
+                  {feature.flyer === true && (
+                    <span class="text-green-600 font-bold text-base" aria-label="Incluye">✓</span>
+                  )}
+                  {feature.flyer === false && (
+                    <span class="text-red-500 text-base" aria-label="No incluye">✗</span>
+                  )}
+                  {feature.flyer === 'optional' && (
+                    <span class="text-accent-blue text-base" aria-label="Opcional">✦</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <!-- Legend -->
+        <div class="flex gap-6 mt-4">
+          <span class="flex items-center gap-1.5 text-xs text-text-muted">
+            <span class="text-green-600 font-bold">✓</span> Incluye
+          </span>
+          <span class="flex items-center gap-1.5 text-xs text-text-muted">
+            <span class="text-red-500">✗</span> No Incluye
+          </span>
+          <span class="flex items-center gap-1.5 text-xs text-text-muted">
+            <span class="text-accent-blue">✦</span> Opcional
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 80%' },
+      }
+    );
+  });
+</script>

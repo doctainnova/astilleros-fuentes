@@ -1,0 +1,171 @@
+---
+const slides = [
+  {
+    image: 'https://placehold.co/1440x900/050810/a8b3c8?text=Classer+206+FTX+—+Lanzamiento',
+    eyebrow: 'MÁS CERCA QUE NUNCA',
+    title: 'Lanzamiento Classer 186',
+    cta: { label: 'DESCUBRIR', href: '/modelos/186' },
+  },
+  {
+    image: 'https://placehold.co/1440x900/050810/a8b3c8?text=Classer+246+—+El+estándar',
+    eyebrow: 'LINEA SURF',
+    title: 'Classer 246 — El Estándar',
+    cta: { label: 'CONOCER MÁS', href: '/modelos/246' },
+  },
+  {
+    image: 'https://placehold.co/1440x900/050810/a8b3c8?text=Classer+206+FTX+—+Performance',
+    eyebrow: 'LINEA FTX',
+    title: 'Diseñado para el Rendimiento',
+    cta: { label: 'VER MODELOS', href: '/modelos' },
+  },
+];
+---
+
+<section class="relative h-screen min-h-[600px] overflow-hidden bg-black" id="hero-slider" aria-label="Presentación de modelos Classer">
+  <!-- Slides -->
+  {slides.map((slide, i) => (
+    <div
+      class={`slide absolute inset-0 ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+      data-index={i}
+      aria-hidden={i !== 0}
+      role="group"
+      aria-roledescription="slide"
+      aria-label={slide.title}
+    >
+      <!-- Background image -->
+      <img
+        src={slide.image}
+        alt=""
+        width="1440"
+        height="900"
+        class="absolute inset-0 w-full h-full object-cover"
+        loading={i === 0 ? 'eager' : 'lazy'}
+        aria-hidden="true"
+      />
+      <!-- Dark overlay gradient -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent pointer-events-none" aria-hidden="true"></div>
+
+      <!-- Text overlay — bottom left -->
+      <div class="absolute bottom-24 left-0 right-0 container-site">
+        <div class="slide-content max-w-xl">
+          <span class="slide-eyebrow font-barlow text-[0.65rem] uppercase tracking-[0.2em] text-accent-cyan block mb-3">
+            {slide.eyebrow}
+          </span>
+          <h1 class="slide-title font-display font-bold text-white leading-none mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            {slide.title}
+          </h1>
+          <a
+            href={slide.cta.href}
+            class="slide-cta inline-flex items-center gap-2 border border-white text-white text-sm font-medium px-6 py-3 rounded hover:bg-white hover:text-bg-deep transition-all duration-300 cursor-pointer"
+          >
+            {slide.cta.label}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <!-- Navigation arrows — bottom right -->
+  <div class="absolute bottom-24 right-6 md:right-12 flex gap-3" aria-label="Navegación del slider">
+    <button id="prev-slide" aria-label="Diapositiva anterior" class="w-12 h-12 border border-white/40 rounded flex items-center justify-center text-white hover:border-white hover:bg-white/10 transition-all cursor-pointer">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M13 15l-5-5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button id="next-slide" aria-label="Siguiente diapositiva" class="w-12 h-12 border border-white/40 rounded flex items-center justify-center text-white hover:border-white hover:bg-white/10 transition-all cursor-pointer">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M7 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Slide counter -->
+  <div class="absolute bottom-8 left-0 right-0 container-site flex gap-2" aria-label="Indicadores de diapositiva" role="tablist">
+    {slides.map((_, i) => (
+      <button
+        role="tab"
+        aria-selected={i === 0}
+        aria-label={`Diapositiva ${i + 1}`}
+        class={`slide-dot h-0.5 transition-all duration-300 cursor-pointer rounded-full ${i === 0 ? 'w-8 bg-accent-cyan' : 'w-4 bg-white/30'}`}
+        data-dot={i}
+      ></button>
+    ))}
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const slides = document.querySelectorAll<HTMLElement>('.slide');
+  const dots = document.querySelectorAll<HTMLElement>('[data-dot]');
+  const prevBtn = document.getElementById('prev-slide');
+  const nextBtn = document.getElementById('next-slide');
+  let current = 0;
+  let autoTimer: ReturnType<typeof setTimeout>;
+  const INTERVAL = 4000;
+
+  function animateTextIn(slide: HTMLElement) {
+    const eyebrow = slide.querySelector('.slide-eyebrow');
+    const title = slide.querySelector('.slide-title');
+    const cta = slide.querySelector('.slide-cta');
+    const tl = gsap.timeline();
+    tl.fromTo(eyebrow, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.2, ease: 'power3.out' })
+      .fromTo(title,   { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.3')
+      .fromTo(cta,     { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.4');
+  }
+
+  function goTo(idx: number) {
+    const prev = slides[current];
+    const next = slides[idx];
+
+    gsap.to(prev, { opacity: 0, x: -20, duration: 0.6, ease: 'power2.inOut', onComplete: () => {
+      prev.setAttribute('aria-hidden', 'true');
+      gsap.set(prev, { x: 0 });
+    }});
+
+    gsap.fromTo(next, { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power2.inOut', onStart: () => {
+      next.setAttribute('aria-hidden', 'false');
+    }});
+
+    // Update dots
+    dots.forEach((dot, i) => {
+      if (i === idx) {
+        dot.classList.remove('w-4', 'bg-white/30');
+        dot.classList.add('w-8', 'bg-accent-cyan');
+        dot.setAttribute('aria-selected', 'true');
+      } else {
+        dot.classList.remove('w-8', 'bg-accent-cyan');
+        dot.classList.add('w-4', 'bg-white/30');
+        dot.setAttribute('aria-selected', 'false');
+      }
+    });
+
+    animateTextIn(next);
+    current = idx;
+  }
+
+  function startAuto() {
+    autoTimer = setInterval(() => {
+      goTo((current + 1) % slides.length);
+    }, INTERVAL);
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    startAuto();
+  }
+
+  prevBtn?.addEventListener('click', () => { goTo((current - 1 + slides.length) % slides.length); resetAuto(); });
+  nextBtn?.addEventListener('click', () => { goTo((current + 1) % slides.length); resetAuto(); });
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => { goTo(Number(dot.dataset.dot)); resetAuto(); });
+  });
+
+  // Initial text animation
+  animateTextIn(slides[0] as HTMLElement);
+  startAuto();
+</script>

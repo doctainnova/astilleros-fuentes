@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&family=Barlow:wght@400;500&family=Inter:wght@300;400;500;600&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-bg-deep:       #0a0e1a;
+  --color-bg-dark:       #0f1525;
+  --color-bg-mid:        #1a2035;
+  --color-bg-light:      #f4f4f2;
+  --color-bg-white:      #ffffff;
+  --color-accent-blue:   #1e90d4;
+  --color-accent-cyan:   #00bcd4;
+  --color-text-primary:  #ffffff;
+  --color-text-secondary:#a8b3c8;
+  --color-text-dark:     #1a1a2e;
+  --color-text-muted:    #6b7a99;
+  --color-red-accent:    #e53935;
+
+  /* Fonts */
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-barlow:  "Barlow", sans-serif;
+  --font-body:    "Inter", sans-serif;
+
+  /* Box shadows */
+  --shadow-card:   0 4px 24px rgba(0,0,0,0.4);
+  --shadow-navbar: 0 2px 20px rgba(0,0,0,0.6);
+  --shadow-deep:   0 8px 40px rgba(0,0,0,0.6);
+}
+
+/* Base */
+html { scroll-behavior: smooth; }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0a0e1a;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+}
+
+/* Layout helpers */
+.container-site {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Eyebrow label */
+.eyebrow {
+  font-family: "Barlow", sans-serif;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #1e90d4;
+}
+
+/* Scrollbar */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Drag scroll */
+.drag-scroll { cursor: grab; user-select: none; }
+.drag-scroll:active { cursor: grabbing; }
+
+/* Mega-dropdown */
+.mega-dropdown {
+  transform: translateY(-8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+}
+.nav-models:hover .mega-dropdown,
+.nav-models:focus-within .mega-dropdown {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Reveal base (GSAP overrides) */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

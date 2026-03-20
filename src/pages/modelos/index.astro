@@ -1,0 +1,182 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import { models } from '../../data/models';
+---
+
+<Layout
+  title="Modelos — CLASSER | Astillero Fuentes"
+  description="Descubrí la línea completa de lanchas Classer: 165, 170, 206 FTX, 246, 246 OB. Performance italiana, construida en Argentina."
+>
+  <!-- Page Hero -->
+  <section class="pt-36 pb-16 bg-bg-dark text-center" aria-label="Encabezado de modelos">
+    <div class="container-site">
+      <div class="reveal">
+        <SectionLabel text="LÍNEA COMPLETA" class="mb-3 block" />
+        <h1 class="font-display font-bold text-4xl md:text-5xl text-white mb-4">Nuestros Modelos</h1>
+        <p class="text-text-secondary text-sm max-w-xl mx-auto leading-relaxed">
+          Cada Classer está diseñado para una experiencia única en el agua.
+          Elegí el tuyo y personalizalo a tu medida.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SURF Line -->
+  <section class="py-16 bg-bg-deep" aria-label="Línea Surf">
+    <div class="container-site">
+      <div class="flex items-center gap-4 mb-10 reveal">
+        <div class="h-px flex-1 bg-white/10"></div>
+        <h2 class="font-display font-bold text-xl text-white uppercase tracking-widest">LINEA SURF</h2>
+        <div class="h-px flex-1 bg-white/10"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {models.filter(m => m.line === 'LINEA SURF' || m.slug === '246').map(model => (
+          <article class="reveal group bg-bg-mid rounded-lg overflow-hidden hover:shadow-deep transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+            <a href={`/modelos/${model.slug}`} class="block overflow-hidden relative">
+              <img
+                src={model.thumbnailUrl}
+                alt={model.name}
+                width="400"
+                height="260"
+                class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+              {model.badge && (
+                <span class={`absolute top-3 right-3 text-[0.6rem] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wide ${model.badge === 'NUEVO' ? 'bg-accent-cyan text-bg-dark' : 'bg-bg-dark text-text-secondary border border-white/20'}`}>
+                  {model.badge}
+                </span>
+              )}
+            </a>
+            <div class="p-6 flex flex-col gap-3">
+              <div>
+                <p class="font-barlow text-[0.6rem] uppercase tracking-[0.12em] text-accent-blue mb-1">{model.line}</p>
+                <h3 class="font-display font-bold italic text-2xl text-white group-hover:text-accent-cyan transition-colors">
+                  <a href={`/modelos/${model.slug}`}>{model.name}</a>
+                </h3>
+                <p class="text-text-muted text-xs mt-1">{model.eslora}</p>
+              </div>
+              <p class="text-text-secondary text-sm leading-relaxed">{model.tagline}</p>
+              <div class="flex gap-2 flex-wrap">
+                {model.specs.slice(0, 3).map(spec => (
+                  <span class="bg-bg-deep text-text-secondary text-[0.6rem] px-2.5 py-1 rounded-sm uppercase tracking-wide border border-white/10">
+                    {spec.value}
+                  </span>
+                ))}
+              </div>
+              <a href={`/modelos/${model.slug}`} class="inline-flex items-center gap-1 text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors mt-1">
+                Explorar modelo
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FTX Line -->
+  <section class="py-16 bg-bg-mid" aria-label="Línea FTX">
+    <div class="container-site">
+      <div class="flex items-center gap-4 mb-10 reveal">
+        <div class="h-px flex-1 bg-white/10"></div>
+        <h2 class="font-display font-bold text-xl text-white uppercase tracking-widest">LINEA FTX</h2>
+        <div class="h-px flex-1 bg-white/10"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {models.filter(m => m.line === 'LINEA FTX').map(model => (
+          <article class="reveal group bg-bg-dark rounded-lg overflow-hidden hover:shadow-deep transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+            <a href={`/modelos/${model.slug}`} class="block overflow-hidden relative">
+              <img
+                src={model.thumbnailUrl}
+                alt={model.name}
+                width="400"
+                height="260"
+                class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+              {model.badge && (
+                <span class={`absolute top-3 right-3 text-[0.6rem] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wide ${model.badge === 'NUEVO' ? 'bg-accent-cyan text-bg-dark' : 'bg-bg-mid text-text-secondary border border-white/20'}`}>
+                  {model.badge}
+                </span>
+              )}
+            </a>
+            <div class="p-6 flex flex-col gap-3">
+              <div>
+                <p class="font-barlow text-[0.6rem] uppercase tracking-[0.12em] text-accent-blue mb-1">{model.line}</p>
+                <h3 class="font-display font-bold italic text-2xl text-white group-hover:text-accent-cyan transition-colors">
+                  <a href={`/modelos/${model.slug}`}>{model.name}</a>
+                </h3>
+                <p class="text-text-muted text-xs mt-1">{model.eslora}</p>
+              </div>
+              <p class="text-text-secondary text-sm leading-relaxed">{model.tagline}</p>
+              <div class="flex gap-2 flex-wrap">
+                {model.specs.slice(0, 3).map(spec => (
+                  <span class="bg-bg-deep text-text-secondary text-[0.6rem] px-2.5 py-1 rounded-sm uppercase tracking-wide border border-white/10">
+                    {spec.value}
+                  </span>
+                ))}
+              </div>
+              <a href={`/modelos/${model.slug}`} class="inline-flex items-center gap-1 text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors mt-1">
+                Explorar modelo
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- OB Line -->
+  <section class="py-16 bg-bg-deep" aria-label="Línea OB">
+    <div class="container-site">
+      <div class="flex items-center gap-4 mb-10 reveal">
+        <div class="h-px flex-1 bg-white/10"></div>
+        <h2 class="font-display font-bold text-xl text-white uppercase tracking-widest">LINEA OB</h2>
+        <div class="h-px flex-1 bg-white/10"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {models.filter(m => m.line === 'LINEA OB').map(model => (
+          <article class="reveal group bg-bg-mid rounded-lg overflow-hidden hover:shadow-deep transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+            <a href={`/modelos/${model.slug}`} class="block overflow-hidden relative">
+              <img
+                src={model.thumbnailUrl}
+                alt={model.name}
+                width="400"
+                height="260"
+                class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </a>
+            <div class="p-6 flex flex-col gap-3">
+              <div>
+                <p class="font-barlow text-[0.6rem] uppercase tracking-[0.12em] text-accent-blue mb-1">{model.line}</p>
+                <h3 class="font-display font-bold italic text-2xl text-white group-hover:text-accent-cyan transition-colors">
+                  <a href={`/modelos/${model.slug}`}>{model.name}</a>
+                </h3>
+                <p class="text-text-muted text-xs mt-1">{model.eslora}</p>
+              </div>
+              <p class="text-text-secondary text-sm leading-relaxed">{model.tagline}</p>
+              <a href={`/modelos/${model.slug}`} class="inline-flex items-center gap-1 text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors mt-1">
+                Explorar modelo
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-bg-dark py-20 text-center">
+    <div class="container-site reveal">
+      <h2 class="font-display font-bold text-3xl text-white mb-4">¿No encontrás lo que buscás?</h2>
+      <p class="text-text-secondary text-sm mb-8 max-w-md mx-auto">Hablá con un asesor Classer y diseñamos juntos tu embarcación ideal.</p>
+      <a href="https://wa.me/5493534781206" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-accent-blue hover:bg-accent-cyan text-white font-medium px-8 py-3 rounded transition-colors duration-200 cursor-pointer text-sm">
+        Contactar por WhatsApp
+      </a>
+    </div>
+  </section>
+</Layout>

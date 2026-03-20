@@ -1,0 +1,150 @@
+---
+interface ColorOption {
+  name: string;
+  hex: string;
+}
+interface Props {
+  modelName: string;
+  gelcoatColors: ColorOption[];
+  tapiceriaColors: ColorOption[];
+  pisoColors: ColorOption[];
+}
+const { modelName, gelcoatColors, tapiceriaColors, pisoColors } = Astro.props;
+---
+
+<section class="py-20 bg-bg-light" id="configurador" aria-label="Configurador de colores">
+  <div class="container-site">
+    <div class="reveal text-center mb-12">
+      <h2 class="font-display font-bold text-3xl text-text-dark mb-2">
+        Hacé que tu Classer {modelName} sea única.
+      </h2>
+    </div>
+
+    <!-- Gelcoat -->
+    <div class="mb-10 reveal">
+      <p class="font-barlow text-[0.65rem] uppercase tracking-[0.15em] text-text-muted mb-4">
+        OPCIONES DE GELCOAT
+      </p>
+      <div class="flex flex-wrap gap-4" role="radiogroup" aria-label="Opciones de gelcoat">
+        {gelcoatColors.map((color, i) => (
+          <div class="swatch-option flex flex-col items-center gap-2 cursor-pointer group" data-group="gelcoat" data-index={i}>
+            <button
+              class={`swatch-ring w-12 h-12 rounded-full border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 focus:ring-offset-bg-light ${i === 0 ? 'ring-2 ring-accent-blue ring-offset-2 ring-offset-bg-light' : 'border-transparent'}`}
+              style={`background-color: ${color.hex}; box-shadow: 0 2px 8px rgba(0,0,0,0.2); ${color.hex === '#FFFFFF' ? 'border-color: #e0e0e0;' : ''}`}
+              aria-label={`Gelcoat ${color.name}`}
+              role="radio"
+              aria-checked={i === 0}
+              type="button"
+            ></button>
+            <span class="text-text-muted text-[0.6rem] uppercase tracking-wide text-center max-w-[60px] leading-tight">{color.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Tapicería -->
+    <div class="mb-10 reveal">
+      <p class="font-barlow text-[0.65rem] uppercase tracking-[0.15em] text-text-muted mb-4">
+        OPCIONES DE TAPICERÍA
+      </p>
+      <div class="flex flex-wrap gap-4" role="radiogroup" aria-label="Opciones de tapicería">
+        {tapiceriaColors.map((color, i) => (
+          <div class="swatch-option flex flex-col items-center gap-2 cursor-pointer" data-group="tapiceria" data-index={i}>
+            <button
+              class={`swatch-ring w-16 h-10 rounded border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 focus:ring-offset-bg-light ${i === 0 ? 'ring-2 ring-accent-blue ring-offset-2 ring-offset-bg-light' : 'border-transparent'}`}
+              style={`background-color: ${color.hex}; box-shadow: 0 2px 8px rgba(0,0,0,0.15);`}
+              aria-label={`Tapicería ${color.name}`}
+              role="radio"
+              aria-checked={i === 0}
+              type="button"
+            ></button>
+            <span class="text-text-muted text-[0.6rem] uppercase tracking-wide text-center max-w-[64px] leading-tight">{color.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Piso -->
+    <div class="reveal">
+      <p class="font-barlow text-[0.65rem] uppercase tracking-[0.15em] text-text-muted mb-4">
+        OPCIONES DE PISO
+      </p>
+      <div class="flex flex-wrap gap-4" role="radiogroup" aria-label="Opciones de piso">
+        {pisoColors.map((color, i) => (
+          <div class="swatch-option flex flex-col items-center gap-2 cursor-pointer" data-group="piso" data-index={i}>
+            <button
+              class={`swatch-ring w-16 h-10 rounded border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 focus:ring-offset-bg-light ${i === 0 ? 'ring-2 ring-accent-blue ring-offset-2 ring-offset-bg-light' : 'border-transparent'}`}
+              style={`background-color: ${color.hex}; box-shadow: 0 2px 8px rgba(0,0,0,0.15);`}
+              aria-label={`Piso ${color.name}`}
+              role="radio"
+              aria-checked={i === 0}
+              type="button"
+            ></button>
+            <span class="text-text-muted text-[0.6rem] uppercase tracking-wide text-center max-w-[64px] leading-tight">{color.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 text-center reveal">
+      <a
+        href="https://wa.me/5493534781206"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-accent-blue hover:bg-accent-cyan text-white font-barlow font-medium uppercase tracking-[0.12em] text-sm px-8 py-3 rounded transition-colors duration-200 cursor-pointer"
+      >
+        Solicitar cotización
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.849L0 24l6.335-1.509A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894c-1.943 0-3.747-.536-5.289-1.467l-.379-.225-3.756.895.952-3.655-.246-.389A9.862 9.862 0 012.105 12C2.105 6.529 6.529 2.105 12 2.105S21.895 6.529 21.895 12 17.471 21.894 12 21.894z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Swatch selection
+  const swatchGroups: Record<string, number> = { gelcoat: 0, tapiceria: 0, piso: 0 };
+
+  document.querySelectorAll('.swatch-option').forEach(option => {
+    const btn = option.querySelector('.swatch-ring') as HTMLElement;
+    const group = (option as HTMLElement).dataset.group!;
+    const idx = Number((option as HTMLElement).dataset.index);
+
+    btn.addEventListener('click', () => {
+      // Deselect previous in group
+      document.querySelectorAll(`.swatch-option[data-group="${group}"] .swatch-ring`).forEach((el, i) => {
+        (el as HTMLElement).style.outline = '';
+        (el as HTMLElement).style.boxShadow = (el as HTMLElement).style.boxShadow?.replace(/.*ring.*/, '') || (el as HTMLElement).style.boxShadow;
+        el.setAttribute('aria-checked', 'false');
+        el.classList.remove('ring-2', 'ring-accent-blue', 'ring-offset-2', 'ring-offset-bg-light');
+        el.classList.add('border-transparent');
+      });
+      // Select current
+      btn.classList.add('ring-2', 'ring-accent-blue', 'ring-offset-2', 'ring-offset-bg-light');
+      btn.classList.remove('border-transparent');
+      btn.setAttribute('aria-checked', 'true');
+
+      gsap.fromTo(btn, { scale: 0.9 }, { scale: 1, duration: 0.2, ease: 'back.out(2)' });
+      swatchGroups[group] = idx;
+    });
+  });
+
+  // Reveal animations
+  const reveals = document.querySelectorAll('#configurador .reveal');
+  reveals.forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+      }
+    );
+  });
+</script>

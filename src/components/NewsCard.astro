@@ -1,0 +1,43 @@
+---
+interface Props {
+  category: string;
+  date: string;
+  title: string;
+  excerpt: string;
+  imageUrl: string;
+  href: string;
+  featured?: boolean;
+}
+const { category, date, title, excerpt, imageUrl, href, featured = false } = Astro.props;
+---
+
+<article class={`news-card group flex flex-col bg-bg-mid rounded-lg overflow-hidden transition-all duration-300 hover:shadow-deep cursor-pointer ${featured ? 'scale-100' : 'opacity-70 scale-95'}`}>
+  <a href={href} class="block overflow-hidden">
+    <img
+      src={imageUrl}
+      alt={title}
+      width="400"
+      height="240"
+      class="w-full object-cover h-48 transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+    />
+  </a>
+  <div class="p-6 flex flex-col flex-1 gap-3">
+    <div class="flex items-center gap-3">
+      <span class="font-barlow text-[0.6rem] uppercase tracking-[0.12em] px-2.5 py-1 rounded-full bg-accent-blue/20 text-accent-blue font-medium">
+        {category}
+      </span>
+      <span class="text-text-muted text-xs">{date}</span>
+    </div>
+    <h3 class="font-display font-bold text-xl text-white leading-tight group-hover:text-accent-cyan transition-colors">
+      <a href={href}>{title}</a>
+    </h3>
+    <p class="text-text-secondary text-sm leading-relaxed flex-1 line-clamp-2">{excerpt}</p>
+    <a href={href} class="text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors inline-flex items-center gap-1 mt-auto">
+      LEER ARTÍCULO
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</article>
