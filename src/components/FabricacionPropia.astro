@@ -1,0 +1,177 @@
+---
+// FabricacionPropia.astro
+// Dark navy bg (#0d1628), 2-column grid, portrait photo with decorative offset frame.
+// Right column: eyebrow, headline, body copy, 3 icon+label+sublabel columns.
+// Self-contained. No props required.
+
+const pillars = [
+  {
+    icon: 'anchor',
+    label: 'Legado',
+    sublabel: 'Más de 50 años construyendo.',
+  },
+  {
+    icon: 'shield',
+    label: 'Calidad',
+    sublabel: 'Pruebas rigurosas.',
+  },
+  {
+    icon: 'compass',
+    label: 'Diseño',
+    sublabel: 'Geometría galardonada.',
+  },
+];
+---
+
+<section
+  style="background: #0d1628;"
+  class="py-24"
+  aria-label="Fabricación propia"
+>
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-16 items-center">
+
+      <!-- ─── LEFT COLUMN: photo + decorative offset frame ──── -->
+      <div class="fab-photo-wrap relative">
+        <!-- Decorative frame — behind photo -->
+        <div class="fab-frame" aria-hidden="true"></div>
+        <!-- Photo -->
+        <img
+          src="https://placehold.co/390x460/1a2540/4a6080"
+          alt="Artesano trabajando en el casco de una embarcación Classer"
+          width="390"
+          height="460"
+          class="fab-photo relative block w-full"
+          style="z-index: 1; object-fit: cover;"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- ─── RIGHT COLUMN: text content ────────────────────── -->
+      <div class="fab-text flex flex-col justify-center pt-10 md:pt-0 md:pl-0">
+
+        <!-- Eyebrow -->
+        <p
+          style="color: #1e90d4; font-size: 0.7rem; letter-spacing: 0.18em; font-weight: 600; text-transform: uppercase; margin-bottom: 1rem;"
+        >
+          FABRICACIÓN PROPIA
+        </p>
+
+        <!-- Headline -->
+        <h2
+          style="
+            color: #ffffff;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 400;
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+          "
+        >
+          Maestría en cada detalle.
+        </h2>
+
+        <!-- Body copy -->
+        <p
+          style="
+            color: #a8b3c8;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 24rem;
+            margin-bottom: 2.5rem;
+          "
+        >
+          El verdadero lujo no se puede subcontratar. Desde el boceto inicial
+          hasta el pulido final, cada barco Classer se fabrica en nuestro
+          astillero de Villa María. Esto nos permite un control absoluto sobre
+          la calidad, asegurando que cada curva, costura y unión cumpla con
+          nuestros exigentes estándares.
+        </p>
+
+        <!-- 3 pillar columns -->
+        <div class="fab-pillars flex gap-8 flex-wrap">
+          {pillars.map(p => (
+            <div class="flex flex-col gap-2" style="min-width: 80px;">
+
+              <!-- Icon -->
+              <div style="color: #1e90d4; line-height: 0;">
+                {p.icon === 'anchor' && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="5" r="3"/>
+                    <line x1="12" y1="22" x2="12" y2="8"/>
+                    <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
+                  </svg>
+                )}
+                {p.icon === 'shield' && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <path d="M9 12l2 2 4-4"/>
+                  </svg>
+                )}
+                {p.icon === 'compass' && (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                  </svg>
+                )}
+              </div>
+
+              <!-- Label -->
+              <p style="color: #ffffff; font-weight: 600; font-size: 0.95rem; line-height: 1.2;">
+                {p.label}
+              </p>
+
+              <!-- Sublabel -->
+              <p style="color: #6b7a99; font-size: 0.78rem; line-height: 1.4;">
+                {p.sublabel}
+              </p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Decorative offset frame behind photo */
+  .fab-photo-wrap {
+    /* extra space on top-left for the offset frame to show */
+    padding-top: 16px;
+    padding-left: 16px;
+  }
+
+  .fab-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .fab-photo {
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Mobile: reduce offset */
+  @media (max-width: 767px) {
+    .fab-photo-wrap {
+      padding-top: 8px;
+      padding-left: 8px;
+    }
+    .fab-frame {
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
+    }
+    .fab-pillars {
+      gap: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,115 @@
+---
+// PartnersOficiales.astro
+// Pure black bg (#000000), centered content.
+// Eyebrow, headline, body copy, then Mercury + Yamaha as CSS/SVG text lockups.
+// Self-contained. No props required. No placehold.co images.
+---
+
+<section
+  style="background: #000000;"
+  class="py-24"
+  aria-label="Partners oficiales"
+>
+  <div class="max-w-3xl mx-auto px-6 text-center">
+
+    <!-- ─── Eyebrow ──────────────────────────────────────────── -->
+    <p
+      style="color: #1e90d4; font-size: 0.7rem; letter-spacing: 0.18em; font-weight: 600; text-transform: uppercase; margin-bottom: 1.25rem;"
+    >
+      PARTNERS OFICIALES
+    </p>
+
+    <!-- ─── Headline ─────────────────────────────────────────── -->
+    <h2
+      style="
+        color: #ffffff;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 400;
+        font-family: Georgia, 'Times New Roman', serif;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+      "
+    >
+      Potencia y Confianza
+    </h2>
+
+    <!-- ─── Body copy ─────────────────────────────────────────── -->
+    <p
+      style="
+        color: #a8b3c8;
+        font-size: 0.9rem;
+        line-height: 1.8;
+        font-weight: 300;
+        max-width: 32rem;
+        margin: 0 auto 4rem;
+      "
+    >
+      La excelencia en el diseño requiere excelencia en la propulsión.
+      Como distribuidores oficiales, equipamos nuestras embarcaciones
+      con la fiabilidad y tecnología de punta de los líderes mundiales
+      en motores marinos.
+    </p>
+
+    <!-- ─── Logo lockups ──────────────────────────────────────── -->
+    <div class="partners-logos flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
+
+      <!-- MERCURY -->
+      <div class="flex items-center gap-3" style="min-width: 200px; justify-content: center;">
+        <!-- Mercury "M" circle mark -->
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" stroke="white" stroke-width="1.5"/>
+          <!-- Simplified M letterform -->
+          <path d="M13 32 L13 16 L24 27 L35 16 L35 32" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <!-- Mercury wordmark -->
+        <span
+          class="font-display font-bold"
+          style="color: #ffffff; font-size: 1.7rem; letter-spacing: 0.06em; line-height: 1;"
+          aria-label="Mercury Marine"
+        >MERCURY.</span>
+      </div>
+
+      <!-- Vertical divider — desktop only -->
+      <div class="partners-divider" aria-hidden="true"></div>
+
+      <!-- YAMAHA -->
+      <div class="flex items-center gap-3" style="min-width: 200px; justify-content: center;">
+        <!-- Yamaha tuning fork circle mark -->
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" stroke="white" stroke-width="1.5"/>
+          <!-- Simplified triple fork: 3 lines radiating from center -->
+          <line x1="24" y1="24" x2="24" y2="10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <line x1="24" y1="24" x2="12" y2="34" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <line x1="24" y1="24" x2="36" y2="34" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <!-- Small dots at fork tips -->
+          <circle cx="24" cy="10" r="2" fill="white"/>
+          <circle cx="12" cy="34" r="2" fill="white"/>
+          <circle cx="36" cy="34" r="2" fill="white"/>
+        </svg>
+        <!-- Yamaha wordmark -->
+        <span
+          class="font-display font-bold"
+          style="color: #ffffff; font-size: 1.7rem; letter-spacing: 0.06em; line-height: 1;"
+          aria-label="Yamaha Marine"
+        >YAMAHA</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .partners-divider {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .partners-divider {
+      display: block;
+      width: 1px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.2);
+      flex-shrink: 0;
+    }
+  }
+</style>

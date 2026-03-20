@@ -1,0 +1,244 @@
+---
+// IntroHeader.astro
+// Self-contained. No props required.
+---
+
+<div id="intro-header">
+
+<!-- ─── SUB-SECTION A: HEADER BAR ─────────────────────────────── -->
+<section class="bg-bg-deep py-8" aria-label="Identidad Astillero Fuentes">
+  <div class="flex items-center justify-center gap-8 flex-wrap px-4">
+
+    <!-- 1. Brand name — italic serif -->
+    <span
+      class="text-white italic font-normal leading-none text-2xl"
+      style="font-family: Georgia, 'Times New Roman', serif;"
+    >
+      Astillero Fuentes
+    </span>
+
+    <!-- 2. Shield / crest logo -->
+    <svg
+      width="64"
+      height="70"
+      viewBox="0 0 64 70"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Escudo Astillero Fuentes"
+    >
+      <!-- Heraldic shield outline -->
+      <path
+        d="M4 4 L60 4 L60 40 C60 56 32 68 32 68 C32 68 4 56 4 40 Z"
+        stroke="white"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+        fill="none"
+      />
+      <!-- "F" letterform -->
+      <text
+        x="32"
+        y="31"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="22"
+        font-weight="700"
+        fill="white"
+      >F</text>
+      <!-- Wave lines below F -->
+      <path
+        d="M13 44 Q19 40 25 44 Q31 48 37 44 Q43 40 51 44"
+        stroke="white"
+        stroke-width="1.2"
+        fill="none"
+        stroke-linecap="round"
+        opacity="0.9"
+      />
+      <path
+        d="M13 51 Q19 47 25 51 Q31 55 37 51 Q43 47 51 51"
+        stroke="white"
+        stroke-width="1.2"
+        fill="none"
+        stroke-linecap="round"
+        opacity="0.6"
+      />
+      <path
+        d="M15 58 Q21 54 27 58 Q33 62 39 58 Q45 54 50 58"
+        stroke="white"
+        stroke-width="1.2"
+        fill="none"
+        stroke-linecap="round"
+        opacity="0.35"
+      />
+    </svg>
+
+    <!-- 3. Tagline -->
+    <span class="text-white font-normal text-[0.95rem]">
+      Más de 50 años navegando juntos.
+    </span>
+
+  </div>
+</section>
+
+<!-- ─── SUB-SECTION B: SERVICE CARDS ─────────────────────────── -->
+<section class="bg-bg-deep py-16" aria-label="Servicios Astillero Fuentes">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- CARD 1: CLASSER — embarcaciones deportivas -->
+      <div class="flex flex-col gap-4">
+        <div
+          class="group relative rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-in-out hover:scale-[1.02]"
+          aria-label="CLASSER — Embarcaciones deportivas de lujo"
+        >
+          <img
+            src="https://placehold.co/400x480/1a2035/a8b3c8"
+            alt=""
+            width="400"
+            height="480"
+            class="w-full block object-cover"
+            loading="lazy"
+            aria-hidden="true"
+          />
+          <!-- Dark overlay -->
+          <div
+            class="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition-colors duration-300 flex flex-col items-center justify-center gap-4"
+          >
+            <!-- Chevron / swoosh above wordmark -->
+            <svg
+              width="50"
+              height="26"
+              viewBox="0 0 50 26"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M2 24 L25 2 L48 24"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <!-- CLASSER wordmark — condensed bold, wide tracking -->
+            <span
+              class="font-display font-bold text-white text-4xl uppercase tracking-[0.18em] leading-none"
+            >
+              CLASSER
+            </span>
+          </div>
+        </div>
+        <p class="text-white text-[0.9rem] font-light text-center">
+          Embarcaciones deportivas de lujo.
+        </p>
+      </div>
+
+      <!-- CARD 2: TM — diseños 1 de 1 -->
+      <div class="flex flex-col gap-4">
+        <div
+          class="group relative rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-in-out hover:scale-[1.02]"
+          aria-label="TM — Diseños 1 de 1 y restauraciones únicas"
+        >
+          <img
+            src="https://placehold.co/400x480/1a2035/a8b3c8"
+            alt=""
+            width="400"
+            height="480"
+            class="w-full block object-cover"
+            loading="lazy"
+            aria-hidden="true"
+          />
+          <!-- Dark overlay -->
+          <div
+            class="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition-colors duration-300 flex items-center justify-center"
+          >
+            <!-- TM monogram — large italic serif, tight letter-spacing -->
+            <span
+              class="text-white italic font-bold select-none leading-none"
+              style="font-family: Georgia, 'Times New Roman', serif; font-size: 7rem; letter-spacing: -0.07em;"
+            >
+              TM
+            </span>
+          </div>
+        </div>
+        <p class="text-white text-[0.9rem] font-light text-center">
+          Diseños 1 de 1 y restauraciones únicas.
+        </p>
+      </div>
+
+      <!-- CARD 3: FTS ADVENTURE — service y accesorios -->
+      <div class="flex flex-col gap-4">
+        <div
+          class="group relative rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-in-out hover:scale-[1.02]"
+          aria-label="FTS Adventure — Service a tu lancha y accesorios para el agua"
+        >
+          <img
+            src="https://placehold.co/400x480/1a2035/a8b3c8"
+            alt=""
+            width="400"
+            height="480"
+            class="w-full block object-cover"
+            loading="lazy"
+            aria-hidden="true"
+          />
+          <!-- Dark overlay -->
+          <div
+            class="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition-colors duration-300 flex flex-col items-center justify-center gap-2"
+          >
+            <!-- 3 wavy lines above -->
+            <svg
+              width="90"
+              height="34"
+              viewBox="0 0 90 34"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 8 Q14 2 24 8 Q34 14 44 8 Q54 2 64 8 Q74 14 82 8"
+                stroke="white"
+                stroke-width="1.5"
+                fill="none"
+                stroke-linecap="round"
+              />
+              <path
+                d="M4 17 Q14 11 24 17 Q34 23 44 17 Q54 11 64 17 Q74 23 82 17"
+                stroke="white"
+                stroke-width="1.5"
+                fill="none"
+                stroke-linecap="round"
+              />
+              <path
+                d="M4 26 Q14 20 24 26 Q34 32 44 26 Q54 20 64 26 Q74 32 82 26"
+                stroke="white"
+                stroke-width="1.5"
+                fill="none"
+                stroke-linecap="round"
+              />
+            </svg>
+            <!-- FTS — very bold display, large -->
+            <span
+              class="font-display font-bold text-white leading-none"
+              style="font-size: 4.5rem; letter-spacing: 0.05em;"
+            >
+              FTS
+            </span>
+            <!-- ADVENTURE — small caps, wide tracking -->
+            <span
+              class="text-white font-barlow font-medium text-xs leading-none"
+              style="letter-spacing: 0.3em; font-variant: small-caps; text-transform: uppercase;"
+            >
+              ADVENTURE
+            </span>
+          </div>
+        </div>
+        <p class="text-white text-[0.9rem] font-light text-center">
+          Service a tu lancha y accesorios para el agua.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</div>

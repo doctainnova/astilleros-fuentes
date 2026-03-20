@@ -1,0 +1,315 @@
+---
+// CatalogoModelos.astro
+// Light warm gray background (#f0f0ee). Full-width horizontal scroll track.
+// Two-column line headers with curved SVG connector + custom progress scrollbar.
+// Self-contained. No props required.
+
+const catalogItems = [
+  {
+    name: '246 SURF', numberPart: '246', nameSuffix: 'SURF',
+    image: 'https://placehold.co/280x160/e8e8e6/999999',
+    specs: [
+      { icon: 'engine', label: 'MOTORIZACIÓN', value: '250-350hp' },
+      { icon: 'ruler',  label: 'ESLORA',       value: '7,40 m'   },
+      { icon: 'users',  label: 'PERSONAS',      value: '14'       },
+    ],
+  },
+  {
+    name: '246 OB', numberPart: '246', nameSuffix: 'OB',
+    image: 'https://placehold.co/280x160/e8e8e6/999999',
+    specs: [
+      { icon: 'engine', label: 'MOTORIZACIÓN', value: '250-350hp' },
+      { icon: 'ruler',  label: 'ESLORA',       value: '7,40 m'   },
+      { icon: 'users',  label: 'PERSONAS',      value: '14'       },
+    ],
+  },
+  {
+    name: '206 FTX', numberPart: '206', nameSuffix: 'FTX',
+    image: 'https://placehold.co/280x160/e8e8e6/999999',
+    specs: [
+      { icon: 'engine', label: 'MOTORIZACIÓN', value: '150-200hp' },
+      { icon: 'ruler',  label: 'ESLORA',       value: '6,20 m'   },
+      { icon: 'users',  label: 'PERSONAS',      value: '9'        },
+    ],
+  },
+  {
+    name: '170', numberPart: '170', nameSuffix: '',
+    image: 'https://placehold.co/280x160/e8e8e6/999999',
+    specs: [
+      { icon: 'engine', label: 'MOTORIZACIÓN', value: '115-150hp' },
+      { icon: 'ruler',  label: 'ESLORA',       value: '5,40 m'   },
+      { icon: 'users',  label: 'PERSONAS',      value: '7'        },
+    ],
+  },
+  {
+    name: '165', numberPart: '165', nameSuffix: '',
+    image: 'https://placehold.co/280x160/e8e8e6/999999',
+    specs: [
+      { icon: 'engine', label: 'MOTORIZACIÓN', value: '90-115hp'  },
+      { icon: 'ruler',  label: 'ESLORA',       value: '5,10 m'   },
+      { icon: 'users',  label: 'PERSONAS',      value: '6'        },
+    ],
+  },
+];
+---
+
+<section
+  style="background: #f0f0ee;"
+  class="pt-16 pb-12"
+  aria-label="Catálogo de modelos"
+>
+
+  <!-- ─── ROW 1: LINE HEADERS ─────────────────────────────────── -->
+  <div class="px-8 mb-8">
+
+    <!-- Text labels — two columns -->
+    <div class="grid grid-cols-2">
+      <p
+        class="font-display font-bold italic"
+        style="font-size: clamp(2rem, 4vw, 3rem); color: #111111; line-height: 1.1;"
+      >LINEA SURF</p>
+      <p
+        class="font-display italic text-right"
+        style="font-size: clamp(2rem, 4vw, 3rem); color: #111111; line-height: 1.1;"
+      >
+        <span style="font-weight: 400;">LINEA </span><span style="font-weight: 800;">OB</span>
+      </p>
+    </div>
+
+    <!-- Horizontal rules + curved SVG connector -->
+    <div class="flex items-center mt-3">
+      <div style="flex: 1; height: 1px; background: #111111;"></div>
+      <svg
+        width="80"
+        height="40"
+        viewBox="0 0 80 40"
+        style="flex-shrink: 0;"
+        aria-hidden="true"
+      >
+        <path d="M0 2 Q40 2 40 20 Q40 38 80 38" stroke="#111111" stroke-width="1" fill="none"/>
+      </svg>
+      <div style="flex: 1; height: 1px; background: #111111;"></div>
+    </div>
+  </div>
+
+  <!-- ─── ROW 2: HORIZONTAL SCROLL TRACK ──────────────────────── -->
+  <div
+    id="catalogo-scroll"
+    class="flex"
+    style="overflow-x: scroll; scrollbar-width: none; padding: 0 2rem 2rem;"
+    role="region"
+    aria-label="Desplazar para ver catálogo de modelos"
+  >
+    {catalogItems.map(model => (
+      <div class="catalogo-card flex flex-col items-center">
+
+        <!-- ── Model name ──────────────────────────────────── -->
+        <div
+          class="mb-4 text-center"
+          style="font-family: 'Barlow Condensed', sans-serif; font-style: italic; color: #111111; line-height: 1;"
+        >
+          <span style="font-size: 2rem; font-weight: 800;">{model.numberPart}</span>
+          {model.nameSuffix && (
+            <span style="font-size: 1.2rem; font-weight: 400; margin-left: 0.2rem;">{model.nameSuffix}</span>
+          )}
+        </div>
+
+        <!-- ── Boat illustration ───────────────────────────── -->
+        <img
+          src={model.image}
+          alt={`${model.name} — technical line illustration`}
+          width="280"
+          height="160"
+          class="catalogo-img"
+          style="object-fit: contain;"
+          loading="lazy"
+        />
+
+        <!-- ── Specs row ───────────────────────────────────── -->
+        <div class="flex gap-6 justify-center mt-5">
+          {model.specs.map(spec => (
+            <div class="flex flex-col items-center gap-1">
+
+              <!-- Icon -->
+              <div style="color: #888888; line-height: 0;">
+                {spec.icon === 'engine' && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2" y="7" width="14" height="10" rx="2"/>
+                    <path d="M16 10h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2"/>
+                    <path d="M6 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                    <line x1="9" y1="12" x2="9" y2="12"/>
+                  </svg>
+                )}
+                {spec.icon === 'ruler' && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 21l18-18"/>
+                    <path d="M7 21v-4"/>
+                    <path d="M11 17v-2"/>
+                    <path d="M15 13v-2"/>
+                    <path d="M19 9V5h-4"/>
+                    <path d="M5 19H3v-4"/>
+                  </svg>
+                )}
+                {spec.icon === 'users' && (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                )}
+              </div>
+
+              <!-- Label -->
+              <p style="font-size: 0.6rem; letter-spacing: 0.1em; color: #888888; font-weight: 600; text-transform: uppercase; line-height: 1.4; text-align: center;">
+                {spec.label}
+              </p>
+
+              <!-- Value -->
+              <p style="font-size: 0.9rem; color: #111111; font-weight: 600; line-height: 1.3; text-align: center;">
+                {spec.value}
+              </p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    ))}
+  </div>
+
+  <!-- ─── ROW 3: CUSTOM PROGRESS SCROLLBAR ────────────────────── -->
+  <div class="mx-auto mt-6 px-8" style="max-width: 500px;">
+    <div
+      id="catalogo-track"
+      class="scroll-track"
+      role="scrollbar"
+      aria-controls="catalogo-scroll"
+      aria-valuenow="0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-label="Progreso del catálogo"
+    >
+      <div id="catalogo-thumb" class="scroll-thumb"></div>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* ── Hide native scrollbar ─────────────────────────────────── */
+  #catalogo-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Card base ─────────────────────────────────────────────── */
+  .catalogo-card {
+    min-width: 380px;
+    padding: 2rem 2rem 1rem;
+    flex-shrink: 0;
+  }
+  .catalogo-img {
+    width: 280px;
+    height: 160px;
+  }
+
+  /* ── Custom scrollbar ──────────────────────────────────────── */
+  .scroll-track {
+    position: relative;
+    height: 4px;
+    background: #d0d0cc;
+    border-radius: 9999px;
+    cursor: pointer;
+  }
+  .scroll-thumb {
+    position: absolute;
+    top: 0;
+    height: 4px;
+    background: #111111;
+    border-radius: 9999px;
+    cursor: grab;
+    transition: width 0.1s;
+    min-width: 40px;
+  }
+  .scroll-thumb:active {
+    cursor: grabbing;
+  }
+
+  /* ── Mobile ────────────────────────────────────────────────── */
+  @media (max-width: 767px) {
+    .catalogo-card {
+      min-width: 280px;
+      padding: 1.5rem 1rem 1rem;
+    }
+    .catalogo-img {
+      width: 220px;
+      height: 125px;
+    }
+  }
+</style>
+
+<script>
+  const container = document.getElementById('catalogo-scroll') as HTMLElement | null;
+  const track     = document.getElementById('catalogo-track')  as HTMLElement | null;
+  const thumb     = document.getElementById('catalogo-thumb')  as HTMLElement | null;
+
+  // ── Update thumb position + size ──────────────────────────────
+  function updateThumb(): void {
+    if (!container || !track || !thumb) return;
+    const trackWidth      = track.offsetWidth;
+    const totalWidth      = container.scrollWidth;
+    const visibleWidth    = container.clientWidth;
+    const maxScroll       = totalWidth - visibleWidth;
+    const thumbWidth      = Math.max((visibleWidth / totalWidth) * trackWidth, 40);
+    const thumbLeft       = maxScroll > 0
+      ? (container.scrollLeft / maxScroll) * (trackWidth - thumbWidth)
+      : 0;
+    thumb.style.width = `${thumbWidth}px`;
+    thumb.style.left  = `${thumbLeft}px`;
+    track.setAttribute('aria-valuenow', String(Math.round((container.scrollLeft / Math.max(maxScroll, 1)) * 100)));
+  }
+
+  container?.addEventListener('scroll', updateThumb, { passive: true });
+  window.addEventListener('resize', updateThumb, { passive: true });
+  updateThumb();
+
+  // ── Thumb drag — mouse ────────────────────────────────────────
+  let isDragging        = false;
+  let dragStartX        = 0;
+  let dragStartScrollLeft = 0;
+
+  thumb?.addEventListener('mousedown', (e: MouseEvent) => {
+    isDragging          = true;
+    dragStartX          = e.clientX;
+    dragStartScrollLeft = container?.scrollLeft ?? 0;
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', (e: MouseEvent) => {
+    if (!isDragging || !container || !track || !thumb) return;
+    const dx         = e.clientX - dragStartX;
+    const trackWidth = track.offsetWidth;
+    const thumbWidth = thumb.offsetWidth;
+    const maxScroll  = container.scrollWidth - container.clientWidth;
+    container.scrollLeft = dragStartScrollLeft + (dx / (trackWidth - thumbWidth)) * maxScroll;
+  });
+
+  document.addEventListener('mouseup', () => { isDragging = false; });
+
+  // ── Track drag — touch ────────────────────────────────────────
+  let touchStartX          = 0;
+  let touchStartScrollLeft = 0;
+
+  track?.addEventListener('touchstart', (e: TouchEvent) => {
+    touchStartX          = e.touches[0].clientX;
+    touchStartScrollLeft = container?.scrollLeft ?? 0;
+  }, { passive: true });
+
+  track?.addEventListener('touchmove', (e: TouchEvent) => {
+    if (!container || !track || !thumb) return;
+    const dx         = e.touches[0].clientX - touchStartX;
+    const trackWidth = track.offsetWidth;
+    const thumbWidth = thumb.offsetWidth;
+    const maxScroll  = container.scrollWidth - container.clientWidth;
+    container.scrollLeft = touchStartScrollLeft + (dx / (trackWidth - thumbWidth)) * maxScroll;
+  }, { passive: true });
+</script>

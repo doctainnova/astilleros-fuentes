@@ -1,6 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import IntroHeader from '../components/IntroHeader.astro';
 import HeroSlider from '../components/HeroSlider.astro';
+import Filosofia from '../components/Filosofia.astro';
+import CatalogoModelos from '../components/CatalogoModelos.astro';
+import FabricacionPropia from '../components/FabricacionPropia.astro';
+import PartnersOficiales from '../components/PartnersOficiales.astro';
+import NoticiasEventos from '../components/NoticiasEventos.astro';
+import CTAContacto from '../components/CTAContacto.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import NewsCard from '../components/NewsCard.astro';
 import ContactForm from '../components/ContactForm.astro';
@@ -20,11 +27,32 @@ const catalogModels = [
 ---
 
 <Layout title="CLASSER — Lanchas de Lujo | Astillero Fuentes">
+  <!-- INTRO HEADER: brand identity bar + service cards -->
+  <IntroHeader />
+
   <!-- SECTION 1: HERO SLIDER -->
   <HeroSlider />
 
+  <!-- FILOSOFÍA -->
+  <Filosofia />
+
+  <!-- CATÁLOGO DE MODELOS -->
+  <CatalogoModelos />
+
+  <!-- FABRICACIÓN PROPIA -->
+  <FabricacionPropia />
+
+  <!-- PARTNERS OFICIALES -->
+  <PartnersOficiales />
+
+  <!-- NOTICIAS Y EVENTOS -->
+  <NoticiasEventos />
+
+  <!-- CTA CONTACTO -->
+  <CTAContacto />
+
   <!-- SECTION 2: MODELS THUMBNAILS BAR -->
-  <section class="bg-bg-light py-10" aria-label="Modelos disponibles">
+  <!-- <section class="bg-bg-light py-10" aria-label="Modelos disponibles">
     <div class="container-site">
       <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2" id="models-bar">
         {models.map(model => (
@@ -56,10 +84,10 @@ const catalogModels = [
         ))}
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- SECTION 3: FILOSOFÍA -->
-  <section class="bg-bg-white py-24 text-center" aria-label="Nuestra filosofía">
+  <!-- <section class="bg-bg-white py-24 text-center" aria-label="Nuestra filosofía">
     <div class="container-site max-w-3xl mx-auto">
       <div class="reveal">
         <SectionLabel text="LA FILOSOFÍA" class="mb-4 block" />
@@ -72,19 +100,17 @@ const catalogModels = [
         </p>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- SECTION 4: MODELS CATALOG HORIZONTAL SCROLL -->
-  <section class="bg-bg-light py-20" aria-label="Catálogo de modelos">
+  <!-- <section class="bg-bg-light py-20" aria-label="Catálogo de modelos">
     <div class="container-site">
-      <!-- Sub-headers -->
       <div class="flex items-center gap-6 mb-8 reveal">
         <span class="font-display font-bold text-lg text-text-dark uppercase tracking-wide">SURF</span>
         <div class="flex-1 h-px bg-black/15"></div>
         <span class="font-display font-bold text-lg text-text-dark uppercase tracking-wide">LINEA OB</span>
       </div>
 
-      <!-- Horizontal catalog -->
       <div
         class="flex gap-6 overflow-x-auto hide-scrollbar pb-4 drag-scroll"
         id="catalog-scroll"
@@ -114,7 +140,6 @@ const catalogModels = [
         ))}
       </div>
 
-      <!-- View all -->
       <div class="mt-8 text-center reveal">
         <a href="/modelos" class="inline-flex items-center gap-2 border border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white text-sm font-medium px-6 py-2.5 rounded transition-all duration-200 cursor-pointer">
           Ver todos los modelos
@@ -122,13 +147,12 @@ const catalogModels = [
         </a>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- SECTION 5: FABRICACIÓN PROPIA -->
-  <section class="bg-bg-dark py-24" aria-label="Fabricación propia">
+  <!-- <section class="bg-bg-dark py-24" aria-label="Fabricación propia">
     <div class="container-site">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <!-- Left: craftsman image -->
         <div class="reveal">
           <img
             src="https://placehold.co/480x600/0a0e1a/a8b3c8?text=Maestro+Artesano"
@@ -139,7 +163,6 @@ const catalogModels = [
             loading="lazy"
           />
         </div>
-        <!-- Right: content -->
         <div class="reveal flex flex-col gap-6">
           <SectionLabel text="FABRICACIÓN PROPIA" />
           <h2 class="font-display font-bold text-3xl md:text-4xl text-white leading-tight">
@@ -151,7 +174,6 @@ const catalogModels = [
             con décadas de experiencia. Controlamos cada proceso, desde la laminación del casco
             hasta el acabado final del interior.
           </p>
-          <!-- 3 icon columns -->
           <div class="grid grid-cols-3 gap-6 mt-2">
             {[
               { icon: '⚓', label: 'Legado', sub: 'Desde 1972' },
@@ -174,10 +196,10 @@ const catalogModels = [
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- SECTION 6: PARTNERS OFICIALES -->
-  <section class="bg-bg-deep py-20 text-center" aria-label="Partners oficiales">
+  <!-- <section class="bg-bg-deep py-20 text-center" aria-label="Partners oficiales">
     <div class="container-site">
       <div class="reveal">
         <SectionLabel text="PARTNERS OFICIALES" class="mb-3 block" />
@@ -197,10 +219,10 @@ const catalogModels = [
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- SECTION 7: NOTICIAS Y EVENTOS -->
-  <section class="bg-bg-dark py-20" aria-label="Noticias y eventos">
+  <!-- <section class="bg-bg-dark py-20" aria-label="Noticias y eventos">
     <div class="container-site">
       <div class="text-center mb-10 reveal">
         <h2 class="font-display font-bold text-3xl md:text-4xl text-white">Noticias y eventos</h2>
@@ -226,10 +248,10 @@ const catalogModels = [
         ))}
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- SECTION 8: CTA CONTACTO -->
-  <section class="bg-bg-deep py-24 text-center" aria-label="Contactar un asesor">
+  <!-- <section class="bg-bg-deep py-24 text-center" aria-label="Contactar un asesor">
     <div class="container-site">
       <div class="reveal max-w-xl mx-auto">
         <SectionLabel text="TU PRÓXIMA AVENTURA" class="mb-3 block" />
@@ -240,7 +262,7 @@ const catalogModels = [
         <ContactForm compact={true} />
       </div>
     </div>
-  </section>
+  </section> -->
 </Layout>
 
 <script is:inline>
