@@ -1,116 +1,695 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SectionLabel from '../components/SectionLabel.astro';
-import NewsCard from '../components/NewsCard.astro';
-import { newsArticles } from '../data/news';
-
-const featured = newsArticles.find(a => a.featured);
-const rest = newsArticles.filter(a => !a.featured);
 ---
 
 <Layout
   title="Eventos y Noticias — CLASSER | Astillero Fuentes"
+  description="Mantente actualizado con lo último del astillero, próximos eventos y premios de diseño."
   fixedNavbar={true}
-  description="Las últimas noticias, lanzamientos y eventos de Astillero Fuentes y la línea CLASSER."
 >
-  <!-- HERO -->
-  <section class="pt-36 pb-20 bg-bg-dark text-center" aria-label="Noticias y eventos">
+
+  <!-- ============================================================
+       MINI HERO
+       ============================================================ -->
+  <section
+    class="mini-hero bg-bg-light text-center"
+    aria-label="Noticias y eventos"
+  >
     <div class="container-site">
-      <div class="reveal">
-        <SectionLabel text="ACTUALIDAD" class="mb-3 block" />
-        <h1 class="font-display font-bold text-4xl md:text-5xl text-white mb-4">Noticias y eventos</h1>
-        <p class="text-text-secondary text-sm max-w-lg mx-auto leading-relaxed">
-          Enterate de todo lo que pasa en el mundo Classer: lanzamientos, eventos náuticos y novedades de la marca.
-        </p>
+      <h1 class="hero-title">Noticias y eventos</h1>
+      <p class="hero-sub">
+        Mantente actualizado con lo último del astillero, próximos eventos y premios de diseño.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CARRUSEL DE CARDS — slider horizontal con scroll-snap
+       ============================================================ -->
+  <section
+    class="news-slider"
+    aria-label="Carrusel de noticias y eventos"
+  >
+    <!-- Track scrollable horizontal -->
+    <div class="news-slider__track" role="list">
+
+      <!-- ── Card 1: CACEL 2025 (lateral izquierda) ── -->
+      <article
+        class="news-slider__item"
+        role="listitem"
+        aria-label="Evento: CACEL 2025"
+      >
+        <div class="news-card__inner">
+          <div
+            class="card-img-slot"
+            data-image-slot="card-cacel-2025-foto"
+            role="img"
+            aria-label="Foto evento CACEL 2025"
+          ></div>
+          <div class="card-body">
+            <span class="badge">NOTICIAS</span>
+            <p class="card-date">FEBRERO, 2025</p>
+            <h3 class="card-heading">CACEL 2025</h3>
+            <p class="card-desc">
+              Participación en el Campeonato Argentino de Carreras de Embarcaciones Ligeras en Villa María.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── Card 2: Lanzamiento 246 (activa/central) ── -->
+      <article
+        class="news-slider__item news-slider__item--active"
+        role="listitem"
+        aria-label="Evento: Lanzamiento Classer 246"
+      >
+        <div class="news-card__inner news-card__inner--active">
+          <div
+            class="card-img-slot"
+            data-image-slot="card-lanzamiento-246-foto"
+            role="img"
+            aria-label="Foto lanzamiento Classer 246"
+          ></div>
+          <div class="card-body">
+            <span class="badge">LANZAMIENTO</span>
+            <p class="card-date">MARZO, 2025</p>
+            <h3 class="card-heading">Lanzamiento 246</h3>
+            <p class="card-desc">
+              Experimenta las últimas innovaciones e historias del mundo de Classer. Desde eventos
+              exclusivos hasta avances técnicos, descubre qué define nuestro legado.
+            </p>
+            <a href="#detalle-lanzamiento-246" class="card-cta">LEER ARTÍCULO →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── Card 3: Astillero Fuentes (lateral derecha) ── -->
+      <article
+        class="news-slider__item"
+        role="listitem"
+        aria-label="Evento: Astillero Fuentes"
+      >
+        <div class="news-card__inner">
+          <div
+            class="card-img-slot"
+            data-image-slot="card-astillero-fuentes-foto"
+            role="img"
+            aria-label="Foto Astillero Fuentes"
+          ></div>
+          <div class="card-body">
+            <span class="badge">NOTICIAS</span>
+            <p class="card-date">ENERO, 2025</p>
+            <h3 class="card-heading">Astillero Fuentes</h3>
+            <p class="card-desc">
+              Nuevas instalaciones y expansión del showroom en Villa María, Córdoba.
+            </p>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /.news-slider__track -->
+
+    <!-- Dots de paginación — botones funcionales -->
+    <div class="slider-dots-container" role="tablist" aria-label="Navegación del slider">
+      <button
+        class="slider-dot"
+        role="tab"
+        aria-selected="false"
+        aria-label="Ir a noticia 1"
+      ></button>
+      <button
+        class="slider-dot slider-dot--active"
+        role="tab"
+        aria-selected="true"
+        aria-label="Ir a noticia 2"
+      ></button>
+      <button
+        class="slider-dot"
+        role="tab"
+        aria-selected="false"
+        aria-label="Ir a noticia 3"
+      ></button>
+    </div>
+
+  </section><!-- /.news-slider -->
+
+
+  <!-- ============================================================
+       DETALLE DE ARTÍCULO — "Lanzamiento Classer 246"
+       ============================================================ -->
+  <section
+    class="py-16 md:py-20 bg-white"
+    id="detalle-lanzamiento-246"
+    aria-label="Detalle del artículo: Lanzamiento Classer 246"
+  >
+    <div class="container-site">
+
+      <h2 class="article-title">Lanzamiento Classer 246</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start">
+
+        <!-- Imagen del artículo -->
+        <div>
+          <div
+            class="w-full rounded-md"
+            style="background-color: #1a1f1a; aspect-ratio: 3 / 4;"
+            data-image-slot="detalle-lanzamiento-246-foto"
+            role="img"
+            aria-label="Imagen del lanzamiento Classer 246"
+          ></div>
+        </div>
+
+        <!-- Texto: 3 párrafos -->
+        <div class="flex flex-col gap-5">
+          <p class="article-text">
+            Contanos más sobre vos&hellip; Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+            sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
+            nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit
+            in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis
+            at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
+            delenit augue duis dolore te feugiat nulla facilisi.
+          </p>
+          <p class="article-text">
+            Nam liber tempor cum soluta nobis eligend optio congue nihil imperdiet doming id quod
+            mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing
+            elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+            lobortis nisl ut aliquip ex ea commodo consequat.
+          </p>
+          <p class="article-text">
+            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
+            vel illum dolore eu feugiat nulla facilisis. At vero eos et accusam et justo duo dolores
+            et ea rebum stet clita kasd gubergren, no sea takimata sanctus est lorem ipsum dolor
+            sit amet.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURED ARTICLE -->
-  {featured && (
-    <section class="py-20 bg-bg-deep" aria-label="Artículo destacado" id={featured.slug}>
-      <div class="container-site">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <!-- Image -->
-          <div class="reveal">
-            <img
-              src="https://placehold.co/560x400/0f1525/a8b3c8?text=Lanzamiento+Classer+246"
-              alt={featured.title}
-              width="560"
-              height="400"
-              class="w-full rounded-lg object-cover"
-              loading="lazy"
-            />
-          </div>
-          <!-- Content -->
-          <div class="reveal flex flex-col gap-4">
-            <div class="flex items-center gap-3">
-              <span class="font-barlow text-[0.6rem] uppercase tracking-[0.12em] px-2.5 py-1 rounded-full bg-accent-blue/20 text-accent-blue font-medium">
-                {featured.category}
-              </span>
-              <span class="text-text-muted text-xs">{featured.date}</span>
-            </div>
-            <h2 class="font-display font-bold italic text-3xl md:text-4xl text-white leading-tight">
-              {featured.title}
-            </h2>
-            {featured.body.split('\n\n').map(paragraph => (
-              <p class="text-text-secondary text-sm leading-relaxed">{paragraph.trim()}</p>
-            ))}
-            <a
-              href="https://wa.me/5493534781206"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 border border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white text-sm font-medium px-5 py-2.5 rounded transition-all duration-200 cursor-pointer mt-2 self-start"
-            >
-              Consultar disponibilidad
-            </a>
-          </div>
-        </div>
 
-        <!-- Event photo collage -->
-        <div class="mt-16 reveal">
-          <p class="font-barlow text-[0.65rem] uppercase tracking-[0.15em] text-accent-blue mb-6">GALERÍA DEL EVENTO</p>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div class="md:col-span-2 md:row-span-2">
-              <img src="https://placehold.co/700x480/0f1525/a8b3c8?text=Evento+Lanzamiento+1" alt="Evento lanzamiento Classer 246 — foto 1" width="700" height="480" class="w-full h-full object-cover rounded-lg min-h-[200px]" loading="lazy" />
-            </div>
-            <div>
-              <img src="https://placehold.co/340x480/0f1525/a8b3c8?text=Evento+2" alt="Evento lanzamiento — foto 2" width="340" height="480" class="w-full h-48 object-cover rounded-lg" loading="lazy" />
-            </div>
-            <div>
-              <img src="https://placehold.co/340x480/0f1525/a8b3c8?text=Evento+3" alt="Evento lanzamiento — foto 3" width="340" height="480" class="w-full h-48 object-cover rounded-lg" loading="lazy" />
-            </div>
-            <div>
-              <img src="https://placehold.co/340x480/0f1525/a8b3c8?text=Evento+4" alt="Evento lanzamiento — foto 4" width="340" height="480" class="w-full h-48 object-cover rounded-lg" loading="lazy" />
-            </div>
-            <div>
-              <img src="https://placehold.co/340x480/0f1525/a8b3c8?text=Evento+5" alt="Evento lanzamiento — foto 5" width="340" height="480" class="w-full h-48 object-cover rounded-lg" loading="lazy" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )}
+  <!-- ============================================================
+       GALERÍA DE FOTOS — slider horizontal full-bleed
+       ============================================================ -->
+  <section class="photo-slider" aria-label="Galería de fotos del evento">
 
-  <!-- MORE ARTICLES -->
-  <section class="py-20 bg-bg-dark" aria-label="Más noticias">
-    <div class="container-site">
-      <h2 class="font-display font-bold text-2xl text-white mb-10 reveal">Más noticias</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {newsArticles.map((article, i) => (
-          <div class="reveal">
-            <NewsCard
-              category={article.category}
-              date={article.date}
-              title={article.title}
-              excerpt={article.excerpt}
-              imageUrl={article.imageUrl}
-              href={`#${article.slug}`}
-              featured={false}
-            />
-          </div>
-        ))}
-      </div>
+    <div class="photo-slider__track">
+      <div
+        class="photo-slider__item"
+        data-image-slot="galeria-evento-1"
+        aria-label="Foto 1 del evento"
+      ></div>
+      <div
+        class="photo-slider__item"
+        data-image-slot="galeria-evento-2"
+        aria-label="Foto 2 del evento"
+      ></div>
+      <div
+        class="photo-slider__item"
+        data-image-slot="galeria-evento-3"
+        aria-label="Foto 3 del evento"
+      ></div>
+      <div
+        class="photo-slider__item"
+        data-image-slot="galeria-evento-4"
+        aria-label="Foto 4 del evento"
+      ></div>
     </div>
-  </section>
+
+    <div class="slider-dots-container photo-slider__dots" role="tablist" aria-label="Navegación galería">
+      <button class="slider-dot slider-dot--active" role="tab" aria-selected="true" aria-label="Foto 1"></button>
+      <button class="slider-dot" role="tab" aria-selected="false" aria-label="Foto 2"></button>
+      <button class="slider-dot" role="tab" aria-selected="false" aria-label="Foto 3"></button>
+      <button class="slider-dot" role="tab" aria-selected="false" aria-label="Foto 4"></button>
+    </div>
+
+  </section><!-- /.photo-slider -->
+
 </Layout>
+
+
+<style>
+  /* ═══════════════════════════════════════════════════════════
+     MINI HERO
+  ═══════════════════════════════════════════════════════════ */
+
+  .mini-hero {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.75rem, 5vw, 3.25rem);
+    color: var(--color-text-dark);
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: rgba(26, 26, 46, 0.65);
+    max-width: 440px;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 767px) {
+    .mini-hero {
+      padding-top: 6.5rem;
+      padding-bottom: 2.5rem;
+    }
+    .hero-title { font-size: clamp(1.75rem, 8vw, 2.25rem); }
+    .hero-sub   { font-size: 0.9375rem; }
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════
+     NEWS SLIDER — contenedor y track horizontal con scroll-snap
+  ═══════════════════════════════════════════════════════════ */
+
+  .news-slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: #ffffff;
+    padding-block: 3rem;
+  }
+
+  .news-slider__track {
+    display: flex;
+    flex-direction: row;              /* horizontal */
+    align-items: center;
+    overflow-x: scroll;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    /* centra la card activa de 660px; mínimo 24px en pantallas pequeñas */
+    padding-left: max(24px, calc((100% - 660px) / 2));
+    padding-right: max(24px, calc((100% - 660px) / 2));
+  }
+
+  .news-slider__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Items ───────────────────────────────────────────────── */
+
+  .news-slider__item {
+    flex: 0 0 660px;
+    min-width: 0;
+    scroll-snap-align: center;
+    border-radius: 16px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  .news-slider__item--active {
+    opacity: 1;
+  }
+
+  /* ── Card inner layout (2 columnas: imagen izq + texto der) ── */
+
+  .news-card__inner {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    min-height: 280px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 1px solid #e8e8e8;
+  }
+
+  .news-card__inner--active {
+    background-color: #edeaf7;
+    border: none;
+  }
+
+  /* ── Card image slot ────────────────────────────────────── */
+
+  .card-img-slot {
+    background-color: #1a1f1a;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── Card text area ─────────────────────────────────────── */
+
+  .card-body {
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: var(--font-barlow);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 99px;
+    background-color: #111111;
+    color: #ffffff;
+  }
+
+  .card-date {
+    font-family: var(--font-barlow);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #888888;
+    margin-top: 14px;
+  }
+
+  .card-heading {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: #111111;
+    line-height: 1.3;
+    margin-top: 6px;
+  }
+
+  .card-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+
+  .card-cta {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: var(--font-barlow);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-accent-blue, #1E7DC8);
+    text-decoration: none;
+  }
+
+  .card-cta:hover {
+    text-decoration: underline;
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════
+     DOTS COMPARTIDOS — usados por news slider y galería
+  ═══════════════════════════════════════════════════════════ */
+
+  .slider-dots-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding-bottom: 8px;
+  }
+
+  .slider-dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 99px;
+    border: 1.5px solid #cccccc;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: width 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .slider-dot--active {
+    width: 22px;
+    background-color: #111111;
+    border-color: #111111;
+  }
+
+  .slider-dot:focus-visible {
+    outline: 2px solid var(--color-accent-blue, #1E7DC8);
+    outline-offset: 2px;
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════
+     ARTICLE DETAIL
+  ═══════════════════════════════════════════════════════════ */
+
+  .article-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #1a1a2e;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
+
+  .article-text {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: rgba(26, 26, 46, 0.80);
+    line-height: 1.8;
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════
+     PHOTO SLIDER — galería full-bleed con 4 fotos
+  ═══════════════════════════════════════════════════════════ */
+
+  .photo-slider {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 0;
+  }
+
+  .photo-slider__track {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 4px;
+    padding: 0;
+  }
+
+  .photo-slider__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .photo-slider__item {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    height: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #1a1f1a;
+  }
+
+  /* Proporciones por posición */
+  .photo-slider__item:nth-child(1) { flex: 0 0 38%; }
+  .photo-slider__item:nth-child(2) { flex: 0 0 20%; }
+  .photo-slider__item:nth-child(3) { flex: 0 0 20%; }
+  .photo-slider__item:nth-child(4) { flex: 0 0 20%; }
+
+  .photo-slider__dots {
+    padding-bottom: 1.25rem;
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════
+     RESPONSIVE — MOBILE (< 768px)
+  ═══════════════════════════════════════════════════════════ */
+
+  @media (max-width: 767px) {
+
+    /* News slider: cards 85vw, centra con peek lateral */
+    .news-slider__item {
+      flex: 0 0 85vw;
+    }
+
+    .news-slider__track {
+      padding-left: calc((100% - 85vw) / 2);
+      padding-right: calc((100% - 85vw) / 2);
+    }
+
+    /* Card: stack imagen arriba, texto abajo */
+    .news-card__inner {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+    }
+
+    .card-img-slot {
+      min-height: 150px;
+      height: 150px;
+    }
+
+    /* Photo slider: cada foto 80vw en scroll horizontal */
+    .photo-slider__item {
+      flex: 0 0 80vw !important;
+      height: 220px;
+    }
+  }
+</style>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // ── NEWS SLIDER ─────────────────────────────────────────
+    const track = document.querySelector<HTMLElement>('.news-slider__track');
+    const cards = document.querySelectorAll<HTMLElement>('.news-slider__item');
+    const dots  = document.querySelectorAll<HTMLButtonElement>('.news-slider .slider-dot');
+
+    if (track && cards.length && dots.length) {
+
+      const setActiveDot = (index: number) => {
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('slider-dot--active', i === index);
+          dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+        });
+        cards.forEach((card, i) => {
+          card.classList.toggle('news-slider__item--active', i === index);
+        });
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const index = [...cards].indexOf(entry.target as HTMLElement);
+              if (index !== -1) setActiveDot(index);
+            }
+          });
+        },
+        { root: track, threshold: 0.6 }
+      );
+      cards.forEach(card => observer.observe(card));
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          cards[index].scrollIntoView({
+            behavior: 'smooth',
+            inline: 'center',
+            block: 'nearest',
+          });
+        });
+      });
+
+      // Inicializar en card 2 (Lanzamiento 246)
+      const initCard = cards[1];
+      if (initCard) {
+        track.scrollLeft =
+          initCard.offsetLeft - (track.clientWidth - initCard.offsetWidth) / 2;
+        setActiveDot(1);
+      }
+
+      // Autoplay: avanza cada 5s, pausa en hover/touch
+      let autoplayTimer: ReturnType<typeof setInterval> | undefined;
+      let activeIndex = 1;
+
+      const advanceSlide = () => {
+        activeIndex = (activeIndex + 1) % cards.length;
+        cards[activeIndex].scrollIntoView({
+          behavior: 'smooth',
+          inline: 'center',
+          block: 'nearest',
+        });
+      };
+
+      const stopAutoplay = () => {
+        if (autoplayTimer !== undefined) clearInterval(autoplayTimer);
+      };
+
+      const startAutoplay = () => {
+        stopAutoplay();
+        autoplayTimer = setInterval(advanceSlide, 5000);
+      };
+
+      const indexObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const i = [...cards].indexOf(entry.target as HTMLElement);
+              if (i !== -1) activeIndex = i;
+            }
+          });
+        },
+        { root: track, threshold: 0.6 }
+      );
+      cards.forEach(card => indexObserver.observe(card));
+
+      track.addEventListener('mouseenter', stopAutoplay);
+      track.addEventListener('touchstart', stopAutoplay, { passive: true });
+      track.addEventListener('mouseleave', () => {
+        setTimeout(startAutoplay, 3000);
+      });
+
+      startAutoplay();
+    }
+
+
+    // ── GALERÍA DE FOTOS ────────────────────────────────────
+    const photoTrack = document.querySelector<HTMLElement>('.photo-slider__track');
+    const photoItems = document.querySelectorAll<HTMLElement>('.photo-slider__item');
+    const photoDots  = document.querySelectorAll<HTMLButtonElement>('.photo-slider__dots .slider-dot');
+
+    if (photoTrack && photoItems.length && photoDots.length) {
+
+      const setActivePhotoDot = (index: number) => {
+        photoDots.forEach((dot, i) => {
+          dot.classList.toggle('slider-dot--active', i === index);
+          dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+        });
+      };
+
+      const photoObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const index = [...photoItems].indexOf(entry.target as HTMLElement);
+              if (index !== -1) setActivePhotoDot(index);
+            }
+          });
+        },
+        { root: photoTrack, threshold: 0.5 }
+      );
+      photoItems.forEach(item => photoObserver.observe(item));
+
+      photoDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          photoItems[index].scrollIntoView({
+            behavior: 'smooth',
+            inline: 'start',
+            block: 'nearest',
+          });
+        });
+      });
+
+      setActivePhotoDot(0);
+    }
+
+  });
+</script>
