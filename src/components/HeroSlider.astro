@@ -9,7 +9,7 @@ const slides = [
     headline: 'Lanzamiento Classer 186',
     cta:      'DESCUBRIR',
     ctaHref:  '/modelos/186',
-    image:    'https://placehold.co/1000x600/111111/444444',
+    image:    '/image/home/slider-1.png',
     imageAlt: 'Classer 186 — hero product shot',
   },
   {
@@ -17,23 +17,30 @@ const slides = [
     headline: 'Classer 206 FTX',
     cta:      'DESCUBRIR',
     ctaHref:  '/modelos/206-ftx',
-    image:    'https://placehold.co/1000x600/111111/444444',
+    image:    '/image/home/slider-2.png',
     imageAlt: 'Classer 206 FTX — hero product shot',
   },
   {
     eyebrow:  'TRADICIÓN E INNOVACIÓN',
-    headline: 'Classer 246',
+    headline: 'Classer 246 SURF',
     cta:      'DESCUBRIR',
-    ctaHref:  '/modelos/246',
-    image:    'https://placehold.co/1000x600/111111/444444',
-    imageAlt: 'Classer 246 — hero product shot',
+    ctaHref:  '/modelos/246-surf',
+    image:    '/image/home/slider-3.png',
+    imageAlt: 'Classer 246 SURF — hero product shot',
+  },
+  {
+    eyebrow:  'POTENCIA Y CONFORT',
+    headline: 'Classer 206 FTX',
+    cta:      'DESCUBRIR',
+    ctaHref:  '/modelos/206-ftx',
+    image:    '/image/home/slider-4.jpg',
+    imageAlt: 'Classer 206 FTX — lifestyle shot',
   },
 ];
 ---
 
 <section
-  class="relative overflow-hidden bg-black h-[70vh] md:h-screen"
-  style="min-height: 520px;"
+  class="relative overflow-hidden bg-black h-screen"
   aria-label="Presentación de modelos Classer"
   id="hero-slider"
 >
@@ -41,120 +48,136 @@ const slides = [
   <!-- ─── SLIDES ──────────────────────────────────────────────── -->
   {slides.map((slide, i) => (
     <div
-      class="slide absolute inset-0"
+      class="slide absolute inset-0 group"
       data-index={i}
       aria-hidden={i !== 0}
-      style={`opacity: ${i === 0 ? 1 : 0}; z-index: ${i === 0 ? 1 : 0}; transition: opacity 0.5s ease;`}
+      style={`opacity: ${i === 0 ? 1 : 0}; z-index: ${i === 0 ? 1 : 0}; transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);`}
     >
 
-      <!-- Boat image — floats center-right against pure black -->
+      <!-- Immersive Image -->
       <img
         src={slide.image}
         alt={slide.imageAlt}
-        width="1000"
-        height="600"
-        class="absolute top-1/2 -translate-y-1/2 right-0 md:right-[-2%] object-contain w-[90%] md:w-[62%]"
-        style="max-height: 85vh;"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-[10000ms] ease-out slide-img"
+        style={i === 0 ? 'transform: scale(1.1);' : 'transform: scale(1);'}
         loading={i === 0 ? 'eager' : 'lazy'}
       />
+      
+      <!-- Premium Overlay (Gradient + subtle texture) -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+      <div class="absolute inset-0 bg-black/5 mix-blend-multiply h-full w-full pointer-events-none"></div>
 
-      <!-- ─── TEXT OVERLAY — bottom left ────────────────────── -->
-      <div class="absolute bottom-6 left-6 md:bottom-12 md:left-12 flex flex-col gap-3 md:gap-4">
+      <!-- ─── TEXT OVERLAY ────────────────────── -->
+      <div class="absolute inset-0 flex flex-col justify-end px-8 md:px-16 pb-20 md:pb-28">
+        <div class="max-w-2xl slide-content flex flex-col gap-3 md:gap-5 opacity-0 translate-y-8 transition-all duration-700 delay-300" style={i === 0 ? 'opacity: 1; transform: translateY(0);' : ''}>
+          
+          <!-- Eyebrow -->
+          <div>
+            <span
+              class="inline-block text-accent-blue uppercase font-semibold tracking-[0.2em] border-l-2 border-accent-blue pl-4 py-1"
+              style="font-size: 0.7rem;"
+            >
+              {slide.eyebrow}
+            </span>
+          </div>
 
-        <!-- Eyebrow with semi-transparent highlight box -->
-        <div>
-          <span
-            class="inline-block text-accent-blue uppercase font-semibold tracking-[0.15em]"
-            style="font-size: 0.75rem; background: rgba(255,255,255,0.06); padding: 0.25rem 0.625rem;"
+          <!-- Headline -->
+          <h2
+            class="font-display font-bold text-white italic leading-[1.05]"
+            style="font-size: clamp(2.2rem, 6.5vw, 4.2rem);"
           >
-            {slide.eyebrow}
-          </span>
+            {slide.headline}
+          </h2>
+
+          <!-- CTA Wrapper -->
+          <div class="mt-2">
+            <a
+              href={slide.ctaHref}
+              class="inline-flex items-center gap-4 bg-white text-black font-barlow font-bold uppercase tracking-[0.15em] py-3.5 px-8 hover:bg-accent-blue hover:text-white transition-all duration-300 cursor-pointer shadow-xl hover:scale-105"
+              style="font-size: 0.75rem;"
+            >
+              {slide.cta}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="animate-pulse" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
         </div>
-
-        <!-- Headline — Barlow Condensed bold, sentence case -->
-        <h2
-          class="font-display font-bold text-white leading-none"
-          style="font-size: clamp(2rem, 5vw, 3rem);"
-        >
-          {slide.headline}
-        </h2>
-
-        <!-- CTA — outlined, sharp corners (rounded-none) -->
-        <div>
-          <a
-            href={slide.ctaHref}
-            class="inline-flex items-center gap-2 border border-white text-white uppercase font-semibold rounded-none py-3 px-6 hover:bg-white hover:text-black transition-colors duration-200 cursor-pointer"
-            style="font-size: 0.75rem; letter-spacing: 0.1em;"
-          >
-            {slide.cta}
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-
       </div>
     </div>
   ))}
 
-  <!-- ─── NAVIGATION ARROWS — bottom right, circular ─────────── -->
+  <!-- ─── NAVIGATION ─────────────────────────── -->
   <div
-    class="absolute bottom-6 right-6 md:bottom-12 md:right-12 z-10 flex gap-3"
-    aria-label="Navegación del slider"
+    class="absolute bottom-8 right-8 md:bottom-16 md:right-16 z-20"
   >
-    <button
-      id="hero-prev"
-      type="button"
-      class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-white cursor-pointer hover:bg-white/10 transition-colors duration-200"
-      style="border: 1px solid rgba(255,255,255,0.5);"
-      aria-label="Diapositiva anterior"
-    >
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-        <path d="M11 14L6 9l5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-    <button
-      id="hero-next"
-      type="button"
-      class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-white cursor-pointer hover:bg-white/10 transition-colors duration-200"
-      style="border: 1px solid rgba(255,255,255,0.5);"
-      aria-label="Siguiente diapositiva"
-    >
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-        <path d="M7 4l5 5-5 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
+    <!-- Arrow Controls -->
+    <div class="flex gap-4">
+      <button
+        id="hero-prev"
+        type="button"
+        class="w-12 h-12 rounded-full border border-white/30 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 cursor-pointer group"
+        aria-label="Diapositiva anterior"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="group-hover:-translate-x-1 transition-transform">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button
+        id="hero-next"
+        type="button"
+        class="w-12 h-12 rounded-full border border-white/30 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 cursor-pointer group"
+        aria-label="Siguiente diapositiva"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="group-hover:translate-x-1 transition-transform">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
 </section>
 
-<!-- ─── SLIDER LOGIC — vanilla JS, no library ─────────────────── -->
+<!-- ─── SLIDER LOGIC ─────────────────── -->
 <script>
-  const slider  = document.getElementById('hero-slider');
-  const slides  = slider?.querySelectorAll<HTMLElement>('.slide');
-  const prevBtn = document.getElementById('hero-prev');
-  const nextBtn = document.getElementById('hero-next');
+  const slider        = document.getElementById('hero-slider');
+  const slides        = slider?.querySelectorAll<HTMLElement>('.slide');
+  const slideImgs    = slider?.querySelectorAll<HTMLElement>('.slide-img');
+  const slideContents = slider?.querySelectorAll<HTMLElement>('.slide-content');
+  const prevBtn       = document.getElementById('hero-prev');
+  const nextBtn       = document.getElementById('hero-next');
 
   if (slider && slides && slides.length > 0) {
     const total = slides.length;
     let current = 0;
-    let autoTimer: ReturnType<typeof setInterval>;
+    let autoTimer: any;
 
-    function showSlide(idx: number) {
-      // Deactivate current slide
+    function updateSlide(idx: number) {
+      // 1. Reset current slide
       slides[current].style.opacity = '0';
       slides[current].style.zIndex  = '0';
       slides[current].setAttribute('aria-hidden', 'true');
+      slideImgs[current].style.transform = 'scale(1)';
+      slideContents[current].style.opacity = '0';
+      slideContents[current].style.transform = 'translateY(2rem)';
 
-      // Activate next slide
+      // 2. Set next slide
       current = (idx + total) % total;
       slides[current].style.opacity = '1';
       slides[current].style.zIndex  = '1';
       slides[current].setAttribute('aria-hidden', 'false');
+      
+      // Animations
+      setTimeout(() => {
+        slideImgs[current].style.transform = 'scale(1.1)';
+        slideContents[current].style.opacity = '1';
+        slideContents[current].style.transform = 'translateY(0)';
+      }, 50);
     }
 
     function startAuto() {
-      autoTimer = setInterval(() => showSlide(current + 1), 5000);
+      autoTimer = setInterval(() => updateSlide(current + 1), 6000);
     }
 
     function resetAuto() {
@@ -162,8 +185,8 @@ const slides = [
       startAuto();
     }
 
-    prevBtn?.addEventListener('click', () => { showSlide(current - 1); resetAuto(); });
-    nextBtn?.addEventListener('click', () => { showSlide(current + 1); resetAuto(); });
+    prevBtn?.addEventListener('click', () => { updateSlide(current - 1); resetAuto(); });
+    nextBtn?.addEventListener('click', () => { updateSlide(current + 1); resetAuto(); });
 
     startAuto();
   }

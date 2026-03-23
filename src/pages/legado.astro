@@ -4,160 +4,221 @@ import SectionLabel from '../components/SectionLabel.astro';
 ---
 
 <Layout
-  title="Legado — CLASSER | Astillero Fuentes desde 1972"
-  description="La historia de Astillero Fuentes: cinco décadas de pasión náutica, artesanía y excelencia argentina."
+  title="Nuestro Legado — Astillero Fuentes"
+  description="Más de 50 años de maestría artesanal e innovación náutica. El legado de Astillero Fuentes."
+  fixedNavbar={true}
 >
-  <!-- HERO -->
-  <section class="relative pt-0" style="min-height: 70vh;" aria-label="Legado Astillero Fuentes">
-    <img
-      src="https://placehold.co/1440x500/050810/a8b3c8?text=Legado+—+Astillero+Fuentes+desde+1972"
-      alt="Vista del océano — Astillero Fuentes"
-      width="1440"
-      height="500"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-bg-deep" aria-hidden="true"></div>
-    <div class="relative z-10 flex flex-col items-center justify-center text-center" style="min-height: 70vh; padding-top: 8rem;">
-      <div class="container-site">
-        <div class="reveal">
-          <SectionLabel text="EST. 1972" class="mb-4 block" />
-          <h1 class="font-display font-bold text-5xl md:text-6xl text-white mb-5 leading-tight">
-            Un Legado Vivo
-          </h1>
-          <p class="text-text-secondary text-base max-w-xl mx-auto leading-relaxed">
-            El legado no se trata de mirar atrás. Es la base que nos permite avanzar con confianza.
-          </p>
-        </div>
+
+  <!-- ============================================================
+       HERO — "Un Legado Vivo"
+       ============================================================ -->
+  <section
+    class="relative flex items-center justify-center"
+    style="min-height: 60vh;"
+    aria-label="Hero — Un Legado Vivo"
+  >
+    <!-- Background image placeholder -->
+    <div
+      class="absolute inset-0"
+      style="background-color: #1a1f1a;"
+      data-image-slot="hero-wave"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Dark overlay -->
+    <div
+      class="absolute inset-0"
+      style="background: rgba(0,0,0,0.55);"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Content -->
+    <div
+      class="relative z-10 flex flex-col items-center justify-center text-center px-6"
+      style="min-height: 60vh; padding-top: 7rem; padding-bottom: 4rem;"
+    >
+      <div class="reveal">
+        <!-- EST. 1972 eyebrow with decorative separators -->
+        <p
+          class="mb-4 text-sm uppercase tracking-[0.2em]"
+          style="font-family: var(--font-body); color: rgba(255,255,255,0.70);"
+        >
+          · EST. 1972 ·
+        </p>
+
+        <h1
+          class="font-display font-bold text-white leading-tight mb-5"
+          style="font-size: clamp(2.5rem, 6vw, 4.5rem);"
+        >
+          Un Legado Vivo
+        </h1>
+
+        <p
+          class="text-base md:text-lg leading-relaxed mx-auto"
+          style="color: rgba(255,255,255,0.80); max-width: 480px;"
+        >
+          El legado no se trata de mirar atrás. Es la base que nos permite avanzar con confianza.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 1: NUESTROS ORÍGENES -->
-  <section class="py-24 bg-bg-deep" aria-label="Nuestros orígenes">
+
+  <!-- ============================================================
+       SECCIÓN 1 — NUESTROS ORÍGENES / "Pasión desde 1972"
+       ============================================================ -->
+  <section
+    class="py-20 md:py-28 bg-white"
+    aria-label="Nuestros orígenes"
+  >
     <div class="container-site">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <!-- B&W vintage photo -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        <!-- Columna izquierda: foto histórica (placeholder) -->
         <div class="reveal">
-          <img
-            src="https://placehold.co/400x480/0a0e1a/a8b3c8?text=Foto+Histórica+1972"
-            alt="Foto histórica de Astillero Fuentes en 1972"
-            width="400"
-            height="480"
-            class="w-full rounded-lg"
-            loading="lazy"
-          />
+          <div
+            class="w-full rounded-sm"
+            style="background-color: #1a1f1a; aspect-ratio: 4 / 5;"
+            data-image-slot="origenes-foto-historica"
+            role="img"
+            aria-label="Foto histórica Astillero Fuentes — 1972"
+          ></div>
         </div>
-        <!-- Text content -->
+
+        <!-- Columna derecha: texto -->
         <div class="reveal flex flex-col gap-5">
+          <!-- Etiqueta azul eléctrico -->
           <SectionLabel text="NUESTROS ORÍGENES" />
-          <h2 class="font-display font-bold text-3xl md:text-4xl text-white leading-tight">
+
+          <h2
+            class="font-display font-bold text-text-dark leading-tight"
+            style="font-size: clamp(1.8rem, 3.5vw, 2.6rem);"
+          >
             Pasión desde 1972
           </h2>
-          <p class="text-text-secondary text-sm leading-relaxed">
-            Astillero Fuentes nació en <span class="text-accent-blue font-medium">Villa María, Córdoba</span>, de la
-            mano de Jorge Fuentes, un apasionado de la náutica que soñaba con construir embarcaciones que
-            superaran los estándares de la industria argentina. Con un taller artesanal y una visión clara,
-            comenzó a dar forma a lo que hoy es una de las marcas más reconocidas del sector náutico.
+
+          <p
+            class="text-text-dark/80 text-sm md:text-base"
+            style="line-height: 1.75;"
+          >
+            En el año 1972 nace esta empresa impulsada por la pasión de su fundador, Jorge Fuentes.
+            Luego de décadas de perfeccionar procesos y desarrollar productos, proveemos actualmente
+            al mundo náutico de embarcaciones deportivas distinguidas por sus elevados estándares de
+            calidad y la búsqueda de la perfección en cada detalle de terminación.
           </p>
-          <p class="text-text-secondary text-sm leading-relaxed">
-            Desde los primeros cascos laminados a mano hasta los modernos procesos de fabricación asistida,
-            el espíritu que guía cada decisión sigue siendo el mismo: la <span class="text-accent-blue font-medium">excelencia sin concesiones</span>.
-            Cada embarcación que sale de nuestras instalaciones lleva consigo más de cinco décadas de
-            conocimiento acumulado y amor por el mar.
-          </p>
-          <p class="text-text-secondary text-sm leading-relaxed">
-            La familia Fuentes mantiene hasta el día de hoy el control total de la producción, garantizando
-            que cada <span class="text-accent-blue font-medium">Classer</span> cumpla con los estándares más exigentes del mercado náutico internacional.
+
+          <p
+            class="text-text-dark/80 text-sm md:text-base"
+            style="line-height: 1.75;"
+          >
+            Con la incorporación de la nueva generación familiar al mando del Astillero, se ha
+            definido un nuevo rumbo marcado por el desafío de combinar tradición e innovación para
+            seguir creciendo y llevando nuestra marca CLASSER a nuevas aguas. Pioneros de un
+            esfuerzo que comenzó, con el emprendimiento de Don Jorge D. Fuentes con la construcción
+            de pequeños botes pescadores.
           </p>
         </div>
+      </div>
+
+      <!-- Dots indicadores de carrusel (estáticos / decorativos) -->
+      <div
+        class="flex items-center justify-center gap-2 mt-10 md:mt-14"
+        aria-label="Indicadores de carrusel"
+        role="tablist"
+      >
+        <span
+          class="block rounded-full bg-text-dark"
+          style="width: 28px; height: 7px;"
+          aria-label="Diapositiva 1, activa"
+          role="tab"
+          aria-selected="true"
+        ></span>
+        <span
+          class="block rounded-full"
+          style="width: 28px; height: 7px; border: 1.5px solid rgba(26,26,46,0.35);"
+          aria-label="Diapositiva 2"
+          role="tab"
+          aria-selected="false"
+        ></span>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 2: COMPROMISO CONTINUO -->
-  <section class="py-24 bg-bg-dark" aria-label="Compromiso continuo">
+
+  <!-- ============================================================
+       SECCIÓN 2 — COMPROMISO CONTINUO
+       ============================================================ -->
+  <section
+    class="py-20 md:py-28"
+    style="background-color: #f8f8f6;"
+    aria-label="Compromiso continuo"
+  >
     <div class="container-site">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <!-- Text content -->
-        <div class="reveal flex flex-col gap-5 order-2 md:order-1">
-          <!-- Anchor icon -->
-          <div class="w-10 h-10 flex items-center justify-center">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1e90d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="5" r="2"/>
-              <path d="M12 7v13M5 10l7 3 7-3M5 15l7 3 7-3"/>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        <!-- Columna izquierda: texto (en mobile va arriba) -->
+        <div class="reveal flex flex-col gap-5">
+
+          <!-- Icono ancla -->
+          <div aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-text-dark"
+            >
+              <circle cx="12" cy="5" r="2" />
+              <path d="M12 22V7" />
+              <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
             </svg>
           </div>
-          <h2 class="font-display font-bold text-3xl md:text-4xl text-white leading-tight">
+
+          <h2
+            class="font-display font-bold text-text-dark leading-tight"
+            style="font-size: clamp(1.8rem, 3.5vw, 2.6rem);"
+          >
             Compromiso Continuo
           </h2>
-          <p class="text-text-secondary text-sm leading-relaxed">
-            Cinco décadas no son solo un número. Son miles de horas de trabajo artesanal, cientos de
-            embarcaciones entregadas a clientes que <span class="text-accent-blue font-medium">confían en nosotros</span> año tras año,
-            y una red de distribuidores que comparten nuestra filosofía de servicio y excelencia.
+
+          <p
+            class="text-text-dark/80 text-sm md:text-base"
+            style="line-height: 1.75;"
+          >
+            Astillero Fuentes continúa, con el mismo vigor del inicio de esta historia, en el camino
+            de la búsqueda de la excelencia y la calidad total para la satisfacción de nuestros
+            clientes. A través de los años hemos experimentado, investigado, innovado y aprendido.
           </p>
-          <p class="text-text-secondary text-sm leading-relaxed">
-            Hoy, Astillero Fuentes sigue creciendo. La incorporación de tecnología de punta en el diseño
-            —con un estudio en Italia— y la constante inversión en materiales premium nos permiten ofrecer
-            embarcaciones que compiten en <span class="text-accent-blue font-medium">calidad y diseño</span> con los mejores astilleros del mundo.
+
+          <p
+            class="text-text-dark/80 text-sm md:text-base"
+            style="line-height: 1.75;"
+          >
+            Hoy, sabemos que los productos que aquí presentamos son el resultado de muchos años de
+            experiencia puestos al servicio del mercado náutico. Las numerosas recomendaciones de
+            clientes satisfechos aseguran esta gran herencia. La flota de embarcaciones fabricadas y
+            vendidas ha crecido desde entonces en forma sostenida y saludable por los años. Sabemos
+            lo que hacemos y estamos muy atentos a lo que nuestros clientes quieren de nosotros.
           </p>
         </div>
-        <!-- Showroom photo -->
-        <div class="reveal order-1 md:order-2">
-          <img
-            src="https://placehold.co/480x400/0f1525/a8b3c8?text=Showroom+Astillero+Fuentes"
-            alt="Showroom Astillero Fuentes con embarcaciones Classer"
-            width="480"
-            height="400"
-            class="w-full rounded-lg"
-            loading="lazy"
-          />
+
+        <!-- Columna derecha: bote en showroom (placeholder) -->
+        <div class="reveal">
+          <div
+            class="w-full rounded"
+            style="background-color: #1a1f1a; aspect-ratio: 4 / 3;"
+            data-image-slot="compromiso-bote-showroom"
+            role="img"
+            aria-label="Bote Classer en showroom — Astillero Fuentes"
+          ></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Timeline / Milestones -->
-  <section class="py-20 bg-bg-deep" aria-label="Hitos de la marca">
-    <div class="container-site">
-      <div class="text-center mb-14 reveal">
-        <SectionLabel text="HITOS" class="mb-3 block" />
-        <h2 class="font-display font-bold text-3xl text-white">50+ años de historia</h2>
-      </div>
-      <div class="relative">
-        <!-- Vertical line -->
-        <div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 hidden md:block" aria-hidden="true"></div>
-        <div class="flex flex-col gap-12">
-          {[
-            { year: '1972', event: 'Jorge Fuentes funda Astillero Fuentes en Villa María, Córdoba.' },
-            { year: '1985', event: 'Se lanza la primera línea Classer, revolucionando el mercado náutico argentino.' },
-            { year: '1998', event: 'Apertura de showroom en Buenos Aires y expansión a mercados vecinos.' },
-            { year: '2005', event: 'Alianza estratégica con Mercury Marine para motorización de primer nivel.' },
-            { year: '2015', event: 'Inauguración de estudio de diseño en Italia. Nace la filosofía "Diseñado en Italia".' },
-            { year: '2024', event: 'Lanzamiento del Classer 246, el modelo más ambicioso de la historia de la marca.' },
-          ].map((milestone, i) => (
-            <div class={`reveal flex flex-col md:flex-row items-center gap-6 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-              <div class={`flex-1 ${i % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                <span class="font-display font-bold text-4xl text-accent-blue/30">{milestone.year}</span>
-                <p class="text-text-secondary text-sm leading-relaxed mt-1 max-w-xs ml-auto">{milestone.event}</p>
-              </div>
-              <div class="w-3 h-3 rounded-full bg-accent-blue flex-shrink-0 hidden md:block" aria-hidden="true"></div>
-              <div class="flex-1"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-20 bg-bg-dark text-center">
-    <div class="container-site reveal">
-      <h2 class="font-display font-bold text-3xl text-white mb-4">Sé parte del legado.</h2>
-      <p class="text-text-secondary text-sm mb-8 max-w-md mx-auto">Cada Classer es una pieza de historia. Descubrí el modelo que te espera.</p>
-      <a href="/modelos" class="inline-flex items-center gap-2 bg-accent-blue hover:bg-accent-cyan text-white font-medium px-8 py-3 rounded transition-colors duration-200 cursor-pointer text-sm">
-        Ver modelos
-      </a>
-    </div>
-  </section>
 </Layout>

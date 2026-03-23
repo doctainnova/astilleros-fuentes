@@ -1,8 +1,6 @@
 ---
 // CTAContacto.astro
-// Dark navy bg (#0d1628), fully centered, max-w-md.
-// Headline, subtitle, 3 stacked inputs, solid cyan CTA button, disclaimer.
-// Static form markup — no JS handling. Self-contained. No props required.
+// Dark navy bg (#020617), fully centered, max-w-xl.
 ---
 
 <section
@@ -10,17 +8,18 @@
   class="py-24"
   aria-label="Contactar un asesor"
 >
-  <div class="max-w-md mx-auto px-6 text-center">
+  <div class="max-w-xl mx-auto px-6 text-center">
 
     <!-- ─── Headline ─────────────────────────────────────────── -->
     <h2
       class="font-display font-bold"
       style="
         color: #ffffff;
-        font-size: 1.3rem;
-        letter-spacing: 0.12em;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        letter-spacing: 0.02em;
         text-transform: uppercase;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
       "
     >
       TU PRÓXIMA AVENTURA
@@ -30,11 +29,11 @@
     <p
       style="
         color: #a8b3c8;
-        font-size: 0.9rem;
-        line-height: 1.7;
+        font-size: 1.1rem;
+        line-height: 1.6;
         font-weight: 300;
-        max-width: 24rem;
-        margin: 0 auto 2.5rem;
+        max-width: 32rem;
+        margin: 0 auto 3rem;
       "
     >
       Dejanos tus datos. Un especialista de Classer te contactará
@@ -46,61 +45,38 @@
       action="#"
       method="POST"
       novalidate
-      class="flex flex-col gap-3 w-full"
+      class="flex flex-col gap-4 w-full max-w-md mx-auto"
       aria-label="Formulario de contacto"
     >
-      <!-- Field 1: Nombre -->
       <input
         type="text"
         name="nombre"
         placeholder="Nombre Completo"
-        autocomplete="name"
         class="cta-input"
-        aria-label="Nombre Completo"
       />
-
-      <!-- Field 2: Teléfono -->
       <input
         type="tel"
         name="telefono"
         placeholder="Teléfono / WhatsApp"
-        autocomplete="tel"
         class="cta-input"
-        aria-label="Teléfono o WhatsApp"
       />
-
-      <!-- Field 3: Email -->
       <input
         type="email"
         name="email"
         placeholder="Correo Electrónico"
-        autocomplete="email"
         class="cta-input"
-        aria-label="Correo Electrónico"
       />
 
-      <!-- CTA Button -->
       <button
         type="submit"
-        class="cta-btn font-display font-bold"
-        style="
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          font-size: 0.85rem;
-        "
+        class="cta-btn font-display font-bold uppercase"
+        style="letter-spacing: 0.1em; font-size: 0.9rem;"
       >
         CONTACTAR A UN ASESOR
       </button>
     </form>
 
-    <!-- ─── Disclaimer ───────────────────────────────────────── -->
-    <p
-      style="
-        color: rgba(255, 255, 255, 0.3);
-        font-size: 0.72rem;
-        margin-top: 1rem;
-      "
-    >
+    <p style="color: rgba(255, 255, 255, 0.2); font-size: 0.7rem; margin-top: 1.5rem;">
       Tus datos están protegidos. Atención personalizada Classer.
     </p>
 
@@ -108,48 +84,29 @@
 </section>
 
 <style>
-  /* ── Input fields ──────────────────────────────────────────── */
   .cta-input {
     width: 100%;
-    padding: 1rem 1.25rem;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
+    padding: 1.1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
     color: #ffffff;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     outline: none;
-    transition: border-color 200ms ease, box-shadow 200ms ease;
-    font-family: inherit;
+    transition: all 200ms ease;
   }
+  .cta-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+  .cta-input:focus { border-color: #1e90d4; background: rgba(255, 255, 255, 0.08); }
 
-  .cta-input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .cta-input:focus {
-    border-color: #1e90d4;
-    box-shadow: 0 0 0 2px rgba(30, 144, 212, 0.2);
-  }
-
-  /* ── CTA Button ────────────────────────────────────────────── */
   .cta-btn {
     width: 100%;
-    margin-top: 0.25rem;
-    padding: 1rem;
+    padding: 1.1rem;
     background: #1e90d4;
     color: #ffffff;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
     transition: background 200ms ease;
   }
-
-  .cta-btn:hover {
-    background: #1677b3;
-  }
-
-  .cta-btn:focus-visible {
-    outline: 2px solid #1e90d4;
-    outline-offset: 2px;
-  }
+  .cta-btn:hover { background: #157bb8; }
 </style>
