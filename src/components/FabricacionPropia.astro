@@ -1,8 +1,8 @@
 ---
 // FabricacionPropia.astro
-// Dark navy bg (#0d1628), 2-column grid, portrait photo with decorative offset frame.
-// Right column: eyebrow, headline, body copy, 3 icon+label+sublabel columns.
-// Self-contained. No props required.
+// Dark navy bg (#0d1628), 2-column grid.
+// Left: Grayscale photo with blue corner brackets.
+// Right: Eyebrow, serif headline, body, and 3-column pillars with serif labels.
 
 const pillars = [
   {
@@ -25,47 +25,52 @@ const pillars = [
 
 <section
   style="background: #0d1628;"
-  class="py-24"
+  class="py-32"
   aria-label="Fabricación propia"
 >
   <div class="max-w-6xl mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-16 items-center">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
 
-      <!-- ─── LEFT COLUMN: photo + decorative offset frame ──── -->
-      <div class="fab-photo-wrap relative">
-        <!-- Decorative frame — behind photo -->
-        <div class="fab-frame" aria-hidden="true"></div>
-        <!-- Photo -->
-        <img
-          src="https://placehold.co/390x460/1a2540/4a6080"
-          alt="Artesano trabajando en el casco de una embarcación Classer"
-          width="390"
-          height="460"
-          class="fab-photo relative block w-full"
-          style="z-index: 1; object-fit: cover;"
-          loading="lazy"
-        />
+      <!-- ─── LEFT COLUMN: grayscale photo + corner brackets ──── -->
+      <div class="relative flex justify-center md:justify-start">
+        <div class="fab-photo-container relative inline-block">
+          <!-- Top Left Bracket -->
+          <div class="absolute -top-4 -left-4 w-12 h-12 border-t border-l border-accent-blue/60" aria-hidden="true"></div>
+          
+          <!-- Image -->
+          <img
+            src="/image/home/maestria.jpg"
+            alt="Maestría artesanal en Astilleros Fuentes"
+            width="450"
+            height="550"
+            class="block w-full contrast-110 brightness-90 shadow-2xl"
+            style="object-fit: cover; max-width: 420px;"
+            loading="lazy"
+          />
+
+          <!-- Bottom Right Bracket -->
+          <div class="absolute -bottom-4 -right-4 w-12 h-12 border-b border-r border-accent-blue/60" aria-hidden="true"></div>
+        </div>
       </div>
 
       <!-- ─── RIGHT COLUMN: text content ────────────────────── -->
-      <div class="fab-text flex flex-col justify-center pt-10 md:pt-0 md:pl-0">
+      <div class="fab-text flex flex-col justify-center">
 
         <!-- Eyebrow -->
         <p
-          style="color: #1e90d4; font-size: 0.7rem; letter-spacing: 0.18em; font-weight: 600; text-transform: uppercase; margin-bottom: 1rem;"
+          class="text-accent-blue font-semibold tracking-[0.2em] mb-4"
+          style="font-size: 0.65rem;"
         >
           FABRICACIÓN PROPIA
         </p>
 
         <!-- Headline -->
         <h2
+          class="text-white leading-[1.2] mb-8"
           style="
-            color: #ffffff;
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
             font-weight: 400;
             font-family: Georgia, 'Times New Roman', serif;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
           "
         >
           Maestría en cada detalle.
@@ -73,59 +78,60 @@ const pillars = [
 
         <!-- Body copy -->
         <p
+          class="text-text-secondary font-light mb-12"
           style="
-            color: #a8b3c8;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             line-height: 1.8;
-            font-weight: 300;
-            max-width: 24rem;
-            margin-bottom: 2.5rem;
+            max-width: 32rem;
           "
         >
           El verdadero lujo no se puede subcontratar. Desde el boceto inicial
           hasta el pulido final, cada barco Classer se fabrica en nuestro
-          astillero de Villa María. Esto nos permite un control absoluto sobre
-          la calidad, asegurando que cada curva, costura y unión cumpla con
-          nuestros exigentes estándares.
+          astillero. Esto nos permite un control absoluto sobre la calidad,
+          asegurando que cada curva, costura y unión cumpla con nuestros
+          exigentes estándares.
         </p>
 
         <!-- 3 pillar columns -->
-        <div class="fab-pillars flex gap-8 flex-wrap">
+        <div class="grid grid-cols-3 gap-6 md:gap-8">
           {pillars.map(p => (
-            <div class="flex flex-col gap-2" style="min-width: 80px;">
+            <div class="flex flex-col gap-3">
 
               <!-- Icon -->
-              <div style="color: #1e90d4; line-height: 0;">
+              <div class="text-accent-blue opacity-80">
                 {p.icon === 'anchor' && (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="5" r="3"/>
                     <line x1="12" y1="22" x2="12" y2="8"/>
                     <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
                   </svg>
                 )}
                 {p.icon === 'shield' && (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                     <path d="M9 12l2 2 4-4"/>
                   </svg>
                 )}
                 {p.icon === 'compass' && (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"/>
                     <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
                   </svg>
                 )}
               </div>
 
-              <!-- Label -->
-              <p style="color: #ffffff; font-weight: 600; font-size: 0.95rem; line-height: 1.2;">
-                {p.label}
-              </p>
-
-              <!-- Sublabel -->
-              <p style="color: #6b7a99; font-size: 0.78rem; line-height: 1.4;">
-                {p.sublabel}
-              </p>
+              <!-- Content -->
+              <div class="space-y-1">
+                <p 
+                  class="text-white font-bold"
+                  style="font-family: Georgia, 'Times New Roman', serif; font-size: 1rem;"
+                >
+                  {p.label}
+                </p>
+                <p class="text-text-muted text-[0.7rem] leading-relaxed uppercase tracking-wider">
+                  {p.sublabel}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -136,42 +142,5 @@ const pillars = [
 </section>
 
 <style>
-  /* Decorative offset frame behind photo */
-  .fab-photo-wrap {
-    /* extra space on top-left for the offset frame to show */
-    padding-top: 16px;
-    padding-left: 16px;
-  }
-
-  .fab-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(100% - 16px);
-    height: calc(100% - 16px);
-    border: 1.5px solid rgba(255, 255, 255, 0.15);
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .fab-photo {
-    display: block;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Mobile: reduce offset */
-  @media (max-width: 767px) {
-    .fab-photo-wrap {
-      padding-top: 8px;
-      padding-left: 8px;
-    }
-    .fab-frame {
-      width: calc(100% - 8px);
-      height: calc(100% - 8px);
-    }
-    .fab-pillars {
-      gap: 1.5rem;
-    }
-  }
+  /* Subtle image entrance or interactions could go here */
 </style>
