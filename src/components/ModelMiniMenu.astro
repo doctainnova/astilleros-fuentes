@@ -1,0 +1,61 @@
+---
+interface Props {
+  modelName: string;
+  activeTab?: string;
+}
+const { modelName, activeTab = 'Especificaciones técnicas' } = Astro.props;
+
+// Clean name for display (strip "Classer" if present to follow image)
+const cleanName = modelName.replace(/Classer\s+/i, '');
+
+const tabs = [
+  { label: 'Especificaciones técnicas', href: '#especificaciones' },
+  { label: 'Exterior', href: '#exterior' },
+  { label: 'Interior', href: '#interior' },
+  { label: 'Galería', href: '#galeria' },
+];
+---
+
+<div class="model-mini-menu flex justify-center py-10">
+  <div class="bg-[#dcdcd8] rounded-full px-2 py-2 flex items-center shadow-xl max-w-[95vw] md:max-w-fit overflow-x-auto no-scrollbar border border-white/20">
+    
+    <!-- Model Name Section -->
+    <div class="flex items-center pl-8 pr-6 border-r border-black/10">
+      <span class="font-display font-black italic text-[#0d1222] text-2xl md:text-3xl whitespace-nowrap uppercase tracking-tighter">
+        {cleanName}
+      </span>
+    </div>
+
+    <!-- Nav Links Section -->
+    <nav class="flex items-center px-10 gap-10">
+      {tabs.map((tab) => (
+        <a 
+          href={tab.href}
+          class={`text-[#0d1222] text-sm font-bold whitespace-nowrap transition-all duration-300 hover:text-black/60 relative ${activeTab === tab.label ? 'opacity-100' : 'opacity-70'}`}
+        >
+          {tab.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Brochure Button Section -->
+    <div class="pr-2 hidden md:block">
+       <a
+        href="#"
+        class="bg-[#00a3e0] hover:bg-[#008cc2] text-white text-[0.7rem] font-bold uppercase tracking-wider px-8 py-3.5 rounded-full transition-all duration-300 whitespace-nowrap shadow-md hover:shadow-lg active:scale-95"
+      >
+        Descargar brochure
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
