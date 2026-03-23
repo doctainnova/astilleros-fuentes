@@ -35,8 +35,8 @@ export const models: Model[] = [
     name: 'Classer 165',
     line: 'LINEA FTX',
     eslora: '5.10M',
-    thumbnailUrl: 'https://placehold.co/280x200/0a0e1a/a8b3c8?text=Classer+165',
-    heroUrl: 'https://placehold.co/1440x700/0a0e1a/a8b3c8?text=Classer+165',
+    thumbnailUrl: '/image/2_PRODUCTO/165/1.png',
+    heroUrl: '/image/2_PRODUCTO/165/1.png',
     tagline: 'Compacta y ágil.',
     specs: [
       { label: 'Eslora Máx', value: '5.10m', icon: 'ruler' },
@@ -52,7 +52,7 @@ export const models: Model[] = [
       { label: 'Motorización', value: '1x115HP', icon: 'lightning' },
       { label: 'Velocidad Máx', value: '38 nudos', icon: 'gauge' },
     ],
-    exteriorFeatures: ['Escalera retráctil','Piso antideslizante','Cockpit abierto','Parabrisas integrado','Asientos tapizados','Bodega de proa'],
+    exteriorFeatures: ['Escalera retráctil', 'Piso antideslizante', 'Cockpit abierto', 'Parabrisas integrado', 'Asientos tapizados', 'Bodega de proa'],
     versions: [
       {
         name: '165',
@@ -86,14 +86,16 @@ export const models: Model[] = [
       { name: 'HABANO', hex: '#A0856C' },
     ],
     interiorImages: [
-      { url: 'https://placehold.co/560x380/1a2035/a8b3c8?text=Interior+1', w: 560, h: 380 },
-      { url: 'https://placehold.co/420x380/1a2035/a8b3c8?text=Interior+2', w: 420, h: 380 },
-      { url: 'https://placehold.co/420x380/1a2035/a8b3c8?text=Interior+3', w: 420, h: 380 },
+      { url: '/image/2_PRODUCTO/165/INTERIOR/2.jpg', w: 560, h: 380 },
+      { url: '/image/2_PRODUCTO/165/INTERIOR/5.jpg', w: 420, h: 380 },
+      { url: '/image/2_PRODUCTO/165/INTERIOR/7.jpg', w: 420, h: 380 },
     ],
     exteriorImages: [
-      { url: 'https://placehold.co/560x380/0f1525/a8b3c8?text=Exterior+1', w: 560, h: 380 },
-      { url: 'https://placehold.co/420x380/0f1525/a8b3c8?text=Exterior+2', w: 420, h: 380 },
-      { url: 'https://placehold.co/420x380/0f1525/a8b3c8?text=Exterior+3', w: 420, h: 380 },
+      { url: '/image/2_PRODUCTO/165/EXTERIOR/2.png', w: 560, h: 380 },
+      { url: '/image/2_PRODUCTO/165/EXTERIOR/3.png', w: 420, h: 380 },
+      { url: '/image/2_PRODUCTO/165/EXTERIOR/5.png', w: 420, h: 380 },
+      { url: '/image/2_PRODUCTO/165/EXTERIOR/12.jpg', w: 560, h: 380 },
+      { url: '/image/2_PRODUCTO/165/EXTERIOR/18.jpg', w: 560, h: 380 },
     ],
   },
   {
@@ -101,8 +103,8 @@ export const models: Model[] = [
     name: 'Classer 170',
     line: 'LINEA FTX',
     eslora: '5.40M',
-    thumbnailUrl: 'https://placehold.co/280x200/0a0e1a/a8b3c8?text=Classer+170',
-    heroUrl: 'https://placehold.co/1440x700/0a0e1a/a8b3c8?text=Classer+170',
+    thumbnailUrl: '/image/2_PRODUCTO/170/2.png',
+    heroUrl: '/image/2_PRODUCTO/170/2.png',
     tagline: 'Versatilidad en cada ola.',
     specs: [
       { label: 'Eslora Máx', value: '5.40m', icon: 'ruler' },
@@ -118,7 +120,7 @@ export const models: Model[] = [
       { label: 'Motorización', value: '1x150HP', icon: 'lightning' },
       { label: 'Velocidad Máx', value: '40 nudos', icon: 'gauge' },
     ],
-    exteriorFeatures: ['Escalera retráctil','Tanque acero inoxidable','Perfil perimetral','Cockpit en "U"','Piso antideslizante evadeck','Bodega de proa'],
+    exteriorFeatures: ['Escalera retráctil', 'Tanque acero inoxidable', 'Perfil perimetral', 'Cockpit en "U"', 'Piso antideslizante evadeck', 'Bodega de proa'],
     versions: [
       {
         name: '170',
@@ -152,14 +154,18 @@ export const models: Model[] = [
       { name: 'HABANO', hex: '#A0856C' },
     ],
     interiorImages: [
-      { url: 'https://placehold.co/560x380/1a2035/a8b3c8?text=Interior+1', w: 560, h: 380 },
-      { url: 'https://placehold.co/420x380/1a2035/a8b3c8?text=Interior+2', w: 420, h: 380 },
-      { url: 'https://placehold.co/420x380/1a2035/a8b3c8?text=Interior+3', w: 420, h: 380 },
+      { url: '/image/2_PRODUCTO/170/INTERIOR/1.jpg', w: 560, h: 380 },
+      { url: '/image/2_PRODUCTO/170/INTERIOR/2.jpg', w: 420, h: 380 },
+      { url: '/image/2_PRODUCTO/170/INTERIOR/3.jpg', w: 420, h: 380 },
+      { url: '/image/2_PRODUCTO/170/INTERIOR/4.png', w: 420, h: 380 },
     ],
     exteriorImages: [
-      { url: 'https://placehold.co/560x380/0f1525/a8b3c8?text=Exterior+1', w: 560, h: 380 },
-      { url: 'https://placehold.co/420x380/0f1525/a8b3c8?text=Exterior+2', w: 420, h: 380 },
-      { url: 'https://placehold.co/420x380/0f1525/a8b3c8?text=Exterior+3', w: 420, h: 380 },
+      { url: '/image/2_PRODUCTO/170/EXTERIOR/2.png', w: 560, h: 380 },
+      { url: '/image/2_PRODUCTO/170/EXTERIOR/3.jpg', w: 420, h: 380 },
+      { url: '/image/2_PRODUCTO/170/EXTERIOR/5.png', w: 420, h: 380 },
+      { url: '/image/2_PRODUCTO/170/EXTERIOR/16.JPG', w: 560, h: 380 },
+      { url: '/image/2_PRODUCTO/170/EXTERIOR/18.jpg', w: 560, h: 380 },
+      { url: '/image/2_PRODUCTO/170/EXTERIOR/19.JPG', w: 560, h: 380 },
     ],
   },
   {
@@ -168,8 +174,8 @@ export const models: Model[] = [
     line: 'LINEA FTX',
     eslora: '6.20M',
     badge: 'NUEVO',
-    thumbnailUrl: 'https://placehold.co/280x200/0a0e1a/a8b3c8?text=Classer+206+FTX',
-    heroUrl: 'https://placehold.co/1440x700/0a0e1a/a8b3c8?text=Classer+206+FTX',
+    thumbnailUrl: '/image/2_PRODUCTO/206 FTX/1.JPG',
+    heroUrl: '/image/2_PRODUCTO/206 FTX/1.JPG',
     tagline: 'El punto de inflexión entre performance y confort.',
     specs: [
       { label: 'Eslora Máx', value: '6.08m', icon: 'ruler' },
@@ -257,8 +263,8 @@ export const models: Model[] = [
     name: 'Classer 246',
     line: 'LINEA SURF',
     eslora: '7.50M',
-    thumbnailUrl: 'https://placehold.co/280x200/0a0e1a/a8b3c8?text=Classer+246',
-    heroUrl: 'https://placehold.co/1440x700/0a0e1a/a8b3c8?text=Classer+246',
+    thumbnailUrl: '/image/2_PRODUCTO/246 DF/EXTERIOR/IMAGEN 2.jpg',
+    heroUrl: '/image/2_PRODUCTO/246 DF/EXTERIOR/IMAGEN 2.jpg',
     tagline: 'El estándar de la excelencia.',
     specs: [
       { label: 'Eslora Máx', value: '7.40m', icon: 'ruler' },
@@ -337,8 +343,8 @@ export const models: Model[] = [
     name: 'Classer 246 OB',
     line: 'LINEA OB',
     eslora: '7.80M',
-    thumbnailUrl: 'https://placehold.co/280x200/0a0e1a/a8b3c8?text=Classer+246+OB',
-    heroUrl: 'https://placehold.co/1440x700/0a0e1a/a8b3c8?text=Classer+246+OB',
+    thumbnailUrl: '/image/2_PRODUCTO/246 OB/1.JPG',
+    heroUrl: '/image/2_PRODUCTO/246 OB/1.JPG',
     tagline: 'Potencia fuera de borda sin compromisos.',
     specs: [
       { label: 'Eslora Máx', value: '7.80m', icon: 'ruler' },
@@ -409,8 +415,8 @@ export const models: Model[] = [
     line: 'LINEA FTX',
     eslora: 'PRÓXIMAMENTE',
     badge: 'PRONTO',
-    thumbnailUrl: 'https://placehold.co/280x200/0a0e1a/a8b3c8?text=Classer+186',
-    heroUrl: 'https://placehold.co/1440x700/0a0e1a/a8b3c8?text=Classer+186',
+    thumbnailUrl: '/image/2_PRODUCTO/246 OB/1.JPG',
+    heroUrl: '/image/2_PRODUCTO/246 OB/1.JPG',
     tagline: 'El próximo capítulo. Próximamente.',
     specs: [
       { label: 'Eslora Máx', value: 'TBD', icon: 'ruler' },

@@ -4,6 +4,7 @@ import SectionLabel from '../../components/SectionLabel.astro';
 import SpecGrid from '../../components/SpecGrid.astro';
 import GalleryCollage from '../../components/GalleryCollage.astro';
 import VersionsTable from '../../components/VersionsTable.astro';
+import ModelMiniMenu from '../../components/ModelMiniMenu.astro';
 import { models, getModelBySlug } from '../../data/models';
 
 export function getStaticPaths() {
@@ -14,13 +15,14 @@ const { slug } = Astro.params;
 const model = getModelBySlug(slug!);
 
 if (!model) {
-  return Astro.redirect('/modelos');
+  return Astro.redirect('/classer');
 }
 ---
 
 <Layout
   title={`${model.name} — CLASSER | Astillero Fuentes`}
   description={model.tagline}
+  fixedNavbar={true}
 >
   <!-- STICKY SECONDARY NAV -->
   <div id="model-subnav" class="fixed top-[72px] left-0 right-0 z-40 bg-bg-white border-b border-black/10 shadow-sm translate-y-[-100%] opacity-0 transition-none" aria-label="Navegación del modelo">
@@ -68,10 +70,15 @@ if (!model) {
       </h1>
     </div>
   </section>
-
   <!-- SPECS GRID -->
-  <section id="especificaciones" class="bg-bg-deep py-0" aria-label="Especificaciones técnicas">
-    <SpecGrid specs={model.specs} dark={true} />
+  <section id="especificaciones" class="bg-bg-deep py-20" aria-label="Especificaciones técnicas">
+    <div class="container-site mb-12">
+      <ModelMiniMenu modelName={model.name.replace('Classer ', '')} />
+    </div>
+    
+    <div class="container-site px-4">
+      <SpecGrid specs={model.specs} dark={true} />
+    </div>
 
 
   </section>
@@ -85,7 +92,7 @@ if (!model) {
         <!-- Technical diagram -->
         <div class="reveal mb-10">
           <img
-            src="https://placehold.co/700x480/f4f4f2/6b7a99?text=Technical+Diagram+206+FTX"
+            src="https://placehold.co/700x480/f4f4f2/6b7a99?text=Technical+Diagram"
             alt={`Diagrama técnico ${model.name}`}
             width="700"
             height="480"
@@ -168,7 +175,7 @@ if (!model) {
     <VersionsTable
       modelName={model.name.replace('Classer ', '')}
       features={model.versions[0].features}
-      diagramUrl="https://placehold.co/700x480/f4f4f2/6b7a99?text=Technical+Diagram+206+FTX"
+      diagramUrl="https://placehold.co/700x480/f4f4f2/6b7a99?text=Technical+Diagram"
     />
   )}
 
