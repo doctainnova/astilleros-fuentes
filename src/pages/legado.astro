@@ -1,6 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 import SectionLabel from '../components/SectionLabel.astro';
+
+import legado1Img from '../assets/legado/legado1.webp';
+import legado2Img from '../assets/legado/legado2.webp';
+import legado3Img from '../assets/legado/legado3.webp';
 ---
 
 <Layout
@@ -17,13 +22,18 @@ import SectionLabel from '../components/SectionLabel.astro';
     style="min-height: 60vh;"
     aria-label="Hero — Un Legado Vivo"
   >
-    <!-- Background image placeholder -->
-    <div
-      class="absolute inset-0"
-      style="background-color: #1a1f1a;"
-      data-image-slot="hero-wave"
+    <!-- Background image optimizada con Astro Image -->
+    <Image
+      src={legado3Img}
+      alt=""
+      width={1920}
+      height={1080}
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      class="absolute inset-0 w-full h-full object-cover object-center"
       aria-hidden="true"
-    ></div>
+    />
 
     <!-- Dark overlay -->
     <div
@@ -74,15 +84,18 @@ import SectionLabel from '../components/SectionLabel.astro';
     <div class="container-site">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-        <!-- Columna izquierda: foto histórica (placeholder) -->
+        <!-- Columna izquierda: foto histórica -->
         <div class="reveal">
-          <div
+          <Image
+            src={legado1Img}
+            alt="Historia del Astillero Fuentes — fundado en 1972 por Jorge Fuentes"
+            width={600}
+            height={450}
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 767px) 100vw, 50vw"
             class="w-full rounded-sm"
-            style="background-color: #1a1f1a; aspect-ratio: 4 / 5;"
-            data-image-slot="origenes-foto-historica"
-            role="img"
-            aria-label="Foto histórica Astillero Fuentes — 1972"
-          ></div>
+          />
         </div>
 
         <!-- Columna derecha: texto -->
@@ -207,15 +220,18 @@ import SectionLabel from '../components/SectionLabel.astro';
           </p>
         </div>
 
-        <!-- Columna derecha: bote en showroom (placeholder) -->
+        <!-- Columna derecha: bote en showroom -->
         <div class="reveal">
-          <div
-            class="w-full rounded"
-            style="background-color: #1a1f1a; aspect-ratio: 4 / 3;"
-            data-image-slot="compromiso-bote-showroom"
-            role="img"
-            aria-label="Bote Classer en showroom — Astillero Fuentes"
-          ></div>
+          <Image
+            src={legado2Img}
+            alt="Embarcación Classer en el showroom de Astillero Fuentes"
+            width={600}
+            height={450}
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 767px) 100vw, 50vw"
+            class="w-full rounded-sm"
+          />
         </div>
       </div>
     </div>
