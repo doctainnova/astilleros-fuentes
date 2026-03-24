@@ -14,18 +14,20 @@ const iconMap: Record<string, string> = {
 
 // ── Silueta: overrides where name.replace('Classer ','') ≠ filename ─
 const siluetaFileMap: Record<string, string> = {
-  '246':      '246 SURF',
-  '246 OB':   '246 OB',
-  '206 FTX':  '206 FTX',
+  '246':       '246 DF',
+  '246 SURF':  '246 SURF',
+  '246 OB':    '246 OB',
+  '206 FTX':   '206 FTX',
 };
 
 // ── Logo: overrides for filename mismatches ──────────────────────
 const logoFileMap: Record<string, string> = {
-  '165':     'C165',
-  '170':     'C170',
-  '246':     '246 SURF',
-  '246 OB':  '246 OB',
-  '206 FTX': '206 FTX',
+  '165':      'C165',
+  '170':      'C170',
+  '246':      '246 DF',
+  '246 SURF': '246 SUFT',
+  '246 OB':   '246 OB',
+  '206 FTX':  '206 FTX',
 };
 
 function getSiluetaUrl(name: string): string {
@@ -80,9 +82,12 @@ const lines = Object.keys(groupedModels);
             <img
               src="/image/iconos/LINEA%20GRAFICA.webp"
               alt=""
+              width="60"
+              height="24"
               class="linea-header__curve"
               aria-hidden="true"
-              loading="eager"
+              loading="lazy"
+              decoding="async"
             />
             <span class="linea-header__texto">
               {prefix} <strong>{suffix}</strong>
@@ -109,8 +114,11 @@ const lines = Object.keys(groupedModels);
                   <img
                     src={getLogoUrl(model.name)}
                     alt={model.name}
+                    width="200"
+                    height="52"
                     class="model-logo__img"
                     loading="lazy"
+                    decoding="async"
                     onerror="this.style.display='none'; var fb=this.parentElement.querySelector('.model-logo__fallback'); if(fb) fb.style.display='flex';"
                   />
                   <div class="model-logo__fallback" style="display:none;">
@@ -127,6 +135,7 @@ const lines = Object.keys(groupedModels);
                     alt={`Silueta ${model.name}`}
                     class="model-silhouette__img"
                     loading="lazy"
+                    decoding="async"
                     width="320"
                     height="180"
                   />
@@ -143,6 +152,7 @@ const lines = Object.keys(groupedModels);
                         width="22"
                         height="22"
                         loading="lazy"
+                        decoding="async"
                         aria-hidden="true"
                       />
                       <span class="spec-item__label">{spec.label}</span>
@@ -176,11 +186,11 @@ const lines = Object.keys(groupedModels);
     display: none;
   }
 
-  /* ── Grupo de línea: columna con header + cards ───────────── */
+  /* ── Grupo de línea: grid para que el header herede el ancho de las cards ── */
 
   .linea-group {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto auto;
     flex-shrink: 0;
   }
 
@@ -190,7 +200,7 @@ const lines = Object.keys(groupedModels);
     display: flex;
     align-items: center;
     padding: 0 32px 12px;
-    width: 100%;
+    min-width: 0;
     gap: 0;
   }
 

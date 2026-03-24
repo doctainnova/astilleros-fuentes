@@ -6,49 +6,86 @@ import heroSource from '../assets/home/slider-1.webp';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
   hideNavbar?: boolean;
   hideFooter?: boolean;
   fixedNavbar?: boolean;
   noScroll?: boolean;
+  preloadHero?: boolean;
 }
 
 const {
   title = 'CLASSER — Astillero Fuentes | Lanchas de Lujo desde 1972',
   description = 'Creando experiencias trascendentales en el agua desde 1972. Diseñado en Italia, construido para el mundo.',
+  ogImage,
   hideNavbar = false,
   hideFooter = false,
   fixedNavbar = true,
   noScroll = false,
+  preloadHero = false,
 } = Astro.props;
 
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
-const heroPreload = await getImage({
-  src: heroSource,
-  width: 1200,
-  format: 'avif',
-  quality: 82,
-});
+const heroPreload = preloadHero
+  ? await getImage({ src: heroSource, width: 1200, format: 'avif', quality: 82 })
+  : null;
+
+const FONTS_URL =
+  'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&family=Barlow:wght@400;500&family=Inter:wght@300;400;500;600&display=swap';
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://classer.com.ar');
+const ogImageFinal = ogImage ?? 'https://classer.com.ar/og-default.jpg';
 ---
 <!doctype html>
 <html lang="es" class={noScroll ? 'overflow-hidden' : ''}>
   <head>
-    <link
-      rel="preload"
-      as="image"
-      href={heroPreload.src}
-      type="image/avif"
-      fetchpriority="high"
-    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a0e1a" />
-    <link rel="icon" type="image/svg+xml" href="/classer-1.webp" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageFinal} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="CLASSER — Astillero Fuentes" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageFinal} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="/image/AF 2.webp" />
+
     <title>{title}</title>
+
+    <!-- Google Fonts — carga no bloqueante (preload+onload trick) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href={FONTS_URL}
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link rel="stylesheet" href={FONTS_URL} />
+    </noscript>
+
+    <!-- Hero preload (solo en páginas con hero slider) -->
+    {heroPreload && (
+      <link
+        rel="preload"
+        as="image"
+        href={heroPreload.src}
+        type="image/avif"
+        fetchpriority="high"
+      />
+    )}
   </head>
   <body class={noScroll ? 'h-screen overflow-hidden' : ''}>
     {!hideNavbar && <Navbar isFixed={fixedNavbar} />}

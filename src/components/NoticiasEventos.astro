@@ -11,6 +11,7 @@ import fabricaImg from '../assets/notyeven/fabrica.jpg';
 <section
   class="bg-white pt-12 pb-24"
   aria-label="Noticias y eventos"
+  
 >
   <div class="max-w-6xl mx-auto px-6">
 
@@ -30,9 +31,10 @@ import fabricaImg from '../assets/notyeven/fabrica.jpg';
     <div class="noticias-grid grid gap-8" style="align-items: start;">
 
       <!-- ── CARD 1: Proyecto 186 — black teaser ──────────────── -->
-      <article
+      <a
+        href="/eventos"
         class="noticias-card-teaser relative overflow-hidden flex items-center justify-center p-8 active:scale-[0.98] transition-transform duration-300"
-        style="background: #070707; height: 400px;"
+        style="background: #070707; height: 400px; text-decoration: none;"
         aria-label="Proyecto 186 — próximamente"
       >
         <!-- Faint boat silhouette — centered & visible ghost effect -->
@@ -76,11 +78,13 @@ import fabricaImg from '../assets/notyeven/fabrica.jpg';
             El futuro del lujo compacto.
           </p>
         </div>
-      </article>
+      </a>
 
       <!-- ── CARD 2: Lanzamiento 246 — standard news ───────────── -->
-      <article
+      <a
+        href="/eventos"
         class="noticias-card-news flex flex-col group cursor-pointer"
+        style="text-decoration: none;"
         aria-label="Noticia: Lanzamiento Classer 246"
       >
         <!-- Image -->
@@ -121,11 +125,13 @@ import fabricaImg from '../assets/notyeven/fabrica.jpg';
             Lanzamiento 246
           </h3>
         </div>
-      </article>
+      </a>
 
       <!-- ── CARD 3: Nuevo Astillero Fuentes — standard news ────── -->
-      <article
+      <a
+        href="/eventos"
         class="noticias-card-news flex flex-col group cursor-pointer"
+        style="text-decoration: none;"
         aria-label="Noticia: Nuevo Astillero Fuentes"
       >
         <!-- Image -->
@@ -166,7 +172,7 @@ import fabricaImg from '../assets/notyeven/fabrica.jpg';
             Nuevo Astillero Fuentes
           </h3>
         </div>
-      </article>
+      </a>
 
     </div>
   </div>

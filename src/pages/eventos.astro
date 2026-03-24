@@ -1,5 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+import caselImg      from '../assets/noticias/casel.webp';
+import lzn01Img      from '../assets/noticias/lzn246/LNZ246-01.webp';
+import fabricaNotImg from '../assets/noticias/fabrica.webp';
+import lzn02Img      from '../assets/noticias/lzn246/LNZ246-02.webp';
+import lzn03Img      from '../assets/noticias/lzn246/LNZ246-03.webp';
+import lzn04Img      from '../assets/noticias/lzn246/LNZ246-04.webp';
+import n1Img         from '../assets/noticias/1.webp';
+import n2Img         from '../assets/noticias/2.webp';
+import n3Img         from '../assets/noticias/3.webp';
+import n4Img         from '../assets/noticias/4.webp';
+import n5Img         from '../assets/noticias/5.webp';
+import n6Img         from '../assets/noticias/6.webp';
+import n7Img         from '../assets/noticias/7.webp';
+import n8Img         from '../assets/noticias/8.webp';
+import n9Img         from '../assets/noticias/9.webp';
+import n10Img        from '../assets/noticias/10.webp';
 ---
 
 <Layout
@@ -41,12 +59,16 @@ import Layout from '../layouts/Layout.astro';
         aria-label="Evento: CACEL 2025"
       >
         <div class="news-card__inner">
-          <div
-            class="card-img-slot"
-            data-image-slot="card-cacel-2025-foto"
-            role="img"
-            aria-label="Foto evento CACEL 2025"
-          ></div>
+          <Image
+            src={caselImg}
+            alt="CACEL 2025 — Campeonato Argentino de Carreras en Villa María"
+            width={400}
+            height={280}
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 767px) 80vw, 297px"
+            class="card-img"
+          />
           <div class="card-body">
             <span class="badge">NOTICIAS</span>
             <p class="card-date">FEBRERO, 2025</p>
@@ -65,12 +87,17 @@ import Layout from '../layouts/Layout.astro';
         aria-label="Evento: Lanzamiento Classer 246"
       >
         <div class="news-card__inner news-card__inner--active">
-          <div
-            class="card-img-slot"
-            data-image-slot="card-lanzamiento-246-foto"
-            role="img"
-            aria-label="Foto lanzamiento Classer 246"
-          ></div>
+          <Image
+            src={lzn01Img}
+            alt="Lanzamiento Classer 246 — presentación oficial del modelo"
+            width={400}
+            height={280}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            sizes="(max-width: 767px) 80vw, 297px"
+            class="card-img"
+          />
           <div class="card-body">
             <span class="badge">LANZAMIENTO</span>
             <p class="card-date">MARZO, 2025</p>
@@ -91,12 +118,16 @@ import Layout from '../layouts/Layout.astro';
         aria-label="Evento: Astillero Fuentes"
       >
         <div class="news-card__inner">
-          <div
-            class="card-img-slot"
-            data-image-slot="card-astillero-fuentes-foto"
-            role="img"
-            aria-label="Foto Astillero Fuentes"
-          ></div>
+          <Image
+            src={fabricaNotImg}
+            alt="Nuevas instalaciones Astillero Fuentes en Villa María, Córdoba"
+            width={400}
+            height={280}
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 767px) 80vw, 297px"
+            class="card-img"
+          />
           <div class="card-body">
             <span class="badge">NOTICIAS</span>
             <p class="card-date">ENERO, 2025</p>
@@ -110,26 +141,11 @@ import Layout from '../layouts/Layout.astro';
 
     </div><!-- /.news-slider__track -->
 
-    <!-- Dots de paginación — botones funcionales -->
-    <div class="slider-dots-container" role="tablist" aria-label="Navegación del slider">
-      <button
-        class="slider-dot"
-        role="tab"
-        aria-selected="false"
-        aria-label="Ir a noticia 1"
-      ></button>
-      <button
-        class="slider-dot slider-dot--active"
-        role="tab"
-        aria-selected="true"
-        aria-label="Ir a noticia 2"
-      ></button>
-      <button
-        class="slider-dot"
-        role="tab"
-        aria-selected="false"
-        aria-label="Ir a noticia 3"
-      ></button>
+    <!-- Scrollbar news slider -->
+    <div class="news-slider__scrollbar-wrap" aria-hidden="true">
+      <div class="news-slider__scrollbar-track">
+        <div class="news-slider__scrollbar-thumb"></div>
+      </div>
     </div>
 
   </section><!-- /.news-slider -->
@@ -151,13 +167,15 @@ import Layout from '../layouts/Layout.astro';
 
         <!-- Imagen del artículo -->
         <div>
-          <div
-            class="w-full rounded-md"
-            style="background-color: #1a1f1a; aspect-ratio: 3 / 4;"
-            data-image-slot="detalle-lanzamiento-246-foto"
-            role="img"
-            aria-label="Imagen del lanzamiento Classer 246"
-          ></div>
+          <Image
+            src={lzn01Img}
+            alt="Classer 246 en el agua durante el evento de lanzamiento"
+           
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 767px) 100vw, 50vw"
+            class="w-full rounded-sm"
+          />
         </div>
 
         <!-- Texto: 3 párrafos -->
@@ -196,33 +214,51 @@ import Layout from '../layouts/Layout.astro';
   <section class="photo-slider" aria-label="Galería de fotos del evento">
 
     <div class="photo-slider__track">
-      <div
-        class="photo-slider__item"
-        data-image-slot="galeria-evento-1"
-        aria-label="Foto 1 del evento"
-      ></div>
-      <div
-        class="photo-slider__item"
-        data-image-slot="galeria-evento-2"
-        aria-label="Foto 2 del evento"
-      ></div>
-      <div
-        class="photo-slider__item"
-        data-image-slot="galeria-evento-3"
-        aria-label="Foto 3 del evento"
-      ></div>
-      <div
-        class="photo-slider__item"
-        data-image-slot="galeria-evento-4"
-        aria-label="Foto 4 del evento"
-      ></div>
+      <div class="photo-slider__item">
+        <Image src={lzn02Img} alt="Lanzamiento Classer 246 — foto 1" width={760} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 38vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={lzn03Img} alt="Lanzamiento Classer 246 — foto 2" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={lzn04Img} alt="Lanzamiento Classer 246 — foto 3" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={n1Img} alt="Lanzamiento Classer 246 — foto 4" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={n2Img} alt="Lanzamiento Classer 246 — foto 5" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={n3Img} alt="Lanzamiento Classer 246 — foto 6" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={n4Img} alt="Lanzamiento Classer 246 — foto 7" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={n5Img} alt="Lanzamiento Classer 246 — foto 8" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={n6Img} alt="Lanzamiento Classer 246 — foto 9" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={n7Img} alt="Lanzamiento Classer 246 — foto 10" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={n8Img} alt="Lanzamiento Classer 246 — foto 11" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={n9Img} alt="Lanzamiento Classer 246 — foto 12" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
+      <div class="photo-slider__item">
+        <Image src={n10Img} alt="Lanzamiento Classer 246 — foto 13" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
+      </div>
     </div>
 
-    <div class="slider-dots-container photo-slider__dots" role="tablist" aria-label="Navegación galería">
-      <button class="slider-dot slider-dot--active" role="tab" aria-selected="true" aria-label="Foto 1"></button>
-      <button class="slider-dot" role="tab" aria-selected="false" aria-label="Foto 2"></button>
-      <button class="slider-dot" role="tab" aria-selected="false" aria-label="Foto 3"></button>
-      <button class="slider-dot" role="tab" aria-selected="false" aria-label="Foto 4"></button>
+    <div class="photo-slider__scrollbar-wrap" aria-hidden="true">
+      <div class="photo-slider__scrollbar-track">
+        <div class="photo-slider__scrollbar-thumb"></div>
+      </div>
     </div>
 
   </section><!-- /.photo-slider -->
@@ -337,10 +373,11 @@ import Layout from '../layouts/Layout.astro';
 
   /* ── Card image slot ────────────────────────────────────── */
 
-  .card-img-slot {
-    background-color: #1a1f1a;
+  .card-img {
+    width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 
   /* ── Card text area ─────────────────────────────────────── */
@@ -414,38 +451,38 @@ import Layout from '../layouts/Layout.astro';
 
 
   /* ═══════════════════════════════════════════════════════════
-     DOTS COMPARTIDOS — usados por news slider y galería
+     SCROLLBAR COMPARTIDA — news slider y galería
   ═══════════════════════════════════════════════════════════ */
 
-  .slider-dots-container {
+  .news-slider__scrollbar-wrap {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin-top: 20px;
-    padding-bottom: 8px;
+    padding: 14px 0 18px;
   }
 
-  .slider-dot {
-    height: 10px;
-    width: 10px;
+  .news-slider__scrollbar-track {
+    position: relative;
+    width: 200px;
+    height: 4px;
+    background-color: #e0e0e0;
     border-radius: 99px;
-    border: 1.5px solid #cccccc;
-    background: transparent;
     cursor: pointer;
-    padding: 0;
-    transition: width 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
   }
 
-  .slider-dot--active {
-    width: 22px;
+  .news-slider__scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
     background-color: #111111;
-    border-color: #111111;
+    border-radius: 99px;
+    cursor: grab;
+    transition: background-color 0.2s;
   }
 
-  .slider-dot:focus-visible {
-    outline: 2px solid var(--color-accent-blue, #1E7DC8);
-    outline-offset: 2px;
+  .news-slider__scrollbar-thumb:active {
+    cursor: grabbing;
+    background-color: #333;
   }
 
 
@@ -479,6 +516,8 @@ import Layout from '../layouts/Layout.astro';
     width: 100%;
     overflow: hidden;
     margin-top: 0;
+    padding-bottom: 0;
+    background-color: #ffffff;
   }
 
   .photo-slider__track {
@@ -508,14 +547,50 @@ import Layout from '../layouts/Layout.astro';
     background-color: #1a1f1a;
   }
 
+  .photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   /* Proporciones por posición */
   .photo-slider__item:nth-child(1) { flex: 0 0 38%; }
   .photo-slider__item:nth-child(2) { flex: 0 0 20%; }
   .photo-slider__item:nth-child(3) { flex: 0 0 20%; }
   .photo-slider__item:nth-child(4) { flex: 0 0 20%; }
 
-  .photo-slider__dots {
-    padding-bottom: 1.25rem;
+  /* ── Scrollbar personalizada ─────────────────────── */
+
+  .photo-slider__scrollbar-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 14px 0 18px;
+  }
+
+  .photo-slider__scrollbar-track {
+    position: relative;
+    width: 200px;
+    height: 4px;
+    background-color: #e0e0e0;
+    border-radius: 99px;
+    cursor: pointer;
+  }
+
+  .photo-slider__scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background-color: #111111;
+    border-radius: 99px;
+    cursor: grab;
+    transition: background-color 0.2s;
+  }
+
+  .photo-slider__scrollbar-thumb:active {
+    cursor: grabbing;
+    background-color: #333;
   }
 
 
@@ -541,7 +616,7 @@ import Layout from '../layouts/Layout.astro';
       grid-template-rows: auto 1fr;
     }
 
-    .card-img-slot {
+    .card-img {
       min-height: 150px;
       height: 150px;
     }
@@ -559,28 +634,68 @@ import Layout from '../layouts/Layout.astro';
   document.addEventListener('DOMContentLoaded', () => {
 
     // ── NEWS SLIDER ─────────────────────────────────────────
-    const track = document.querySelector<HTMLElement>('.news-slider__track');
-    const cards = document.querySelectorAll<HTMLElement>('.news-slider__item');
-    const dots  = document.querySelectorAll<HTMLButtonElement>('.news-slider .slider-dot');
+    const track    = document.querySelector<HTMLElement>('.news-slider__track');
+    const cards    = document.querySelectorAll<HTMLElement>('.news-slider__item');
+    const nsSbTrack = document.querySelector<HTMLElement>('.news-slider__scrollbar-track');
+    const nsSbThumb = document.querySelector<HTMLElement>('.news-slider__scrollbar-thumb');
 
-    if (track && cards.length && dots.length) {
+    if (track && cards.length) {
 
-      const setActiveDot = (index: number) => {
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('slider-dot--active', i === index);
-          dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
-        });
+      const setActiveCard = (index: number) => {
         cards.forEach((card, i) => {
           card.classList.toggle('news-slider__item--active', i === index);
         });
       };
 
+      const scrollToCard = (index: number) => {
+        const card = cards[index] as HTMLElement;
+        const targetLeft = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
+        track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+      };
+
+      // Scrollbar sync
+      if (nsSbTrack && nsSbThumb) {
+        const updateNsThumb = () => {
+          const scrollable = track.scrollWidth - track.clientWidth;
+          if (scrollable <= 0) return;
+          const ratio     = track.clientWidth / track.scrollWidth;
+          const thumbW    = Math.max(nsSbTrack.clientWidth * ratio, 32);
+          const thumbLeft = (track.scrollLeft / scrollable) * (nsSbTrack.clientWidth - thumbW);
+          nsSbThumb.style.width = `${thumbW}px`;
+          nsSbThumb.style.left  = `${thumbLeft}px`;
+        };
+
+        track.addEventListener('scroll', updateNsThumb, { passive: true });
+        window.addEventListener('resize', updateNsThumb);
+        updateNsThumb();
+
+        let nsDragging = false, nsDragStartX = 0, nsDragStartScroll = 0;
+        nsSbThumb.addEventListener('mousedown', (e: MouseEvent) => {
+          nsDragging = true; nsDragStartX = e.clientX; nsDragStartScroll = track.scrollLeft;
+          e.preventDefault();
+        });
+        document.addEventListener('mousemove', (e: MouseEvent) => {
+          if (!nsDragging) return;
+          const scrollable = track.scrollWidth - track.clientWidth;
+          const ratio = scrollable / (nsSbTrack.clientWidth - nsSbThumb.offsetWidth);
+          track.scrollLeft = nsDragStartScroll + (e.clientX - nsDragStartX) * ratio;
+        });
+        document.addEventListener('mouseup', () => { nsDragging = false; });
+        nsSbTrack.addEventListener('click', (e: MouseEvent) => {
+          if (e.target === nsSbThumb) return;
+          const rect = nsSbTrack.getBoundingClientRect();
+          const scrollable = track.scrollWidth - track.clientWidth;
+          track.scrollLeft = ((e.clientX - rect.left) / nsSbTrack.clientWidth) * scrollable;
+        });
+      }
+
+      // Activa card según scroll
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               const index = [...cards].indexOf(entry.target as HTMLElement);
-              if (index !== -1) setActiveDot(index);
+              if (index !== -1) setActiveCard(index);
             }
           });
         },
@@ -588,45 +703,24 @@ import Layout from '../layouts/Layout.astro';
       );
       cards.forEach(card => observer.observe(card));
 
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          cards[index].scrollIntoView({
-            behavior: 'smooth',
-            inline: 'center',
-            block: 'nearest',
-          });
-        });
-      });
-
       // Inicializar en card 2 (Lanzamiento 246)
       const initCard = cards[1];
       if (initCard) {
-        track.scrollLeft =
-          initCard.offsetLeft - (track.clientWidth - initCard.offsetWidth) / 2;
-        setActiveDot(1);
+        track.scrollLeft = (initCard as HTMLElement).offsetLeft - (track.clientWidth - (initCard as HTMLElement).offsetWidth) / 2;
+        setActiveCard(1);
       }
 
-      // Autoplay: avanza cada 5s, pausa en hover/touch
+      // Autoplay
       let autoplayTimer: ReturnType<typeof setInterval> | undefined;
       let activeIndex = 1;
 
       const advanceSlide = () => {
         activeIndex = (activeIndex + 1) % cards.length;
-        cards[activeIndex].scrollIntoView({
-          behavior: 'smooth',
-          inline: 'center',
-          block: 'nearest',
-        });
+        scrollToCard(activeIndex);
       };
 
-      const stopAutoplay = () => {
-        if (autoplayTimer !== undefined) clearInterval(autoplayTimer);
-      };
-
-      const startAutoplay = () => {
-        stopAutoplay();
-        autoplayTimer = setInterval(advanceSlide, 5000);
-      };
+      const stopAutoplay = () => { if (autoplayTimer !== undefined) clearInterval(autoplayTimer); };
+      const startAutoplay = () => { stopAutoplay(); autoplayTimer = setInterval(advanceSlide, 5000); };
 
       const indexObserver = new IntersectionObserver(
         (entries) => {
@@ -643,52 +737,63 @@ import Layout from '../layouts/Layout.astro';
 
       track.addEventListener('mouseenter', stopAutoplay);
       track.addEventListener('touchstart', stopAutoplay, { passive: true });
-      track.addEventListener('mouseleave', () => {
-        setTimeout(startAutoplay, 3000);
-      });
-
+      track.addEventListener('mouseleave', () => { setTimeout(startAutoplay, 3000); });
       startAutoplay();
     }
 
 
-    // ── GALERÍA DE FOTOS ────────────────────────────────────
-    const photoTrack = document.querySelector<HTMLElement>('.photo-slider__track');
-    const photoItems = document.querySelectorAll<HTMLElement>('.photo-slider__item');
-    const photoDots  = document.querySelectorAll<HTMLButtonElement>('.photo-slider__dots .slider-dot');
+    // ── GALERÍA DE FOTOS — scrollbar arrastrable ────────────
+    const photoTrack  = document.querySelector<HTMLElement>('.photo-slider__track');
+    const sbTrack     = document.querySelector<HTMLElement>('.photo-slider__scrollbar-track');
+    const sbThumb     = document.querySelector<HTMLElement>('.photo-slider__scrollbar-thumb');
 
-    if (photoTrack && photoItems.length && photoDots.length) {
+    if (photoTrack && sbTrack && sbThumb) {
 
-      const setActivePhotoDot = (index: number) => {
-        photoDots.forEach((dot, i) => {
-          dot.classList.toggle('slider-dot--active', i === index);
-          dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
-        });
+      const updateThumb = () => {
+        const scrollable = photoTrack.scrollWidth - photoTrack.clientWidth;
+        if (scrollable <= 0) return;
+        const ratio      = photoTrack.clientWidth / photoTrack.scrollWidth;
+        const thumbW     = Math.max(sbTrack.clientWidth * ratio, 32);
+        const thumbLeft  = (photoTrack.scrollLeft / scrollable) * (sbTrack.clientWidth - thumbW);
+        sbThumb.style.width = `${thumbW}px`;
+        sbThumb.style.left  = `${thumbLeft}px`;
       };
 
-      const photoObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const index = [...photoItems].indexOf(entry.target as HTMLElement);
-              if (index !== -1) setActivePhotoDot(index);
-            }
-          });
-        },
-        { root: photoTrack, threshold: 0.5 }
-      );
-      photoItems.forEach(item => photoObserver.observe(item));
+      photoTrack.addEventListener('scroll', updateThumb, { passive: true });
+      window.addEventListener('resize', updateThumb);
+      updateThumb();
 
-      photoDots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          photoItems[index].scrollIntoView({
-            behavior: 'smooth',
-            inline: 'start',
-            block: 'nearest',
-          });
-        });
+      // Arrastrar el thumb con el mouse
+      let dragging = false;
+      let dragStartX = 0;
+      let dragStartScroll = 0;
+
+      sbThumb.addEventListener('mousedown', (e: MouseEvent) => {
+        dragging = true;
+        dragStartX = e.clientX;
+        dragStartScroll = photoTrack.scrollLeft;
+        e.preventDefault();
       });
 
-      setActivePhotoDot(0);
+      document.addEventListener('mousemove', (e: MouseEvent) => {
+        if (!dragging) return;
+        const scrollable = photoTrack.scrollWidth - photoTrack.clientWidth;
+        const thumbW     = sbThumb.offsetWidth;
+        const trackW     = sbTrack.clientWidth;
+        const ratio      = scrollable / (trackW - thumbW);
+        photoTrack.scrollLeft = dragStartScroll + (e.clientX - dragStartX) * ratio;
+      });
+
+      document.addEventListener('mouseup', () => { dragging = false; });
+
+      // Click en el track (fuera del thumb) salta a esa posición
+      sbTrack.addEventListener('click', (e: MouseEvent) => {
+        if (e.target === sbThumb) return;
+        const rect       = sbTrack.getBoundingClientRect();
+        const clickRatio = (e.clientX - rect.left) / sbTrack.clientWidth;
+        const scrollable = photoTrack.scrollWidth - photoTrack.clientWidth;
+        photoTrack.scrollLeft = clickRatio * scrollable;
+      });
     }
 
   });

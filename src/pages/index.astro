@@ -23,7 +23,7 @@ import ftsImg from '../assets/brand/FTS.webp';
       
       <!-- Shield Logo -->
       <div class="flex-shrink-0">
-        <Image src={afShieldImg} alt="" width={100} format="webp" quality={85} loading="eager" decoding="async" class="text-white color-white invert" />
+        <Image src={afShieldImg} alt="Escudo Astillero Fuentes" width={100} format="webp" quality={85} loading="eager" decoding="sync" class="text-white color-white invert" />
       </div>
 
       <!-- Tagline -->
@@ -42,7 +42,7 @@ import ftsImg from '../assets/brand/FTS.webp';
           class="w-full aspect-square bg-[#03050a] flex flex-col items-center justify-center gap-6 transition-all duration-500 hover:scale-[1.03] hover:bg-[#070a14] border border-white/5 shadow-2xl active:scale-[0.98]"
         >
           <!-- Swoosh SVG -->
-          <Image src={classerBrandImg} alt="" width={350} format="webp" quality={85} loading="eager" decoding="async" class="text-white color-white invert" />
+          <Image src={classerBrandImg} alt="CLASSER — línea de embarcaciones deportivas de lujo" width={350} format="webp" quality={85} loading="eager" decoding="sync" class="text-white color-white invert" />
         </a>
         <p class="text-white font-light text-center text-lg md:text-xl max-w-[300px] leading-relaxed opacity-90">
           Embarcaciones deportivas de lujo.
@@ -68,7 +68,7 @@ import ftsImg from '../assets/brand/FTS.webp';
         <div 
           class="w-full aspect-square bg-[#03050a] flex flex-col items-center justify-center gap-2 opacity-70 border border-white/5"
         >
-          <Image src={ftsImg} alt="" height={200} format="webp" quality={85} loading="eager" decoding="async" class="text-white color-white invert" />
+          <Image src={ftsImg} alt="FTS — Fuentes Technical Service" height={200} format="webp" quality={85} loading="eager" decoding="sync" class="text-white color-white invert" />
         </div>
         <p class="text-white font-light text-center text-lg md:text-xl max-w-[300px] leading-relaxed opacity-90">
           Service a tu lancha y accesorios para el agua.
@@ -81,13 +81,6 @@ import ftsImg from '../assets/brand/FTS.webp';
 </Layout>
 
 <style>
-  /* Title font import if not global */
-  @font-face {
-    font-family: 'Barlow Condensed';
-    font-style: normal;
-    font-weight: 700;
-    src: url(https://fonts.gstatic.com/s/barlowcondensed/v12/HTakL3o-R1sy6ayUf2-r_R3UuHshnE_770Z_v9v6.woff2) format('woff2');
-  }
   .font-display {
     font-family: 'Barlow Condensed', sans-serif;
   }
