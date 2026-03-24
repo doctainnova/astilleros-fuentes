@@ -6,13 +6,13 @@ interface Props {
 const { specs, dark = true } = Astro.props;
 
 const iconMap: Record<string, string> = {
-  ruler:               'ESLORA.png',
-  'arrows-horizontal': 'MANGA.png',
-  'arrow-up':          'PUNTAL.png',
-  lightning:           'MOTORIZACION.png',
-  drop:                'COMBUSTIBLE.png',
-  users:               'CAPACIDAD.png',
-  gauge:               'CAPACIDAD.png',
+  ruler:               'ESLORA.webp',
+  'arrows-horizontal': 'MANGA.webp',
+  'arrow-up':          'PUNTAL.webp',
+  lightning:           'MOTORIZACION.webp',
+  drop:                'COMBUSTIBLE.webp',
+  users:               'CAPACIDAD.webp',
+  gauge:               'CAPACIDAD.webp',
 };
 ---
 
@@ -29,7 +29,7 @@ const iconMap: Record<string, string> = {
     >
       <div class="spec-icon-wrapper flex-shrink-0">
         <img 
-          src={`/image/iconos/${iconMap[spec.icon] ?? 'ESLORA.png'}`} 
+          src={`/image/iconos/${iconMap[spec.icon] ?? 'ESLORA.webp'}`}
           alt="" 
           class="w-16 h-16 md:w-20 md:h-20 object-contain filter brightness-0 invert opacity-100"
         />

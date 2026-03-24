@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import proyecto186Img from '../assets/notyeven/proyecto-186.webp';
+import lanzamiento246Img from '../assets/notyeven/lanzamiento-246.webp';
+import fabricaImg from '../assets/notyeven/fabrica.jpg';
 // NoticiasEventos.astro
 // Pure white bg. H2 left-aligned. 3-column card grid.
 // Card 1: black teaser centered content. Cards 2-3: standard news with serif titles.
@@ -32,15 +36,18 @@
         aria-label="Proyecto 186 — próximamente"
       >
         <!-- Faint boat silhouette — centered & visible ghost effect -->
-        <img
-          src="/image/home/notyeven/proyecto-186.png"
+        <Image
+          src={proyecto186Img}
           alt=""
-          width="520"
-          height="300"
+          width={520}
+          height={300}
+          format="webp"
+          quality={75}
+          loading="lazy"
+          decoding="async"
           aria-hidden="true"
           class="absolute inset-0 m-auto object-contain pointer-events-none scale-125 md:scale-150"
           style="filter: invert(1); opacity: 0.15;"
-          loading="lazy"
         />
 
         <!-- Text overlay — Centered -->
@@ -78,14 +85,17 @@
       >
         <!-- Image -->
         <div class="overflow-hidden bg-bg-light" style="line-height: 0;">
-          <img
-            src="/image/home/notyeven/lanzamiento-246.png"
+          <Image
+            src={lanzamiento246Img}
             alt="Lanzamiento Classer 246 en el agua"
-            width="400"
-            height="220"
+            width={400}
+            height={220}
+            format="webp"
+            quality={75}
+            loading="lazy"
+            decoding="async"
             class="w-full object-cover group-hover:scale-105 transition-transform duration-500"
             style="height: 220px; display: block;"
-            loading="lazy"
           />
         </div>
 
@@ -120,14 +130,17 @@
       >
         <!-- Image -->
         <div class="overflow-hidden bg-bg-light" style="line-height: 0;">
-          <img
-            src="/image/home/notyeven/fabrica.jpg"
+          <Image
+            src={fabricaImg}
             alt="Nuevo local comercial Astillero Fuentes"
-            width="400"
-            height="220"
+            width={400}
+            height={220}
+            format="webp"
+            quality={75}
+            loading="lazy"
+            decoding="async"
             class="w-full object-cover group-hover:scale-105 transition-transform duration-500"
             style="height: 220px; display: block;"
-            loading="lazy"
           />
         </div>
 
