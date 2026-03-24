@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { models } from '../data/models';
+import classerLogo from '../assets/brand/CLASSER 1.webp';
 
 interface Props {
   isFixed?: boolean;
@@ -17,7 +19,7 @@ const { isFixed = false } = Astro.props;
   <div class="container-site h-full flex items-center justify-between">
 
     <a href="/" class="flex-shrink-0" aria-label="CLASSER — Astillero Fuentes">
-      <img src="/image/CLASSER 1.png" alt="" width="200" height="200" class="text-white color-white invert">
+      <Image src={classerLogo} alt="" width={200} format="webp" quality={85} loading="eager" decoding="async" class="text-white color-white invert" />
     </a>
 
     <!-- Desktop Nav -->
