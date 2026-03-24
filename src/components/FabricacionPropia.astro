@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import maestriaImg from '../assets/home/maestria.jpg';
 // FabricacionPropia.astro
 // Dark navy bg (#0d1628), 2-column grid.
 // Left: Grayscale photo with blue corner brackets.
@@ -38,14 +40,17 @@ const pillars = [
           <div class="absolute -top-4 -left-4 w-12 h-12 border-t border-l border-accent-blue/60" aria-hidden="true"></div>
           
           <!-- Image -->
-          <img
-            src="/image/home/maestria.jpg"
+          <Image
+            src={maestriaImg}
             alt="Maestría artesanal en Astilleros Fuentes"
-            width="450"
-            height="550"
+            width={450}
+            height={550}
+            format="webp"
+            quality={75}
+            loading="lazy"
+            decoding="async"
             class="block w-full contrast-110 brightness-90 shadow-2xl"
             style="object-fit: cover; max-width: 420px;"
-            loading="lazy"
           />
 
           <!-- Bottom Right Bracket -->

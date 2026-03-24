@@ -3,6 +3,8 @@
 // Background #0a0e1a — continuous with page base, no visible seam.
 // 3-column grid: Brand | Explorar | Conectar. Bottom bar with copyright.
 // Self-contained. No props required.
+import { Image } from 'astro:assets';
+import classerLogo from '../assets/brand/CLASSER 1.webp';
 ---
 
 <footer
@@ -20,7 +22,7 @@
 
         <!-- CLASSER logo lockup: double chevron + wordmark -->
         <a href="/" class="inline-flex items-center gap-2 mb-6" aria-label="CLASSER — inicio">
-          <img src="/image/CLASSER 1.png" alt="" width="200" height="200" class="text-white color-white invert">
+          <Image src={classerLogo} alt="" width={200} format="webp" quality={85} loading="lazy" decoding="async" class="text-white color-white invert" />
         </a>
 
         <!-- Tagline -->
