@@ -4,88 +4,135 @@ interface Feature {
   ltd: boolean | 'optional';
   flyer: boolean | 'optional';
 }
+
 interface Props {
   modelName: string;
   features: Feature[];
   diagramUrl: string;
+  silhouetteTechnicalUrl: string;
+  paletteUrl?: string; 
 }
-const { modelName, features, diagramUrl } = Astro.props;
+
+const { 
+  modelName, 
+  features, 
+  diagramUrl, 
+  silhouetteTechnicalUrl,
+  paletteUrl = `/image/paletas/${modelName.replace('Classer ', '')}.webp` 
+} = Astro.props;
+
+const cleanName = modelName.replace('Classer ', '');
 ---
 
-<section class="py-20 bg-bg-light" aria-label="Versiones y equipamiento">
-  <div class="container-site">
-    <div class="flex flex-col md:flex-row gap-12 items-start">
-      <!-- Diagram side -->
-      <div class="md:w-1/2 reveal">
-        <img
-          src={diagramUrl}
-          alt={`Diagrama técnico ${modelName}`}
-          width="700"
-          height="480"
-          class="w-full rounded-lg"
-          loading="lazy"
-        />
-        <p class="text-text-muted text-xs mt-3 text-center">Vista técnica — {modelName}</p>
+<section class="py-20 bg-[#f0f0ee]" aria-label="Versiones y equipamiento">
+  <div class="container-site max-w-5xl mx-auto px-4">
+    
+    <div class="relative w-full h-[250px] md:h-[300px] mb-16 reveal flex items-end">
+      
+      <img
+        src={silhouetteTechnicalUrl}
+        alt={`Silueta de ${modelName}`}
+        class="absolute right-0 bottom-[45px] md:bottom-[55px] w-64 md:w-[450px] h-auto object-contain z-10"
+        loading="lazy"
+        decoding="async"
+      />
+
+      <div class="absolute bottom-0 left-0 w-full h-[150px] z-0">
+        <svg width="100%" height="100%" viewBox="0 0 1000 150" preserveAspectRatio="none">
+          <path 
+            d="M0,50 L350,50 C400,50 420,130 470,130 L1000,130" 
+            fill="none" 
+            stroke="#000000" 
+            stroke-width="2" 
+            vector-effect="non-scaling-stroke" 
+          />
+        </svg>
       </div>
 
-      <!-- Table side -->
-      <div class="md:w-1/2 reveal">
-        <p class="font-barlow text-[0.65rem] uppercase tracking-[0.15em] text-accent-blue mb-2">Versiones</p>
-        <h2 class="font-display font-bold italic text-3xl text-text-dark mb-6">{modelName}</h2>
+      <h2 class="relative z-10 font-display font-black italic text-[4rem] md:text-[6rem] text-black uppercase leading-none pl-4 pb-2">
+        {cleanName}
+      </h2>
 
-        <table class="w-full text-sm" aria-label={`Comparación de versiones ${modelName}`}>
-          <thead>
-            <tr class="border-b border-black/10">
-              <th class="text-left py-3 font-medium text-text-muted uppercase text-[0.65rem] tracking-wide">Equipamiento</th>
-              <th class="text-center py-3 font-medium text-text-dark uppercase text-[0.65rem] tracking-wide">LTD</th>
-              <th class="text-center py-3 font-medium text-text-dark uppercase text-[0.65rem] tracking-wide">Flyer</th>
+    </div>
+
+    <div class="w-full reveal mb-24">
+      <p class="font-barlow text-[0.65rem] uppercase tracking-[0.15em] text-accent-blue mb-2">Versiones</p>
+      
+      <table class="w-full text-sm" aria-label={`Comparación de versiones ${modelName}`}>
+        <thead>
+          <tr class="border-b border-black/20">
+            <th class="text-left py-3 font-medium text-text-muted uppercase text-[0.65rem] tracking-wide w-[60%]">Equipamiento</th>
+            <th class="text-center py-3 font-medium text-black uppercase text-[0.65rem] tracking-wide font-display italic text-lg">LTD</th>
+            <th class="text-center py-3 font-medium text-black uppercase text-[0.65rem] tracking-wide font-display italic text-lg">Flyer</th>
+          </tr>
+        </thead>
+        <tbody>
+          {features.map((feature, i) => (
+            <tr class={`border-b border-black/10 ${i % 2 === 0 ? '' : 'bg-black/[0.03]'}`}>
+              <td class="py-3 px-2 text-black font-medium text-[0.85rem]">{feature.label}</td>
+              <td class="py-3 text-center">
+                {feature.ltd === true && (
+                  <span class="text-green-600 font-bold text-lg" aria-label="Incluye">✓</span>
+                )}
+                {feature.ltd === false && (
+                  <span class="text-black font-bold text-lg" aria-label="No incluye">✗</span>
+                )}
+                {feature.ltd === 'optional' && (
+                  <span class="text-gray-400 font-bold text-xl" aria-label="Opcional">*</span>
+                )}
+              </td>
+              <td class="py-3 text-center">
+                {feature.flyer === true && (
+                  <span class="text-green-600 font-bold text-lg" aria-label="Incluye">✓</span>
+                )}
+                {feature.flyer === false && (
+                  <span class="text-black font-bold text-lg" aria-label="No incluye">✗</span>
+                )}
+                {feature.flyer === 'optional' && (
+                  <span class="text-gray-400 font-bold text-xl" aria-label="Opcional">*</span>
+                )}
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {features.map((feature, i) => (
-              <tr class={`border-b border-black/5 ${i % 2 === 0 ? '' : 'bg-black/3'}`}>
-                <td class="py-3 text-text-dark text-sm">{feature.label}</td>
-                <td class="py-3 text-center">
-                  {feature.ltd === true && (
-                    <span class="text-green-600 font-bold text-base" aria-label="Incluye">✓</span>
-                  )}
-                  {feature.ltd === false && (
-                    <span class="text-red-500 text-base" aria-label="No incluye">✗</span>
-                  )}
-                  {feature.ltd === 'optional' && (
-                    <span class="text-accent-blue text-base" aria-label="Opcional">✦</span>
-                  )}
-                </td>
-                <td class="py-3 text-center">
-                  {feature.flyer === true && (
-                    <span class="text-green-600 font-bold text-base" aria-label="Incluye">✓</span>
-                  )}
-                  {feature.flyer === false && (
-                    <span class="text-red-500 text-base" aria-label="No incluye">✗</span>
-                  )}
-                  {feature.flyer === 'optional' && (
-                    <span class="text-accent-blue text-base" aria-label="Opcional">✦</span>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          ))}
+        </tbody>
+      </table>
 
-        <!-- Legend -->
-        <div class="flex gap-6 mt-4">
-          <span class="flex items-center gap-1.5 text-xs text-text-muted">
-            <span class="text-green-600 font-bold">✓</span> Incluye
-          </span>
-          <span class="flex items-center gap-1.5 text-xs text-text-muted">
-            <span class="text-red-500">✗</span> No Incluye
-          </span>
-          <span class="flex items-center gap-1.5 text-xs text-text-muted">
-            <span class="text-accent-blue">✦</span> Opcional
-          </span>
-        </div>
+      <div class="flex gap-8 mt-6 justify-end pr-8">
+        <span class="flex items-center gap-2 text-[0.8rem] text-black font-medium">
+          <span class="text-green-600 font-bold text-xl leading-none">✓</span> Incluye
+        </span>
+        <span class="flex items-center gap-2 text-[0.8rem] text-black font-medium">
+          <span class="text-black font-bold text-xl leading-none">✗</span> No incluye
+        </span>
+        <span class="flex items-center gap-2 text-[0.8rem] text-black font-medium">
+          <span class="text-gray-400 font-bold text-2xl leading-none pt-2">*</span> Opcional
+        </span>
       </div>
     </div>
+
+    <div class="w-full reveal pt-12 relative">
+      <div class="absolute top-0 left-0 w-full h-10 overflow-hidden">
+        <svg width="100%" height="40" viewBox="0 0 100 40" preserveAspectRatio="none" class="w-full">
+          <path d="M0,38 L60,38 C75,38 85,2 100,2" fill="none" stroke="#000000" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+        </svg>
+      </div>
+
+      <div class="pt-8">
+        <h3 class="font-display italic text-3xl md:text-4xl text-black mb-10 text-center md:text-left">
+          Hacé que tu <span class="font-black">Classer {cleanName}</span> sea única.
+        </h3>
+        
+        <img
+          src={paletteUrl}
+          alt={`Opciones de colores para ${modelName}`}
+          class="w-full max-w-4xl mx-auto h-auto object-contain"
+          loading="lazy"
+          decoding="async"
+          onerror="this.style.display='none'"
+        />
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -99,7 +146,7 @@ const { modelName, features, diagramUrl } = Astro.props;
       { opacity: 0, y: 40 },
       {
         opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 80%' },
+        scrollTrigger: { trigger: el, start: 'top 85%' },
       }
     );
   });

@@ -12,6 +12,7 @@ interface Props {
   fixedNavbar?: boolean;
   noScroll?: boolean;
   preloadHero?: boolean;
+  heroImageUrl?: string;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   fixedNavbar = true,
   noScroll = false,
   preloadHero = false,
+  heroImageUrl,
 } = Astro.props;
 
 import Navbar from '../components/Navbar.astro';
@@ -31,9 +33,6 @@ import Footer from '../components/Footer.astro';
 const heroPreload = preloadHero
   ? await getImage({ src: heroSource, width: 1200, format: 'avif', quality: 82 })
   : null;
-
-const FONTS_URL =
-  'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&family=Barlow:wght@400;500&family=Inter:wght@300;400;500;600&display=swap';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://classer.com.ar');
 const ogImageFinal = ogImage ?? 'https://classer.com.ar/og-default.jpg';
@@ -63,19 +62,6 @@ const ogImageFinal = ogImage ?? 'https://classer.com.ar/og-default.jpg';
 
     <title>{title}</title>
 
-    <!-- Google Fonts — carga no bloqueante (preload+onload trick) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href={FONTS_URL}
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link rel="stylesheet" href={FONTS_URL} />
-    </noscript>
-
     <!-- Hero preload (solo en páginas con hero slider) -->
     {heroPreload && (
       <link
@@ -86,6 +72,15 @@ const ogImageFinal = ogImage ?? 'https://classer.com.ar/og-default.jpg';
         fetchpriority="high"
       />
     )}
+
+    <!-- Hero preload para páginas de modelo (URL externa/dinámica) -->
+    {heroImageUrl && (
+      <link rel="preload" as="image" href={heroImageUrl} fetchpriority="high" />
+    )}
+
+    <!-- Preconnect para dominios de imágenes externos -->
+    <link rel="preconnect" href="https://placehold.co" />
+    <link rel="dns-prefetch" href="https://placehold.co" />
   </head>
   <body class={noScroll ? 'h-screen overflow-hidden' : ''}>
     {!hideNavbar && <Navbar isFixed={fixedNavbar} />}

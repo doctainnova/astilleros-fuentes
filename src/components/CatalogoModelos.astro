@@ -1,33 +1,28 @@
 ---
 import { models } from '../data/models';
 
-// ── Icon → PNG file mapping ──────────────────────────────────────
 const iconMap: Record<string, string> = {
-  ruler:               'ESLORA.webp',
-  'arrows-horizontal': 'MANGA.webp',
-  'arrow-up':          'PUNTAL.webp',
-  lightning:           'MOTORIZACION.webp',
-  drop:                'COMBUSTIBLE.webp',
-  users:               'CAPACIDAD.webp',
-  gauge:               'CAPACIDAD.webp',
+  ruler: 'ESLORA.webp',
+  users: 'CAPACIDAD.webp',
+  lightning: 'MOTORIZACION.webp',
 };
 
-// ── Silueta: overrides where name.replace('Classer ','') ≠ filename ─
+// --- Mapeo de Datos Técnicos Reales ---
+const realSpecs: Record<string, { eslora: string; personas: string; motor: string }> = {
+  '246':      { eslora: '7,40 m', personas: '14', motor: '200 a 350 hp' },
+  '246 SURF': { eslora: '7,40 m', personas: '14', motor: '200 a 350 hp' },
+  '246 OB':   { eslora: '7,40 m', personas: '14', motor: '200 a 350 hp' },
+  '206 FTX':  { eslora: '6,08 m', personas: '9',  motor: '150 a 200 hp' },
+  '186':      { eslora: '5,80 m', personas: '8',  motor: '115 a 150 hp' },
+  '170':      { eslora: '5,70 m', personas: '7',  motor: '90 a 150 hp' },
+  '165':      { eslora: '5,30 m', personas: '6',  motor: '70 a 115 hp' },
+};
+
 const siluetaFileMap: Record<string, string> = {
-  '246':       '246 DF',
-  '246 SURF':  '246 SURF',
-  '246 OB':    '246 OB',
-  '206 FTX':   '206 FTX',
-};
-
-// ── Logo: overrides for filename mismatches ──────────────────────
-const logoFileMap: Record<string, string> = {
-  '165':      'C165',
-  '170':      'C170',
-  '246':      '246 DF',
-  '246 SURF': '246 SUFT',
-  '246 OB':   '246 OB',
-  '206 FTX':  '206 FTX',
+  '246': '246 DF',
+  '246 SURF': '246 SURF',
+  '246 OB': '246 OB',
+  '206 FTX': '206 FTX',
 };
 
 function getSiluetaUrl(name: string): string {
@@ -36,13 +31,6 @@ function getSiluetaUrl(name: string): string {
   return `/image/siluetas/${encodeURIComponent(filename)}.webp`;
 }
 
-function getLogoUrl(name: string): string {
-  const key = name.replace('Classer ', '');
-  const filename = logoFileMap[key] ?? key;
-  return `/image/logos-lanchas/${encodeURIComponent(filename)}.webp`;
-}
-
-// ── Group models by line (preserving insertion order) ─────────────
 const groupedModels = models.reduce((acc, model) => {
   const line = model.line || 'OTROS';
   if (!acc[line]) acc[line] = [];
@@ -53,500 +41,459 @@ const groupedModels = models.reduce((acc, model) => {
 const lines = Object.keys(groupedModels);
 ---
 
-<section
-  style="background: #f0f0ee;"
-  class="pt-16 pb-14 overflow-hidden"
-  aria-label="Catálogo de modelos"
->
-  <!-- ─── SCROLL CONTAINER ─────────────────────────────────────── -->
-  <div
-    id="catalogo-scroll"
-    class="flex cursor-grab active:cursor-grabbing"
-    style="overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;"
-  >
-
+<section class="catalogo-container pt-12 pb-16">
+  <div id="catalogo-scroll" class="scroll-wrapper">
     {lines.map((line) => {
       const parts = line.split(' ');
-      const prefix = parts[0];                 // "LINEA"
-      const suffix = parts.slice(1).join(' '); // "FTX" / "SURF" / "OB"
+      const prefix = parts[0]; 
+      const suffix = parts.slice(1).join(' ');
       const lineModels = groupedModels[line];
-      const cardCount = lineModels.length;
 
       return (
-        <!-- ── GRUPO DE LÍNEA: header + cards en columna ──────── -->
-        <div class="linea-group" style={`--card-count: ${cardCount};`}>
-
-          <!-- Header de línea -->
+        <div class="linea-group">
           <div class="linea-header">
-            <div class="linea-header__line"></div>
-            <img
-              src="/image/iconos/LINEA%20GRAFICA.webp"
-              alt=""
-              width="60"
-              height="24"
-              class="linea-header__curve"
-              aria-hidden="true"
-              loading="lazy"
-              decoding="async"
-            />
-            <span class="linea-header__texto">
-              {prefix} <strong>{suffix}</strong>
-            </span>
+            <div class="header-curve-container">
+              
+            </div>
+            <div class="header-text-container">
+              <span class="line-label">{prefix} <strong>{suffix}</strong></span>
+              <div class="header-divider-flat"></div>
+            </div>
           </div>
 
-          <!-- Cards de esta línea -->
-          <div class="linea-cards px-3 pb-8">
-            {lineModels.map((model) => (
-              <a
-                href={`/classer/${model.slug}`}
-                class="catalogo-card"
-              >
-
-                <!-- Badge "NUEVO" / "PRONTO" -->
-                {model.badge && (
-                  <span class={`model-badge model-badge--${model.badge.toLowerCase()}`}>
-                    {model.badge}
-                  </span>
-                )}
-
-                <!-- Logo PNG con fallback de texto -->
-                <div class="model-logo">
-                  <img
-                    src={getLogoUrl(model.name)}
-                    alt={model.name}
-                    width="200"
-                    height="52"
-                    class="model-logo__img"
-                    loading="lazy"
-                    decoding="async"
-                    onerror="this.style.display='none'; var fb=this.parentElement.querySelector('.model-logo__fallback'); if(fb) fb.style.display='flex';"
-                  />
-                  <div class="model-logo__fallback" style="display:none;">
-                    <span class="model-logo__fallback-text">
-                      {model.name.replace('Classer ', '')}
-                    </span>
-                  </div>
-                </div>
-
-                <!-- Silueta PNG alineada por la base -->
-                <div class="model-silhouette">
-                  <img
-                    src={getSiluetaUrl(model.name)}
-                    alt={`Silueta ${model.name}`}
-                    class="model-silhouette__img"
-                    loading="lazy"
-                    decoding="async"
-                    width="320"
-                    height="180"
-                  />
-                </div>
-
-                <!-- Specs: primeros 3 con ícono PNG -->
-                <div class="specs-row">
-                  {model.specs.slice(0, 3).map((spec) => (
-                    <div class="spec-item">
-                      <img
-                        src={`/image/iconos/${iconMap[spec.icon] ?? 'ESLORA.webp'}`}
-                        alt={spec.label}
-                        class="spec-item__icon"
-                        width="22"
-                        height="22"
+          <div class="cards-flex">
+            {lineModels.map((model) => {
+              const modelKey = model.name.replace('Classer ', '');
+              const specs = realSpecs[modelKey] || { eslora: 'TBD', personas: 'TBD', motor: 'TBD' };
+              
+              return (
+                <a href={`/classer/${model.slug}`} class="model-card">
+                  <div class="model-info">
+                    <h3 class="model-name">{modelKey}</h3>
+                    <div class="model-visual">
+                      <img 
+                        src={getSiluetaUrl(model.name)} 
+                        alt={model.name} 
+                        class="silhouette-img"
                         loading="lazy"
-                        decoding="async"
-                        aria-hidden="true"
                       />
-                      <span class="spec-item__label">{spec.label}</span>
-                      <span class="spec-item__value">{spec.value}</span>
                     </div>
-                  ))}
-                </div>
+                  </div>
 
-              </a>
-            ))}
+                  <div class="model-specs">
+                    <div class="spec-unit">
+                      <div class="spec-top">
+                        <img src={`/image/iconos/${iconMap['ruler']}`} alt="" class="spec-icon" />
+                        <span class="spec-label">ESLORA</span>
+                      </div>
+                      <span class="spec-value">{specs.eslora}</span>
+                    </div>
+
+                    <div class="spec-unit">
+                      <div class="spec-top">
+                        <img src={`/image/iconos/${iconMap['users']}`} alt="" class="spec-icon" />
+                        <span class="spec-label">PERSONAS</span>
+                      </div>
+                      <span class="spec-value">{specs.personas}</span>
+                    </div>
+
+                    <div class="spec-unit">
+                      <div class="spec-top">
+                        <img src={`/image/iconos/${iconMap['lightning']}`} alt="" class="spec-icon" />
+                        <span class="spec-label">MOTORIZACIÓN</span>
+                      </div>
+                      <span class="spec-value">{specs.motor}</span>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
           </div>
-
         </div>
       );
     })}
-
-  </div><!-- /#catalogo-scroll -->
-
-  <!-- ─── BARRA DE PROGRESO CUSTOM ────────────────────────────── -->
-  <div class="mx-auto mt-4 px-8" style="max-width: 600px;">
-    <div id="catalogo-track" class="scroll-track" role="scrollbar" aria-label="Scroll del catálogo">
-      <div id="catalogo-thumb" class="scroll-thumb"></div>
-    </div>
   </div>
 
+  <div class="progress-container">
+    <div id="catalogo-track" class="custom-track">
+      <div id="catalogo-thumb" class="custom-thumb"></div>
+    </div>
+  </div>
 </section>
 
-
-<style>
-  #catalogo-scroll::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* ── Grupo de línea: grid para que el header herede el ancho de las cards ── */
-
-  .linea-group {
-    display: grid;
-    grid-template-rows: auto auto;
-    flex-shrink: 0;
-  }
-
-  /* ── Linea Header ─────────────────────────────────────────── */
-
-  .linea-header {
-    display: flex;
-    align-items: center;
-    padding: 0 32px 12px;
-    min-width: 0;
-    gap: 0;
-  }
-
-  .linea-header__line {
-    flex: 1;
-    height: 1px;
-    background: #111111;
-    opacity: 0.25;
-  }
-
-  .linea-header__curve {
-    height: 24px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-    opacity: 0.25;
-    flex-shrink: 0;
-  }
-
-  .linea-header__texto {
-    font-family: var(--font-display, 'Barlow Condensed', sans-serif);
-    font-style: italic;
-    font-size: clamp(1.1rem, 2vw, 1.8rem);
-    font-weight: 400;
-    color: #111111;
-    white-space: nowrap;
-    padding-left: 8px;
-    line-height: 1;
-  }
-
-  .linea-header__texto strong {
-    font-weight: 900;
-    font-style: italic;
-  }
-
-  /* ── Cards row dentro de cada grupo ──────────────────────── */
-
-  .linea-cards {
-    display: flex;
-  }
-
-  /* ── Card ─────────────────────────────────────────────────── */
-
-  .catalogo-card {
-    min-width: 40vw;
-    max-width: 500px;
-    padding: 1.5rem 2rem;
-    flex-shrink: 0;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    transition: transform 0.3s ease;
-  }
-
-  @media (min-width: 1400px) {
-    .catalogo-card {
-      min-width: 420px;
-    }
-  }
-
-  .catalogo-card:hover {
-    transform: translateY(-4px);
-  }
-
-  /* Separador vertical sutil entre cards consecutivas */
-  .catalogo-card + .catalogo-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 15%;
-    height: 70%;
-    width: 1px;
-    background: #111111;
-    opacity: 0.08;
-  }
-
-  /* ── Badge ────────────────────────────────────────────────── */
-
-  .model-badge {
-    display: inline-block;
-    font-size: 0.6rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    border-radius: 99px;
-    padding: 4px 10px;
-    margin-bottom: 10px;
-  }
-
-  .model-badge--nuevo {
-    background: #111111;
-    color: #ffffff;
-  }
-
-  .model-badge--pronto {
-    background: transparent;
-    border: 1.5px solid #111111;
-    color: #111111;
-  }
-
-  /* ── Model Logo ───────────────────────────────────────────── */
-
-  .model-logo {
-    height: 52px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-  }
-
-  .model-logo__img {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-  }
-
-  .model-logo__fallback {
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .model-logo__fallback-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-style: italic;
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: #111111;
-    line-height: 1;
-  }
-
-  /* ── Silhouette ───────────────────────────────────────────── */
-
-  .model-silhouette {
-    width: 100%;
-    max-width: 280px;
-    height: 160px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-
-  .model-silhouette__img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: bottom center;
-    transition: transform 0.4s ease;
-  }
-
-  .catalogo-card:hover .model-silhouette__img {
-    transform: translateY(-6px);
-  }
-
-  /* ── Specs ────────────────────────────────────────────────── */
-
-  .specs-row {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: auto;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    padding-top: 1.25rem;
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .spec-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    min-width: 70px;
-  }
-
-  .spec-item__icon {
-    width: 18px;
-    height: 18px;
-    object-fit: contain;
-    opacity: 0.75;
-  }
-
-  .spec-item__label {
-    font-size: 0.55rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #111111;
-    text-align: center;
-  }
-
-  .spec-item__value {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: #111111;
-    text-align: center;
-  }
-
-  /* ── Progress Bar ─────────────────────────────────────────── */
-
-  .scroll-track {
-    position: relative;
-    height: 8px;
-    background: #dcdcd8;
-    border-radius: 9999px;
-    cursor: pointer;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .scroll-thumb {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 12px;
-    background: #111111;
-    border-radius: 9999px;
-    cursor: grab;
-    min-width: 60px;
-    transition: width 0.1s ease;
-  }
-
-  .scroll-thumb:active {
-    cursor: grabbing;
-  }
-
-  /* ── Mobile ───────────────────────────────────────────────── */
-
-  @media (max-width: 767px) {
-    .catalogo-card {
-      min-width: 85vw;
-      max-width: none;
-      padding: 1.25rem 1.5rem;
-    }
-  }
-</style>
-
-
 <script>
-  const container = document.getElementById('catalogo-scroll') as HTMLElement | null;
-  const track     = document.getElementById('catalogo-track')  as HTMLElement | null;
-  const thumb     = document.getElementById('catalogo-thumb')  as HTMLElement | null;
+  const setupCatalogoScroll = () => {
+    const container = document.getElementById('catalogo-scroll') as HTMLElement;
+    const track = document.getElementById('catalogo-track') as HTMLElement;
+    const thumb = document.getElementById('catalogo-thumb') as HTMLElement;
 
-  function updateThumb() {
     if (!container || !track || !thumb) return;
-    const trackWidth   = track.offsetWidth;
-    const totalWidth   = container.scrollWidth;
-    const visibleWidth = container.clientWidth;
-    const maxScroll    = totalWidth - visibleWidth;
 
-    if (maxScroll <= 0) {
-      thumb.style.display = 'none';
-      return;
-    }
+    let isDown = false;
+    let startX: number;
+    let scrollLeft: number;
+    let velocity = 0;
+    let rafId: number;
+    let lastPosX: number;
 
-    thumb.style.display = 'block';
-    const thumbWidth = Math.max((visibleWidth / totalWidth) * trackWidth, 60);
-    const thumbLeft  = (container.scrollLeft / maxScroll) * (trackWidth - thumbWidth);
-    thumb.style.width = `${thumbWidth}px`;
-    thumb.style.left  = `${thumbLeft}px`;
-  }
+    const updateThumb = () => {
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      if (maxScroll <= 0) {
+          thumb.style.display = 'none';
+          return;
+      }
+      thumb.style.display = 'block';
 
-  if (container && track && thumb) {
-    container.addEventListener('scroll', updateThumb, { passive: true });
-    window.addEventListener('resize', updateThumb, { passive: true });
-    updateThumb();
+      const scrollPercentage = container.scrollLeft / maxScroll;
+      const maxThumbTravel = track.clientWidth - thumb.clientWidth;
+      const thumbPosition = scrollPercentage * maxThumbTravel;
+      
+      thumb.style.transform = `translateX(${thumbPosition}px)`;
+    };
 
-    // ── Click-to-seek on track ───────────────────────────────
-    track.addEventListener('click', (e) => {
-      if (e.target === thumb) return;
-      const rect       = track.getBoundingClientRect();
-      const clickRatio = (e.clientX - rect.left) / rect.width;
-      const maxScroll  = container.scrollWidth - container.clientWidth;
-      container.scrollLeft = clickRatio * maxScroll;
-    });
-
-    // ── Mouse drag on content ────────────────────────────────
-    let isDown    = false;
-    let startX    = 0;
-    let scrollLeft = 0;
+    const applyInertia = () => {
+      if (isDown) return; 
+      if (Math.abs(velocity) > 0.1) {
+        container.scrollLeft += velocity;
+        velocity *= 0.95; 
+        updateThumb();
+        rafId = requestAnimationFrame(applyInertia);
+      }
+    };
 
     container.addEventListener('mousedown', (e) => {
-      isDown     = true;
-      startX     = e.pageX - container.offsetLeft;
+      isDown = true;
+      container.classList.add('cursor-grabbing');
+      startX = e.pageX - container.offsetLeft;
       scrollLeft = container.scrollLeft;
-      container.style.cursor = 'grabbing';
+      velocity = 0;
+      cancelAnimationFrame(rafId);
     });
 
     window.addEventListener('mouseup', () => {
+      if (!isDown) return;
       isDown = false;
-      container.style.cursor = '';
+      container.classList.remove('cursor-grabbing');
+      applyInertia(); 
     });
 
-    container.addEventListener('mousemove', (e) => {
+    window.addEventListener('mouseleave', () => {
+        if (!isDown) return;
+        isDown = false;
+        container.classList.remove('cursor-grabbing');
+        applyInertia();
+    });
+
+    window.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       e.preventDefault();
-      const x    = e.pageX - container.offsetLeft;
-      const walk = (x - startX) * 1.5;
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX);
+      velocity = (lastPosX - e.pageX) * 0.8; 
+      lastPosX = e.pageX;
       container.scrollLeft = scrollLeft - walk;
+      updateThumb();
     });
 
-    // ── Touch drag on content ────────────────────────────────
-    let touchStartX    = 0;
-    let touchScrollLeft = 0;
-
-    container.addEventListener('touchstart', (e) => {
-      touchStartX     = e.touches[0].pageX;
-      touchScrollLeft = container.scrollLeft;
-    }, { passive: true });
-
-    container.addEventListener('touchmove', (e) => {
-      const dx = touchStartX - e.touches[0].pageX;
-      container.scrollLeft = touchScrollLeft + dx;
-    }, { passive: true });
-
-    // ── Thumb drag ───────────────────────────────────────────
-    let isDraggingThumb    = false;
-    let thumbStartX        = 0;
-    let thumbStartScroll   = 0;
+    let isDraggingThumb = false;
+    let thumbStartX: number;
+    let thumbStartScroll: number;
 
     thumb.addEventListener('mousedown', (e) => {
-      isDraggingThumb  = true;
-      thumbStartX      = e.pageX;
+      isDraggingThumb = true;
+      thumbStartX = e.pageX;
       thumbStartScroll = container.scrollLeft;
-      document.body.style.userSelect = 'none';
-      e.stopPropagation();
+      container.classList.add('cursor-grabbing');
+      document.body.style.userSelect = 'none'; 
+      e.stopPropagation(); 
     });
 
     window.addEventListener('mousemove', (e) => {
       if (!isDraggingThumb) return;
-      const deltaX         = e.pageX - thumbStartX;
-      const trackWidth     = track.offsetWidth;
-      const thumbWidth     = thumb.offsetWidth;
+      const deltaX = e.pageX - thumbStartX;
+      const trackWidth = track.clientWidth;
+      const thumbWidth = thumb.clientWidth;
       const maxThumbTravel = trackWidth - thumbWidth;
-      const maxScroll      = container.scrollWidth - container.clientWidth;
-      if (maxThumbTravel > 0) {
-        container.scrollLeft = thumbStartScroll + (deltaX / maxThumbTravel) * maxScroll;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      
+      if(maxThumbTravel > 0) {
+          const scrollMove = (deltaX / maxThumbTravel) * maxScroll;
+          container.scrollLeft = thumbStartScroll + scrollMove;
+          updateThumb();
       }
     });
 
     window.addEventListener('mouseup', () => {
       isDraggingThumb = false;
       document.body.style.userSelect = '';
+      container.classList.remove('cursor-grabbing');
     });
-  }
+
+    track.addEventListener('click', (e) => {
+      if (e.target === thumb) return;
+      const rect = track.getBoundingClientRect();
+      const clickPositionRatio = (e.clientX - rect.left) / rect.width;
+      const targetScroll = clickPositionRatio * (container.scrollWidth - container.clientWidth);
+      container.scrollTo({ left: targetScroll, behavior: 'smooth' });
+    });
+
+    container.addEventListener('touchstart', () => { cancelAnimationFrame(rafId); }, { passive: true });
+    container.addEventListener('scroll', updateThumb, { passive: true });
+    window.addEventListener('resize', updateThumb);
+
+    updateThumb();
+  };
+
+  document.addEventListener('astro:page-load', setupCatalogoScroll);
+  setupCatalogoScroll();
 </script>
+
+<style>
+  :root {
+    --bg-gray: #f0f0ee;
+    --text-black: #000000 !important; 
+    --line-gray: #cccbc8;
+    --font-barlow: 'Rogue Sans Nova Condensed', sans-serif;
+  }
+
+  .catalogo-container {
+    background-color: var(--bg-gray);
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .scroll-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    padding-left: 5vw; /* Margen un poco más dinámico */
+    gap: 3rem; /* Espacio entre grupos reducido para mayor cohesión */
+    scroll-behavior: auto; 
+    overscroll-behavior-x: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .scroll-wrapper::-webkit-scrollbar { display: none; }
+
+  .linea-group {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- HEADER --- */
+  .linea-header {
+    width: 100%;
+    margin-bottom: 1.5rem; /* Menos espacio entre título y lanchas */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 2rem; 
+  }
+
+  .header-curve-container {
+    width: 100%;
+    height: 25px; /* Curva un poco más discreta */
+    overflow: hidden;
+    margin-bottom: -1px; 
+  }
+
+  .header-curve-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: left center;
+    opacity: 0.25; 
+  }
+
+  .header-text-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: -8px; 
+    position: relative;
+    z-index: 1;
+  }
+
+  .line-label {
+    font-family: var(--font-barlow);
+    font-size: 3.24rem; /* Reducido de 1.6rem */
+    text-transform: uppercase;
+    font-style: italic;
+    white-space: nowrap;
+    color: #000000 !important;
+    letter-spacing: -0.02em;
+  }
+
+  .line-label strong { font-weight: 850; }
+
+  .header-divider-flat {
+    height: 1px;
+    background-color: #000000;
+    flex-grow: 1;
+    opacity: 0.8;
+  }
+
+  /* --- CARDS --- */
+  .cards-flex {
+    display: flex;
+    gap: 0; 
+  }
+
+  .model-card {
+    /* AQUÍ ESTÁ LA MAGIA DEL TAMAÑO: clamp para que sea responsivo y deje asomar a la 3ra lancha */
+    width: clamp(320px, 35vw, 420px); 
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 2.5rem; /* Menos padding lateral */
+    border-right: 1px solid rgba(0,0,0,0.06);
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  .model-card:last-child {
+    border-right: none;
+  }
+
+ .model-name {
+    font-family: var(--font-barlow);
+    font-size: clamp(3rem, 5vw, 5.5rem); /* Mucho más equilibrado */
+    font-weight: 900;
+    font-style: italic;
+    color: #000000 !important;
+    margin: 0;
+    line-height: 0.85;
+    text-align: center;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  .model-visual {
+    width: 100%;
+    height: 180px; /* Altura controlada, ya no es gigante */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 1.5rem 0 2.5rem 0;
+  }
+
+  .silhouette-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  .model-card:hover .silhouette-img {
+    transform: scale(1.04) translateZ(0); /* Efecto hover sutil */
+  }
+
+ /* --- SPECS --- */
+  .model-specs {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1.5px solid #000000; /* Línea ligeramente más fina */
+    padding-top: 1.25rem; /* Menos separación */
+  }
+
+  .spec-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px; /* Reducido de 120px */
+  }
+
+  .spec-top {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+
+  .spec-icon {
+    width: 18px; /* Iconos más pequeños y elegantes */
+    height: 18px;
+    filter: brightness(0);
+  }
+
+  .spec-label {
+    font-family: var(--font-barlow);
+    font-size: 0.75rem; /* Etiqueta más sutil */
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: #000000 !important;
+  }
+
+  .spec-value {
+    font-family: var(--font-barlow);
+    font-size: 1.1rem; /* Valores proporcionales */
+    font-weight: 500;
+    color: #000000 !important;
+  }
+
+  /* --- SCROLLBAR CUSTOM --- */
+  .progress-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem; /* Más cerca del contenido */
+  }
+
+  .custom-track {
+    width: 300px; /* Barra un poco más corta para acompañar la escala */
+    height: 5px;
+    background: #dcdcd8;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .custom-thumb {
+    height: 9px;
+    width: 60px;
+    background: #000000;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    border-radius: 10px;
+    transition: transform 0.05s linear; 
+    will-change: transform;
+    cursor: grab;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  .custom-thumb:active { cursor: grabbing; }
+
+  /* --- GLOBALES INTERACTIVIDAD --- */
+  .cursor-grabbing, .cursor-grabbing * {
+    cursor: grabbing !important;
+  }
+
+  /* --- RESPONSIVE MOBILE --- */
+  @media (max-width: 768px) {
+    .scroll-wrapper { padding-left: 1rem; gap: 2rem; }
+    .linea-header { padding-left: 1rem; }
+    .model-card {
+      /* En móvil sigue mostrando una lancha principal y un pedazo de la siguiente */
+      width: 80vw; 
+      padding: 0 4vw;
+    }
+    .model-name { font-size: 3.5rem; }
+    .model-visual { height: 160px; }
+    .model-specs { padding-top: 1.25rem; max-width: 100%; }
+    .spec-unit { min-width: auto; }
+    .spec-value { font-size: 1rem; }
+    .spec-icon { width: 16px; height: 16px; }
+    .custom-track { width: 70vw; }
+  }
+</style>
