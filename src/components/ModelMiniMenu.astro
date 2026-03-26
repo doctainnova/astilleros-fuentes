@@ -2,8 +2,9 @@
 interface Props {
   modelName: string;
   activeTab?: string;
+  brochure?: string;
 }
-const { modelName, activeTab = 'Especificaciones técnicas' } = Astro.props;
+const { modelName, activeTab = 'Especificaciones técnicas', brochure } = Astro.props;
 
 // Clean name for display (strip "Classer" if present to follow image)
 const cleanName = modelName.replace(/Classer\s+/i, '');
@@ -16,22 +17,23 @@ const tabs = [
 ];
 ---
 
-<div class="model-mini-menu flex justify-center py-10">
-  <div class="bg-[#dcdcd8] rounded-full px-2 py-2 flex items-center shadow-xl max-w-[95vw] md:max-w-fit overflow-x-auto no-scrollbar border border-white/20">
+<div class="model-mini-menu flex justify-center py-6 md:py-10">
+  <div class="bg-[#dcdcd8] rounded-full flex items-center shadow-xl overflow-x-auto no-scrollbar" style="width: fit-content; max-width: 95vw; padding: 6px 6px 6px 0;">
     
     <!-- Model Name Section -->
-    <div class="flex items-center pl-8 pr-6 border-r border-black/10">
-      <span class="font-display font-black italic text-[#0d1222] text-2xl md:text-3xl whitespace-nowrap uppercase tracking-tighter">
+    <div class="flex items-center h-12" style="padding-left: 28px; padding-right: 24px; border-right: 1px solid rgba(0,0,0,0.12); flex-shrink: 0;">
+      <span class="font-display font-black italic text-[#0d1222] whitespace-nowrap uppercase" style="font-size: clamp(1.4rem, 2.5vw, 2rem); letter-spacing: -0.04em;">
         {cleanName}
       </span>
     </div>
 
     <!-- Nav Links Section -->
-    <nav class="flex items-center px-10 gap-10">
+    <nav class="flex items-center" style="padding: 0 36px; gap: 36px; flex-shrink: 0;">
       {tabs.map((tab) => (
         <a 
           href={tab.href}
-          class={`text-[#0d1222] text-sm font-bold whitespace-nowrap transition-all duration-300 hover:text-black/60 relative ${activeTab === tab.label ? 'opacity-100' : 'opacity-70'}`}
+          class={`text-[#0d1222] font-bold whitespace-nowrap transition-all duration-300 hover:text-black/50 ${activeTab === tab.label ? 'opacity-100' : 'opacity-60'}`}
+          style="font-size: 0.875rem;"
         >
           {tab.label}
         </a>
@@ -39,13 +41,25 @@ const tabs = [
     </nav>
 
     <!-- Brochure Button Section -->
-    <div class="pr-2 hidden md:block">
-       <a
-        href="#"
-        class="bg-[#00a3e0] hover:bg-[#008cc2] text-white text-[0.7rem] font-bold uppercase tracking-wider px-8 py-3.5 rounded-full transition-all duration-300 whitespace-nowrap shadow-md hover:shadow-lg active:scale-95"
-      >
-        Descargar brochure
-      </a>
+    <div class="hidden md:flex items-center" style="padding-right: 6px; flex-shrink: 0;">
+      {brochure ? (
+        <a
+          href={brochure}
+          download
+          class="bg-[#00a3e0] hover:bg-[#008cc2] text-white font-bold uppercase rounded-full transition-all duration-300 whitespace-nowrap shadow-md hover:shadow-lg active:scale-95"
+          style="font-size: 0.72rem; letter-spacing: 0.1em; padding: 14px 28px;"
+        >
+          Descargar brochure
+        </a>
+      ) : (
+        <span
+          class="bg-[#00a3e0]/40 text-white/60 font-bold uppercase rounded-full cursor-not-allowed"
+          style="font-size: 0.72rem; letter-spacing: 0.1em; padding: 14px 28px;"
+          title="Brochure no disponible"
+        >
+          Descargar brochure
+        </span>
+      )}
     </div>
   </div>
 </div>
@@ -57,5 +71,12 @@ const tabs = [
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* Mobile: reduce font sizes inside the pill */
+  @media (max-width: 640px) {
+    .model-mini-menu .ev-name {
+      font-size: 1.1rem;
+    }
   }
 </style>

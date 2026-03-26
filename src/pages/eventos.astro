@@ -18,6 +18,60 @@ import n7Img         from '../assets/noticias/7.webp';
 import n8Img         from '../assets/noticias/8.webp';
 import n9Img         from '../assets/noticias/9.webp';
 import n10Img        from '../assets/noticias/10.webp';
+
+const events = [
+  {
+    id: 'cacel-2025',
+    badge: 'NOTICIAS',
+    date: 'FEBRERO, 2025',
+    title: 'CACEL 2025',
+    desc: 'Participación en el Campeonato Argentino de Carreras de Embarcaciones Ligeras en Villa María.',
+    body: [
+      'Classer participó en el CACEL 2025, el Campeonato Argentino de Carreras de Embarcaciones Ligeras, celebrado en Villa María. Una jornada de adrenalina y deportividad que reunió a los mejores pilotos y embarcaciones del país.',
+      'La presencia de Classer en esta competencia refleja el compromiso del astillero con el deporte náutico y la excelencia en el desempeño de sus embarcaciones. Los modelos de la línea Classic demostraron su rendimiento y maniobrabilidad en condiciones de competencia real.',
+      'Una experiencia que refuerza el legado deportivo de Astillero Fuentes y la pasión por el agua que define a la marca.',
+    ],
+    thumbSrc: caselImg,
+    thumbAlt: 'CACEL 2025 — Campeonato Argentino de Carreras en Villa María',
+    detailSrc: caselImg,
+    detailAlt: 'CACEL 2025 — Campeonato Argentino de Carreras',
+    gallery: [lzn02Img, lzn03Img, lzn04Img, n1Img, n2Img],
+  },
+  {
+    id: 'lanzamiento-246',
+    badge: 'LANZAMIENTO',
+    date: 'MARZO, 2025',
+    title: 'Lanzamiento Classer 246',
+    desc: 'Presentación oficial del modelo más emblemático de la línea DF. Una noche de diseño, rendimiento y legado.',
+    body: [
+      'El lanzamiento oficial del Classer 246 reunió a distribuidores, prensa especializada y apasionados de la náutica en una velada memorable en Villa María. El modelo, insignia de la línea DF, fue presentado con todas sus innovaciones y detalles de fabricación.',
+      'Con una eslora máxima de 7.40m y motorización de hasta 350hp, el Classer 246 representa el estándar de la excelencia en embarcaciones de lujo argentinas. Construido íntegramente en el Astillero Fuentes, combina tradición artesanal con tecnología de vanguardia.',
+      'La noche culminó con una demostración en el agua que dejó a todos los presentes sin palabras. El Classer 246 ya está disponible para cotización.',
+    ],
+    thumbSrc: lzn01Img,
+    thumbAlt: 'Lanzamiento Classer 246 — presentación oficial del modelo',
+    detailSrc: lzn01Img,
+    detailAlt: 'Classer 246 en el agua durante el evento de lanzamiento',
+    gallery: [lzn02Img, lzn03Img, lzn04Img, n1Img, n2Img, n3Img, n4Img],
+  },
+  {
+    id: 'astillero-fuentes',
+    badge: 'NOTICIAS',
+    date: 'ENERO, 2025',
+    title: 'Astillero Fuentes',
+    desc: 'Nuevas instalaciones y expansión del showroom en Villa María, Córdoba.',
+    body: [
+      'Astillero Fuentes inauguró sus nuevas instalaciones en Villa María, Córdoba, con un moderno showroom diseñado para recibir a clientes y visitantes. La expansión refleja el crecimiento sostenido de la empresa en el sector náutico argentino.',
+      'El nuevo espacio incorpora áreas de exhibición de modelos, sala de personalización de colores y tapicerías, y una zona de producción visitable para que los clientes vean de cerca el proceso de fabricación artesanal.',
+      'Con más de 30 años en el mercado, Astillero Fuentes consolida su posición como referente de la industria náutica argentina.',
+    ],
+    thumbSrc: fabricaNotImg,
+    thumbAlt: 'Nuevas instalaciones Astillero Fuentes en Villa María',
+    detailSrc: fabricaNotImg,
+    detailAlt: 'Nuevas instalaciones Astillero Fuentes',
+    gallery: [n5Img, n6Img, n7Img, n8Img, n9Img, n10Img],
+  },
+];
 ---
 
 <Layout
@@ -29,10 +83,7 @@ import n10Img        from '../assets/noticias/10.webp';
   <!-- ============================================================
        MINI HERO
        ============================================================ -->
-  <section
-    class="mini-hero bg-bg-light text-center"
-    aria-label="Noticias y eventos"
-  >
+  <section class="mini-hero bg-bg-light text-center" aria-label="Noticias y eventos">
     <div class="container-site">
       <h1 class="hero-title">Noticias y eventos</h1>
       <p class="hero-sub">
@@ -43,225 +94,129 @@ import n10Img        from '../assets/noticias/10.webp';
 
 
   <!-- ============================================================
-       CARRUSEL DE CARDS — slider horizontal con scroll-snap
+       EVENT SELECTOR — flechas + cards centradas
        ============================================================ -->
-  <section
-    class="news-slider"
-    aria-label="Carrusel de noticias y eventos"
-  >
-    <!-- Track scrollable horizontal -->
-    <div class="news-slider__track" role="list">
+  <section class="event-selector" aria-label="Selector de eventos">
 
-      <!-- ── Card 1: CACEL 2025 (lateral izquierda) ── -->
-      <article
-        class="news-slider__item"
-        role="listitem"
-        aria-label="Evento: CACEL 2025"
-      >
-        <div class="news-card__inner">
-          <Image
-            src={caselImg}
-            alt="CACEL 2025 — Campeonato Argentino de Carreras en Villa María"
-            width={400}
-            height={280}
-            loading="lazy"
-            decoding="async"
-            sizes="(max-width: 767px) 80vw, 297px"
-            class="card-img"
-          />
-          <div class="card-body">
-            <span class="badge">NOTICIAS</span>
-            <p class="card-date">FEBRERO, 2025</p>
-            <h3 class="card-heading">CACEL 2025</h3>
-            <p class="card-desc">
-              Participación en el Campeonato Argentino de Carreras de Embarcaciones Ligeras en Villa María.
-            </p>
-          </div>
-        </div>
-      </article>
+    <!-- Flechas de navegación -->
+    <div class="selector-nav">
+      <div class="selector-arrows">
+        <button id="prev-btn" class="nav-arrow" aria-label="Evento anterior" disabled>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button id="next-btn" class="nav-arrow" aria-label="Siguiente evento">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
 
-      <!-- ── Card 2: Lanzamiento 246 (activa/central) ── -->
-      <article
-        class="news-slider__item news-slider__item--active"
-        role="listitem"
-        aria-label="Evento: Lanzamiento Classer 246"
-      >
-        <div class="news-card__inner news-card__inner--active">
-          <Image
-            src={lzn01Img}
-            alt="Lanzamiento Classer 246 — presentación oficial del modelo"
-            width={400}
-            height={280}
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-            sizes="(max-width: 767px) 80vw, 297px"
-            class="card-img"
-          />
-          <div class="card-body">
-            <span class="badge">LANZAMIENTO</span>
-            <p class="card-date">MARZO, 2025</p>
-            <h3 class="card-heading">Lanzamiento 246</h3>
-            <p class="card-desc">
-              Experimenta las últimas innovaciones e historias del mundo de Classer. Desde eventos
-              exclusivos hasta avances técnicos, descubre qué define nuestro legado.
-            </p>
-            <a href="#detalle-lanzamiento-246" class="card-cta">LEER ARTÍCULO →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- ── Card 3: Astillero Fuentes (lateral derecha) ── -->
-      <article
-        class="news-slider__item"
-        role="listitem"
-        aria-label="Evento: Astillero Fuentes"
-      >
-        <div class="news-card__inner">
-          <Image
-            src={fabricaNotImg}
-            alt="Nuevas instalaciones Astillero Fuentes en Villa María, Córdoba"
-            width={400}
-            height={280}
-            loading="lazy"
-            decoding="async"
-            sizes="(max-width: 767px) 80vw, 297px"
-            class="card-img"
-          />
-          <div class="card-body">
-            <span class="badge">NOTICIAS</span>
-            <p class="card-date">ENERO, 2025</p>
-            <h3 class="card-heading">Astillero Fuentes</h3>
-            <p class="card-desc">
-              Nuevas instalaciones y expansión del showroom en Villa María, Córdoba.
-            </p>
-          </div>
-        </div>
-      </article>
-
-    </div><!-- /.news-slider__track -->
-
-    <!-- Scrollbar news slider -->
-    <div class="news-slider__scrollbar-wrap" aria-hidden="true">
-      <div class="news-slider__scrollbar-track">
-        <div class="news-slider__scrollbar-thumb"></div>
+      <!-- Cards track -->
+      <div class="cards-viewport" role="list" aria-label="Lista de eventos">
+        {events.map((ev, i) => (
+          <article
+            class={`ev-card ${i === 1 ? 'ev-card--active' : ''}`}
+            data-index={i}
+            role="listitem"
+            aria-label={`Evento: ${ev.title}`}
+            aria-selected={i === 1 ? 'true' : 'false'}
+            tabindex="0"
+          >
+            <div class="ev-card__img-wrap">
+              <Image
+                src={ev.thumbSrc}
+                alt={ev.thumbAlt}
+                width={400}
+                height={260}
+                loading={i === 1 ? 'eager' : 'lazy'}
+                decoding="async"
+                class="ev-card__img"
+              />
+            </div>
+            <div class="ev-card__body">
+              <span class="ev-badge">{ev.badge}</span>
+              <p class="ev-date">{ev.date}</p>
+              <h3 class="ev-title">{ev.title}</h3>
+              <p class="ev-desc">{ev.desc}</p>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
 
-  </section><!-- /.news-slider -->
-
-
-  <!-- ============================================================
-       DETALLE DE ARTÍCULO — "Lanzamiento Classer 246"
-       ============================================================ -->
-  <section
-    class="py-16 md:py-20 bg-white"
-    id="detalle-lanzamiento-246"
-    aria-label="Detalle del artículo: Lanzamiento Classer 246"
-  >
-    <div class="container-site">
-
-      <h2 class="article-title">Lanzamiento Classer 246</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start">
-
-        <!-- Imagen del artículo -->
-        <div>
-          <Image
-            src={lzn01Img}
-            alt="Classer 246 en el agua durante el evento de lanzamiento"
-           
-            loading="lazy"
-            decoding="async"
-            sizes="(max-width: 767px) 100vw, 50vw"
-            class="w-full rounded-sm"
-          />
-        </div>
-
-        <!-- Texto: 3 párrafos -->
-        <div class="flex flex-col gap-5">
-          <p class="article-text">
-            Contanos más sobre vos&hellip; Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-            sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-            nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit
-            in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis
-            at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
-            delenit augue duis dolore te feugiat nulla facilisi.
-          </p>
-          <p class="article-text">
-            Nam liber tempor cum soluta nobis eligend optio congue nihil imperdiet doming id quod
-            mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing
-            elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-            lobortis nisl ut aliquip ex ea commodo consequat.
-          </p>
-          <p class="article-text">
-            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,
-            vel illum dolore eu feugiat nulla facilisis. At vero eos et accusam et justo duo dolores
-            et ea rebum stet clita kasd gubergren, no sea takimata sanctus est lorem ipsum dolor
-            sit amet.
-          </p>
-        </div>
-      </div>
+    <!-- Dots indicators -->
+    <div class="selector-dots" aria-hidden="true">
+      {events.map((_, i) => (
+        <button class={`dot ${i === 1 ? 'dot--active' : ''}`} data-dot={i} aria-label={`Ir al evento ${i + 1}`}></button>
+      ))}
     </div>
+
   </section>
 
 
   <!-- ============================================================
-       GALERÍA DE FOTOS — slider horizontal full-bleed
+       DETALLE DINÁMICO — cambia con el evento seleccionado
        ============================================================ -->
-  <section class="photo-slider" aria-label="Galería de fotos del evento">
+  <section class="event-detail" aria-label="Detalle del evento seleccionado">
+    {events.map((ev, i) => (
+      <div
+        class={`detail-panel ${i === 1 ? 'detail-panel--active' : ''}`}
+        id={`detail-${ev.id}`}
+        aria-hidden={i !== 1 ? 'true' : 'false'}
+      >
+        <div class="container-site">
+          <div class="detail-header">
+            <span class="ev-badge ev-badge--dark">{ev.badge}</span>
+            <p class="detail-date">{ev.date}</p>
+          </div>
+          <h2 class="detail-title">{ev.title}</h2>
 
-    <div class="photo-slider__track">
-      <div class="photo-slider__item">
-        <Image src={lzn02Img} alt="Lanzamiento Classer 246 — foto 1" width={760} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 38vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={lzn03Img} alt="Lanzamiento Classer 246 — foto 2" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={lzn04Img} alt="Lanzamiento Classer 246 — foto 3" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={n1Img} alt="Lanzamiento Classer 246 — foto 4" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={n2Img} alt="Lanzamiento Classer 246 — foto 5" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={n3Img} alt="Lanzamiento Classer 246 — foto 6" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={n4Img} alt="Lanzamiento Classer 246 — foto 7" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={n5Img} alt="Lanzamiento Classer 246 — foto 8" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={n6Img} alt="Lanzamiento Classer 246 — foto 9" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={n7Img} alt="Lanzamiento Classer 246 — foto 10" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={n8Img} alt="Lanzamiento Classer 246 — foto 11" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={n9Img} alt="Lanzamiento Classer 246 — foto 12" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-      <div class="photo-slider__item">
-        <Image src={n10Img} alt="Lanzamiento Classer 246 — foto 13" width={400} height={280} loading="lazy" decoding="async" sizes="(max-width: 767px) 80vw, 20vw" class="photo-img" />
-      </div>
-    </div>
+          <div class="detail-grid">
+            <!-- Imagen principal -->
+            <div class="detail-img-wrap">
+              <Image
+                src={ev.detailSrc}
+                alt={ev.detailAlt}
+                width={680}
+                height={460}
+                loading="lazy"
+                decoding="async"
+                class="detail-img"
+              />
+            </div>
 
-    <div class="photo-slider__scrollbar-wrap" aria-hidden="true">
-      <div class="photo-slider__scrollbar-track">
-        <div class="photo-slider__scrollbar-thumb"></div>
-      </div>
-    </div>
+            <!-- Texto -->
+            <div class="detail-text">
+              {ev.body.map(p => (
+                <p class="article-text">{p}</p>
+              ))}
+            </div>
+          </div>
+        </div>
 
-  </section><!-- /.photo-slider -->
+        <!-- Galería de fotos del evento -->
+        {ev.gallery && ev.gallery.length > 0 && (
+          <div class="detail-gallery">
+            {ev.gallery.map((img, gi) => (
+              <div class="gallery-item">
+                <Image
+                  src={img}
+                  alt={`${ev.title} — foto ${gi + 1}`}
+                  width={500}
+                  height={320}
+                  loading="lazy"
+                  decoding="async"
+                  class="gallery-img"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+  </section>
 
 </Layout>
 
@@ -295,202 +250,263 @@ import n10Img        from '../assets/noticias/10.webp';
   }
 
   @media (max-width: 767px) {
-    .mini-hero {
-      padding-top: 6.5rem;
-      padding-bottom: 2.5rem;
-    }
+    .mini-hero { padding-top: 6.5rem; padding-bottom: 2.5rem; }
     .hero-title { font-size: clamp(1.75rem, 8vw, 2.25rem); }
     .hero-sub   { font-size: 0.9375rem; }
   }
 
 
   /* ═══════════════════════════════════════════════════════════
-     NEWS SLIDER — contenedor y track horizontal con scroll-snap
+     EVENT SELECTOR
   ═══════════════════════════════════════════════════════════ */
 
-  .news-slider {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    background-color: #ffffff;
-    padding-block: 3rem;
+  .event-selector {
+    background: #ffffff;
+    padding: 3rem 0 2rem;
   }
 
-  .news-slider__track {
+  /* Nav: flechas + viewport */
+  .selector-nav {
     display: flex;
-    flex-direction: row;              /* horizontal */
     align-items: center;
-    overflow-x: scroll;
-    overflow-y: visible;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    -webkit-overflow-scrolling: touch;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  /* En desktop, selector-arrows se "disuelve" en el flex row */
+  .selector-arrows {
+    display: contents;
+  }
+
+  /* Flechas */
+  .nav-arrow {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #e0e0e0;
+    background: #ffffff;
+    color: #111111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+
+  .nav-arrow:hover:not(:disabled) {
+    border-color: #111111;
+    background: #111111;
+    color: #ffffff;
+    transform: scale(1.05);
+  }
+
+  .nav-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  /* Viewport de cards */
+  .cards-viewport {
+    display: flex;
+    align-items: center;
     gap: 16px;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    /* centra la card activa de 660px; mínimo 24px en pantallas pequeñas */
-    padding-left: max(24px, calc((100% - 660px) / 2));
-    padding-right: max(24px, calc((100% - 660px) / 2));
-  }
-
-  .news-slider__track::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* ── Items ───────────────────────────────────────────────── */
-
-  .news-slider__item {
-    flex: 0 0 660px;
-    min-width: 0;
-    scroll-snap-align: center;
-    border-radius: 16px;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-  }
-
-  .news-slider__item--active {
-    opacity: 1;
-  }
-
-  /* ── Card inner layout (2 columnas: imagen izq + texto der) ── */
-
-  .news-card__inner {
-    display: grid;
-    grid-template-columns: 45% 55%;
-    min-height: 280px;
-    border-radius: 16px;
+    flex: 1;
     overflow: hidden;
-    background-color: #ffffff;
+    justify-content: center;
+  }
+
+  /* Cards individuales */
+  .ev-card {
+    flex: 0 0 340px;
+    border-radius: 14px;
+    overflow: hidden;
     border: 1px solid #e8e8e8;
+    background: #f9f9f9;
+    cursor: pointer;
+    opacity: 0.5;
+    transform: scale(0.92);
+    transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.25s;
+    user-select: none;
   }
 
-  .news-card__inner--active {
-    background-color: #edeaf7;
-    border: none;
+  .ev-card:focus {
+    outline: 2px solid #00a3e0;
+    outline-offset: 2px;
   }
 
-  /* ── Card image slot ────────────────────────────────────── */
+  .ev-card--active {
+    flex: 0 0 520px;
+    opacity: 1;
+    transform: scale(1);
+    border-color: transparent;
+    background: #edeaf7;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  }
 
-  .card-img {
+  .ev-card__img-wrap {
+    overflow: hidden;
+    height: 180px;
+  }
+
+  .ev-card--active .ev-card__img-wrap {
+    height: 220px;
+  }
+
+  .ev-card__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.4s ease;
   }
 
-  /* ── Card text area ─────────────────────────────────────── */
-
-  .card-body {
-    padding: 28px 32px;
-    display: flex;
-    flex-direction: column;
+  .ev-card:hover .ev-card__img {
+    transform: scale(1.04);
   }
 
-  .badge {
+  .ev-card__body {
+    padding: 20px 22px 22px;
+  }
+
+  .ev-badge {
     display: inline-block;
-    align-self: flex-start;
-    font-family: var(--font-barlow);
+    font-family: var(--font-barlow, sans-serif);
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    padding: 5px 12px;
+    padding: 4px 10px;
     border-radius: 99px;
-    background-color: #111111;
+    background: #111111;
     color: #ffffff;
   }
 
-  .card-date {
-    font-family: var(--font-barlow);
-    font-size: 12px;
+  .ev-badge--dark {
+    background: #0d1222;
+  }
+
+  .ev-date {
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: #888888;
-    margin-top: 14px;
+    color: #888;
+    margin-top: 10px;
   }
 
-  .card-heading {
+  .ev-title {
     font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 600;
-    color: #111111;
+    font-size: 17px;
+    font-weight: 700;
+    color: #111;
     line-height: 1.3;
-    margin-top: 6px;
+    margin-top: 5px;
   }
 
-  .card-desc {
+  .ev-card--active .ev-title {
+    font-size: 20px;
+  }
+
+  .ev-desc {
     font-family: var(--font-body);
-    font-size: 14px;
-    color: #555555;
+    font-size: 13px;
+    color: #555;
     line-height: 1.6;
+    margin-top: 8px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    margin-top: 10px;
   }
 
-  .card-cta {
-    display: inline-block;
-    margin-top: 20px;
-    font-family: var(--font-barlow);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--color-accent-blue, #1E7DC8);
-    text-decoration: none;
-  }
-
-  .card-cta:hover {
-    text-decoration: underline;
-  }
-
-
-  /* ═══════════════════════════════════════════════════════════
-     SCROLLBAR COMPARTIDA — news slider y galería
-  ═══════════════════════════════════════════════════════════ */
-
-  .news-slider__scrollbar-wrap {
+  /* Dots */
+  .selector-dots {
     display: flex;
     justify-content: center;
-    padding: 14px 0 18px;
+    gap: 8px;
+    margin-top: 20px;
+    padding-bottom: 8px;
   }
 
-  .news-slider__scrollbar-track {
-    position: relative;
-    width: 200px;
-    height: 4px;
-    background-color: #e0e0e0;
-    border-radius: 99px;
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: #d0d0d0;
     cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    padding: 0;
   }
 
-  .news-slider__scrollbar-thumb {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background-color: #111111;
-    border-radius: 99px;
-    cursor: grab;
-    transition: background-color 0.2s;
-  }
-
-  .news-slider__scrollbar-thumb:active {
-    cursor: grabbing;
-    background-color: #333;
+  .dot--active {
+    background: #111111;
+    transform: scale(1.3);
   }
 
 
   /* ═══════════════════════════════════════════════════════════
-     ARTICLE DETAIL
+     EVENT DETAIL PANEL
   ═══════════════════════════════════════════════════════════ */
 
-  .article-title {
+  .event-detail {
+    background: #ffffff;
+    padding-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .detail-panel {
+    display: none;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .detail-panel--active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .detail-panel--entering {
+    display: block;
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .detail-panel--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .container-site {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .detail-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .detail-date {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #888;
+  }
+
+  .detail-title {
     font-family: Georgia, "Times New Roman", serif;
     font-style: italic;
     font-weight: 700;
@@ -500,6 +516,32 @@ import n10Img        from '../assets/noticias/10.webp';
     margin-bottom: 2rem;
   }
 
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 3rem;
+  }
+
+  .detail-img-wrap {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .detail-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .detail-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
   .article-text {
     font-family: var(--font-body);
     font-size: 0.9375rem;
@@ -507,125 +549,94 @@ import n10Img        from '../assets/noticias/10.webp';
     line-height: 1.8;
   }
 
-
-  /* ═══════════════════════════════════════════════════════════
-     PHOTO SLIDER — galería full-bleed con 4 fotos
-  ═══════════════════════════════════════════════════════════ */
-
-  .photo-slider {
-    width: 100%;
-    overflow: hidden;
-    margin-top: 0;
-    padding-bottom: 0;
-    background-color: #ffffff;
-  }
-
-  .photo-slider__track {
+  /* Galería del evento */
+  .detail-gallery {
     display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+    gap: 6px;
+    overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    -webkit-overflow-scrolling: touch;
-    gap: 4px;
-    padding: 0;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  .photo-slider__track::-webkit-scrollbar {
+  .detail-gallery::-webkit-scrollbar {
     display: none;
   }
 
-  .photo-slider__item {
+  .gallery-item {
     flex-shrink: 0;
-    scroll-snap-align: start;
-    height: 280px;
-    border-radius: 12px;
+    height: 260px;
+    border-radius: 8px;
     overflow: hidden;
-    background-color: #1a1f1a;
+    flex: 0 0 340px;
   }
 
-  .photo-img {
+  .gallery-item:first-child {
+    flex: 0 0 480px;
+  }
+
+  .gallery-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.4s ease;
   }
 
-  /* Proporciones por posición */
-  .photo-slider__item:nth-child(1) { flex: 0 0 38%; }
-  .photo-slider__item:nth-child(2) { flex: 0 0 20%; }
-  .photo-slider__item:nth-child(3) { flex: 0 0 20%; }
-  .photo-slider__item:nth-child(4) { flex: 0 0 20%; }
-
-  /* ── Scrollbar personalizada ─────────────────────── */
-
-  .photo-slider__scrollbar-wrap {
-    display: flex;
-    justify-content: center;
-    padding: 14px 0 18px;
+  .gallery-item:hover .gallery-img {
+    transform: scale(1.04);
   }
-
-  .photo-slider__scrollbar-track {
-    position: relative;
-    width: 200px;
-    height: 4px;
-    background-color: #e0e0e0;
-    border-radius: 99px;
-    cursor: pointer;
-  }
-
-  .photo-slider__scrollbar-thumb {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background-color: #111111;
-    border-radius: 99px;
-    cursor: grab;
-    transition: background-color 0.2s;
-  }
-
-  .photo-slider__scrollbar-thumb:active {
-    cursor: grabbing;
-    background-color: #333;
-  }
-
 
   /* ═══════════════════════════════════════════════════════════
-     RESPONSIVE — MOBILE (< 768px)
+     RESPONSIVE
   ═══════════════════════════════════════════════════════════ */
 
-  @media (max-width: 767px) {
+  @media (max-width: 900px) {
+    .ev-card { flex: 0 0 240px; }
+    .ev-card--active { flex: 0 0 360px; }
+    .detail-grid { grid-template-columns: 1fr; }
+  }
 
-    /* News slider: cards 85vw, centra con peek lateral */
-    .news-slider__item {
-      flex: 0 0 85vw;
+  @media (max-width: 600px) {
+    /* Selector: flechas arriba en fila, cards debajo */
+    .selector-nav {
+      flex-direction: column;
+      gap: 14px;
+      padding: 0 16px;
+      align-items: stretch;
     }
 
-    .news-slider__track {
-      padding-left: calc((100% - 85vw) / 2);
-      padding-right: calc((100% - 85vw) / 2);
+    .selector-arrows {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
     }
 
-    /* Card: stack imagen arriba, texto abajo */
-    .news-card__inner {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 1fr;
+    .cards-viewport {
+      justify-content: flex-start;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 4px;
     }
 
-    .card-img {
-      min-height: 150px;
-      height: 150px;
-    }
+    .cards-viewport::-webkit-scrollbar { display: none; }
 
-    /* Photo slider: cada foto 80vw en scroll horizontal */
-    .photo-slider__item {
-      flex: 0 0 80vw !important;
-      height: 220px;
-    }
+    .ev-card { flex: 0 0 220px; }
+    .ev-card--active { flex: 0 0 280px; }
+    .ev-card__body { padding: 14px 16px 16px; }
+    .ev-card__img-wrap { height: 140px; }
+    .ev-card--active .ev-card__img-wrap { height: 160px; }
+    .ev-title { font-size: 15px; }
+    .ev-card--active .ev-title { font-size: 17px; }
+    .nav-arrow { width: 40px; height: 40px; }
+    .detail-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .detail-title { font-size: clamp(1.5rem, 7vw, 2rem); }
+    .detail-header { padding-top: 2rem; }
+    .gallery-item { flex: 0 0 240px !important; height: 160px; }
+    .detail-gallery { padding: 0 1rem; }
   }
 </style>
 
@@ -633,168 +644,88 @@ import n10Img        from '../assets/noticias/10.webp';
 <script>
   document.addEventListener('DOMContentLoaded', () => {
 
-    // ── NEWS SLIDER ─────────────────────────────────────────
-    const track    = document.querySelector<HTMLElement>('.news-slider__track');
-    const cards    = document.querySelectorAll<HTMLElement>('.news-slider__item');
-    const nsSbTrack = document.querySelector<HTMLElement>('.news-slider__scrollbar-track');
-    const nsSbThumb = document.querySelector<HTMLElement>('.news-slider__scrollbar-thumb');
+    const events = [
+      'cacel-2025',
+      'lanzamiento-246',
+      'astillero-fuentes',
+    ];
 
-    if (track && cards.length) {
+    const cards     = document.querySelectorAll<HTMLElement>('.ev-card');
+    const dots      = document.querySelectorAll<HTMLElement>('.dot');
+    const panels    = document.querySelectorAll<HTMLElement>('.detail-panel');
+    const prevBtn   = document.getElementById('prev-btn') as HTMLButtonElement;
+    const nextBtn   = document.getElementById('next-btn') as HTMLButtonElement;
 
-      const setActiveCard = (index: number) => {
-        cards.forEach((card, i) => {
-          card.classList.toggle('news-slider__item--active', i === index);
-        });
-      };
+    let current = 1; // empieza en el centro
 
-      const scrollToCard = (index: number) => {
-        const card = cards[index] as HTMLElement;
-        const targetLeft = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
-        track.scrollTo({ left: targetLeft, behavior: 'smooth' });
-      };
+    const goTo = (index: number) => {
+      if (index < 0 || index >= events.length) return;
 
-      // Scrollbar sync
-      if (nsSbTrack && nsSbThumb) {
-        const updateNsThumb = () => {
-          const scrollable = track.scrollWidth - track.clientWidth;
-          if (scrollable <= 0) return;
-          const ratio     = track.clientWidth / track.scrollWidth;
-          const thumbW    = Math.max(nsSbTrack.clientWidth * ratio, 32);
-          const thumbLeft = (track.scrollLeft / scrollable) * (nsSbTrack.clientWidth - thumbW);
-          nsSbThumb.style.width = `${thumbW}px`;
-          nsSbThumb.style.left  = `${thumbLeft}px`;
-        };
+      // Update cards
+      cards.forEach((card, i) => {
+        const isActive = i === index;
+        card.classList.toggle('ev-card--active', isActive);
+        card.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
 
-        track.addEventListener('scroll', updateNsThumb, { passive: true });
-        window.addEventListener('resize', updateNsThumb);
-        updateNsThumb();
+      // Update dots
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('dot--active', i === index);
+      });
 
-        let nsDragging = false, nsDragStartX = 0, nsDragStartScroll = 0;
-        nsSbThumb.addEventListener('mousedown', (e: MouseEvent) => {
-          nsDragging = true; nsDragStartX = e.clientX; nsDragStartScroll = track.scrollLeft;
-          e.preventDefault();
-        });
-        document.addEventListener('mousemove', (e: MouseEvent) => {
-          if (!nsDragging) return;
-          const scrollable = track.scrollWidth - track.clientWidth;
-          const ratio = scrollable / (nsSbTrack.clientWidth - nsSbThumb.offsetWidth);
-          track.scrollLeft = nsDragStartScroll + (e.clientX - nsDragStartX) * ratio;
-        });
-        document.addEventListener('mouseup', () => { nsDragging = false; });
-        nsSbTrack.addEventListener('click', (e: MouseEvent) => {
-          if (e.target === nsSbThumb) return;
-          const rect = nsSbTrack.getBoundingClientRect();
-          const scrollable = track.scrollWidth - track.clientWidth;
-          track.scrollLeft = ((e.clientX - rect.left) / nsSbTrack.clientWidth) * scrollable;
-        });
+      // Swap detail panel with animation
+      const oldPanel = document.querySelector<HTMLElement>('.detail-panel--active');
+      const newPanel = panels[index];
+
+      if (oldPanel && oldPanel !== newPanel) {
+        oldPanel.classList.remove('detail-panel--active');
+        oldPanel.setAttribute('aria-hidden', 'true');
+
+        // Animate in new panel
+        newPanel.classList.add('detail-panel--entering');
+        newPanel.setAttribute('aria-hidden', 'false');
+
+        // Force reflow
+        void newPanel.offsetWidth;
+
+        newPanel.classList.remove('detail-panel--entering');
+        newPanel.classList.add('detail-panel--active');
+      } else if (!oldPanel) {
+        newPanel.classList.add('detail-panel--active');
+        newPanel.setAttribute('aria-hidden', 'false');
       }
 
-      // Activa card según scroll
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const index = [...cards].indexOf(entry.target as HTMLElement);
-              if (index !== -1) setActiveCard(index);
-            }
-          });
-        },
-        { root: track, threshold: 0.6 }
-      );
-      cards.forEach(card => observer.observe(card));
+      // Update buttons
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === events.length - 1;
 
-      // Inicializar en card 2 (Lanzamiento 246)
-      const initCard = cards[1];
-      if (initCard) {
-        track.scrollLeft = (initCard as HTMLElement).offsetLeft - (track.clientWidth - (initCard as HTMLElement).offsetWidth) / 2;
-        setActiveCard(1);
-      }
+      current = index;
+    };
 
-      // Autoplay
-      let autoplayTimer: ReturnType<typeof setInterval> | undefined;
-      let activeIndex = 1;
+    // Arrow buttons
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
 
-      const advanceSlide = () => {
-        activeIndex = (activeIndex + 1) % cards.length;
-        scrollToCard(activeIndex);
-      };
+    // Dots
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => goTo(i));
+    });
 
-      const stopAutoplay = () => { if (autoplayTimer !== undefined) clearInterval(autoplayTimer); };
-      const startAutoplay = () => { stopAutoplay(); autoplayTimer = setInterval(advanceSlide, 5000); };
-
-      const indexObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const i = [...cards].indexOf(entry.target as HTMLElement);
-              if (i !== -1) activeIndex = i;
-            }
-          });
-        },
-        { root: track, threshold: 0.6 }
-      );
-      cards.forEach(card => indexObserver.observe(card));
-
-      track.addEventListener('mouseenter', stopAutoplay);
-      track.addEventListener('touchstart', stopAutoplay, { passive: true });
-      track.addEventListener('mouseleave', () => { setTimeout(startAutoplay, 3000); });
-      startAutoplay();
-    }
-
-
-    // ── GALERÍA DE FOTOS — scrollbar arrastrable ────────────
-    const photoTrack  = document.querySelector<HTMLElement>('.photo-slider__track');
-    const sbTrack     = document.querySelector<HTMLElement>('.photo-slider__scrollbar-track');
-    const sbThumb     = document.querySelector<HTMLElement>('.photo-slider__scrollbar-thumb');
-
-    if (photoTrack && sbTrack && sbThumb) {
-
-      const updateThumb = () => {
-        const scrollable = photoTrack.scrollWidth - photoTrack.clientWidth;
-        if (scrollable <= 0) return;
-        const ratio      = photoTrack.clientWidth / photoTrack.scrollWidth;
-        const thumbW     = Math.max(sbTrack.clientWidth * ratio, 32);
-        const thumbLeft  = (photoTrack.scrollLeft / scrollable) * (sbTrack.clientWidth - thumbW);
-        sbThumb.style.width = `${thumbW}px`;
-        sbThumb.style.left  = `${thumbLeft}px`;
-      };
-
-      photoTrack.addEventListener('scroll', updateThumb, { passive: true });
-      window.addEventListener('resize', updateThumb);
-      updateThumb();
-
-      // Arrastrar el thumb con el mouse
-      let dragging = false;
-      let dragStartX = 0;
-      let dragStartScroll = 0;
-
-      sbThumb.addEventListener('mousedown', (e: MouseEvent) => {
-        dragging = true;
-        dragStartX = e.clientX;
-        dragStartScroll = photoTrack.scrollLeft;
-        e.preventDefault();
+    // Cards click
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => goTo(i));
+      card.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') goTo(i);
       });
+    });
 
-      document.addEventListener('mousemove', (e: MouseEvent) => {
-        if (!dragging) return;
-        const scrollable = photoTrack.scrollWidth - photoTrack.clientWidth;
-        const thumbW     = sbThumb.offsetWidth;
-        const trackW     = sbTrack.clientWidth;
-        const ratio      = scrollable / (trackW - thumbW);
-        photoTrack.scrollLeft = dragStartScroll + (e.clientX - dragStartX) * ratio;
-      });
+    // Keyboard arrows
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
 
-      document.addEventListener('mouseup', () => { dragging = false; });
-
-      // Click en el track (fuera del thumb) salta a esa posición
-      sbTrack.addEventListener('click', (e: MouseEvent) => {
-        if (e.target === sbThumb) return;
-        const rect       = sbTrack.getBoundingClientRect();
-        const clickRatio = (e.clientX - rect.left) / sbTrack.clientWidth;
-        const scrollable = photoTrack.scrollWidth - photoTrack.clientWidth;
-        photoTrack.scrollLeft = clickRatio * scrollable;
-      });
-    }
-
+    // Initialize
+    goTo(1);
   });
 </script>

@@ -53,7 +53,7 @@ if (!model) {
   </div>
 
   <!-- HERO -->
-  <section class="relative" style="height: 70vh; min-height: 500px;" aria-label={`Presentación ${model.name}`}>
+  <section class="relative" style="height: 100vh; min-height: 600px;" aria-label={`Presentación ${model.name}`}>
     <img
       src={model.heroUrl}
       alt={model.name}
@@ -63,17 +63,24 @@ if (!model) {
       loading="eager"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" aria-hidden="true"></div>
-    <div class="absolute bottom-12 left-0 right-0 container-site">
-      <SectionLabel text={model.line} class="mb-2 block" />
-      <h1 class="font-display font-bold italic text-white leading-none" style="font-size: clamp(3rem, 8vw, 6rem);">
+    <div class="absolute bottom-16 left-0 right-0 container-site">
+      <SectionLabel text={model.line} class="mb-4 block" />
+      <h1 class="font-display font-black italic text-white leading-none mb-6 md:mb-8" style="font-size: clamp(2.8rem, 12vw, 9rem); letter-spacing: -0.05em;">
         {model.name.replace('Classer ', '')}
       </h1>
+      
+      <a 
+        href="#contacto" 
+        class="inline-block bg-white text-black font-extrabold text-[0.7rem] md:text-[0.85rem] uppercase tracking-[0.2em] px-10 py-4 hover:bg-opacity-90 transition-all duration-300 shadow-xl"
+      >
+        COTIZAR AHORA
+      </a>
     </div>
   </section>
   <!-- SPECS GRID -->
   <section id="especificaciones" class="bg-bg-deep py-20" aria-label="Especificaciones técnicas">
     <div class="container-site mb-12">
-      <ModelMiniMenu modelName={model.name.replace('Classer ', '')} />
+      <ModelMiniMenu modelName={model.name.replace('Classer ', '')} brochure={model.brochure} />
     </div>
     
     <div class="container-site px-4">
@@ -116,7 +123,8 @@ if (!model) {
 
   <!-- INTERIOR GALLERY -->
   {model.interiorImages.length > 0 && (
-    <section id="interior" class="py-20 bg-bg-deep" aria-label="Galería interior">
+    <section id="interior" class="py-20 bg-bg-deep overflow-hidden" aria-label="Galería interior">
+      <!-- Title centered -->
       <div class="container-site">
         <div class="text-center mb-10 reveal">
           <h2 class="font-display font-bold italic text-3xl md:text-4xl text-white mb-3">Interior</h2>
@@ -124,16 +132,20 @@ if (!model) {
             Un interior pensado para el confort sin comprometer el rendimiento.
           </p>
         </div>
-        <div id="interior-scroll" class="flex gap-3 h-64 md:h-80 reveal overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing">
-          {model.interiorImages.map((img, i) => (
-            <div class={`overflow-hidden rounded-lg flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[450px]`}>
-              <img src={img.url} alt={`Interior ${model.name} — imagen ${i + 1}`} width={img.w} height={img.h} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
-            </div>
-          ))}
-        </div>
+      </div>
 
-        <!-- Progress Bar -->
-        <div class="mx-auto mt-12 px-8" style="max-width: 600px;">
+      <!-- Carousel full width -->
+      <div id="interior-scroll" class="flex gap-2 h-80 md:h-[480px] reveal overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing w-full px-[26px]">
+        {model.interiorImages.map((img, i) => (
+          <div class={`overflow-hidden flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[500px]`}>
+            <img src={img.url} alt={`Interior ${model.name} — imagen ${i + 1}`} width={img.w} height={img.h} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+        ))}
+      </div>
+
+      <!-- Progress Bar centered -->
+      <div class="container-site">
+        <div class="mx-auto mt-10 px-8" style="max-width: 600px;">
           <div id="interior-track" class="scroll-track-custom" role="scrollbar">
             <div id="interior-thumb" class="scroll-thumb-custom"></div>
           </div>
@@ -144,7 +156,8 @@ if (!model) {
 
   <!-- EXTERIOR GALLERY -->
   {model.exteriorImages.length > 0 && (
-    <section id="galeria" class="py-20 bg-bg-mid" aria-label="Galería exterior">
+    <section id="galeria" class="py-20 bg-bg-mid overflow-hidden" aria-label="Galería exterior">
+      <!-- Title centered -->
       <div class="container-site">
         <div class="text-center mb-10 reveal">
           <h2 class="font-display font-bold italic text-3xl md:text-4xl text-white mb-3">Exterior</h2>
@@ -152,16 +165,20 @@ if (!model) {
             Líneas que cortan el agua con elegancia y propósito.
           </p>
         </div>
-        <div id="galeria-scroll" class="flex gap-3 h-64 md:h-80 reveal overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing">
-          {model.exteriorImages.map((img, i) => (
-            <div class={`overflow-hidden rounded-lg flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[450px]`}>
-              <img src={img.url} alt={`Exterior ${model.name} — imagen ${i + 1}`} width={img.w} height={img.h} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
-            </div>
-          ))}
-        </div>
+      </div>
 
-        <!-- Progress Bar -->
-        <div class="mx-auto mt-12 px-8" style="max-width: 600px;">
+      <!-- Carousel full width -->
+      <div id="galeria-scroll" class="flex gap-2 h-80 md:h-[480px] reveal overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing w-full px-[26px]">
+        {model.exteriorImages.map((img, i) => (
+          <div class={`overflow-hidden flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[500px]`}>
+            <img src={img.url} alt={`Exterior ${model.name} — imagen ${i + 1}`} width={img.w} height={img.h} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+          </div>
+        ))}
+      </div>
+
+      <!-- Progress Bar centered -->
+      <div class="container-site">
+        <div class="mx-auto mt-10 px-8" style="max-width: 600px;">
           <div id="galeria-track" class="scroll-track-custom" role="scrollbar">
             <div id="galeria-thumb" class="scroll-thumb-custom"></div>
           </div>
