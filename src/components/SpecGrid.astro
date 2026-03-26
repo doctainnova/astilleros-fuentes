@@ -30,11 +30,15 @@ const iconMap: Record<string, string> = {
       style="gap: 16px; min-width: 170px; width: calc(25% - 48px);"
     >
       <div class="spec-icon-wrapper flex-shrink-0">
-        <img 
+        <img
           src={`/image/iconos/${iconMap[spec.icon] ?? 'ESLORA.webp'}`}
-          alt="" 
+          alt=""
+          width="52"
+          height="52"
           class="object-contain filter brightness-0 invert"
           style="width: 52px; height: 52px;"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       

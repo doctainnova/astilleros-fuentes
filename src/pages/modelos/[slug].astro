@@ -21,6 +21,7 @@ if (!model) {
 <Layout
   title={`${model.name} — CLASSER | Astillero Fuentes`}
   description={model.tagline}
+  heroImageUrl={model.heroUrl}
 >
   <!-- STICKY SECONDARY NAV -->
   <div id="model-subnav" class="fixed top-[72px] left-0 right-0 z-40 bg-bg-white border-b border-black/10 shadow-sm translate-y-[-100%] opacity-0 transition-none" aria-label="Navegación del modelo">
@@ -59,6 +60,8 @@ if (!model) {
       height="700"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
+      fetchpriority="high"
+      decoding="sync"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" aria-hidden="true"></div>
     <div class="absolute bottom-12 left-0 right-0 container-site">
@@ -91,6 +94,7 @@ if (!model) {
             height="480"
             class="w-full max-w-3xl mx-auto rounded-lg block"
             loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -119,8 +123,28 @@ if (!model) {
         </div>
         <div id="interior-scroll" class="flex gap-3 h-64 md:h-80 reveal overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing">
           {model.interiorImages.map((img, i) => (
-            <div class={`overflow-hidden rounded-lg flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[450px]`}>
-              <img src={img.url} alt={`Interior ${model.name} — imagen ${i + 1}`} width={img.w} height={img.h} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class={`gallery-img-wrapper overflow-hidden rounded-lg flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[450px]`}>
+              {i <= 1 ? (
+                <img
+                  src={img.url}
+                  alt={`Interior ${model.name} — imagen ${i + 1}`}
+                  width={img.w}
+                  height={img.h}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <img
+                  data-src={img.url}
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
+                  alt={`Interior ${model.name} — imagen ${i + 1}`}
+                  width={img.w}
+                  height={img.h}
+                  decoding="async"
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              )}
             </div>
           ))}
         </div>
@@ -147,8 +171,28 @@ if (!model) {
         </div>
         <div id="galeria-scroll" class="flex gap-3 h-64 md:h-80 reveal overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing">
           {model.exteriorImages.map((img, i) => (
-            <div class={`overflow-hidden rounded-lg flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[450px]`}>
-              <img src={img.url} alt={`Exterior ${model.name} — imagen ${i + 1}`} width={img.w} height={img.h} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class={`gallery-img-wrapper overflow-hidden rounded-lg flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[450px]`}>
+              {i <= 1 ? (
+                <img
+                  src={img.url}
+                  alt={`Exterior ${model.name} — imagen ${i + 1}`}
+                  width={img.w}
+                  height={img.h}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <img
+                  data-src={img.url}
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
+                  alt={`Exterior ${model.name} — imagen ${i + 1}`}
+                  width={img.w}
+                  height={img.h}
+                  decoding="async"
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              )}
             </div>
           ))}
         </div>
@@ -168,6 +212,7 @@ if (!model) {
     <VersionsTable
       modelName={model.name.replace('Classer ', '')}
       features={model.versions[0].features}
+      silhouetteTechnicalUrl={model.silhouetteTechnicalUrl}
       diagramUrl="https://placehold.co/700x480/f4f4f2/6b7a99?text=Technical+Diagram+206+FTX"
     />
   )}
@@ -209,39 +254,71 @@ if (!model) {
     cursor: grabbing;
     background: rgba(255, 255, 255, 0.8);
   }
+
+  /* ── Shimmer skeleton para imágenes de galería ── */
+  .gallery-img-wrapper {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+
+  .gallery-img-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: gallery-shimmer 1.6s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .gallery-img-wrapper.img-loaded::before,
+  .gallery-img-wrapper.img-error::before {
+    display: none;
+  }
+
+  @keyframes gallery-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* La imagen real no debe tapar el shimmer mientras carga */
+  .gallery-img-wrapper img {
+    position: relative;
+    z-index: 2;
+  }
 </style>
 
+<!-- Subnav sticky: requires GSAP as ESM module (not available as global in inline scripts) -->
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const subnav = document.getElementById('model-subnav');
+  if (subnav) {
+    ScrollTrigger.create({
+      trigger: '#especificaciones',
+      start: 'top top+=72',
+      onEnter: () => {
+        gsap.to(subnav, { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' });
+      },
+      onLeaveBack: () => {
+        gsap.to(subnav, { y: '-100%', opacity: 0, duration: 0.3, ease: 'power2.in' });
+      },
+    });
+  }
+</script>
+
 <script is:inline>
-  // Sticky subnav GSAP behavior
+  // Custom Scroll Logic (no GSAP dependency)
   document.addEventListener('DOMContentLoaded', () => {
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      const subnav = document.getElementById('model-subnav');
-      if (subnav) {
-        ScrollTrigger.create({
-          trigger: '#especificaciones',
-          start: 'top top+=72',
-          onEnter: () => {
-            gsap.to(subnav, { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' });
-          },
-          onLeaveBack: () => {
-            gsap.to(subnav, { y: '-100%', opacity: 0, duration: 0.3, ease: 'power2.in' });
-          },
-        });
-      }
-
-      // Reveal animations
-      document.querySelectorAll('.reveal').forEach(el => {
-        gsap.fromTo(el,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 82%' },
-          }
-        );
-      });
-    }
-
-    // Custom Scroll Logic
     function setupCustomScroll(containerId, trackId, thumbId) {
       const container = document.getElementById(containerId);
       const track = document.getElementById(trackId);
@@ -249,21 +326,24 @@ if (!model) {
       if (!container || !track || !thumb) return;
 
       function updateThumb() {
-        const trackWidth = track.offsetWidth;
-        const totalWidth = container.scrollWidth;
-        const visibleWidth = container.clientWidth;
-        const maxScroll = totalWidth - visibleWidth;
-        
-        if (maxScroll <= 0) {
-          track.parentElement.style.display = 'none';
-          return;
-        }
-        
-        track.parentElement.style.display = 'block';
-        const thumbWidth = Math.max((visibleWidth / totalWidth) * trackWidth, 80);
-        thumb.style.width = thumbWidth + 'px';
-        const thumbLeft = (container.scrollLeft / maxScroll) * (trackWidth - thumbWidth);
-        thumb.style.left = thumbLeft + 'px';
+        requestAnimationFrame(() => {
+          // Reads first
+          const trackWidth = track.offsetWidth;
+          const totalWidth = container.scrollWidth;
+          const visibleWidth = container.clientWidth;
+          const maxScroll = totalWidth - visibleWidth;
+          const scrollLeft = container.scrollLeft;
+
+          // Writes after
+          if (maxScroll <= 0) {
+            track.parentElement.style.display = 'none';
+            return;
+          }
+          track.parentElement.style.display = 'block';
+          const thumbWidth = Math.max((visibleWidth / totalWidth) * trackWidth, 80);
+          thumb.style.width = thumbWidth + 'px';
+          thumb.style.left = ((scrollLeft / maxScroll) * (trackWidth - thumbWidth)) + 'px';
+        });
       }
 
       container.addEventListener('scroll', updateThumb, { passive: true });
@@ -323,6 +403,59 @@ if (!model) {
         document.body.style.userSelect = '';
       });
     }
+
+    // ── Lazy load manual para imágenes en scroll horizontal ──
+    const lazyGalleryImgs = document.querySelectorAll('img[data-src]');
+
+    if (lazyGalleryImgs.length > 0) {
+      const loadImage = (img) => {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+
+        img.onload = () => {
+          const wrapper = img.closest('.gallery-img-wrapper');
+          if (wrapper) wrapper.classList.add('img-loaded');
+        };
+
+        img.onerror = () => {
+          const wrapper = img.closest('.gallery-img-wrapper');
+          if (wrapper) wrapper.classList.add('img-error');
+        };
+      };
+
+      if ('IntersectionObserver' in window) {
+        const galleryObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                loadImage(entry.target);
+                galleryObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            rootMargin: '100px 500px 100px 0px',
+            threshold: 0
+          }
+        );
+
+        lazyGalleryImgs.forEach(img => galleryObserver.observe(img));
+      } else {
+        lazyGalleryImgs.forEach(img => loadImage(img));
+      }
+    }
+
+    // Marcar como loaded las imágenes eager/lazy directas (índice 0 y 1)
+    document.querySelectorAll('.gallery-img-wrapper img:not([data-src])').forEach(img => {
+      const markLoaded = () => {
+        img.closest('.gallery-img-wrapper')?.classList.add('img-loaded');
+      };
+      if (img.complete && img.naturalWidth > 0) {
+        markLoaded();
+      } else {
+        img.addEventListener('load', markLoaded, { once: true });
+      }
+    });
 
     setupCustomScroll('interior-scroll', 'interior-track', 'interior-thumb');
     setupCustomScroll('galeria-scroll', 'galeria-track', 'galeria-thumb');

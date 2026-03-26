@@ -41,8 +41,8 @@ const events = [
     id: 'lanzamiento-246',
     badge: 'LANZAMIENTO',
     date: 'MARZO, 2025',
-    title: 'Lanzamiento Classer 246',
-    desc: 'Presentación oficial del modelo más emblemático de la línea DF. Una noche de diseño, rendimiento y legado.',
+    title: 'Lanzamiento 246',
+    desc: 'Experimenta las últimas innovaciones e historias del mundo de Classer. Desde eventos exclusivos hasta avances técnicos, descubre qué define nuestro legado.',
     body: [
       'El lanzamiento oficial del Classer 246 reunió a distribuidores, prensa especializada y apasionados de la náutica en una velada memorable en Villa María. El modelo, insignia de la línea DF, fue presentado con todas sus innovaciones y detalles de fabricación.',
       'Con una eslora máxima de 7.40m y motorización de hasta 350hp, el Classer 246 representa el estándar de la excelencia en embarcaciones de lujo argentinas. Construido íntegramente en el Astillero Fuentes, combina tradición artesanal con tecnología de vanguardia.',
@@ -80,40 +80,19 @@ const events = [
   fixedNavbar={true}
 >
 
-  <!-- ============================================================
-       MINI HERO
-       ============================================================ -->
-  <section class="mini-hero bg-bg-light text-center" aria-label="Noticias y eventos">
+  <section class="mini-hero bg-white text-center" aria-label="Noticias y eventos">
     <div class="container-site">
-      <h1 class="hero-title">Noticias y eventos</h1>
-      <p class="hero-sub">
+      <h1 class="font-display text-[2.5rem] md:text-[3.5rem] text-[#1a1a2e] mb-4">Noticias y eventos</h1>
+      <p class="font-body text-[0.95rem] text-gray-500 max-w-lg mx-auto leading-relaxed">
         Mantente actualizado con lo último del astillero, próximos eventos y premios de diseño.
       </p>
     </div>
   </section>
 
 
-  <!-- ============================================================
-       EVENT SELECTOR — flechas + cards centradas
-       ============================================================ -->
-  <section class="event-selector" aria-label="Selector de eventos">
+  <section class="event-selector bg-white" aria-label="Selector de eventos">
 
-    <!-- Flechas de navegación -->
     <div class="selector-nav">
-      <div class="selector-arrows">
-        <button id="prev-btn" class="nav-arrow" aria-label="Evento anterior" disabled>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 18l-6-6 6-6"/>
-          </svg>
-        </button>
-        <button id="next-btn" class="nav-arrow" aria-label="Siguiente evento">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 18l6-6-6-6"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Cards track -->
       <div class="cards-viewport" role="list" aria-label="Lista de eventos">
         {events.map((ev, i) => (
           <article
@@ -124,41 +103,40 @@ const events = [
             aria-selected={i === 1 ? 'true' : 'false'}
             tabindex="0"
           >
-            <div class="ev-card__img-wrap">
-              <Image
-                src={ev.thumbSrc}
-                alt={ev.thumbAlt}
-                width={400}
-                height={260}
-                loading={i === 1 ? 'eager' : 'lazy'}
-                decoding="async"
-                class="ev-card__img"
-              />
-            </div>
-            <div class="ev-card__body">
-              <span class="ev-badge">{ev.badge}</span>
-              <p class="ev-date">{ev.date}</p>
-              <h3 class="ev-title">{ev.title}</h3>
-              <p class="ev-desc">{ev.desc}</p>
+            <div class="ev-card__inner">
+              <div class="ev-card__img-wrap">
+                <span class="ev-badge-float">{ev.badge}</span>
+                <Image
+                  src={ev.thumbSrc}
+                  alt={ev.thumbAlt}
+                  width={600}
+                  height={400}
+                  loading={i === 1 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  class="ev-card__img"
+                />
+              </div>
+              <div class="ev-card__body">
+                <p class="ev-date">{ev.date}</p>
+                <h3 class="ev-title">{ev.title}</h3>
+                <p class="ev-desc">{ev.desc}</p>
+                <div class="ev-link">LEER ARTÍCULO <span>&rarr;</span></div>
+              </div>
             </div>
           </article>
         ))}
       </div>
     </div>
 
-    <!-- Dots indicators -->
-    <div class="selector-dots" aria-hidden="true">
-      {events.map((_, i) => (
-        <button class={`dot ${i === 1 ? 'dot--active' : ''}`} data-dot={i} aria-label={`Ir al evento ${i + 1}`}></button>
-      ))}
+    <div class="progress-container">
+      <div id="events-track" class="custom-track">
+        <div id="events-thumb" class="custom-thumb"></div>
+      </div>
     </div>
 
   </section>
 
 
-  <!-- ============================================================
-       DETALLE DINÁMICO — cambia con el evento seleccionado
-       ============================================================ -->
   <section class="event-detail" aria-label="Detalle del evento seleccionado">
     {events.map((ev, i) => (
       <div
@@ -168,13 +146,12 @@ const events = [
       >
         <div class="container-site">
           <div class="detail-header">
-            <span class="ev-badge ev-badge--dark">{ev.badge}</span>
+            <span class="ev-badge-dark">{ev.badge}</span>
             <p class="detail-date">{ev.date}</p>
           </div>
           <h2 class="detail-title">{ev.title}</h2>
 
           <div class="detail-grid">
-            <!-- Imagen principal -->
             <div class="detail-img-wrap">
               <Image
                 src={ev.detailSrc}
@@ -187,7 +164,6 @@ const events = [
               />
             </div>
 
-            <!-- Texto -->
             <div class="detail-text">
               {ev.body.map(p => (
                 <p class="article-text">{p}</p>
@@ -196,7 +172,6 @@ const events = [
           </div>
         </div>
 
-        <!-- Galería de fotos del evento -->
         {ev.gallery && ev.gallery.length > 0 && (
           <div class="detail-gallery">
             {ev.gallery.map((img, gi) => (
@@ -225,234 +200,212 @@ const events = [
   /* ═══════════════════════════════════════════════════════════
      MINI HERO
   ═══════════════════════════════════════════════════════════ */
-
   .mini-hero {
     padding-top: 8rem;
-    padding-bottom: 4rem;
+    padding-bottom: 3rem;
   }
-
-  .hero-title {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(1.75rem, 5vw, 3.25rem);
-    color: var(--color-text-dark);
-    margin-bottom: 1rem;
-    line-height: 1.15;
-  }
-
-  .hero-sub {
-    font-family: var(--font-body);
-    font-size: 1.0625rem;
-    color: rgba(26, 26, 46, 0.65);
-    max-width: 440px;
-    margin-inline: auto;
-    line-height: 1.6;
-  }
-
-  @media (max-width: 767px) {
-    .mini-hero { padding-top: 6.5rem; padding-bottom: 2.5rem; }
-    .hero-title { font-size: clamp(1.75rem, 8vw, 2.25rem); }
-    .hero-sub   { font-size: 0.9375rem; }
-  }
-
 
   /* ═══════════════════════════════════════════════════════════
-     EVENT SELECTOR
+     EVENT SELECTOR (EL CALCADO)
   ═══════════════════════════════════════════════════════════ */
-
   .event-selector {
-    background: #ffffff;
-    padding: 3rem 0 2rem;
+    padding: 0 0 3rem;
+    overflow: hidden;
   }
 
-  /* Nav: flechas + viewport */
   .selector-nav {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .cards-viewport {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding: 0 40px;
-    max-width: 1600px;
-    margin: 0 auto;
+    padding: 2rem 0;
   }
 
-  /* En desktop, selector-arrows se "disuelve" en el flex row */
-  .selector-arrows {
-    display: contents;
-  }
-
-  /* Flechas */
-  .nav-arrow {
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 2px solid #e0e0e0;
-    background: #ffffff;
-    color: #111111;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s, transform 0.15s;
-  }
-
-  .nav-arrow:hover:not(:disabled) {
-    border-color: #111111;
-    background: #111111;
-    color: #ffffff;
-    transform: scale(1.05);
-  }
-
-  .nav-arrow:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-
-  /* Viewport de cards */
-  .cards-viewport {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex: 1;
-    overflow: hidden;
-    justify-content: center;
-  }
-
-  /* Cards individuales */
+  /* --- Tarjeta Inactiva (Blanca y vertical) --- */
   .ev-card {
-    flex: 0 0 340px;
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid #e8e8e8;
-    background: #f9f9f9;
+    flex: 0 0 320px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
     cursor: pointer;
-    opacity: 0.5;
-    transform: scale(0.92);
-    transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.25s;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     user-select: none;
+    overflow: hidden;
+    height: 400px; /* Altura fija para mantener simetría */
+    opacity: 0.7;
+    transform: scale(0.95);
   }
 
-  .ev-card:focus {
-    outline: 2px solid #00a3e0;
-    outline-offset: 2px;
-  }
-
-  .ev-card--active {
-    flex: 0 0 520px;
+  .ev-card:hover {
     opacity: 1;
-    transform: scale(1);
-    border-color: transparent;
-    background: #edeaf7;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    border-color: #cbd5e1;
+  }
+
+  .ev-card__inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .ev-card__img-wrap {
+    position: relative;
+    width: 100%;
+    height: 220px; /* En tarjeta inactiva */
     overflow: hidden;
-    height: 180px;
-  }
-
-  .ev-card--active .ev-card__img-wrap {
-    height: 220px;
+    transition: all 0.5s ease;
   }
 
   .ev-card__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
+    transition: transform 0.6s ease;
   }
 
-  .ev-card:hover .ev-card__img {
-    transform: scale(1.04);
+  /* Badge Flotante estilo revista */
+  .ev-badge-float {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #ffffff;
+    color: #000000;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    padding: 6px 12px;
+    z-index: 10;
   }
 
   .ev-card__body {
-    padding: 20px 22px 22px;
-  }
-
-  .ev-badge {
-    display: inline-block;
-    font-family: var(--font-barlow, sans-serif);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 99px;
-    background: #111111;
-    color: #ffffff;
-  }
-
-  .ev-badge--dark {
-    background: #0d1222;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 
   .ev-date {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: #888;
-    margin-top: 10px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    margin-bottom: 0.5rem;
   }
 
   .ev-title {
     font-family: var(--font-display);
-    font-size: 17px;
-    font-weight: 700;
-    color: #111;
-    line-height: 1.3;
-    margin-top: 5px;
-  }
-
-  .ev-card--active .ev-title {
-    font-size: 20px;
+    font-size: 1.6rem;
+    color: #1e293b;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
   }
 
   .ev-desc {
     font-family: var(--font-body);
-    font-size: 13px;
-    color: #555;
+    font-size: 0.85rem;
+    color: #64748b;
     line-height: 1.6;
-    margin-top: 8px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  /* Dots */
-  .selector-dots {
+  .ev-link {
+    display: none; /* Oculto en inactivas */
+  }
+
+  /* --- Tarjeta Activa (Gigante, lila, horizontal) --- */
+  .ev-card--active {
+    flex: 0 0 900px;
+    background: #d4d0de; /* El lila exacto de la imagen */
+    border-color: transparent;
+    opacity: 1;
+    transform: scale(1);
+    height: 420px; /* Ligeramente más alta */
+  }
+
+  .ev-card--active .ev-card__inner {
+    flex-direction: row; /* Pasa a ser lado a lado */
+    padding: 24px;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .ev-card--active .ev-card__img-wrap {
+    width: 55%;
+    height: 100%;
+    border-radius: 12px;
+  }
+
+  .ev-card--active .ev-card__body {
+    width: 45%;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .ev-card--active .ev-title {
+    font-size: 2.2rem; /* Título mucho más grande */
+    color: #1a1a2e;
+    margin-bottom: 1rem;
+  }
+
+  .ev-card--active .ev-desc {
+    font-size: 0.95rem;
+    color: #475569;
+    -webkit-line-clamp: 5;
+    margin-bottom: 1.5rem;
+  }
+
+  .ev-card--active .ev-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: #1a1a2e;
+    margin-top: auto;
+  }
+
+  /* --- SCROLLBAR CUSTOM (Calcada) --- */
+  .progress-container {
+    width: 100%;
     display: flex;
     justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-    padding-bottom: 8px;
+    margin-top: 2rem;
   }
 
-  .dot {
-    width: 8px;
+  .custom-track {
+    width: 350px;
     height: 8px;
-    border-radius: 50%;
-    border: none;
-    background: #d0d0d0;
+    background: #e2e8f0;
+    border-radius: 10px;
+    position: relative;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    padding: 0;
   }
 
-  .dot--active {
-    background: #111111;
-    transform: scale(1.3);
+  .custom-thumb {
+    height: 12px;
+    width: 60px;
+    background: #000000;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    border-radius: 10px;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); 
+    will-change: transform;
   }
-
 
   /* ═══════════════════════════════════════════════════════════
      EVENT DETAIL PANEL
   ═══════════════════════════════════════════════════════════ */
-
   .event-detail {
     background: #ffffff;
     padding-bottom: 4rem;
@@ -479,201 +432,86 @@ const events = [
     transform: translateY(12px);
   }
 
-  .detail-panel--visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .container-site {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
+  .container-site { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
   .detail-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding-top: 3rem;
-    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 14px; padding-top: 3rem; margin-bottom: 1rem;
   }
 
-  .detail-date {
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: #888;
+  .ev-badge-dark {
+    font-family: var(--font-body); font-size: 10px; font-weight: 800; letter-spacing: 1.5px;
+    padding: 4px 10px; background: #111; color: #fff;
   }
+
+  .detail-date { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.5px; color: #888; }
 
   .detail-title {
-    font-family: Georgia, "Times New Roman", serif;
-    font-style: italic;
-    font-weight: 700;
-    font-size: clamp(2rem, 4vw, 3rem);
-    color: #1a1a2e;
-    line-height: 1.15;
-    margin-bottom: 2rem;
+    font-family: 'Rogue Sans Nova Extended', sans-serif; font-style: italic; font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem); color: #1a1a2e; margin-bottom: 2rem;
   }
 
-  .detail-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-    margin-bottom: 3rem;
-  }
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .detail-img-wrap { border-radius: 8px; overflow: hidden; }
+  .detail-img { width: 100%; height: auto; display: block; object-fit: cover; }
+  .detail-text { display: flex; flex-direction: column; gap: 1.25rem; }
+  .article-text { font-family: var(--font-body); font-size: 0.95rem; color: #475569; line-height: 1.8; }
 
-  .detail-img-wrap {
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .detail-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-  }
-
-  .detail-text {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .article-text {
-    font-family: var(--font-body);
-    font-size: 0.9375rem;
-    color: rgba(26, 26, 46, 0.80);
-    line-height: 1.8;
-  }
-
-  /* Galería del evento */
   .detail-gallery {
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 0 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 0 2rem; max-width: 1200px; margin: 0 auto;
   }
+  .detail-gallery::-webkit-scrollbar { display: none; }
+  .gallery-item { flex: 0 0 340px; height: 260px; border-radius: 8px; overflow: hidden; }
+  .gallery-item:first-child { flex: 0 0 480px; }
+  .gallery-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+  .gallery-item:hover .gallery-img { transform: scale(1.04); }
 
-  .detail-gallery::-webkit-scrollbar {
-    display: none;
-  }
-
-  .gallery-item {
-    flex-shrink: 0;
-    height: 260px;
-    border-radius: 8px;
-    overflow: hidden;
-    flex: 0 0 340px;
-  }
-
-  .gallery-item:first-child {
-    flex: 0 0 480px;
-  }
-
-  .gallery-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-
-  .gallery-item:hover .gallery-img {
-    transform: scale(1.04);
-  }
-
-  /* ═══════════════════════════════════════════════════════════
-     RESPONSIVE
-  ═══════════════════════════════════════════════════════════ */
-
+  /* --- RESPONSIVE MOBILE --- */
   @media (max-width: 900px) {
-    .ev-card { flex: 0 0 240px; }
-    .ev-card--active { flex: 0 0 360px; }
-    .detail-grid { grid-template-columns: 1fr; }
-  }
-
-  @media (max-width: 600px) {
-    /* Selector: flechas arriba en fila, cards debajo */
-    .selector-nav {
-      flex-direction: column;
-      gap: 14px;
-      padding: 0 16px;
-      align-items: stretch;
-    }
-
-    .selector-arrows {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-    }
-
-    .cards-viewport {
-      justify-content: flex-start;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      padding-bottom: 4px;
-    }
-
+    .cards-viewport { justify-content: flex-start; overflow-x: auto; padding-left: 20px; scrollbar-width: none; }
     .cards-viewport::-webkit-scrollbar { display: none; }
-
-    .ev-card { flex: 0 0 220px; }
-    .ev-card--active { flex: 0 0 280px; }
-    .ev-card__body { padding: 14px 16px 16px; }
-    .ev-card__img-wrap { height: 140px; }
-    .ev-card--active .ev-card__img-wrap { height: 160px; }
-    .ev-title { font-size: 15px; }
-    .ev-card--active .ev-title { font-size: 17px; }
-    .nav-arrow { width: 40px; height: 40px; }
-    .detail-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    .detail-title { font-size: clamp(1.5rem, 7vw, 2rem); }
-    .detail-header { padding-top: 2rem; }
-    .gallery-item { flex: 0 0 240px !important; height: 160px; }
-    .detail-gallery { padding: 0 1rem; }
+    .ev-card { flex: 0 0 280px; height: 380px; }
+    .ev-card--active { flex: 0 0 90vw; flex-direction: column; height: auto; }
+    .ev-card--active .ev-card__inner { flex-direction: column; padding: 16px; gap: 16px; }
+    .ev-card--active .ev-card__img-wrap { width: 100%; height: 200px; }
+    .ev-card--active .ev-card__body { width: 100%; }
+    .detail-grid { grid-template-columns: 1fr; }
   }
 </style>
 
-
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const eventsCount = 3;
+    const cards = document.querySelectorAll<HTMLElement>('.ev-card');
+    const panels = document.querySelectorAll<HTMLElement>('.detail-panel');
+    const thumb = document.getElementById('events-thumb') as HTMLElement;
+    const track = document.getElementById('events-track') as HTMLElement;
 
-    const events = [
-      'cacel-2025',
-      'lanzamiento-246',
-      'astillero-fuentes',
-    ];
+    let current = 1; 
 
-    const cards     = document.querySelectorAll<HTMLElement>('.ev-card');
-    const dots      = document.querySelectorAll<HTMLElement>('.dot');
-    const panels    = document.querySelectorAll<HTMLElement>('.detail-panel');
-    const prevBtn   = document.getElementById('prev-btn') as HTMLButtonElement;
-    const nextBtn   = document.getElementById('next-btn') as HTMLButtonElement;
-
-    let current = 1; // empieza en el centro
+    const updateThumb = (index: number) => {
+      // Divide el track en 3 posiciones (0, 1, 2)
+      if (!thumb || !track) return;
+      const trackWidth = track.clientWidth;
+      const thumbWidth = thumb.clientWidth;
+      const maxTravel = trackWidth - thumbWidth;
+      const percentage = index / (eventsCount - 1);
+      thumb.style.transform = `translateX(${percentage * maxTravel}px)`;
+    };
 
     const goTo = (index: number) => {
-      if (index < 0 || index >= events.length) return;
+      if (index < 0 || index >= eventsCount) return;
 
-      // Update cards
       cards.forEach((card, i) => {
         const isActive = i === index;
         card.classList.toggle('ev-card--active', isActive);
         card.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        
+        // Efecto scroll para móviles: centra la tarjeta activa
+        if (isActive && window.innerWidth <= 900) {
+          card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
       });
 
-      // Update dots
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('dot--active', i === index);
-      });
-
-      // Swap detail panel with animation
       const oldPanel = document.querySelector<HTMLElement>('.detail-panel--active');
       const newPanel = panels[index];
 
@@ -681,13 +519,9 @@ const events = [
         oldPanel.classList.remove('detail-panel--active');
         oldPanel.setAttribute('aria-hidden', 'true');
 
-        // Animate in new panel
         newPanel.classList.add('detail-panel--entering');
         newPanel.setAttribute('aria-hidden', 'false');
-
-        // Force reflow
         void newPanel.offsetWidth;
-
         newPanel.classList.remove('detail-panel--entering');
         newPanel.classList.add('detail-panel--active');
       } else if (!oldPanel) {
@@ -695,37 +529,27 @@ const events = [
         newPanel.setAttribute('aria-hidden', 'false');
       }
 
-      // Update buttons
-      prevBtn.disabled = index === 0;
-      nextBtn.disabled = index === events.length - 1;
-
       current = index;
+      updateThumb(index);
     };
 
-    // Arrow buttons
-    prevBtn.addEventListener('click', () => goTo(current - 1));
-    nextBtn.addEventListener('click', () => goTo(current + 1));
-
-    // Dots
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => goTo(i));
-    });
-
-    // Cards click
     cards.forEach((card, i) => {
       card.addEventListener('click', () => goTo(i));
-      card.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') goTo(i);
+    });
+
+    // Permitir clic en el track para navegar
+    if (track) {
+      track.addEventListener('click', (e) => {
+        const rect = track.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const percentage = clickX / rect.width;
+        
+        if (percentage < 0.33) goTo(0);
+        else if (percentage > 0.66) goTo(2);
+        else goTo(1);
       });
-    });
+    }
 
-    // Keyboard arrows
-    document.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') goTo(current - 1);
-      if (e.key === 'ArrowRight') goTo(current + 1);
-    });
-
-    // Initialize
-    goTo(1);
+    goTo(1); // Inicializa en el centro
   });
 </script>

@@ -16,14 +16,230 @@
   --color-red-accent:    #e53935;
 
   /* Fonts */
-  --font-display: "Barlow Condensed", sans-serif;
-  --font-barlow:  "Barlow", sans-serif;
-  --font-body:    "Inter", sans-serif;
+  --font-display: 'Rogue Sans Nova Condensed', sans-serif;
+  --font-barlow:  'Rogue Sans Nova', sans-serif;
+  --font-body:    'Rogue Sans Nova', sans-serif;
 
   /* Box shadows */
   --shadow-card:   0 4px 24px rgba(0,0,0,0.4);
   --shadow-navbar: 0 2px 20px rgba(0,0,0,0.6);
   --shadow-deep:   0 8px 40px rgba(0,0,0,0.6);
+}
+
+/* ─── Rogue Sans Nova — Base ─────────────────────────────────────────── */
+@font-face {
+  font-family: 'Rogue Sans Nova';
+  src: url('/fonts/Rogue Sans Nova ExtraLight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova';
+  src: url('/fonts/Rogue Sans Nova ExtraLight Italic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova';
+  src: url('/fonts/Rogue Sans Nova Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova';
+  src: url('/fonts/Rogue Sans Nova Light Italic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova';
+  src: url('/fonts/Rogue Sans Nova Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova';
+  src: url('/fonts/Rogue Sans Nova Medium Italic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova';
+  src: url('/fonts/Rogue Sans Nova DemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova';
+  src: url('/fonts/Rogue Sans Nova DemiBold Italic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova';
+  src: url('/fonts/Rogue Sans Nova Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova';
+  src: url('/fonts/Rogue Sans Nova Bold Italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─── Rogue Sans Nova Condensed ─────────────────────────────────────── */
+@font-face {
+  font-family: 'Rogue Sans Nova Condensed';
+  src: url('/fonts/Rogue Sans Nova Condensed ExtraLight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Condensed';
+  src: url('/fonts/Rogue Sans Nova Condensed ExtraLight Italic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Condensed';
+  src: url('/fonts/Rogue Sans Nova Condensed Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Condensed';
+  src: url('/fonts/Rogue Sans Nova Condensed Light Italic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Condensed';
+  src: url('/fonts/Rogue Sans Nova Condensed Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Condensed';
+  src: url('/fonts/Rogue Sans Nova Condensed Medium Italic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Condensed';
+  src: url('/fonts/Rogue Sans Nova Condensed DemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Condensed';
+  src: url('/fonts/Rogue Sans Nova Condensed DemiBold Italic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Condensed';
+  src: url('/fonts/Rogue Sans Nova Condensed Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Condensed';
+  src: url('/fonts/Rogue Sans Nova Condensed Bold Italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─── Rogue Sans Nova Extended ──────────────────────────────────────── */
+@font-face {
+  font-family: 'Rogue Sans Nova Extended';
+  src: url('/fonts/Rogue Sans Nova Extended ExtraLight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Extended';
+  src: url('/fonts/Rogue Sans Nova Extended ExtraLight Italic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Extended';
+  src: url('/fonts/Rogue Sans Nova Extended Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Extended';
+  src: url('/fonts/Rogue Sans Nova Extended Light Italic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Extended';
+  src: url('/fonts/Rogue Sans Nova Extended Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Extended';
+  src: url('/fonts/Rogue Sans Nova Extended Medium Italic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Extended';
+  src: url('/fonts/Rogue Sans Nova Extended DemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Extended';
+  src: url('/fonts/Rogue Sans Nova Extended DemiBold Italic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Extended';
+  src: url('/fonts/Rogue Sans Nova Extended Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rogue Sans Nova Extended';
+  src: url('/fonts/Rogue Sans Nova Extended Bold Italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
 }
 
 /* Base */
@@ -34,7 +250,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #0a0e1a;
   color: #ffffff;
-  font-family: "Inter", sans-serif;
+  font-family: 'Rogue Sans Nova', sans-serif;
 }
 
 /* Layout helpers */
@@ -48,7 +264,7 @@ body {
 
 /* Eyebrow label */
 .eyebrow {
-  font-family: "Barlow", sans-serif;
+  font-family: 'Rogue Sans Nova', sans-serif;
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
