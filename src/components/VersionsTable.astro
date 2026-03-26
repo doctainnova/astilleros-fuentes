@@ -122,19 +122,230 @@ const cleanName = modelName.replace('Classer ', '');
           Hacé que tu <span class="font-black">Classer {cleanName}</span> sea única.
         </h3>
         
-        <img
-          src={paletteUrl}
-          alt={`Opciones de colores para ${modelName}`}
-          class="w-full max-w-4xl mx-auto h-auto object-contain"
-          loading="lazy"
-          decoding="async"
-          onerror="this.style.display='none'"
-        />
+        <div class="palette-root">
+
+          <!-- GELCOAT -->
+          <div class="palette-section">
+            <div class="palette-heading">
+              <span class="palette-title">OPCIONES DE GELCOAT</span>
+              <span class="palette-subtitle">Pintura del casco y borda.</span>
+            </div>
+            <div class="palette-swatches">
+              <div class="swatch-item">
+                <div class="swatch swatch--bordered" style="background:#FFFFFF"></div>
+                <span class="swatch-name">BLANCO</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch" style="background:#3A3A3A"></div>
+                <span class="swatch-name">TITANIUM</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch" style="background:#868686"></div>
+                <span class="swatch-name">NARDO</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch" style="background:#1B6FC2"></div>
+                <span class="swatch-name">TURQUESA</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch" style="background:#C62828"></div>
+                <span class="swatch-name">ROJO</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch" style="background:#111111"></div>
+                <span class="swatch-name">NEGRO</span>
+                <span class="swatch-note">(Solo para el casco)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAPICERÍA -->
+          <div class="palette-section">
+            <div class="palette-heading">
+              <span class="palette-title">OPCIONES DE TAPICERÍA</span>
+              <span class="palette-subtitle">Elegí tanto el color principal como los vivos.</span>
+            </div>
+            <div class="palette-swatches">
+              <div class="swatch-item">
+                <span class="swatch-material">Glasgow</span>
+                <div class="swatch swatch--bordered" style="background:#CACACA"></div>
+                <span class="swatch-name">GRIS CLARO</span>
+              </div>
+              <div class="swatch-item">
+                <span class="swatch-material">Glasgow</span>
+                <div class="swatch" style="background:#989898"></div>
+                <span class="swatch-name">GRIS MEDIO</span>
+              </div>
+              <div class="swatch-item">
+                <span class="swatch-material">Glasgow</span>
+                <div class="swatch" style="background:#585858"></div>
+                <span class="swatch-name">GRIS OSCURO</span>
+              </div>
+              <div class="swatch-item">
+                <span class="swatch-material">Glasgow</span>
+                <div class="swatch" style="background:#252525"></div>
+                <span class="swatch-name">GRIS NEGRO</span>
+              </div>
+              <div class="swatch-item">
+                <span class="swatch-material">Cuerina Clásica</span>
+                <div class="swatch" style="background:#C62828"></div>
+                <span class="swatch-name">ROJO</span>
+              </div>
+              <div class="swatch-item">
+                <span class="swatch-material">Cuerina Clásica</span>
+                <div class="swatch" style="background:#8B6040"></div>
+                <span class="swatch-name">HABANO</span>
+              </div>
+              <div class="swatch-item">
+                <span class="swatch-material">Cuerina Texturada</span>
+                <div class="swatch" style="background:#111111"></div>
+                <span class="swatch-name">NEGRO</span>
+                <span class="swatch-note">(Texturado)</span>
+              </div>
+              <div class="swatch-item">
+                <span class="swatch-material">Cuerina Texturada</span>
+                <div class="swatch" style="background:#C62828"></div>
+                <span class="swatch-name">ROJO</span>
+                <span class="swatch-note">(Texturado)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PISO -->
+          <div class="palette-section palette-section--last">
+            <div class="palette-heading">
+              <span class="palette-title">OPCIONES DE PISO</span>
+              <span class="palette-subtitle">Elegí entre goma Evadeck o alfombra Evolve desmontable.</span>
+            </div>
+            <div class="palette-swatches">
+              <div class="swatch-item">
+                <div class="swatch swatch--bordered" style="background:#CACACA"></div>
+                <span class="swatch-name">GRIS CLARO</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch" style="background:#585858"></div>
+                <span class="swatch-name">GRIS OSCURO</span>
+              </div>
+              <div class="swatch-item">
+                <div class="swatch" style="background:#8B6040"></div>
+                <span class="swatch-name">HABANO</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
 
   </div>
 </section>
+
+<style>
+  /* ── Palette root ───────────────────────────────────── */
+  .palette-root {
+    width: 100%;
+  }
+
+  /* ── Section ────────────────────────────────────────── */
+  .palette-section {
+    margin-bottom: 2rem;
+  }
+  .palette-section--last {
+    margin-bottom: 0;
+  }
+
+  /* ── Heading row ────────────────────────────────────── */
+  .palette-heading {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.9rem;
+  }
+  .palette-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    color: #000;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .palette-subtitle {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.82rem;
+    color: #555;
+    line-height: 1;
+  }
+
+  /* ── Swatches row ───────────────────────────────────── */
+  .palette-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  /* ── Individual swatch item ─────────────────────────── */
+  .swatch-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    width: 76px;
+  }
+
+  /* ── Color square ───────────────────────────────────── */
+  .swatch {
+    width: 76px;
+    height: 76px;
+    flex-shrink: 0;
+  }
+  .swatch--bordered {
+    outline: 1px solid #b8b8b8;
+    outline-offset: -1px;
+  }
+
+  /* ── Labels ─────────────────────────────────────────── */
+  .swatch-material {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 0.58rem;
+    color: #888;
+    text-align: center;
+    line-height: 1.2;
+    min-height: 0.9rem;
+  }
+  .swatch-name {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 0.62rem;
+    color: #111;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+  }
+  .swatch-note {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.55rem;
+    color: #888;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  /* ── Mobile ─────────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .swatch-item { width: 58px; }
+    .swatch      { width: 58px; height: 58px; }
+    .palette-title   { font-size: 0.9rem; }
+    .palette-subtitle { font-size: 0.75rem; }
+    .palette-swatches { gap: 0.5rem; }
+  }
+</style>
 
 <script>
   import { gsap } from 'gsap';
