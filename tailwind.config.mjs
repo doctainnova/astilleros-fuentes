@@ -19,9 +19,9 @@ export default {
         'red-accent':     '#e53935',
       },
       fontFamily: {
-        display:  ['"Barlow Condensed"', 'sans-serif'],
-        barlow:   ['"Barlow"', 'sans-serif'],
-        body:     ['"Inter"', 'sans-serif'],
+        display:  ['"Rogue Sans Nova Condensed"', 'sans-serif'],
+        barlow:   ['"Rogue Sans Nova"', 'sans-serif'],
+        body:     ['"Rogue Sans Nova"', 'sans-serif'],
       },
       fontSize: {
         'hero': 'clamp(2.5rem, 6vw, 5rem)',
