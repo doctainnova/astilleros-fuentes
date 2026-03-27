@@ -108,5 +108,59 @@
     cursor: pointer;
     transition: background 200ms ease;
   }
-  .cta-btn:hover { background: #157bb8; }
+  .cta-btn:hover    { background: #157bb8; }
+  .cta-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .cta-status { font-size: 0.78rem; margin-top: 0.75rem; min-height: 1rem; }
+  .cta-status--ok    { color: #4ade80; }
+  .cta-status--error { color: #f87171; }
 </style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('form[aria-label="Formulario de contacto"]');
+  const btn  = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+  const status = document.createElement('p');
+  status.className = 'cta-status';
+  btn?.insertAdjacentElement('afterend', status);
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+    const payload = {
+      full_name: (data.get('nombre')   as string)?.trim(),
+      phone:     (data.get('telefono') as string)?.trim(),
+      email:     (data.get('email')    as string)?.trim(),
+    };
+
+    if (!payload.full_name || !payload.email) {
+      status.textContent = 'Por favor completá nombre y correo.';
+      status.className = 'cta-status cta-status--error';
+      return;
+    }
+
+    if (btn) { btn.disabled = true; btn.textContent = 'ENVIANDO...'; }
+    status.textContent = '';
+    status.className = 'cta-status';
+
+    try {
+      const res = await fetch('https://darkturquoise-rabbit-399304.hostingersite.com/api/nextAdventure.php', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      status.textContent = '¡Mensaje enviado! Nos comunicaremos pronto.';
+      status.className = 'cta-status cta-status--ok';
+      form.reset();
+    } catch (err) {
+      status.textContent = 'Hubo un error al enviar. Intentá de nuevo.';
+      status.className = 'cta-status cta-status--error';
+      console.error('[CTAContacto]', err);
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = 'CONTACTAR A UN ASESOR'; }
+    }
+  });
+</script>
