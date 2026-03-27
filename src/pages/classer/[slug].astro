@@ -95,28 +95,51 @@ if (!model) {
     <section id="exterior" class="py-20 bg-bg-light" aria-label="Características exteriores">
       <div class="container-site">
 
+        {model.technicalDiagramUrl ? (
+          <!-- Two-column layout: diagram left, list right -->
+          <div class="flex flex-col lg:flex-row items-center gap-8 reveal">
 
-        <!-- Technical diagram -->
-        <div class="reveal mb-10">
-          <img
-            src="https://placehold.co/700x480/f4f4f2/6b7a99?text=Technical+Diagram"
-            alt={`Diagrama técnico ${model.name}`}
-            width="700"
-            height="480"
-            class="w-full max-w-3xl mx-auto rounded-lg block"
-            loading="lazy"
-          />
-        </div>
-
-        <!-- Feature grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-3xl mx-auto reveal">
-          {model.exteriorFeatures.map((feature, i) => (
-            <div class="flex items-center gap-3 py-2 border-b border-black/8">
-              <span class="text-accent-blue font-bold text-sm flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
-              <span class="text-text-dark text-sm">{feature}</span>
+            <!-- Diagram with optional number overlays -->
+            <div class="lg:w-[60%] flex-shrink-0 relative">
+              <img
+                src={model.technicalDiagramUrl}
+                alt={`Diagrama técnico ${model.name}`}
+                class="w-full h-auto block"
+                loading="lazy"
+              />
+              {model.featurePoints && model.featurePoints.map((pt, i) => (
+                <span
+                  class="diagram-badge"
+                  style={`left: ${pt.x}%; top: ${pt.y}%;`}
+                  aria-hidden="true"
+                >
+                  {i + 1}
+                </span>
+              ))}
             </div>
-          ))}
-        </div>
+
+            <!-- Feature list -->
+            <div class="lg:w-[40%] flex flex-col gap-0">
+              {model.exteriorFeatures.map((feature, i) => (
+                <div class="flex items-start gap-3 py-3 border-b border-black/10 group">
+                  <span class="diagram-badge-list flex-shrink-0">{i + 1}</span>
+                  <span class="text-text-dark text-sm leading-snug">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <!-- Fallback: no diagram, just the grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-3xl mx-auto reveal">
+            {model.exteriorFeatures.map((feature, i) => (
+              <div class="flex items-center gap-3 py-2 border-b border-black/8">
+                <span class="text-accent-blue font-bold text-sm flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                <span class="text-text-dark text-sm">{feature}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
       </div>
     </section>
   )}
@@ -138,7 +161,25 @@ if (!model) {
       <div id="interior-scroll" class="flex gap-2 h-80 md:h-[480px] reveal overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing w-full px-[26px]">
         {model.interiorImages.map((img, i) => (
           <div class={`overflow-hidden flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[500px]`}>
-            <img src={img.url} alt={`Interior ${model.name} — imagen ${i + 1}`} width={img.w} height={img.h} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+            {i < 3 ? (
+              <img
+                src={img.url}
+                alt={`Interior ${model.name} — imagen ${i + 1}`}
+                width={img.w}
+                height={img.h}
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                loading={i === 0 ? 'eager' : 'lazy'}
+                fetchpriority={i === 0 ? 'high' : 'low'}
+              />
+            ) : (
+              <div
+                class="lazy-carousel-img w-full h-full bg-bg-mid"
+                data-src={img.url}
+                data-alt={`Interior ${model.name} — imagen ${i + 1}`}
+                data-w={img.w}
+                data-h={img.h}
+              />
+            )}
           </div>
         ))}
       </div>
@@ -171,7 +212,25 @@ if (!model) {
       <div id="galeria-scroll" class="flex gap-2 h-80 md:h-[480px] reveal overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing w-full px-[26px]">
         {model.exteriorImages.map((img, i) => (
           <div class={`overflow-hidden flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[500px]`}>
-            <img src={img.url} alt={`Exterior ${model.name} — imagen ${i + 1}`} width={img.w} height={img.h} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
+            {i < 3 ? (
+              <img
+                src={img.url}
+                alt={`Exterior ${model.name} — imagen ${i + 1}`}
+                width={img.w}
+                height={img.h}
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                loading={i === 0 ? 'eager' : 'lazy'}
+                fetchpriority={i === 0 ? 'high' : 'low'}
+              />
+            ) : (
+              <div
+                class="lazy-carousel-img w-full h-full bg-bg-mid"
+                data-src={img.url}
+                data-alt={`Exterior ${model.name} — imagen ${i + 1}`}
+                data-w={img.w}
+                data-h={img.h}
+              />
+            )}
           </div>
         ))}
       </div>
@@ -233,6 +292,46 @@ if (!model) {
   .scroll-thumb-custom:active {
     cursor: grabbing;
     background: rgba(255, 255, 255, 0.8);
+  }
+
+  /* ── Diagram number badges ── */
+  .diagram-badge {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid #1e90d4;
+    background: rgba(255,255,255,0.92);
+    color: #1e2b50;
+    font-size: 0.6rem;
+    font-weight: 700;
+    font-style: italic;
+    font-family: 'Rogue Sans Nova Condensed', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    pointer-events: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    z-index: 10;
+  }
+
+  .diagram-badge-list {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid #1e90d4;
+    color: #1e90d4;
+    font-size: 0.6rem;
+    font-weight: 700;
+    font-style: italic;
+    font-family: 'Rogue Sans Nova Condensed', sans-serif;
+    flex-shrink: 0;
+    line-height: 1;
   }
 </style>
 
@@ -351,5 +450,48 @@ if (!model) {
 
     setupCustomScroll('interior-scroll', 'interior-track', 'interior-thumb');
     setupCustomScroll('galeria-scroll', 'galeria-track', 'galeria-thumb');
+
+    // ── Horizontal Lazy Loading ──────────────────────────────────────
+    // Watches placeholder divs inside each carousel and swaps them to
+    // real <img> elements as they scroll into view
+    function setupHorizontalLazyLoad(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const placeholders = container.querySelectorAll('.lazy-carousel-img');
+      if (!placeholders.length) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const placeholder = entry.target;
+          const src = placeholder.dataset.src;
+          if (!src) return;
+
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = placeholder.dataset.alt || '';
+          img.width = parseInt(placeholder.dataset.w || '560');
+          img.height = parseInt(placeholder.dataset.h || '380');
+          img.className = 'w-full h-full object-cover hover:scale-105 transition-transform duration-500';
+          img.loading = 'lazy';
+          img.style.opacity = '0';
+          img.style.transition = 'opacity 0.4s ease';
+          img.onload = () => { img.style.opacity = '1'; };
+
+          placeholder.replaceWith(img);
+          observer.unobserve(placeholder);
+        });
+      }, {
+        root: container,         // observe within the carousel container
+        rootMargin: '0px 300px 0px 0px', // preload 300px before visible
+        threshold: 0.01,
+      });
+
+      placeholders.forEach(el => observer.observe(el));
+    }
+
+    setupHorizontalLazyLoad('interior-scroll');
+    setupHorizontalLazyLoad('galeria-scroll');
   });
 </script>
