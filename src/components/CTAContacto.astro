@@ -55,12 +55,6 @@
         class="cta-input"
       />
       <input
-        type="tel"
-        name="telefono"
-        placeholder="Teléfono / WhatsApp"
-        class="cta-input"
-      />
-      <input
         type="email"
         name="email"
         placeholder="Correo Electrónico"
@@ -108,5 +102,36 @@
     cursor: pointer;
     transition: background 200ms ease;
   }
-  .cta-btn:hover { background: #157bb8; }
+  .cta-btn:hover    { background: #157bb8; }
+  .cta-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .cta-status { font-size: 0.78rem; margin-top: 0.75rem; min-height: 1rem; }
+  .cta-status--ok    { color: #4ade80; }
+  .cta-status--error { color: #f87171; }
 </style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('form[aria-label="Formulario de contacto"]');
+  const btn  = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+  const status = document.createElement('p');
+  status.className = 'cta-status';
+  btn?.insertAdjacentElement('afterend', status);
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+    const nombre = (data.get('nombre') as string)?.trim();
+    const email  = (data.get('email')  as string)?.trim();
+
+    if (!nombre || !email) {
+      status.textContent = 'Por favor completá nombre y correo.';
+      status.className = 'cta-status cta-status--error';
+      return;
+    }
+
+    const mensaje = `Hola! Me llamo ${nombre} y quiero recibir asesoramiento sobre embarcaciones Classer. Mi correo es ${email}.`;
+    const url = `https://wa.me/5493534781206?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+  });
+</script>

@@ -86,7 +86,7 @@ const { isFixed = false } = Astro.props;
         <div id="mobile-models-submenu" class="hidden flex-col" style="background: rgba(255,255,255,0.03);">
           {models.map(model => (
             <a
-              href={`/classer/${model.slug}`}
+              href={model.preVentaVideoUrl ? `/classer/pre-venta/${model.slug}` : `/classer/${model.slug}`}
               class="flex items-center justify-between"
               style="
                 padding: 0.75rem 1rem;
@@ -121,7 +121,7 @@ const { isFixed = false } = Astro.props;
   <div class="max-w-6xl mx-auto flex flex-row justify-center" style="gap: 2px; align-items: flex-start;">
     {models.map(model => (
       <a
-        href={`/classer/${model.slug}`}
+        href={model.preVentaVideoUrl ? `/classer/pre-venta/${model.slug}` : `/classer/${model.slug}`}
         class="mega-card group flex flex-col items-center"
       >
         <!-- Thumbnail -->
@@ -132,9 +132,10 @@ const { isFixed = false } = Astro.props;
             alt={model.name}
             width="160"
             height="110"
-            style="width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease;"
-            class="mega-thumb group-hover:scale-[1.04]"
+            loading="eager"
             decoding="async"
+            style="width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease;"
+            class="group-hover:scale-[1.04]"
           />
           {model.badge && (
             <span
@@ -282,21 +283,7 @@ const { isFixed = false } = Astro.props;
   megaMenu?.addEventListener('mouseenter', showMenu);
   megaMenu?.addEventListener('mouseleave', hideMenu);
 
-  // ── Load mega menu thumbnails on first open ───────────────────
-  let thumbsLoaded = false;
-  function loadMegaMenuThumbs(): void {
-    if (thumbsLoaded) return;
-    thumbsLoaded = true;
-    document.querySelectorAll('.mega-thumb[data-src]').forEach(img => {
-      const el = img as HTMLImageElement;
-      if (el.dataset.src) {
-        el.src = el.dataset.src;
-        el.removeAttribute('data-src');
-      }
-    });
-  }
-
-  trigger?.addEventListener('mouseenter', () => { loadMegaMenuThumbs(); showMenu(); });
+  trigger?.addEventListener('mouseenter', showMenu);
   trigger?.addEventListener('mouseleave', hideMenu);
   megaMenu?.addEventListener('mouseenter', showMenu);
   megaMenu?.addEventListener('mouseleave', hideMenu);

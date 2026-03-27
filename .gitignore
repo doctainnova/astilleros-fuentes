@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# multimedia assets (heavy files — served externally or locally only)
+public/image/
+public/brochures/
+public/fonts/
+src/assets/

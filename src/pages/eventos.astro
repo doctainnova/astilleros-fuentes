@@ -21,6 +21,23 @@ import n10Img        from '../assets/noticias/10.webp';
 
 const events = [
   {
+    id: 'agoactiva',
+    badge: 'NOTICIAS',
+    date: 'JUNIO, 2025',
+    title: 'AGROACTIVA',
+    desc: 'Del 4 al 7 de junio de 2025, parte del equipo comercial de Astillero Fuentes, Classer asistió a la Agroactiva..',
+    body: [
+      'Del 4 al 7 de junio de 2025, parte del equipo comercial de Astillero Fuentes, Classer asistió a la Agroactiva',
+      'Un evento orientado al campo Argentino en donde se presentan variedad de empresas, incluidas automotrices como de interés general.',
+      'En el evento se presentaron dos 246, una 170 y una 206 FTX.',
+    ],
+    thumbSrc: caselImg,
+    thumbAlt: 'CACEL 2025 — Campeonato Argentino de Carreras en Villa María',
+    detailSrc: caselImg,
+    detailAlt: 'CACEL 2025 — Campeonato Argentino de Carreras',
+    gallery: [lzn02Img, lzn03Img, lzn04Img, n1Img, n2Img],
+  },
+  {
     id: 'cacel-2025',
     badge: 'NOTICIAS',
     date: 'FEBRERO, 2025',
@@ -480,9 +497,9 @@ const events = [
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const eventsCount = 3;
     const cards = document.querySelectorAll<HTMLElement>('.ev-card');
     const panels = document.querySelectorAll<HTMLElement>('.detail-panel');
+    const eventsCount = cards.length;
     const thumb = document.getElementById('events-thumb') as HTMLElement;
     const track = document.getElementById('events-track') as HTMLElement;
 
@@ -537,19 +554,17 @@ const events = [
       card.addEventListener('click', () => goTo(i));
     });
 
-    // Permitir clic en el track para navegar
+    // Permitir clic en el track para navegar (dinámico según cantidad)
     if (track) {
       track.addEventListener('click', (e) => {
         const rect = track.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         const percentage = clickX / rect.width;
-        
-        if (percentage < 0.33) goTo(0);
-        else if (percentage > 0.66) goTo(2);
-        else goTo(1);
+        const index = Math.min(eventsCount - 1, Math.floor(percentage * eventsCount));
+        goTo(index);
       });
     }
 
-    goTo(1); // Inicializa en el centro
+    goTo(1); // Inicializa en la segunda tarjeta
   });
 </script>
