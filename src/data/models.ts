@@ -33,6 +33,8 @@ export interface Model {
   pisoColors: { name: string; hex: string }[];
   interiorImages: { url: string; w: number; h: number }[];
   exteriorImages: { url: string; w: number; h: number }[];
+  technicalDiagramUrl?: string;
+  featurePoints?: { x: number; y: number }[];
 }
 
 export const models: Model[] = [
@@ -47,6 +49,26 @@ export const models: Model[] = [
     silhouetteTechnicalUrl: "/image/siluetas/246 DF.webp",
     tagline: "El estándar de la excelencia.",
     brochure: "/brochures/246 DF.pdf",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/246 DF.png",
+    featurePoints: [
+      { x: 19, y: 22 }, // 01 Escalera retráctil inox
+      { x: 30, y: 17 }, // 02 Tanque combustible
+      { x: 58, y: 17 }, // 03 Perfil perimetral
+      { x: 66, y: 9 }, // 04 Cockpit en U con mesa
+      { x: 76, y: 2 }, // 05 Piso evadeck
+      { x: 94, y: 17 }, // 06 Parabrisas
+      { x: 90, y: 62 }, // 07 Tapizado marino
+      { x: 71, y: 72 }, // 08 Sistema de audio
+      { x: 75, y: 89 }, // 09 Bodega de proa
+      { x: 61, y: 92 }, // 10 Iluminación LED
+      { x: 47, y: 79 }, // 11 Canopla de proa
+      { x: 39.5, y: 99 }, // 12 Pasamanos inox
+      { x: 32, y: 77 }, // 13 Pasamanos inox
+      { x: 21, y: 83 }, // 14 Pasamanos inox
+      { x: 10, y: 85 }, // 15 Pasamanos inox
+      { x: 15.5, y: 36 }, // 16 Pasamanos inox
+
+    ],
     specs: [
       { label: "Eslora Máx", value: "7.40m", icon: "ruler" },
       { label: "Manga", value: "2.55m", icon: "arrows-horizontal" },
@@ -188,6 +210,26 @@ export const models: Model[] = [
     silhouetteTechnicalUrl: "/image/siluetas/246 SURF.webp",
     tagline: "Performance y estilo en cada ola.",
     brochure: "/brochures/246 SURF.pdf",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/246 SURF.png",
+    featurePoints: [
+      { x: 21, y: 25 }, // 01 Escalera retráctil inox
+      { x: 31, y: 22 }, // 02 Tanque combustible
+      { x: 54, y: 20 }, // 03 Perfil perimetral
+      { x: 61, y: 13 }, // 04 Cockpit en U con mesa
+      { x: 69, y: 6 }, // 05 Piso evadeck
+      { x: 84, y: 20 }, // 06 Parabrisas
+      { x: 80, y: 62 }, // 07 Tapizado marino
+      { x: 65, y: 72 }, // 08 Sistema de audio
+      { x: 69, y: 87 }, // 09 Bodega de proa
+      { x: 56, y: 90 }, // 10 Iluminación LED
+      { x: 45, y: 78 }, // 11 Canopla de proa
+      { x: 39, y: 97 }, // 12 Pasamanos inox
+      { x: 32, y: 77 }, // 13 Pasamanos inox
+      { x: 23, y: 83 }, // 14 Pasamanos inox
+      { x: 14, y: 83 }, // 15 Pasamanos inox
+      { x: 19, y: 39 }, // 16 Pasamanos inox
+
+    ],
     specs: [
       { label: "Eslora Máx", value: "7.40m", icon: "ruler" },
       { label: "Manga", value: "2.55m", icon: "arrows-horizontal" },
@@ -336,6 +378,26 @@ export const models: Model[] = [
     silhouetteTechnicalUrl: "/image/siluetas/246 OB.webp",
     tagline: "Potencia fuera de borda sin compromisos.",
     brochure: "/brochures/246 OB.pdf",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/246 OB.png",
+    featurePoints: [
+      { x: 24, y: 28 }, // 01 Escalera retráctil inox
+      { x: 38, y: 12 }, // 02 Tanque combustible
+      { x: 57, y: 19 }, // 03 Perfil perimetral
+      { x: 58, y: 9 }, // 04 Cockpit en U con mesa
+      { x: 71, y: 20 }, // 05 Piso evadeck
+      { x: 84, y: 17 }, // 06 Parabrisas
+      { x: 83, y: 56 }, // 07 Tapizado marino
+      { x: 71, y: 64 }, // 08 Sistema de audio
+      { x: 65, y: 94 }, // 09 Bodega de proa
+      { x: 60, y: 87 }, // 10 Iluminación LED
+      { x: 48, y: 76 }, // 11 Canopla de proa
+      { x: 41, y: 95 }, // 12 Pasamanos inox
+      { x: 34, y: 75 }, // 13 Pasamanos inox
+      { x: 27, y: 85 }, // 14 Pasamanos inox
+      { x: 19, y: 86 }, // 15 Pasamanos inox
+      { x: 24, y: 39 }, // 16 Pasamanos inox
+
+    ],
     specs: [
       { label: "Eslora Máx", value: "7.80m", icon: "ruler" },
       { label: "Manga", value: "2.60m", icon: "arrows-horizontal" },
@@ -494,6 +556,21 @@ export const models: Model[] = [
     silhouetteTechnicalUrl: "/image/siluetas/206 FTX.webp",
     tagline: "El punto de inflexión entre performance y confort.",
     brochure: "/brochures/206 FTX.pdf",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/206 FTX.png",
+    featurePoints: [
+      { x: 22, y: 9 }, // 01 Escalera retráctil
+      { x: 44, y: 9 }, // 02 Tanque acero inoxidable
+      { x: 61, y: 7 }, // 03 Perfil perimetral
+      { x: 58, y: 18 }, // 04 Cockpit en U
+      { x: 68, y: 30 }, // 05 Piso antideslizante evadeck
+      { x: 90, y: 21 }, // 06 Parabrisas integrado
+      { x: 90, y: 70 }, // 07 Tapizado premium
+      { x: 61, y: 97 }, // 08 Sistema de audio marino
+      { x: 43, y: 92 }, // 09 Bodega de proa
+      { x: 39, y: 82 }, // 10 Luz de navegación LED
+      { x: 19, y: 91 }, // 11 Canopla de proa
+      { x: 17, y: 37 }, // 12 Pasamanos acero inoxidable
+    ],
     specs: [
       { label: "Eslora Máx", value: "6.08m", icon: "ruler" },
       { label: "Manga", value: "2.40m", icon: "arrows-horizontal" },
@@ -509,18 +586,18 @@ export const models: Model[] = [
       { label: "Velocidad Máx", value: "45 nudos", icon: "gauge" },
     ],
     exteriorFeatures: [
-      "Escalera retráctil",
-      "Tanque acero inoxidable",
-      "Perfil perimetral",
-      'Cockpit en "U"',
-      "Piso antideslizante evadeck",
-      "Parabrisas integrado",
-      "Tapizado premium resistente UV",
-      "Sistema de audio marino",
-      "Bodega de proa con colchoneta",
-      "Luz de navegación LED",
-      "Canopla de proa",
-      "Pasamanos acero inoxidable",
+      "Tapicería construida en tela náutica Heavy Duty con protección UV",
+      'Butacón tipo "bucket" giratoria con elevador de asiento abatible y corredera ajustable',
+      "Torre para wakeboard importada",
+      "Guantera de acompañante con cerradura",
+      "Compartimiento guarda ski en pasillo de cockpit a proa",
+      "Cavidad porta anclas con tapa en el extremo de proa",
+      "Perfil perimetral de protección con inserto en acero inoxidable",
+      "Volante de mando importado",
+      "Piso antideslizante tipo evadeck con diseño único a este modelo",
+      "Tanque de combustible de acero inoxidable con sensor magnético",
+      "Plataformas de popa integradas para fácil acceso y descenso del agua",
+      "Sistema de audio con Bluetooth y cuatro parlantes náuticos",
     ],
     versions: [
       {
@@ -667,6 +744,7 @@ export const models: Model[] = [
     silhouetteTechnicalUrl: "/image/siluetas/165.webp",
     tagline: "Compacta y ágil.",
     brochure: "/brochures/165.pdf",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/165.png",
     specs: [
       { label: "Eslora Máx", value: "5.10m", icon: "ruler" },
       { label: "Manga", value: "2.10m", icon: "arrows-horizontal" },
@@ -744,6 +822,7 @@ export const models: Model[] = [
     silhouetteTechnicalUrl: "/image/siluetas/170.webp",
     tagline: "Versatilidad en cada ola.",
     brochure: "/brochures/170.pdf",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/170.png",
     specs: [
       { label: "Eslora Máx", value: "5.40m", icon: "ruler" },
       { label: "Manga", value: "2.20m", icon: "arrows-horizontal" },
