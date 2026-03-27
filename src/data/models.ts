@@ -35,6 +35,8 @@ export interface Model {
   exteriorImages: { url: string; w: number; h: number }[];
   technicalDiagramUrl?: string;
   featurePoints?: { x: number; y: number }[];
+  preVentaVideoUrl?: string;
+  preVentaSpecs?: { label: string; value: string; icon: string }[];
 }
 
 export const models: Model[] = [
@@ -67,7 +69,6 @@ export const models: Model[] = [
       { x: 21, y: 83 }, // 14 Pasamanos inox
       { x: 10, y: 85 }, // 15 Pasamanos inox
       { x: 15.5, y: 36 }, // 16 Pasamanos inox
-
     ],
     specs: [
       { label: "Eslora Máx", value: "7.40m", icon: "ruler" },
@@ -84,18 +85,22 @@ export const models: Model[] = [
       { label: "Velocidad Máx", value: "52 nudos", icon: "gauge" },
     ],
     exteriorFeatures: [
-      "Escalera retráctil inox",
-      "Tanque combustible acero inoxidable",
-      "Perfil perimetral protector",
-      'Cockpit en "U" con mesa',
-      "Piso evadeck premium",
-      "Parabrisas panorámico",
-      "Tapizado marino UV",
-      "Sistema de audio 6 canales",
-      "Bodega de proa con colchoneta doble",
-      "Iluminación LED completa",
-      "Canopla de proa extensible",
-      "Pasamanos inox 316",
+      "Torre para wakeboard importada.<br/>Toldilla Bimini en lona acrílica importada con protección UV, estructura inoxidable y herrajes en bronce cromado.<br/>Sistema de audio con Bluetooth y cuatro parlantes náuticos.",
+      "Tapicería construida en tela náutica Heavy Duty con Protección UV y antihongos.<br/>Disposición de asientos que conforman una sala de estar en cockpit con mesa desmontable y amplios lugares de guarda.<br/>Luces full led en interior de cockpit.<br/>Sistema de calefacción integrado.",
+      "Compartimiento guarda ski en pasillo de cockpit a proa.",
+      "Compartimiento de baño interno. Guantera de acompañante con cerradura.",
+      "Sunpad de proa que forma un cómodo solarium acolchado.",
+      "Gran amplitud de espacio en proa con guarda y acceso directo a una escalera de abordaje.<br/>Cavidad porta anclas con tapa en el extremo de proa.",
+      "Perfil perimetral de protección con inserto en acero inoxidable.",
+      "Posavasos y manijones inoxidables de sujeción.<br/>Cornamusas rebatibles.",
+      "Volante de mando importado.<br/>Sistema de dirección hidráulica con columna de dirección regulable en altura.<br/>Pantalla digital para instrumentos de funciones de motor y navegación.<br/>Comando de control de luces, bomba de achique y accesorios en el puesto de mando con LED indicativos. Ecosonda integrada.",
+      'Butacón tipo "bucket" giratoria con elevador de asiento abatible y corredera ajustable.',
+      "Conservadora desmontable Coleman.",
+      "Tanque de combustible de acero inoxidable con sensor magnético.",
+      "Locker escurridor.",
+      "Asientos de popa rebatibles que forman un amplio sofá para tomar sol o descansar cómodamente.",
+      "Plataforma de baño integrada de gran amplitud para una experiencia única, con luces embutidas y escalera retráctil.",
+      "Duchador en planchada con sistema de agua dulce con tanque de 50 lts.",
     ],
     versions: [
       {
@@ -228,7 +233,6 @@ export const models: Model[] = [
       { x: 23, y: 83 }, // 14 Pasamanos inox
       { x: 14, y: 83 }, // 15 Pasamanos inox
       { x: 19, y: 39 }, // 16 Pasamanos inox
-
     ],
     specs: [
       { label: "Eslora Máx", value: "7.40m", icon: "ruler" },
@@ -245,18 +249,21 @@ export const models: Model[] = [
       { label: "Velocidad Máx", value: "52 nudos", icon: "gauge" },
     ],
     exteriorFeatures: [
-      "Escalera retráctil inox",
-      "Tanque combustible acero inoxidable",
-      "Perfil perimetral protector",
-      'Cockpit en "U" con mesa',
-      "Piso evadeck premium",
-      "Parabrisas panorámico",
-      "Tapizado marino UV",
-      "Sistema de audio 6 canales",
-      "Bodega de proa con colchoneta doble",
-      "Iluminación LED completa",
-      "Canopla de proa extensible",
-      "Pasamanos inox 316",
+      "Torre para wakeboard importada.<br/>Toldilla Bimini en lona acrílica importada con protección UV, estructura inoxidable y herrajes en bronce cromado.<br/>Sistema de audio con Bluetooth y cuatro parlantes náuticos.",
+      "Tapicería construida en tela náutica Heavy Duty con Protección UV y antihongos.<br/>Disposición de asientos que conforman una sala de estar en cockpit con mesa desmontable y amplios lugares de guarda.<br/>Luces full led en interior de cockpit.<br/>Sistema de calefacción integrado.",
+      "Compartimiento guarda ski en pasillo de cockpit a proa.",
+      "Compartimiento de baño interno.<br/>Guantera de acompañante con cerradura.",
+      "Sunpad de proa que forma un cómodo solarium acolchado.",
+      "Gran amplitud de espacio en proa con guarda y acceso directo a una escalera de abordaje.<br/>Cavidad porta anclas con tapa en el extremo de proa.",
+      "Perfil perimetral de protección con inserto en acero inoxidable.",
+      "Posavasos y manijones inoxidables de sujeción.<br/>Cornamusas rebatibles.",
+      "Volante de mando importado.<br/>Sistema de dirección hidráulica con columna de dirección regulable en altura.<br/>Pantalla digital para instrumentos de funciones de motor y navegación.<br/>Comando de control de luces, bomba de achique y accesorios en el puesto de mando con LED indicativos. Ecosonda integrada.",
+      'Butacón tipo "bucket" giratoria con elevador de asiento abatible y corredera ajustable.',
+      "Conservadora desmontable Coleman.",
+      "Tanque de combustible de acero inoxidable con sensor magnético.",
+      "Locker escurridor.",
+      "Asientos de popa rebatibles que forman un amplio sofá para tomar sol o descansar cómodamente.",
+      "Plataforma de baño integrada de gran amplitud para una experiencia única, con luces embutidas y escalera retráctil.",
     ],
     versions: [
       {
@@ -396,7 +403,6 @@ export const models: Model[] = [
       { x: 27, y: 85 }, // 14 Pasamanos inox
       { x: 19, y: 86 }, // 15 Pasamanos inox
       { x: 24, y: 39 }, // 16 Pasamanos inox
-
     ],
     specs: [
       { label: "Eslora Máx", value: "7.80m", icon: "ruler" },
@@ -413,12 +419,22 @@ export const models: Model[] = [
       { label: "Velocidad Máx", value: "55 nudos", icon: "gauge" },
     ],
     exteriorFeatures: [
-      "Escalera retráctil doble",
-      "Tanque combustible 220L inox",
-      "Consola central con parabrisas",
-      "Plataforma de popa extensible",
-      "Piso evadeck premium",
-      "Asientos delanteros con apoya brazos",
+      "Tapicería construida en tela náutica Heavy Duty con Protección UV.<br/>Disposición de asientos que conforman una sala de estar en cockpit con mesa desmontable y amplios lugares de guarda.<br/>Luces full led en interior de cockpit.",
+      "Torre para wakeboard importada.<br/>Toldilla Bimini en lona acrílica importada con protección UV, estructura inoxidable y herrajes en bronce cromado.<br/>Sistema de audio con Bluetooth y cuatro parlantes náuticos.",
+      "Compartimiento de baño interno.<br/>Guantera de acompañante con cerradura.",
+      "Compartimiento guarda ski en pasillo de cockpit a proa.",
+      "Sunpad de proa que forma un cómodo solarium acolchado.",
+      "Gran amplitud de espacio en proa con guarda y acceso directo a una escalera de abordaje.<br/>Cavidad porta anclas con tapa en el extremo de proa.",
+      "Perfil perimetral de protección con inserto en acero inoxidable.",
+      "Posavasos y manijones inoxidables de sujeción.<br/>Cornamusas rebatibles.",
+      "Volante de mando importado.<br/>Sistema de dirección hidráulica con columna de dirección regulable en altura.<br/>Pantalla digital para instrumentos de funciones de motor y navegación.<br/>Comando de control de luces, bomba de achique y accesorios en el puesto de mando con LED indicativos.<br/>Ecosonda integrada.",
+      'Butacón tipo "bucket" giratoria con elevador de asiento abatible y corredera ajustable.',
+      "Conservadora desmontable Coleman.",
+      "Tanque de combustible de acero inoxidable con sensor magnético.",
+      "Locker escurridor.",
+      "Asientos de popa rebatibles que forman un amplio sofá para tomar sol o descansar cómodamente.",
+      "Plataforma de popa tipo planchada integrada de gran amplitud para una experiencia única.<br/>Luces bajo planchada.<br/>Escalera retráctil debajo de planchada.",
+      "Duchador en planchada con sistema de agua dulce con tanque de 50 lts.",
     ],
     versions: [
       {
@@ -586,18 +602,18 @@ export const models: Model[] = [
       { label: "Velocidad Máx", value: "45 nudos", icon: "gauge" },
     ],
     exteriorFeatures: [
-      "Tapicería construida en tela náutica Heavy Duty con protección UV",
-      'Butacón tipo "bucket" giratoria con elevador de asiento abatible y corredera ajustable',
-      "Torre para wakeboard importada",
-      "Guantera de acompañante con cerradura",
-      "Compartimiento guarda ski en pasillo de cockpit a proa",
-      "Cavidad porta anclas con tapa en el extremo de proa",
-      "Perfil perimetral de protección con inserto en acero inoxidable",
-      "Volante de mando importado",
-      "Piso antideslizante tipo evadeck con diseño único a este modelo",
-      "Tanque de combustible de acero inoxidable con sensor magnético",
-      "Plataformas de popa integradas para fácil acceso y descenso del agua",
-      "Sistema de audio con Bluetooth y cuatro parlantes náuticos",
+      'Tapicería construida en tela náutica Heavy Duty con Protección UV.<br/>Amplio cockpit configurado en "U" para uso multipropósito, con sus correspondientes lugares de guarda.<br/>Mesa desmontable plástica con base inoxidable y posavasos integrados.',
+      'Butacón tipo "bucket" giratoria con elevador de asiento abatible y corredera ajustable.',
+      "Torre para wakeboard importada.<br/>Toldilla Bimini en lona acrílica importada con protección UV, estructura inoxidable y herrajes en bronce cromado.<br/>Sistema de audio con Bluetooth y cuatro parlantes náuticos.",
+      "Guantera de acompañante con cerradura.",
+      "Compartimiento guarda ski en pasillo de cockpit a proa.",
+      "Cavidad porta anclas con tapa en el extremo de proa.<br/>Posavasos y manijones inoxidables de sujeción.<br/>Cornamusas rebatibles.",
+      "Perfil perimetral de protección con inserto en acero inoxidable.",
+      "Volante de mando importado.<br/>Columna de dirección regulable en altura.<br/>Comando de control de luces, bomba de achique y accesorios en el puesto de mando con LED indicativos.<br/>Instrumental de seis elementos con indicadores de motor, performance y nivel de combustible. / Pantalla digital para instrumentos de funciones de motor y navegación.<br/>Ecosonda.",
+      "Piso antideslizante tipo evadeck con diseño único a este modelo.",
+      "Tanque de combustible de acero inoxidable con sensor magnético.",
+      "Plataformas de popa integradas para fácil acceso y descenso del agua.<br/>Escalera retráctil debajo de planchada.",
+      "Conservadora integrada de 24 lts. con desagote a sentina.",
     ],
     versions: [
       {
@@ -709,19 +725,26 @@ export const models: Model[] = [
     slug: "186",
     name: "Classer 186",
     line: "LINEA OB",
-    eslora: "PRÓXIMAMENTE",
+    eslora: "5.80M",
     badge: "PRONTO",
     thumbnailUrl: "/image/2_PRODUCTO/246 OB/1.webp",
     heroUrl: "/image/2_PRODUCTO/246 OB/1.webp",
     silhouetteTechnicalUrl: "/image/siluetas/186.webp",
     tagline: "El próximo capítulo. Próximamente.",
+    preVentaVideoUrl: "/image/pre-venta/186/animation.mp4",
+    preVentaSpecs: [
+      { label: "Eslora", value: "5,80m", icon: "ruler" },
+      { label: "Manga", value: "2,38m", icon: "arrows-horizontal" },
+      { label: "Personas", value: "8", icon: "users" },
+      { label: "Motorización", value: "115 a 150hp", icon: "lightning" },
+    ],
     specs: [
-      { label: "Eslora Máx", value: "TBD", icon: "ruler" },
-      { label: "Manga", value: "TBD", icon: "arrows-horizontal" },
+      { label: "Eslora Máx", value: "5.80m", icon: "ruler" },
+      { label: "Manga", value: "2.38m", icon: "arrows-horizontal" },
       { label: "Puntal", value: "TBD", icon: "arrow-up" },
-      { label: "Motorización", value: "TBD", icon: "lightning" },
+      { label: "Motorización", value: "115 a 150hp", icon: "lightning" },
       { label: "Combustible", value: "TBD", icon: "drop" },
-      { label: "Personas", value: "TBD", icon: "users" },
+      { label: "Personas", value: "8", icon: "users" },
     ],
     specsExtra: [],
     exteriorFeatures: [],
@@ -745,6 +768,20 @@ export const models: Model[] = [
     tagline: "Compacta y ágil.",
     brochure: "/brochures/165.pdf",
     technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/165.png",
+    featurePoints: [
+      { x: 33, y: 31 }, // 01 Escalera retráctil inox
+      { x: 41, y: 12 }, // 02 Tanque combustible
+      { x: 50.5, y: 17 }, // 03 Perfil perimetral
+      { x: 53.5, y: 9 }, // 04 Cockpit en U con mesa
+      { x: 55, y: 17 }, // 05 Piso evadeck
+      { x: 63.5, y: 5 }, // 06 Parabrisas
+      { x: 72.5, y: 48 }, // 07 Tapizado marino
+      { x: 66.6, y: 63 }, // 08 Sistema de audio
+      { x: 55, y: 74 }, // 09 Bodega de proa
+      { x: 48.5, y: 92 }, // 10 Iluminación LED
+      { x: 40, y: 91 }, // 11 Canopla de proa
+      { x: 27, y: 40 }, // 12 Pasamanos inox
+    ],
     specs: [
       { label: "Eslora Máx", value: "5.10m", icon: "ruler" },
       { label: "Manga", value: "2.10m", icon: "arrows-horizontal" },
@@ -760,12 +797,18 @@ export const models: Model[] = [
       { label: "Velocidad Máx", value: "38 nudos", icon: "gauge" },
     ],
     exteriorFeatures: [
-      "Escalera retráctil",
-      "Piso antideslizante",
-      "Cockpit abierto",
-      "Parabrisas integrado",
-      "Asientos tapizados",
-      "Bodega de proa",
+      "Sistema de audio con Bluetooth y cuatro parlantes náuticos.",
+      "Toldilla Bimini en lona acrílica importada con protección UV y estructura inoxidable.",
+      "Butacones envolventes giratorios.",
+      "Guantera de acompañante con cerradura.",
+      "Compartimiento guarda ski en pasillo de cockpit a proa.",
+      "Volante de mando con diseño distintivo.<br/>Instrumental de cinco elementos con indicadores de motor, performance y nivel de combustible.<br/>Comando de control de luces, bomba de achique y accesorios en el puesto de mando con LED indicativos.",
+      "Posavasos y manijones inoxidables de sujeción.<br/>Cornamusas rebatibles.",
+      "Perfil perimetral de protección en PVC con detalle en chromo.",
+      "Tanque de combustible de acero inoxidable con sensor magnético.",
+      'Tapicería construida en tela náutica Heavy Duty con Protección UV.<br/>Asientos en popa en "U" formando un living, con sus correspondientes lugares de guarda debajo.',
+      "Plataformas de popa para fácil acceso y descenso del agua.",
+      "Escalera retráctil sobre planchada.",
     ],
     versions: [
       {
@@ -823,6 +866,24 @@ export const models: Model[] = [
     tagline: "Versatilidad en cada ola.",
     brochure: "/brochures/170.pdf",
     technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/170.png",
+    featurePoints: [
+      { x: 19, y: 22 }, // 01 Escalera retráctil inox
+      { x: 30, y: 17 }, // 02 Tanque combustible
+      { x: 58, y: 17 }, // 03 Perfil perimetral
+      { x: 66, y: 9 }, // 04 Cockpit en U con mesa
+      { x: 76, y: 2 }, // 05 Piso evadeck
+      { x: 94, y: 17 }, // 06 Parabrisas
+      { x: 90, y: 62 }, // 07 Tapizado marino
+      { x: 71, y: 72 }, // 08 Sistema de audio
+      { x: 75, y: 89 }, // 09 Bodega de proa
+      { x: 61, y: 92 }, // 10 Iluminación LED
+      { x: 47, y: 79 }, // 11 Canopla de proa
+      { x: 39.5, y: 99 }, // 12 Pasamanos inox
+      { x: 32, y: 77 }, // 13 Pasamanos inox
+      { x: 21, y: 83 }, // 14 Pasamanos inox
+      { x: 10, y: 85 }, // 15 Pasamanos inox
+      { x: 15.5, y: 36 }, // 16 Pasamanos inox
+    ],
     specs: [
       { label: "Eslora Máx", value: "5.40m", icon: "ruler" },
       { label: "Manga", value: "2.20m", icon: "arrows-horizontal" },
