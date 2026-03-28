@@ -27,29 +27,29 @@ const cleanName = modelName.replace('Classer ', '');
 <section class="py-20 bg-[#f0f0ee]" aria-label="Versiones y equipamiento">
   <div class="container-site max-w-5xl mx-auto px-4">
     
-    <div class="relative w-full h-[250px] md:h-[300px] mb-16 reveal flex items-end">
-      
+    <div class="relative w-full h-[180px] md:h-[300px] mb-16 reveal flex items-end">
+
       <img
         src={silhouetteTechnicalUrl}
         alt={`Silueta de ${modelName}`}
-        class="absolute right-0 bottom-[45px] md:bottom-[55px] w-64 md:w-[450px] h-auto object-contain z-10"
+        class="absolute right-0 bottom-[30px] md:bottom-[55px] w-36 md:w-[450px] h-auto object-contain z-10"
         loading="lazy"
         decoding="async"
       />
 
       <div class="absolute bottom-0 left-0 w-full h-[150px] z-0">
         <svg width="100%" height="100%" viewBox="0 0 1000 150" preserveAspectRatio="none">
-          <path 
-            d="M0,50 L350,50 C400,50 420,130 470,130 L1000,130" 
-            fill="none" 
-            stroke="#000000" 
-            stroke-width="2" 
-            vector-effect="non-scaling-stroke" 
+          <path
+            d="M0,50 L350,50 C400,50 420,130 470,130 L1000,130"
+            fill="none"
+            stroke="#000000"
+            stroke-width="2"
+            vector-effect="non-scaling-stroke"
           />
         </svg>
       </div>
 
-      <h2 class="relative z-10 font-display font-black italic text-[4rem] md:text-[6rem] text-black uppercase leading-none pl-4 pb-2">
+      <h2 class="relative z-10 font-display font-black italic text-[2.5rem] md:text-[6rem] text-black uppercase leading-none pl-4 pb-2">
         {cleanName}
       </h2>
 
