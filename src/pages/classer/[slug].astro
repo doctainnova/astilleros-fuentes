@@ -92,47 +92,76 @@ if (!model) {
 
   <!-- EXTERIOR DIAGRAM -->
   {model.exteriorFeatures.length > 0 && (
-    <section id="exterior" class="py-20 bg-bg-light" aria-label="Características exteriores">
+    <section id="exterior" class="py-28 md:py-36 bg-bg-light" aria-label="Características exteriores">
       <div class="container-site">
 
         {model.technicalDiagramUrl ? (
-          <!-- Two-column layout: diagram left, list right -->
-          <div class="flex flex-col lg:flex-row items-center gap-8 reveal">
-
-            <!-- Diagram with optional number overlays -->
-            <div class="lg:w-[60%] flex-shrink-0 relative">
-              <img
-                src={model.technicalDiagramUrl}
-                alt={`Diagrama técnico ${model.name}`}
-                class="w-full h-auto block rounded-xl"
-                loading="lazy"
-              />
-              {model.featurePoints && model.featurePoints.map((pt, i) => (
-                <span
-                  class="diagram-badge"
-                  style={`left: ${pt.x}%; top: ${pt.y}%;`}
-                  data-index={i}
-                >
-                  {i + 1}
-                </span>
-              ))}
+          model.exteriorFeatures.length > 8 ? (
+            /* ── Muchos features: imagen grande arriba, features en grid abajo ── */
+            <div class="reveal">
+              <div class="relative mb-10 max-w-4xl mx-auto">
+                <img
+                  src={model.technicalDiagramUrl}
+                  alt={`Diagrama técnico ${model.name}`}
+                  class="w-full h-auto block rounded-xl"
+                  loading="lazy"
+                />
+                {model.featurePoints && model.featurePoints.map((pt, i) => (
+                  <span
+                    class="diagram-badge"
+                    style={`left: ${pt.x}%; top: ${pt.y}%;`}
+                    data-index={i}
+                  >
+                    {i + 1}
+                  </span>
+                ))}
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6">
+                {model.exteriorFeatures.map((feature, i) => (
+                  <div
+                    class="feature-item flex items-start gap-3 py-3 border-b border-black/10 transition-all duration-200"
+                    data-index={i}
+                  >
+                    <span class="diagram-badge-list flex-shrink-0">{i + 1}</span>
+                    <span class="text-text-dark text-sm leading-snug" set:html={feature} />
+                  </div>
+                ))}
+              </div>
             </div>
-
-            <!-- Feature list -->
-            <div class="lg:w-[40%] grid grid-cols-2 gap-x-6">
-              {model.exteriorFeatures.map((feature, i) => (
-                <div
-                  class="feature-item flex items-start gap-3 py-3 border-b border-black/10 transition-all duration-200"
-                  data-index={i}
-                >
-                  <span class="diagram-badge-list flex-shrink-0">{i + 1}</span>
-                  <span class="text-text-dark text-sm leading-snug" set:html={feature} />
-                </div>
-              ))}
+          ) : (
+            /* ── Pocos features: imagen y lista lado a lado ── */
+            <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 reveal">
+              <div class="lg:w-[62%] flex-shrink-0 relative">
+                <img
+                  src={model.technicalDiagramUrl}
+                  alt={`Diagrama técnico ${model.name}`}
+                  class="w-full h-auto block rounded-xl"
+                  loading="lazy"
+                />
+                {model.featurePoints && model.featurePoints.map((pt, i) => (
+                  <span
+                    class="diagram-badge"
+                    style={`left: ${pt.x}%; top: ${pt.y}%;`}
+                    data-index={i}
+                  >
+                    {i + 1}
+                  </span>
+                ))}
+              </div>
+              <div class="lg:w-[38%] grid grid-cols-2 gap-x-8 lg:pl-8">
+                {model.exteriorFeatures.map((feature, i) => (
+                  <div
+                    class="feature-item flex items-start gap-3 py-4 border-b border-black/10 transition-all duration-200"
+                    data-index={i}
+                  >
+                    <span class="diagram-badge-list flex-shrink-0">{i + 1}</span>
+                    <span class="text-text-dark text-sm md:text-base leading-snug" set:html={feature} />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )
         ) : (
-          <!-- Fallback: no diagram, just the grid -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-w-3xl mx-auto reveal">
             {model.exteriorFeatures.map((feature, i) => (
               <div class="flex items-center gap-3 py-2 border-b border-black/8">
@@ -253,7 +282,7 @@ if (!model) {
   {model.versions.length > 0 && (
     <VersionsTable
       modelName={model.name.replace('Classer ', '')}
-      features={model.versions[0].features}
+      tableImageUrl={model.versions[0].tableImageUrl}
       silhouetteTechnicalUrl={model.silhouetteTechnicalUrl}
       diagramUrl="https://placehold.co/700x480/f4f4f2/6b7a99?text=Technical+Diagram"
     />
@@ -301,13 +330,13 @@ if (!model) {
   .diagram-badge {
     position: absolute;
     transform: translate(-50%, -50%);
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     border: 1.5px solid #1e90d4;
     background: rgba(255,255,255,0.92);
     color: #1e2b50;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     font-weight: 700;
     font-style: italic;
     font-family: 'Rogue Sans Nova Condensed', sans-serif;
@@ -325,12 +354,12 @@ if (!model) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     border: 1.5px solid #1e90d4;
     color: #1e90d4;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     font-weight: 700;
     font-style: italic;
     font-family: 'Rogue Sans Nova Condensed', sans-serif;
@@ -338,58 +367,18 @@ if (!model) {
     line-height: 1;
   }
 
-  /* Estado base de los feature items — texto atenuado */
   .feature-item span {
-    color: #9aa0aa; /* grayish, apagado */
-    transition: color 0.2s ease, font-weight 0.2s ease;
-  }
-
-  .feature-item .diagram-badge-list {
-    border-color: #c5cad4;
-    color: #c5cad4;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    color: #1e2b50;
   }
 
   .diagram-badge {
-    cursor: pointer; /* agregá esto al existente */
+    cursor: pointer;
   }
-
-  /* Estado highlighted */
-.feature-highlight {
-  background-color: rgba(30, 144, 212, 0.06);
-  border-radius: 6px;
-}
-
-.feature-highlight .diagram-badge-list {
-  background-color: #1e90d4;
-  color: white;
-  border-color: #1e90d4;
-}
-
-.feature-highlight span:last-child {
-  font-weight: 600;
-  color: #1e2b50 !important;
-}
 </style>
 
 <script is:inline>
   // Sticky subnav GSAP behavior
   document.addEventListener('DOMContentLoaded', () => {
-
-    // Diagram badge hover → highlight feature item
-    document.querySelectorAll('.diagram-badge[data-index]').forEach(badge => {
-      const idx = badge.dataset.index;
-      const target = document.querySelector(`.feature-item[data-index="${idx}"]`);
-      if (!target) return;
-
-      badge.addEventListener('mouseenter', () => {
-        target.classList.add('feature-highlight');
-      });
-      badge.addEventListener('mouseleave', () => {
-        target.classList.remove('feature-highlight');
-      });
-    });
-
 
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       const subnav = document.getElementById('model-subnav');

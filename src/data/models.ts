@@ -6,11 +6,7 @@ export interface ModelSpec {
 
 export interface ModelVersion {
   name: string;
-  features: {
-    label: string;
-    ltd: boolean | "optional";
-    flyer: boolean | "optional";
-  }[];
+  tableImageUrl: string;
 }
 
 export interface Model {
@@ -74,14 +70,14 @@ export const models: Model[] = [
     ],
     specs: [
       { label: "Eslora Máx", value: "7.40m", icon: "ruler" },
-      { label: "Manga", value: "2.55m", icon: "arrows-horizontal" },
-      { label: "Puntal", value: "1.25m", icon: "arrow-up" },
+      { label: "Manga", value: "2.60m", icon: "arrows-horizontal" },
+      { label: "Puntal", value: "1.40m", icon: "arrow-up" },
       { label: "Motorización", value: "250-350hp", icon: "lightning" },
-      { label: "Combustible", value: "200L", icon: "drop" },
+      { label: "Combustible", value: "250L", icon: "drop" },
       { label: "Personas", value: "14", icon: "users" },
     ],
     specsExtra: [
-      { label: "Combustible", value: "200L", icon: "drop" },
+      { label: "Combustible", value: "250L", icon: "drop" },
       { label: "Pasajeros", value: "14", icon: "users" },
       { label: "Motorización", value: "1x350HP V8", icon: "lightning" },
       { label: "Velocidad Máx", value: "52 nudos", icon: "gauge" },
@@ -106,12 +102,7 @@ export const models: Model[] = [
     versions: [
       {
         name: "246 SURF",
-        features: [
-          { label: "Escalera retráctil inox", ltd: true, flyer: true },
-          { label: "Tapizado marino UV", ltd: true, flyer: false },
-          { label: "Sistema de audio 6 canales", ltd: true, flyer: "optional" },
-          { label: "Iluminación LED completa", ltd: true, flyer: true },
-        ],
+        tableImageUrl: "/image/versiones/246-surf.webp",
       },
     ],
     gelcoatColors: [
@@ -243,8 +234,8 @@ export const models: Model[] = [
     ],
     specs: [
       { label: "Eslora Máx", value: "7.40m", icon: "ruler" },
-      { label: "Manga", value: "2.55m", icon: "arrows-horizontal" },
-      { label: "Puntal", value: "1.25m", icon: "arrow-up" },
+      { label: "Manga", value: "2.60m", icon: "arrows-horizontal" },
+      { label: "Puntal", value: "1.40m", icon: "arrow-up" },
       { label: "Motorización", value: "250-350hp", icon: "lightning" },
       { label: "Combustible", value: "250L", icon: "drop" },
       { label: "Personas", value: "14", icon: "users" },
@@ -276,12 +267,7 @@ export const models: Model[] = [
     versions: [
       {
         name: "246",
-        features: [
-          { label: "Escalera retráctil inox", ltd: true, flyer: true },
-          { label: "Tapizado marino UV", ltd: true, flyer: false },
-          { label: "Sistema de audio 6 canales", ltd: true, flyer: "optional" },
-          { label: "Iluminación LED completa", ltd: true, flyer: true },
-        ],
+        tableImageUrl: "/image/versiones/246-df.webp",
       },
     ],
     gelcoatColors: [
@@ -409,15 +395,15 @@ export const models: Model[] = [
       { x: 24, y: 39 }, // 16 Pasamanos inox
     ],
     specs: [
-      { label: "Eslora Máx", value: "7.80m", icon: "ruler" },
+      { label: "Eslora Máx", value: "7.40m", icon: "ruler" },
       { label: "Manga", value: "2.60m", icon: "arrows-horizontal" },
-      { label: "Puntal", value: "1.25m", icon: "arrow-up" },
-      { label: "Motorización", value: "250-350hp OB", icon: "lightning" },
-      { label: "Combustible", value: "220L", icon: "drop" },
+      { label: "Puntal", value: "1.40m", icon: "arrow-up" },
+      { label: "Motorización", value: "250-350hp", icon: "lightning" },
+      { label: "Combustible", value: "250L", icon: "drop" },
       { label: "Personas", value: "14", icon: "users" },
     ],
     specsExtra: [
-      { label: "Combustible", value: "220L", icon: "drop" },
+      { label: "Combustible", value: "250L", icon: "drop" },
       { label: "Pasajeros", value: "14", icon: "users" },
       { label: "Motorización", value: "2x200HP OB", icon: "lightning" },
       { label: "Velocidad Máx", value: "55 nudos", icon: "gauge" },
@@ -443,15 +429,7 @@ export const models: Model[] = [
     versions: [
       {
         name: "246 OB",
-        features: [
-          { label: "Escalera retráctil doble", ltd: true, flyer: true },
-          {
-            label: "Plataforma de popa extensible",
-            ltd: true,
-            flyer: "optional",
-          },
-          { label: "Sistema de audio", ltd: true, flyer: "optional" },
-        ],
+        tableImageUrl: "/image/versiones/246-ob.webp",
       },
     ],
     gelcoatColors: [
@@ -623,24 +601,7 @@ export const models: Model[] = [
     versions: [
       {
         name: "206 FTX",
-        features: [
-          { label: "Escalera retráctil", ltd: true, flyer: true },
-          { label: "Tanque acero inoxidable", ltd: true, flyer: true },
-          { label: "Perfil perimetral", ltd: true, flyer: true },
-          { label: 'Cockpit en "U"', ltd: true, flyer: true },
-          { label: "Piso antideslizante evadeck", ltd: true, flyer: true },
-          { label: "Parabrisas integrado", ltd: true, flyer: true },
-          { label: "Tapizado premium resistente UV", ltd: true, flyer: false },
-          { label: "Sistema de audio marino", ltd: true, flyer: "optional" },
-          {
-            label: "Bodega de proa con colchoneta",
-            ltd: true,
-            flyer: "optional",
-          },
-          { label: "Luz de navegación LED", ltd: true, flyer: true },
-          { label: "Canopla de proa", ltd: true, flyer: false },
-          { label: "Pasamanos acero inoxidable", ltd: true, flyer: true },
-        ],
+        tableImageUrl: "/image/versiones/206-ftx.webp",
       },
     ],
     gelcoatColors: [
@@ -792,14 +753,14 @@ export const models: Model[] = [
     ],
     specs: [
       { label: "Eslora Máx", value: "5.70m", icon: "ruler" },
-      { label: "Manga", value: "2.20m", icon: "arrows-horizontal" },
-      { label: "Puntal", value: "1.05m", icon: "arrow-up" },
+      { label: "Manga", value: "2.28m", icon: "arrows-horizontal" },
+      { label: "Puntal", value: "1.03m", icon: "arrow-up" },
       { label: "Motorización", value: "90-150hp", icon: "lightning" },
-      { label: "Combustible", value: "110L", icon: "drop" },
+      { label: "Combustible", value: "100L", icon: "drop" },
       { label: "Personas", value: "7", icon: "users" },
     ],
     specsExtra: [
-      { label: "Combustible", value: "110L", icon: "drop" },
+      { label: "Combustible", value: "100L", icon: "drop" },
       { label: "Pasajeros", value: "7", icon: "users" },
       { label: "Motorización", value: "1x150HP", icon: "lightning" },
       { label: "Velocidad Máx", value: "40 nudos", icon: "gauge" },
@@ -822,11 +783,7 @@ export const models: Model[] = [
     versions: [
       {
         name: "170",
-        features: [
-          { label: "Tapicería premium", ltd: true, flyer: false },
-          { label: "Parabrisas", ltd: true, flyer: true },
-          { label: "Sistema de audio", ltd: true, flyer: "optional" },
-        ],
+        tableImageUrl: "/image/versiones/170.webp",
       },
     ],
     gelcoatColors: [
@@ -894,14 +851,14 @@ export const models: Model[] = [
     ],
     specs: [
       { label: "Eslora Máx", value: "5.30m", icon: "ruler" },
-      { label: "Manga", value: "2.10m", icon: "arrows-horizontal" },
-      { label: "Puntal", value: "1.00m", icon: "arrow-up" },
+      { label: "Manga", value: "2.22m", icon: "arrows-horizontal" },
+      { label: "Puntal", value: "0.98m", icon: "arrow-up" },
       { label: "Motorización", value: "70-115hp", icon: "lightning" },
-      { label: "Combustible", value: "95L", icon: "drop" },
+      { label: "Combustible", value: "60L", icon: "drop" },
       { label: "Personas", value: "6", icon: "users" },
     ],
     specsExtra: [
-      { label: "Combustible", value: "95L", icon: "drop" },
+      { label: "Combustible", value: "60L", icon: "drop" },
       { label: "Pasajeros", value: "6", icon: "users" },
       { label: "Motorización", value: "1x115HP", icon: "lightning" },
       { label: "Velocidad Máx", value: "38 nudos", icon: "gauge" },
@@ -923,11 +880,7 @@ export const models: Model[] = [
     versions: [
       {
         name: "165",
-        features: [
-          { label: "Tapicería premium", ltd: true, flyer: false },
-          { label: "Parabrisas", ltd: true, flyer: true },
-          { label: "Bodega de proa", ltd: true, flyer: true },
-        ],
+        tableImageUrl: "/image/versiones/165.webp",
       },
     ],
     gelcoatColors: [

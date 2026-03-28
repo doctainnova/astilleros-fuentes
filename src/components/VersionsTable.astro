@@ -1,24 +1,14 @@
 ---
-interface Feature {
-  label: string;
-  ltd: boolean | 'optional';
-  flyer: boolean | 'optional';
-}
-
 interface Props {
   modelName: string;
-  features: Feature[];
-  diagramUrl: string;
+  tableImageUrl: string;
   silhouetteTechnicalUrl: string;
-  paletteUrl?: string; 
 }
 
-const { 
-  modelName, 
-  features, 
-  diagramUrl, 
+const {
+  modelName,
+  tableImageUrl,
   silhouetteTechnicalUrl,
-  paletteUrl = `/image/paletas/${modelName.replace('Classer ', '')}.webp` 
 } = Astro.props;
 
 const cleanName = modelName.replace('Classer ', '');
@@ -56,58 +46,15 @@ const cleanName = modelName.replace('Classer ', '');
     </div>
 
     <div class="w-full reveal mb-24">
-      <p class="font-barlow text-[0.65rem] uppercase tracking-[0.15em] text-accent-blue mb-2">Versiones</p>
+      <p class="font-barlow text-sm uppercase tracking-[0.15em] text-accent-blue mb-4">Versiones</p>
       
-      <table class="w-full text-sm" aria-label={`Comparación de versiones ${modelName}`}>
-        <thead>
-          <tr class="border-b border-black/20">
-            <th class="text-left py-3 font-medium text-text-muted uppercase text-[0.65rem] tracking-wide w-[60%]">Equipamiento</th>
-            <th class="text-center py-3 font-medium text-black uppercase text-[0.65rem] tracking-wide font-display italic text-lg">LTD</th>
-            <th class="text-center py-3 font-medium text-black uppercase text-[0.65rem] tracking-wide font-display italic text-lg">Flyer</th>
-          </tr>
-        </thead>
-        <tbody>
-          {features.map((feature, i) => (
-            <tr class={`border-b border-black/10 ${i % 2 === 0 ? '' : 'bg-black/[0.03]'}`}>
-              <td class="py-3 px-2 text-black font-medium text-[0.85rem]">{feature.label}</td>
-              <td class="py-3 text-center">
-                {feature.ltd === true && (
-                  <span class="text-green-600 font-bold text-lg" aria-label="Incluye">✓</span>
-                )}
-                {feature.ltd === false && (
-                  <span class="text-black font-bold text-lg" aria-label="No incluye">✗</span>
-                )}
-                {feature.ltd === 'optional' && (
-                  <span class="text-gray-400 font-bold text-xl" aria-label="Opcional">*</span>
-                )}
-              </td>
-              <td class="py-3 text-center">
-                {feature.flyer === true && (
-                  <span class="text-green-600 font-bold text-lg" aria-label="Incluye">✓</span>
-                )}
-                {feature.flyer === false && (
-                  <span class="text-black font-bold text-lg" aria-label="No incluye">✗</span>
-                )}
-                {feature.flyer === 'optional' && (
-                  <span class="text-gray-400 font-bold text-xl" aria-label="Opcional">*</span>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <div class="flex gap-8 mt-6 justify-end pr-8">
-        <span class="flex items-center gap-2 text-[0.8rem] text-black font-medium">
-          <span class="text-green-600 font-bold text-xl leading-none">✓</span> Incluye
-        </span>
-        <span class="flex items-center gap-2 text-[0.8rem] text-black font-medium">
-          <span class="text-black font-bold text-xl leading-none">✗</span> No incluye
-        </span>
-        <span class="flex items-center gap-2 text-[0.8rem] text-black font-medium">
-          <span class="text-gray-400 font-bold text-2xl leading-none pt-2">*</span> Opcional
-        </span>
-      </div>
+      <img
+        src={tableImageUrl}
+        alt={`Tabla de versiones ${modelName}`}
+        class="w-full h-auto mix-blend-multiply table-img-fade"
+        loading="eager"
+        decoding="async"
+      />
     </div>
 
     <div class="w-full reveal pt-12 relative">
@@ -241,6 +188,18 @@ const cleanName = modelName.replace('Classer ', '');
 </section>
 
 <style>
+  /* ── Table image fade ──────────────────────────────── */
+  .table-img-fade {
+    -webkit-mask-image:
+      linear-gradient(to right,  transparent 0%, black 6%, black 94%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 4%, black 96%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right,  transparent 0%, black 6%, black 94%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 4%, black 96%, transparent 100%);
+    mask-composite: intersect;
+  }
+
   /* ── Palette root ───────────────────────────────────── */
   .palette-root {
     width: 100%;
