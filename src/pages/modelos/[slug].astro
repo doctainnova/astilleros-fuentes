@@ -113,7 +113,7 @@ if (!model) {
 
   <!-- INTERIOR GALLERY -->
   {model.interiorImages.length > 0 && (
-    <section id="interior" class="py-20 bg-bg-deep" aria-label="Galería interior">
+    <section id="interior" class="py-20 bg-bg-deep gallery-section" aria-label="Galería interior">
       <div class="container-site">
         <div class="text-center mb-10 reveal">
           <h2 class="font-display font-bold italic text-3xl md:text-4xl text-white mb-3">Interior</h2>
@@ -130,7 +130,8 @@ if (!model) {
                   alt={`Interior ${model.name} — imagen ${i + 1}`}
                   width={img.w}
                   height={img.h}
-                  loading={i === 0 ? 'eager' : 'lazy'}
+                  loading="lazy"
+                  fetchpriority="low"
                   decoding="async"
                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -141,6 +142,7 @@ if (!model) {
                   alt={`Interior ${model.name} — imagen ${i + 1}`}
                   width={img.w}
                   height={img.h}
+                  fetchpriority="low"
                   decoding="async"
                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -161,7 +163,7 @@ if (!model) {
 
   <!-- EXTERIOR GALLERY -->
   {model.exteriorImages.length > 0 && (
-    <section id="galeria" class="py-20 bg-bg-mid" aria-label="Galería exterior">
+    <section id="galeria" class="py-20 bg-bg-mid gallery-section" aria-label="Galería exterior">
       <div class="container-site">
         <div class="text-center mb-10 reveal">
           <h2 class="font-display font-bold italic text-3xl md:text-4xl text-white mb-3">Exterior</h2>
@@ -178,7 +180,8 @@ if (!model) {
                   alt={`Exterior ${model.name} — imagen ${i + 1}`}
                   width={img.w}
                   height={img.h}
-                  loading={i === 0 ? 'eager' : 'lazy'}
+                  loading="lazy"
+                  fetchpriority="low"
                   decoding="async"
                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -189,6 +192,7 @@ if (!model) {
                   alt={`Exterior ${model.name} — imagen ${i + 1}`}
                   width={img.w}
                   height={img.h}
+                  fetchpriority="low"
                   decoding="async"
                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -292,6 +296,20 @@ if (!model) {
   .gallery-img-wrapper img {
     position: relative;
     z-index: 2;
+    will-change: transform;
+  }
+
+  /* Defer rendering of off-screen gallery sections */
+  .gallery-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+
+  /* GPU layer for smooth horizontal scroll */
+  #interior-scroll,
+  #galeria-scroll {
+    will-change: scroll-position;
+    transform: translateZ(0);
   }
 </style>
 
@@ -405,51 +423,48 @@ if (!model) {
     }
 
     // ── Lazy load manual para imágenes en scroll horizontal ──
-    const lazyGalleryImgs = document.querySelectorAll('img[data-src]');
+    function loadImage(img) {
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+      img.onload = () => img.closest('.gallery-img-wrapper')?.classList.add('img-loaded');
+      img.onerror = () => img.closest('.gallery-img-wrapper')?.classList.add('img-error');
+    }
 
-    if (lazyGalleryImgs.length > 0) {
-      const loadImage = (img) => {
-        img.src = img.dataset.src;
-        img.removeAttribute('data-src');
-
-        img.onload = () => {
-          const wrapper = img.closest('.gallery-img-wrapper');
-          if (wrapper) wrapper.classList.add('img-loaded');
-        };
-
-        img.onerror = () => {
-          const wrapper = img.closest('.gallery-img-wrapper');
-          if (wrapper) wrapper.classList.add('img-error');
-        };
-      };
+    function setupHorizontalLazyLoad(scrollId) {
+      const container = document.getElementById(scrollId);
+      if (!container) return;
+      const imgs = container.querySelectorAll('img[data-src]');
+      if (!imgs.length) return;
 
       if ('IntersectionObserver' in window) {
-        const galleryObserver = new IntersectionObserver(
+        // Use the scroll container as root → fires exactly when images enter the visible strip
+        const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach(entry => {
               if (entry.isIntersecting) {
                 loadImage(entry.target);
-                galleryObserver.unobserve(entry.target);
+                observer.unobserve(entry.target);
               }
             });
           },
           {
-            rootMargin: '100px 500px 100px 0px',
+            root: container,
+            rootMargin: '0px 600px 0px 0px', // preload 600px ahead while scrolling right
             threshold: 0
           }
         );
-
-        lazyGalleryImgs.forEach(img => galleryObserver.observe(img));
+        imgs.forEach(img => observer.observe(img));
       } else {
-        lazyGalleryImgs.forEach(img => loadImage(img));
+        imgs.forEach(img => loadImage(img));
       }
     }
 
-    // Marcar como loaded las imágenes eager/lazy directas (índice 0 y 1)
+    setupHorizontalLazyLoad('interior-scroll');
+    setupHorizontalLazyLoad('galeria-scroll');
+
+    // Marcar como loaded las imágenes lazy directas (índice 0 y 1)
     document.querySelectorAll('.gallery-img-wrapper img:not([data-src])').forEach(img => {
-      const markLoaded = () => {
-        img.closest('.gallery-img-wrapper')?.classList.add('img-loaded');
-      };
+      const markLoaded = () => img.closest('.gallery-img-wrapper')?.classList.add('img-loaded');
       if (img.complete && img.naturalWidth > 0) {
         markLoaded();
       } else {
