@@ -5,6 +5,7 @@ import SpecGrid from '../../components/SpecGrid.astro';
 import GalleryCollage from '../../components/GalleryCollage.astro';
 import VersionsTable from '../../components/VersionsTable.astro';
 import { models, getModelBySlug } from '../../data/models';
+import { Image } from 'astro:assets';
 
 export function getStaticPaths() {
   return models.map(m => ({ params: { slug: m.slug } }));
@@ -53,11 +54,11 @@ if (!model) {
 
   <!-- HERO -->
   <section class="relative" style="height: 70vh; min-height: 500px;" aria-label={`Presentación ${model.name}`}>
-    <img
+    <Image
       src={model.heroUrl}
       alt={model.name}
-      width="1440"
-      height="700"
+      width={1920}
+      height={1080}
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       fetchpriority="high"
@@ -81,17 +82,17 @@ if (!model) {
 
   <!-- EXTERIOR DIAGRAM -->
   {model.exteriorFeatures.length > 0 && (
-    <section id="exterior" class="py-20 bg-bg-light" aria-label="Características exteriores">
+    <section id="exterior" class="py-20 bg-bg-light content-auto" aria-label="Características exteriores">
       <div class="container-site">
 
 
         <!-- Technical diagram -->
         <div class="reveal mb-10">
-          <img
+          <Image
             src="https://placehold.co/700x480/f4f4f2/6b7a99?text=Technical+Diagram+206+FTX"
             alt={`Diagrama técnico ${model.name}`}
-            width="700"
-            height="480"
+            width={800}
+            height={480}
             class="w-full max-w-3xl mx-auto rounded-lg block"
             loading="lazy"
             decoding="async"
@@ -113,7 +114,7 @@ if (!model) {
 
   <!-- INTERIOR GALLERY -->
   {model.interiorImages.length > 0 && (
-    <section id="interior" class="py-20 bg-bg-deep" aria-label="Galería interior">
+    <section id="interior" class="py-20 bg-bg-deep content-auto" aria-label="Galería interior">
       <div class="container-site">
         <div class="text-center mb-10 reveal">
           <h2 class="font-display font-bold italic text-3xl md:text-4xl text-white mb-3">Interior</h2>
@@ -124,27 +125,15 @@ if (!model) {
         <div id="interior-scroll" class="flex gap-3 h-64 md:h-80 reveal overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing">
           {model.interiorImages.map((img, i) => (
             <div class={`gallery-img-wrapper overflow-hidden rounded-lg flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[450px]`}>
-              {i <= 1 ? (
-                <img
-                  src={img.url}
-                  alt={`Interior ${model.name} — imagen ${i + 1}`}
-                  width={img.w}
-                  height={img.h}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
-              ) : (
-                <img
-                  data-src={img.url}
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
-                  alt={`Interior ${model.name} — imagen ${i + 1}`}
-                  width={img.w}
-                  height={img.h}
-                  decoding="async"
-                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
-              )}
+              <Image
+                src={img.url}
+                alt={`Interior ${model.name} — imagen ${i + 1}`}
+                width={800}
+                height={500}
+                loading={i <= 1 ? 'eager' : 'lazy'}
+                decoding="async"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 will-change-transform"
+              />
             </div>
           ))}
         </div>
@@ -161,7 +150,7 @@ if (!model) {
 
   <!-- EXTERIOR GALLERY -->
   {model.exteriorImages.length > 0 && (
-    <section id="galeria" class="py-20 bg-bg-mid" aria-label="Galería exterior">
+    <section id="galeria" class="py-20 bg-bg-mid content-auto" aria-label="Galería exterior">
       <div class="container-site">
         <div class="text-center mb-10 reveal">
           <h2 class="font-display font-bold italic text-3xl md:text-4xl text-white mb-3">Exterior</h2>
@@ -172,27 +161,15 @@ if (!model) {
         <div id="galeria-scroll" class="flex gap-3 h-64 md:h-80 reveal overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing">
           {model.exteriorImages.map((img, i) => (
             <div class={`gallery-img-wrapper overflow-hidden rounded-lg flex-shrink-0 ${i === 0 ? 'flex-[2]' : 'flex-[1.5]'} min-w-[300px] md:min-w-[450px]`}>
-              {i <= 1 ? (
-                <img
-                  src={img.url}
-                  alt={`Exterior ${model.name} — imagen ${i + 1}`}
-                  width={img.w}
-                  height={img.h}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
-              ) : (
-                <img
-                  data-src={img.url}
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E"
-                  alt={`Exterior ${model.name} — imagen ${i + 1}`}
-                  width={img.w}
-                  height={img.h}
-                  decoding="async"
-                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
-              )}
+              <Image
+                src={img.url}
+                alt={`Exterior ${model.name} — imagen ${i + 1}`}
+                width={800}
+                height={500}
+                loading={i <= 1 ? 'eager' : 'lazy'}
+                decoding="async"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 will-change-transform"
+              />
             </div>
           ))}
         </div>
@@ -222,6 +199,10 @@ if (!model) {
 </Layout>
 
 <style>
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px;
+  }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -286,6 +267,10 @@ if (!model) {
   @keyframes gallery-shimmer {
     0%   { background-position: 200% 0; }
     100% { background-position: -200% 0; }
+  }
+
+  .will-change-transform {
+    will-change: transform;
   }
 
   /* La imagen real no debe tapar el shimmer mientras carga */
@@ -404,49 +389,8 @@ if (!model) {
       });
     }
 
-    // ── Lazy load manual para imágenes en scroll horizontal ──
-    const lazyGalleryImgs = document.querySelectorAll('img[data-src]');
-
-    if (lazyGalleryImgs.length > 0) {
-      const loadImage = (img) => {
-        img.src = img.dataset.src;
-        img.removeAttribute('data-src');
-
-        img.onload = () => {
-          const wrapper = img.closest('.gallery-img-wrapper');
-          if (wrapper) wrapper.classList.add('img-loaded');
-        };
-
-        img.onerror = () => {
-          const wrapper = img.closest('.gallery-img-wrapper');
-          if (wrapper) wrapper.classList.add('img-error');
-        };
-      };
-
-      if ('IntersectionObserver' in window) {
-        const galleryObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                loadImage(entry.target);
-                galleryObserver.unobserve(entry.target);
-              }
-            });
-          },
-          {
-            rootMargin: '100px 500px 100px 0px',
-            threshold: 0
-          }
-        );
-
-        lazyGalleryImgs.forEach(img => galleryObserver.observe(img));
-      } else {
-        lazyGalleryImgs.forEach(img => loadImage(img));
-      }
-    }
-
-    // Marcar como loaded las imágenes eager/lazy directas (índice 0 y 1)
-    document.querySelectorAll('.gallery-img-wrapper img:not([data-src])').forEach(img => {
+    // Marcar como loaded las imágenes de galería
+    document.querySelectorAll('.gallery-img-wrapper img').forEach(img => {
       const markLoaded = () => {
         img.closest('.gallery-img-wrapper')?.classList.add('img-loaded');
       };
@@ -461,3 +405,4 @@ if (!model) {
     setupCustomScroll('galeria-scroll', 'galeria-track', 'galeria-thumb');
   });
 </script>
+
