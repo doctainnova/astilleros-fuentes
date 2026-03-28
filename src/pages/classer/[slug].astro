@@ -281,10 +281,9 @@ if (!model) {
   <!-- VERSIONS TABLE -->
   {model.versions.length > 0 && (
     <VersionsTable
-      modelName={model.name.replace('Classer ', '')}
+      modelName={model.name}
       tableImageUrl={model.versions[0].tableImageUrl}
       silhouetteTechnicalUrl={model.silhouetteTechnicalUrl}
-      diagramUrl="https://placehold.co/700x480/f4f4f2/6b7a99?text=Technical+Diagram"
     />
   )}
 
