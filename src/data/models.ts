@@ -43,175 +43,10 @@ export interface Model {
 export const models: Model[] = [
   // ── LINEA DF ────────────────────────────────────────────────────
   {
-    slug: "246",
-    name: "Classer 246 DF",
-    line: "LINEA DF",
-    eslora: "7.50M",
-    navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/246df.webp",
-    thumbnailUrl: "/image/2_PRODUCTO/246 DF/1.webp",
-    heroUrl: "/image/2_PRODUCTO/246 DF/1.webp",
-    silhouetteTechnicalUrl: "/image/siluetas/246 DF.webp",
-    tagline: "El estándar de la excelencia.",
-    brochure: "/brochures/246 DF.pdf",
-    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/246 DF.webp",
-    featurePoints: [
-      { x: 19, y: 22 }, // 01 Escalera retráctil inox
-      { x: 30, y: 17 }, // 02 Tanque combustible
-      { x: 58, y: 17 }, // 03 Perfil perimetral
-      { x: 66, y: 9 }, // 04 Cockpit en U con mesa
-      { x: 76, y: 2 }, // 05 Piso evadeck
-      { x: 94, y: 17 }, // 06 Parabrisas
-      { x: 90, y: 62 }, // 07 Tapizado marino
-      { x: 71, y: 72 }, // 08 Sistema de audio
-      { x: 75, y: 89 }, // 09 Bodega de proa
-      { x: 61, y: 92 }, // 10 Iluminación LED
-      { x: 47, y: 79 }, // 11 Canopla de proa
-      { x: 39.5, y: 99 }, // 12 Pasamanos inox
-      { x: 32, y: 77 }, // 13 Pasamanos inox
-      { x: 21, y: 83 }, // 14 Pasamanos inox
-      { x: 10, y: 85 }, // 15 Pasamanos inox
-      { x: 15.5, y: 36 }, // 16 Pasamanos inox
-    ],
-    specs: [
-      { label: "Eslora Máx", value: "7.40m", icon: "ruler" },
-      { label: "Manga", value: "2.55m", icon: "arrows-horizontal" },
-      { label: "Puntal", value: "1.25m", icon: "arrow-up" },
-      { label: "Motorización", value: "250-350hp", icon: "lightning" },
-      { label: "Combustible", value: "200L", icon: "drop" },
-      { label: "Personas", value: "14", icon: "users" },
-    ],
-    specsExtra: [
-      { label: "Combustible", value: "200L", icon: "drop" },
-      { label: "Pasajeros", value: "14", icon: "users" },
-      { label: "Motorización", value: "1x350HP V8", icon: "lightning" },
-      { label: "Velocidad Máx", value: "52 nudos", icon: "gauge" },
-    ],
-    exteriorFeatures: [
-      "Torre para wakeboard importada.<br/>Toldilla Bimini en lona acrílica importada con protección UV, estructura inoxidable y herrajes en bronce cromado.<br/>Sistema de audio con Bluetooth y cuatro parlantes náuticos.",
-      "Tapicería construida en tela náutica Heavy Duty con Protección UV y antihongos.<br/>Disposición de asientos que conforman una sala de estar en cockpit con mesa desmontable y amplios lugares de guarda.<br/>Luces full led en interior de cockpit.<br/>Sistema de calefacción integrado.",
-      "Compartimiento guarda ski en pasillo de cockpit a proa.",
-      "Compartimiento de baño interno. Guantera de acompañante con cerradura.",
-      "Sunpad de proa que forma un cómodo solarium acolchado.",
-      "Gran amplitud de espacio en proa con guarda y acceso directo a una escalera de abordaje.<br/>Cavidad porta anclas con tapa en el extremo de proa.",
-      "Perfil perimetral de protección con inserto en acero inoxidable.",
-      "Posavasos y manijones inoxidables de sujeción.<br/>Cornamusas rebatibles.",
-      "Volante de mando importado.<br/>Sistema de dirección hidráulica con columna de dirección regulable en altura.<br/>Pantalla digital para instrumentos de funciones de motor y navegación.<br/>Comando de control de luces, bomba de achique y accesorios en el puesto de mando con LED indicativos. Ecosonda integrada.",
-      'Butacón tipo "bucket" giratoria con elevador de asiento abatible y corredera ajustable.',
-      "Conservadora desmontable Coleman.",
-      "Tanque de combustible de acero inoxidable con sensor magnético.",
-      "Locker escurridor.",
-      "Asientos de popa rebatibles que forman un amplio sofá para tomar sol o descansar cómodamente.",
-      "Plataforma de baño integrada de gran amplitud para una experiencia única, con luces embutidas y escalera retráctil.",
-      "Duchador en planchada con sistema de agua dulce con tanque de 50 lts.",
-    ],
-    versions: [
-      {
-        name: "246",
-        features: [
-          { label: "Escalera retráctil inox", ltd: true, flyer: true },
-          { label: "Tapizado marino UV", ltd: true, flyer: false },
-          { label: "Sistema de audio 6 canales", ltd: true, flyer: "optional" },
-          { label: "Iluminación LED completa", ltd: true, flyer: true },
-        ],
-      },
-    ],
-    gelcoatColors: [
-      { name: "BLANCO", hex: "#FFFFFF" },
-      { name: "TITANIUM", hex: "#9E9E9E" },
-      { name: "NARDO", hex: "#607D8B" },
-      { name: "TURQUESA", hex: "#00BCD4" },
-      { name: "ROJO", hex: "#F44336" },
-      { name: "NEGRO", hex: "#212121" },
-    ],
-    tapiceriaColors: [
-      { name: "GRIS CLARO", hex: "#BDBDBD" },
-      { name: "GRIS MEDIO", hex: "#9E9E9E" },
-      { name: "GRIS OSCURO", hex: "#616161" },
-      { name: "GRIS NEGRO", hex: "#424242" },
-      { name: "ROJO", hex: "#F44336" },
-      { name: "HABANO", hex: "#A0856C" },
-      { name: "NEGRO", hex: "#212121" },
-    ],
-    pisoColors: [
-      { name: "GRIS CLARO", hex: "#BDBDBD" },
-      { name: "GRIS OSCURO", hex: "#616161" },
-      { name: "HABANO", hex: "#A0856C" },
-    ],
-    interiorImages: [
-      {
-        url: "/image/2_PRODUCTO/246 DF/INTERIOR/058A6347.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_054.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_089.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_090.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_102.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_103.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_112.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_153.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_154.webp",
-        w: 560,
-        h: 380,
-      },
-    ],
-    exteriorImages: [
-      {
-        url: "/image/2_PRODUCTO/246 DF/EXTERIOR/CHZ_2066.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 DF/EXTERIOR/Fuentes_066.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 DF/EXTERIOR/Fuentes_067.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 DF/EXTERIOR/IMAGEN 2.webp",
-        w: 560,
-        h: 380,
-      },
-    ],
-  },
-  {
     slug: "246-surf",
     name: "Classer 246 SURF",
     line: "LINEA DF",
-    eslora: "7.50M",
+    eslora: "7.40M",
     navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/246surf.webp",
     thumbnailUrl: "/image/2_PRODUCTO/246 SURF/1.webp",
     heroUrl: "/image/2_PRODUCTO/246 SURF/1.webp",
@@ -376,13 +211,178 @@ export const models: Model[] = [
       },
     ],
   },
+  {
+    slug: "246",
+    name: "Classer 246 DF",
+    line: "LINEA DF",
+    eslora: "7.40M",
+    navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/246df.webp",
+    thumbnailUrl: "/image/2_PRODUCTO/246 DF/1.webp",
+    heroUrl: "/image/2_PRODUCTO/246 DF/1.webp",
+    silhouetteTechnicalUrl: "/image/siluetas/246 DF.webp",
+    tagline: "El estándar de la excelencia.",
+    brochure: "/brochures/246 DF.pdf",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/246 DF.webp",
+    featurePoints: [
+      { x: 19, y: 22 }, // 01 Escalera retráctil inox
+      { x: 30, y: 17 }, // 02 Tanque combustible
+      { x: 58, y: 17 }, // 03 Perfil perimetral
+      { x: 66, y: 9 }, // 04 Cockpit en U con mesa
+      { x: 76, y: 2 }, // 05 Piso evadeck
+      { x: 94, y: 17 }, // 06 Parabrisas
+      { x: 90, y: 62 }, // 07 Tapizado marino
+      { x: 71, y: 72 }, // 08 Sistema de audio
+      { x: 75, y: 89 }, // 09 Bodega de proa
+      { x: 61, y: 92 }, // 10 Iluminación LED
+      { x: 47, y: 79 }, // 11 Canopla de proa
+      { x: 39.5, y: 99 }, // 12 Pasamanos inox
+      { x: 32, y: 77 }, // 13 Pasamanos inox
+      { x: 21, y: 83 }, // 14 Pasamanos inox
+      { x: 10, y: 85 }, // 15 Pasamanos inox
+      { x: 15.5, y: 36 }, // 16 Pasamanos inox
+    ],
+    specs: [
+      { label: "Eslora Máx", value: "7.40m", icon: "ruler" },
+      { label: "Manga", value: "2.55m", icon: "arrows-horizontal" },
+      { label: "Puntal", value: "1.25m", icon: "arrow-up" },
+      { label: "Motorización", value: "250-350hp", icon: "lightning" },
+      { label: "Combustible", value: "250L", icon: "drop" },
+      { label: "Personas", value: "14", icon: "users" },
+    ],
+    specsExtra: [
+      { label: "Combustible", value: "250L", icon: "drop" },
+      { label: "Pasajeros", value: "14", icon: "users" },
+      { label: "Motorización", value: "1x350HP V8", icon: "lightning" },
+      { label: "Velocidad Máx", value: "52 nudos", icon: "gauge" },
+    ],
+    exteriorFeatures: [
+      "Torre para wakeboard importada.<br/>Toldilla Bimini en lona acrílica importada con protección UV, estructura inoxidable y herrajes en bronce cromado.<br/>Sistema de audio con Bluetooth y cuatro parlantes náuticos.",
+      "Tapicería construida en tela náutica Heavy Duty con Protección UV y antihongos.<br/>Disposición de asientos que conforman una sala de estar en cockpit con mesa desmontable y amplios lugares de guarda.<br/>Luces full led en interior de cockpit.<br/>Sistema de calefacción integrado.",
+      "Compartimiento guarda ski en pasillo de cockpit a proa.",
+      "Compartimiento de baño interno. Guantera de acompañante con cerradura.",
+      "Sunpad de proa que forma un cómodo solarium acolchado.",
+      "Gran amplitud de espacio en proa con guarda y acceso directo a una escalera de abordaje.<br/>Cavidad porta anclas con tapa en el extremo de proa.",
+      "Perfil perimetral de protección con inserto en acero inoxidable.",
+      "Posavasos y manijones inoxidables de sujeción.<br/>Cornamusas rebatibles.",
+      "Volante de mando importado.<br/>Sistema de dirección hidráulica con columna de dirección regulable en altura.<br/>Pantalla digital para instrumentos de funciones de motor y navegación.<br/>Comando de control de luces, bomba de achique y accesorios en el puesto de mando con LED indicativos. Ecosonda integrada.",
+      'Butacón tipo "bucket" giratoria con elevador de asiento abatible y corredera ajustable.',
+      "Conservadora desmontable Coleman.",
+      "Tanque de combustible de acero inoxidable con sensor magnético.",
+      "Locker escurridor.",
+      "Asientos de popa rebatibles que forman un amplio sofá para tomar sol o descansar cómodamente.",
+      "Plataforma de baño integrada de gran amplitud para una experiencia única, con luces embutidas y escalera retráctil.",
+      "Duchador en planchada con sistema de agua dulce con tanque de 50 lts.",
+    ],
+    versions: [
+      {
+        name: "246",
+        features: [
+          { label: "Escalera retráctil inox", ltd: true, flyer: true },
+          { label: "Tapizado marino UV", ltd: true, flyer: false },
+          { label: "Sistema de audio 6 canales", ltd: true, flyer: "optional" },
+          { label: "Iluminación LED completa", ltd: true, flyer: true },
+        ],
+      },
+    ],
+    gelcoatColors: [
+      { name: "BLANCO", hex: "#FFFFFF" },
+      { name: "TITANIUM", hex: "#9E9E9E" },
+      { name: "NARDO", hex: "#607D8B" },
+      { name: "TURQUESA", hex: "#00BCD4" },
+      { name: "ROJO", hex: "#F44336" },
+      { name: "NEGRO", hex: "#212121" },
+    ],
+    tapiceriaColors: [
+      { name: "GRIS CLARO", hex: "#BDBDBD" },
+      { name: "GRIS MEDIO", hex: "#9E9E9E" },
+      { name: "GRIS OSCURO", hex: "#616161" },
+      { name: "GRIS NEGRO", hex: "#424242" },
+      { name: "ROJO", hex: "#F44336" },
+      { name: "HABANO", hex: "#A0856C" },
+      { name: "NEGRO", hex: "#212121" },
+    ],
+    pisoColors: [
+      { name: "GRIS CLARO", hex: "#BDBDBD" },
+      { name: "GRIS OSCURO", hex: "#616161" },
+      { name: "HABANO", hex: "#A0856C" },
+    ],
+    interiorImages: [
+      {
+        url: "/image/2_PRODUCTO/246 DF/INTERIOR/058A6347.webp",
+        w: 560,
+        h: 380,
+      },
+      {
+        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_054.webp",
+        w: 560,
+        h: 380,
+      },
+      {
+        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_089.webp",
+        w: 560,
+        h: 380,
+      },
+      {
+        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_090.webp",
+        w: 560,
+        h: 380,
+      },
+      {
+        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_102.webp",
+        w: 560,
+        h: 380,
+      },
+      {
+        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_103.webp",
+        w: 560,
+        h: 380,
+      },
+      {
+        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_112.webp",
+        w: 560,
+        h: 380,
+      },
+      {
+        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_153.webp",
+        w: 560,
+        h: 380,
+      },
+      {
+        url: "/image/2_PRODUCTO/246 DF/INTERIOR/Fuentes_154.webp",
+        w: 560,
+        h: 380,
+      },
+    ],
+    exteriorImages: [
+      {
+        url: "/image/2_PRODUCTO/246 DF/EXTERIOR/CHZ_2066.webp",
+        w: 560,
+        h: 380,
+      },
+      {
+        url: "/image/2_PRODUCTO/246 DF/EXTERIOR/Fuentes_066.webp",
+        w: 560,
+        h: 380,
+      },
+      {
+        url: "/image/2_PRODUCTO/246 DF/EXTERIOR/Fuentes_067.webp",
+        w: 560,
+        h: 380,
+      },
+      {
+        url: "/image/2_PRODUCTO/246 DF/EXTERIOR/IMAGEN 2.webp",
+        w: 560,
+        h: 380,
+      },
+    ],
+  },
 
   // ── LINEA OB ────────────────────────────────────────────────────
   {
     slug: "246-ob",
     name: "Classer 246 OB",
     line: "LINEA OB",
-    eslora: "7.80M",
+    eslora: "7.40M",
     navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/246ob.webp",
     thumbnailUrl: "/image/2_PRODUCTO/246 OB/1.webp",
     heroUrl: "/image/2_PRODUCTO/246 OB/1.webp",
@@ -569,7 +569,7 @@ export const models: Model[] = [
     slug: "206-ftx",
     name: "Classer 206 FTX",
     line: "LINEA OB",
-    eslora: "6.20M",
+    eslora: "6.08M",
     badge: "NUEVO",
     navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/206.webp",
     thumbnailUrl: "/image/2_PRODUCTO/206 FTX/1.webp",
@@ -764,109 +764,10 @@ export const models: Model[] = [
 
   // ── LINEA CLASSIC ────────────────────────────────────────────────
   {
-    slug: "165",
-    name: "Classer 165",
-    line: "LINEA CLASSIC",
-    eslora: "5.10M",
-    navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/165.webp",
-    thumbnailUrl: "/image/2_PRODUCTO/165/1.webp",
-    heroUrl: "/image/2_PRODUCTO/165/1.webp",
-    silhouetteTechnicalUrl: "/image/siluetas/165.webp",
-    tagline: "Compacta y ágil.",
-    brochure: "/brochures/165.pdf",
-    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/165.webp",
-    featurePoints: [
-      { x: 33, y: 31 }, // 01 Escalera retráctil inox
-      { x: 41, y: 12 }, // 02 Tanque combustible
-      { x: 50.5, y: 17 }, // 03 Perfil perimetral
-      { x: 53.5, y: 9 }, // 04 Cockpit en U con mesa
-      { x: 55, y: 17 }, // 05 Piso evadeck
-      { x: 63.5, y: 5 }, // 06 Parabrisas
-      { x: 72.5, y: 48 }, // 07 Tapizado marino
-      { x: 66.6, y: 63 }, // 08 Sistema de audio
-      { x: 55, y: 74 }, // 09 Bodega de proa
-      { x: 48.5, y: 92 }, // 10 Iluminación LED
-      { x: 40, y: 91 }, // 11 Canopla de proa
-      { x: 27, y: 40 }, // 12 Pasamanos inox
-    ],
-    specs: [
-      { label: "Eslora Máx", value: "5.30m", icon: "ruler" },
-      { label: "Manga", value: "2.10m", icon: "arrows-horizontal" },
-      { label: "Puntal", value: "1.00m", icon: "arrow-up" },
-      { label: "Motorización", value: "70-115hp", icon: "lightning" },
-      { label: "Combustible", value: "95L", icon: "drop" },
-      { label: "Personas", value: "6", icon: "users" },
-    ],
-    specsExtra: [
-      { label: "Combustible", value: "95L", icon: "drop" },
-      { label: "Pasajeros", value: "6", icon: "users" },
-      { label: "Motorización", value: "1x115HP", icon: "lightning" },
-      { label: "Velocidad Máx", value: "38 nudos", icon: "gauge" },
-    ],
-    exteriorFeatures: [
-      "Sistema de audio con Bluetooth y cuatro parlantes náuticos.",
-      "Toldilla Bimini en lona acrílica importada con protección UV y estructura inoxidable.",
-      "Butacones envolventes giratorios.",
-      "Guantera de acompañante con cerradura.",
-      "Compartimiento guarda ski en pasillo de cockpit a proa.",
-      "Volante de mando con diseño distintivo.<br/>Instrumental de cinco elementos con indicadores de motor, performance y nivel de combustible.<br/>Comando de control de luces, bomba de achique y accesorios en el puesto de mando con LED indicativos.",
-      "Posavasos y manijones inoxidables de sujeción.<br/>Cornamusas rebatibles.",
-      "Perfil perimetral de protección en PVC con detalle en chromo.",
-      "Tanque de combustible de acero inoxidable con sensor magnético.",
-      'Tapicería construida en tela náutica Heavy Duty con Protección UV.<br/>Asientos en popa en "U" formando un living, con sus correspondientes lugares de guarda debajo.',
-      "Plataformas de popa para fácil acceso y descenso del agua.",
-      "Escalera retráctil sobre planchada.",
-    ],
-    versions: [
-      {
-        name: "165",
-        features: [
-          { label: "Tapicería premium", ltd: true, flyer: false },
-          { label: "Parabrisas", ltd: true, flyer: true },
-          { label: "Bodega de proa", ltd: true, flyer: true },
-        ],
-      },
-    ],
-    gelcoatColors: [
-      { name: "BLANCO", hex: "#FFFFFF" },
-      { name: "TITANIUM", hex: "#9E9E9E" },
-      { name: "NARDO", hex: "#607D8B" },
-      { name: "TURQUESA", hex: "#00BCD4" },
-      { name: "ROJO", hex: "#F44336" },
-      { name: "NEGRO", hex: "#212121" },
-    ],
-    tapiceriaColors: [
-      { name: "GRIS CLARO", hex: "#BDBDBD" },
-      { name: "GRIS MEDIO", hex: "#9E9E9E" },
-      { name: "GRIS OSCURO", hex: "#616161" },
-      { name: "GRIS NEGRO", hex: "#424242" },
-      { name: "ROJO", hex: "#F44336" },
-      { name: "HABANO", hex: "#A0856C" },
-      { name: "NEGRO", hex: "#212121" },
-    ],
-    pisoColors: [
-      { name: "GRIS CLARO", hex: "#BDBDBD" },
-      { name: "GRIS OSCURO", hex: "#616161" },
-      { name: "HABANO", hex: "#A0856C" },
-    ],
-    interiorImages: [
-      { url: "/image/2_PRODUCTO/165/INTERIOR/2.webp", w: 560, h: 380 },
-      { url: "/image/2_PRODUCTO/165/INTERIOR/5.webp", w: 420, h: 380 },
-      { url: "/image/2_PRODUCTO/165/INTERIOR/7.webp", w: 420, h: 380 },
-    ],
-    exteriorImages: [
-      { url: "/image/2_PRODUCTO/165/EXTERIOR/2.webp", w: 560, h: 380 },
-      { url: "/image/2_PRODUCTO/165/EXTERIOR/3.webp", w: 420, h: 380 },
-      { url: "/image/2_PRODUCTO/165/EXTERIOR/5.webp", w: 420, h: 380 },
-      { url: "/image/2_PRODUCTO/165/EXTERIOR/12.webp", w: 560, h: 380 },
-      { url: "/image/2_PRODUCTO/165/EXTERIOR/18.webp", w: 560, h: 380 },
-    ],
-  },
-  {
     slug: "170",
     name: "Classer 170",
     line: "LINEA CLASSIC",
-    eslora: "5.40M",
+    eslora: "5.70M",
     navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/170.webp",
     thumbnailUrl: "/image/2_PRODUCTO/170/1.webp",
     heroUrl: "/image/2_PRODUCTO/170/1.webp",
@@ -963,6 +864,105 @@ export const models: Model[] = [
       { url: "/image/2_PRODUCTO/170/EXTERIOR/16.webp", w: 560, h: 380 },
       { url: "/image/2_PRODUCTO/170/EXTERIOR/18.webp", w: 560, h: 380 },
       { url: "/image/2_PRODUCTO/170/EXTERIOR/19.webp", w: 560, h: 380 },
+    ],
+  },
+  {
+    slug: "165",
+    name: "Classer 165",
+    line: "LINEA CLASSIC",
+    eslora: "5.30M",
+    navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/165.webp",
+    thumbnailUrl: "/image/2_PRODUCTO/165/1.webp",
+    heroUrl: "/image/2_PRODUCTO/165/1.webp",
+    silhouetteTechnicalUrl: "/image/siluetas/165.webp",
+    tagline: "Compacta y ágil.",
+    brochure: "/brochures/165.pdf",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/165.webp",
+    featurePoints: [
+      { x: 33, y: 31 }, // 01 Escalera retráctil inox
+      { x: 41, y: 12 }, // 02 Tanque combustible
+      { x: 50.5, y: 17 }, // 03 Perfil perimetral
+      { x: 53.5, y: 9 }, // 04 Cockpit en U con mesa
+      { x: 55, y: 17 }, // 05 Piso evadeck
+      { x: 63.5, y: 5 }, // 06 Parabrisas
+      { x: 72.5, y: 48 }, // 07 Tapizado marino
+      { x: 66.6, y: 63 }, // 08 Sistema de audio
+      { x: 55, y: 74 }, // 09 Bodega de proa
+      { x: 48.5, y: 92 }, // 10 Iluminación LED
+      { x: 40, y: 91 }, // 11 Canopla de proa
+      { x: 27, y: 40 }, // 12 Pasamanos inox
+    ],
+    specs: [
+      { label: "Eslora Máx", value: "5.30m", icon: "ruler" },
+      { label: "Manga", value: "2.10m", icon: "arrows-horizontal" },
+      { label: "Puntal", value: "1.00m", icon: "arrow-up" },
+      { label: "Motorización", value: "70-115hp", icon: "lightning" },
+      { label: "Combustible", value: "95L", icon: "drop" },
+      { label: "Personas", value: "6", icon: "users" },
+    ],
+    specsExtra: [
+      { label: "Combustible", value: "95L", icon: "drop" },
+      { label: "Pasajeros", value: "6", icon: "users" },
+      { label: "Motorización", value: "1x115HP", icon: "lightning" },
+      { label: "Velocidad Máx", value: "38 nudos", icon: "gauge" },
+    ],
+    exteriorFeatures: [
+      "Sistema de audio con Bluetooth y cuatro parlantes náuticos.",
+      "Toldilla Bimini en lona acrílica importada con protección UV y estructura inoxidable.",
+      "Butacones envolventes giratorios.",
+      "Guantera de acompañante con cerradura.",
+      "Compartimiento guarda ski en pasillo de cockpit a proa.",
+      "Volante de mando con diseño distintivo.<br/>Instrumental de cinco elementos con indicadores de motor, performance y nivel de combustible.<br/>Comando de control de luces, bomba de achique y accesorios en el puesto de mando con LED indicativos.",
+      "Posavasos y manijones inoxidables de sujeción.<br/>Cornamusas rebatibles.",
+      "Perfil perimetral de protección en PVC con detalle en chromo.",
+      "Tanque de combustible de acero inoxidable con sensor magnético.",
+      'Tapicería construida en tela náutica Heavy Duty con Protección UV.<br/>Asientos en popa en "U" formando un living, con sus correspondientes lugares de guarda debajo.',
+      "Plataformas de popa para fácil acceso y descenso del agua.",
+      "Escalera retráctil sobre planchada.",
+    ],
+    versions: [
+      {
+        name: "165",
+        features: [
+          { label: "Tapicería premium", ltd: true, flyer: false },
+          { label: "Parabrisas", ltd: true, flyer: true },
+          { label: "Bodega de proa", ltd: true, flyer: true },
+        ],
+      },
+    ],
+    gelcoatColors: [
+      { name: "BLANCO", hex: "#FFFFFF" },
+      { name: "TITANIUM", hex: "#9E9E9E" },
+      { name: "NARDO", hex: "#607D8B" },
+      { name: "TURQUESA", hex: "#00BCD4" },
+      { name: "ROJO", hex: "#F44336" },
+      { name: "NEGRO", hex: "#212121" },
+    ],
+    tapiceriaColors: [
+      { name: "GRIS CLARO", hex: "#BDBDBD" },
+      { name: "GRIS MEDIO", hex: "#9E9E9E" },
+      { name: "GRIS OSCURO", hex: "#616161" },
+      { name: "GRIS NEGRO", hex: "#424242" },
+      { name: "ROJO", hex: "#F44336" },
+      { name: "HABANO", hex: "#A0856C" },
+      { name: "NEGRO", hex: "#212121" },
+    ],
+    pisoColors: [
+      { name: "GRIS CLARO", hex: "#BDBDBD" },
+      { name: "GRIS OSCURO", hex: "#616161" },
+      { name: "HABANO", hex: "#A0856C" },
+    ],
+    interiorImages: [
+      { url: "/image/2_PRODUCTO/165/INTERIOR/2.webp", w: 560, h: 380 },
+      { url: "/image/2_PRODUCTO/165/INTERIOR/5.webp", w: 420, h: 380 },
+      { url: "/image/2_PRODUCTO/165/INTERIOR/7.webp", w: 420, h: 380 },
+    ],
+    exteriorImages: [
+      { url: "/image/2_PRODUCTO/165/EXTERIOR/2.webp", w: 560, h: 380 },
+      { url: "/image/2_PRODUCTO/165/EXTERIOR/3.webp", w: 420, h: 380 },
+      { url: "/image/2_PRODUCTO/165/EXTERIOR/5.webp", w: 420, h: 380 },
+      { url: "/image/2_PRODUCTO/165/EXTERIOR/12.webp", w: 560, h: 380 },
+      { url: "/image/2_PRODUCTO/165/EXTERIOR/18.webp", w: 560, h: 380 },
     ],
   },
 ];
