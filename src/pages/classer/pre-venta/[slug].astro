@@ -61,8 +61,10 @@ if (!model) {
           id="scroll-video"
           src={model.preVentaVideoUrl}
           muted
+          autoplay
           playsinline
           preload="auto"
+          webkit-playsinline
           style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background-color: #000000; display: block; border: none; outline: none;"
         />
 
@@ -407,7 +409,19 @@ if (!model) {
       duration = video.duration || 0;
     }
     video.addEventListener('loadedmetadata', onMeta);
+    video.addEventListener('canplay', onMeta); // iOS necesita este evento para acceso al seek
     if (video.readyState >= 1) onMeta();
+
+    // iOS Safari necesita que el video haga autoplay (muted) para desbloquear el seeking.
+    // Lo pausamos de inmediato y reiniciamos a t=0 para que el scroll tome el control.
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+    if (isIOS) {
+      video.play().then(function () {
+        video.pause();
+        video.currentTime = 0;
+      }).catch(function () {});
+    }
 
     function update() {
       rafId = null;
