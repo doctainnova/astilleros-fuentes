@@ -54,7 +54,7 @@ if (!model) {
     <!-- ── SCROLL-DRIVEN VIDEO HERO ─────────────────────────── -->
     <div id="scroll-video-wrapper" style="height: 350vh; position: relative;">
       <!-- sticky canvas que queda fijo mientras scrolleás -->
-      <div id="scroll-video-sticky" style="position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; background: #0f0e0e;">
+      <div id="scroll-video-sticky" style="position: sticky; top: 72px; height: calc(100vh - 72px); width: 100%; overflow: hidden; background: #000000;">
 
         <!-- video (oculto para poder hacer seek) -->
         <video
@@ -63,24 +63,29 @@ if (!model) {
           muted
           playsinline
           preload="auto"
-          style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background-color: #0f0e0e; display: block; border: none; outline: none;"
+          style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background-color: #000000; display: block; border: none; outline: none;"
         />
 
         <!-- overlay info: aparece al final del scroll -->
-        <div id="scroll-video-info" style="position: absolute; inset: 0; display: flex; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.6s ease;">
+        <div id="scroll-video-info" style="position: absolute; inset: 0; display: flex; align-items: center; pointer-events: none;">
 
           <!-- izquierda: nombre + specs -->
-          <div style="position: absolute; left: clamp(2rem, 6vw, 8rem); top: 50%; transform: translateY(-50%);">
+          <div id="scroll-info-left" style="position: absolute; left: clamp(2rem, 6vw, 8rem); top: 50%; transform: translateY(-50%); opacity: 1;">
             <h1
+              id="scroll-title"
               class="font-display font-black italic"
-              style="color: #ffffff; font-size: clamp(3rem, 9vw, 8rem); letter-spacing: -0.04em; line-height: 0.9; margin-bottom: 2rem; text-shadow: 0 2px 20px rgba(0,0,0,0.5);"
+              style="color: #ffffff; font-size: clamp(3rem, 9vw, 8rem); letter-spacing: -0.04em; line-height: 0.9; margin-bottom: 2rem; text-shadow: 0 2px 20px rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.5s ease;"
             >
               {model.name.replace('Classer ', 'CLASSER ')}
             </h1>
             {model.preVentaSpecs && (
               <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                {model.preVentaSpecs.map(spec => (
-                  <div style="display: flex; align-items: center; gap: 0.75rem;">
+                {model.preVentaSpecs.map((spec, si) => (
+                  <div
+                    class="scroll-spec-item"
+                    data-spec-index={si}
+                    style="display: flex; align-items: center; gap: 0.75rem; opacity: 0; transition: opacity 0.5s ease;"
+                  >
                     <span style="display: flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: rgba(255,255,255,0.08); flex-shrink: 0;">
                       <img
                         src={
@@ -107,10 +112,10 @@ if (!model) {
           </div>
 
           <!-- derecha: CTA pre-venta -->
-          <div style="position: absolute; right: clamp(2rem, 6vw, 8rem); top: 50%; transform: translateY(-50%); text-align: center;">
+          <div id="scroll-info-right" style="position: absolute; right: clamp(16rem, 6vw, 8rem); top: 485px; transform: translateY(-120%); text-align: center; opacity: 0; transition: opacity 0.5s ease;">
             <p
               class="font-display"
-              style="color: #ffffff; font-size: clamp(2rem, 4vw, 3.5rem); font-style: italic; font-weight: 600; margin-bottom: 1.25rem; line-height: 1.1;"
+              style="color: #ffffff; font-size: clamp(3rem, 6vw, 5.5rem); font-style: italic; font-weight: 800; margin-bottom: 2rem; line-height: 1; letter-spacing: -0.02em;"
             >
               Pre-venta.
             </p>
@@ -175,13 +180,13 @@ if (!model) {
     overflow-x: hidden;
   }
   body:has(#scroll-video-wrapper) {
-    background-color: #c31919 !important;
+    background-color: #000000 !important;
   }
   body:has(#scroll-video-wrapper) main,
   body:has(#scroll-video-wrapper) .bg-bg-deep,
   body:has(#scroll-video-wrapper) .bg-bg-light,
   body:has(#scroll-video-wrapper) .bg-bg-mid {
-    background-color: #c31919 !important;
+    background-color: #000000 !important;
   }
   body:has(#scroll-video-wrapper)::-webkit-scrollbar {
     display: none;
@@ -341,12 +346,40 @@ if (!model) {
         video.currentTime = target;
       }
 
-      // mostrar info y ocultar hint al 80%
-      if (info) info.style.opacity  = progress >= 0.80 ? String((progress - 0.80) / 0.20) : '0';
-      if (hint) hint.style.opacity  = progress <= 0.15 ? '1' : String(Math.max(0, 1 - (progress - 0.15) / 0.15));
+      // ── Staggered item-by-item reveal ────────────────────────────
+      const titleEl   = document.getElementById('scroll-title');
+      const specItems = document.querySelectorAll('.scroll-spec-item');
+      const infoLeft  = document.getElementById('scroll-info-left');
+      const infoRight = document.getElementById('scroll-info-right');
 
-      // habilitar pointer-events del CTA solo cuando es visible
-      if (info) info.style.pointerEvents = progress >= 0.80 ? 'auto' : 'none';
+      // 1. Title: 15% → 30%
+      const titleOp = progress >= 0.15 ? Math.min(1, (progress - 0.15) / 0.15) : 0;
+      if (titleEl) titleEl.style.opacity = String(titleOp);
+
+      // 2. Each spec item sequentially from 30% to 78%
+      //    Each item gets an equal slice of the range
+      const specCount = specItems.length;
+      const specStart = 0.30;
+      const specEnd   = 0.78;
+      const perItem   = specCount > 0 ? (specEnd - specStart) / specCount : 0.12;
+      specItems.forEach((el, i) => {
+        const start = specStart + i * perItem;
+        const op    = progress >= start ? Math.min(1, (progress - start) / perItem) : 0;
+        el.style.opacity = String(op);
+      });
+
+      // Container is always laid out (no own opacity), children control theirs
+      if (infoLeft) infoLeft.style.opacity = '1';
+
+      // 3. Right panel: 90% → 100%
+      const rightOp = progress >= 0.90 ? Math.min(1, (progress - 0.90) / 0.10) : 0;
+      if (infoRight) infoRight.style.opacity = String(rightOp);
+
+      // pointer-events: only active once something is visible
+      if (info) info.style.pointerEvents = progress >= 0.78 ? 'auto' : 'none';
+
+      // scroll hint
+      if (hint) hint.style.opacity = progress <= 0.15 ? '1' : String(Math.max(0, 1 - (progress - 0.15) / 0.15));
     }
 
     function onScroll() {

@@ -128,14 +128,15 @@ const { isFixed = false } = Astro.props;
         <div class="relative overflow-hidden rounded-lg" style="width: 160px; height: 110px; background: #e8e8e8; flex-shrink: 0;">
           <img
             src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-            data-src={model.thumbnailUrl}
+            data-src={model.navbarThumbnailUrl || model.thumbnailUrl}
             alt={model.name}
             width="160"
             height="110"
-            loading="eager"
+            loading="lazy"
             decoding="async"
-            style="width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease;"
-            class="group-hover:scale-[1.04]"
+            style="width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease, opacity 400ms ease; opacity: 0;"
+            class="mega-thumb group-hover:scale-[1.04]"
+            onload="this.style.opacity = '1'"
           />
           {model.badge && (
             <span
@@ -195,6 +196,11 @@ const { isFixed = false } = Astro.props;
     box-shadow: 0 8px 32px rgba(0,0,0,0.12);
     padding: 1.5rem 2rem;
     z-index: 49;
+    /* defer rendering of hidden menu to free up main thread */
+    content-visibility: auto;
+    contain-intrinsic-size: 0 200px;
+    /* GPU-composited layer for jank-free transitions */
+    will-change: opacity, transform;
   }
 
   /* ── Mega menu visibility toggle ───────────────────────────── */
@@ -278,7 +284,48 @@ const { isFixed = false } = Astro.props;
     }, 120);
   }
 
-  trigger?.addEventListener('mouseenter', showMenu);
+  // ── Smart Thumb Loading ─────────────────────────────────────────
+  // Strategy:
+  //   1. During browser idle, inject <link rel="preload"> for all thumbs
+  //      → browser fetches them in parallel at network level (fastest possible)
+  //   2. Also set img.src so they render immediately when menu opens
+  //   3. Fallback to setTimeout if requestIdleCallback not supported
+  let thumbsLoaded = false;
+
+  function loadMegaMenuThumbs(): void {
+    if (thumbsLoaded) return;
+    thumbsLoaded = true;
+    document.querySelectorAll('.mega-thumb[data-src]').forEach(img => {
+      const el = img as HTMLImageElement;
+      if (!el.dataset.src) return;
+
+      // Inject <link rel="preload"> for parallel network fetch
+      const preloadLink = document.createElement('link');
+      preloadLink.rel  = 'preload';
+      preloadLink.as   = 'image';
+      preloadLink.href = el.dataset.src;
+      document.head.appendChild(preloadLink);
+
+      // Set the actual src after short delay so preload wins the race
+      requestAnimationFrame(() => {
+        el.src = el.dataset.src!;
+        el.removeAttribute('data-src');
+      });
+    });
+  }
+
+  // Fallback if idle callback isn't supported or fails
+  const idleTimeout = setTimeout(loadMegaMenuThumbs, 3000); 
+
+  if ('requestIdleCallback' in window) {
+    (window as any).requestIdleCallback(() => {
+      clearTimeout(idleTimeout);
+      loadMegaMenuThumbs();
+    }, { timeout: 2000 });
+  }
+
+  // Backup: load immediately if they hover before idle
+  trigger?.addEventListener('mouseenter', () => { loadMegaMenuThumbs(); showMenu(); });
   trigger?.addEventListener('mouseleave', hideMenu);
   megaMenu?.addEventListener('mouseenter', showMenu);
   megaMenu?.addEventListener('mouseleave', hideMenu);

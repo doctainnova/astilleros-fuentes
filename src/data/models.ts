@@ -35,6 +35,7 @@ export interface Model {
   exteriorImages: { url: string; w: number; h: number }[];
   technicalDiagramUrl?: string;
   featurePoints?: { x: number; y: number }[];
+  navbarThumbnailUrl?: string;
   preVentaVideoUrl?: string;
   preVentaSpecs?: { label: string; value: string; icon: string }[];
 }
@@ -43,15 +44,16 @@ export const models: Model[] = [
   // ── LINEA DF ────────────────────────────────────────────────────
   {
     slug: "246",
-    name: "Classer 246",
+    name: "Classer 246 DF",
     line: "LINEA DF",
     eslora: "7.50M",
-    thumbnailUrl: "/image/2_PRODUCTO/246 DF/EXTERIOR/IMAGEN 2.webp",
-    heroUrl: "/image/2_PRODUCTO/246 DF/EXTERIOR/CHZ_2066.webp",
+    navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/246df.webp",
+    thumbnailUrl: "/image/2_PRODUCTO/246 DF/1.webp",
+    heroUrl: "/image/2_PRODUCTO/246 DF/1.webp",
     silhouetteTechnicalUrl: "/image/siluetas/246 DF.webp",
     tagline: "El estándar de la excelencia.",
     brochure: "/brochures/246 DF.pdf",
-    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/246 DF.png",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/246 DF.webp",
     featurePoints: [
       { x: 19, y: 22 }, // 01 Escalera retráctil inox
       { x: 30, y: 17 }, // 02 Tanque combustible
@@ -210,12 +212,13 @@ export const models: Model[] = [
     name: "Classer 246 SURF",
     line: "LINEA DF",
     eslora: "7.50M",
-    thumbnailUrl: "/image/2_PRODUCTO/246 SURF/EXTERIOR/IMG_3190.webp",
-    heroUrl: "/image/2_PRODUCTO/246 SURF/EXTERIOR/IMG_3190.webp",
+    navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/246surf.webp",
+    thumbnailUrl: "/image/2_PRODUCTO/246 SURF/1.webp",
+    heroUrl: "/image/2_PRODUCTO/246 SURF/1.webp",
     silhouetteTechnicalUrl: "/image/siluetas/246 SURF.webp",
     tagline: "Performance y estilo en cada ola.",
     brochure: "/brochures/246 SURF.pdf",
-    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/246 SURF.png",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/246 SURF.webp",
     featurePoints: [
       { x: 21, y: 25 }, // 01 Escalera retráctil inox
       { x: 31, y: 22 }, // 02 Tanque combustible
@@ -380,12 +383,13 @@ export const models: Model[] = [
     name: "Classer 246 OB",
     line: "LINEA OB",
     eslora: "7.80M",
-    thumbnailUrl: "/image/2_PRODUCTO/246 OB/EXTERIOR/1A.webp",
-    heroUrl: "/image/2_PRODUCTO/246 OB/EXTERIOR/1A.webp",
+    navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/246ob.webp",
+    thumbnailUrl: "/image/2_PRODUCTO/246 OB/1.webp",
+    heroUrl: "/image/2_PRODUCTO/246 OB/1.webp",
     silhouetteTechnicalUrl: "/image/siluetas/246 OB.webp",
     tagline: "Potencia fuera de borda sin compromisos.",
     brochure: "/brochures/246 OB.pdf",
-    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/246 OB.png",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/246 OB.webp",
     featurePoints: [
       { x: 24, y: 28 }, // 01 Escalera retráctil inox
       { x: 38, y: 12 }, // 02 Tanque combustible
@@ -567,12 +571,13 @@ export const models: Model[] = [
     line: "LINEA OB",
     eslora: "6.20M",
     badge: "NUEVO",
+    navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/206.webp",
     thumbnailUrl: "/image/2_PRODUCTO/206 FTX/1.webp",
     heroUrl: "/image/2_PRODUCTO/206 FTX/1.webp",
     silhouetteTechnicalUrl: "/image/siluetas/206 FTX.webp",
     tagline: "El punto de inflexión entre performance y confort.",
     brochure: "/brochures/206 FTX.pdf",
-    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/206 FTX.png",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/206 FTX.webp",
     featurePoints: [
       { x: 22, y: 9 }, // 01 Escalera retráctil
       { x: 44, y: 9 }, // 02 Tanque acero inoxidable
@@ -727,8 +732,9 @@ export const models: Model[] = [
     line: "LINEA OB",
     eslora: "5.80M",
     badge: "PRONTO",
-    thumbnailUrl: "/image/2_PRODUCTO/246 OB/1.webp",
-    heroUrl: "/image/2_PRODUCTO/246 OB/1.webp",
+    navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/186.webp",
+    thumbnailUrl: "/image/2_PRODUCTO/186/1.webp",
+    heroUrl: "/image/2_PRODUCTO/186/1.webp",
     silhouetteTechnicalUrl: "/image/siluetas/186.webp",
     tagline: "El próximo capítulo. Próximamente.",
     preVentaVideoUrl: "/image/pre-venta/186/animation.mp4",
@@ -762,12 +768,13 @@ export const models: Model[] = [
     name: "Classer 165",
     line: "LINEA CLASSIC",
     eslora: "5.10M",
-    thumbnailUrl: "/image/2_PRODUCTO/165/1.png", // TODO: convertir a .webp
-    heroUrl: "/image/2_PRODUCTO/165/1.png", // TODO: convertir a .webp
+    navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/165.webp",
+    thumbnailUrl: "/image/2_PRODUCTO/165/1.webp",
+    heroUrl: "/image/2_PRODUCTO/165/1.webp",
     silhouetteTechnicalUrl: "/image/siluetas/165.webp",
     tagline: "Compacta y ágil.",
     brochure: "/brochures/165.pdf",
-    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/165.png",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/165.webp",
     featurePoints: [
       { x: 33, y: 31 }, // 01 Escalera retráctil inox
       { x: 41, y: 12 }, // 02 Tanque combustible
@@ -783,10 +790,10 @@ export const models: Model[] = [
       { x: 27, y: 40 }, // 12 Pasamanos inox
     ],
     specs: [
-      { label: "Eslora Máx", value: "5.10m", icon: "ruler" },
+      { label: "Eslora Máx", value: "5.30m", icon: "ruler" },
       { label: "Manga", value: "2.10m", icon: "arrows-horizontal" },
       { label: "Puntal", value: "1.00m", icon: "arrow-up" },
-      { label: "Motorización", value: "90-115hp", icon: "lightning" },
+      { label: "Motorización", value: "70-115hp", icon: "lightning" },
       { label: "Combustible", value: "95L", icon: "drop" },
       { label: "Personas", value: "6", icon: "users" },
     ],
@@ -860,35 +867,33 @@ export const models: Model[] = [
     name: "Classer 170",
     line: "LINEA CLASSIC",
     eslora: "5.40M",
-    thumbnailUrl: "/image/2_PRODUCTO/170/2.png", // TODO: convertir a .webp
-    heroUrl: "/image/2_PRODUCTO/170/2.png", // TODO: convertir a .webp
+    navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/170.webp",
+    thumbnailUrl: "/image/2_PRODUCTO/170/1.webp",
+    heroUrl: "/image/2_PRODUCTO/170/1.webp",
     silhouetteTechnicalUrl: "/image/siluetas/170.webp",
     tagline: "Versatilidad en cada ola.",
     brochure: "/brochures/170.pdf",
-    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/170.png",
+    technicalDiagramUrl: "/image/2_PRODUCTO/lineas_productos/170.webp",
     featurePoints: [
-      { x: 19, y: 22 }, // 01 Escalera retráctil inox
-      { x: 30, y: 17 }, // 02 Tanque combustible
-      { x: 58, y: 17 }, // 03 Perfil perimetral
-      { x: 66, y: 9 }, // 04 Cockpit en U con mesa
-      { x: 76, y: 2 }, // 05 Piso evadeck
-      { x: 94, y: 17 }, // 06 Parabrisas
-      { x: 90, y: 62 }, // 07 Tapizado marino
-      { x: 71, y: 72 }, // 08 Sistema de audio
-      { x: 75, y: 89 }, // 09 Bodega de proa
-      { x: 61, y: 92 }, // 10 Iluminación LED
-      { x: 47, y: 79 }, // 11 Canopla de proa
-      { x: 39.5, y: 99 }, // 12 Pasamanos inox
-      { x: 32, y: 77 }, // 13 Pasamanos inox
-      { x: 21, y: 83 }, // 14 Pasamanos inox
-      { x: 10, y: 85 }, // 15 Pasamanos inox
-      { x: 15.5, y: 36 }, // 16 Pasamanos inox
+      { x: 36, y: 34 }, // 01 Escalera retráctil inox
+      { x: 49, y: 8 }, // 02 Tanque combustible
+      { x: 56.5, y: 17 }, // 03 Perfil perimetral
+      { x: 61.5, y: 9 }, // 04 Cockpit en U con mesa
+      { x: 62, y: 27 }, // 05 Piso evadeck
+      { x: 73.3, y: 22 }, // 06 Parabrisas
+      { x: 71, y: 56 }, // 07 Tapizado marino
+      { x: 67, y: 81 }, // 08 Sistema de audio
+      { x: 64, y: 89 }, // 09 Bodega de proa
+      { x: 52, y: 72 }, // 10 Iluminación LED
+      { x: 46, y: 78 }, // 11 Canopla de proa
+      { x: 36, y: 95 }, // 12 Pasamanos inox
+      { x: 26, y: 46 }, // 13 Pasamanos inox
     ],
     specs: [
-      { label: "Eslora Máx", value: "5.40m", icon: "ruler" },
+      { label: "Eslora Máx", value: "5.70m", icon: "ruler" },
       { label: "Manga", value: "2.20m", icon: "arrows-horizontal" },
       { label: "Puntal", value: "1.05m", icon: "arrow-up" },
-      { label: "Motorización", value: "115-150hp", icon: "lightning" },
+      { label: "Motorización", value: "90-150hp", icon: "lightning" },
       { label: "Combustible", value: "110L", icon: "drop" },
       { label: "Personas", value: "7", icon: "users" },
     ],
@@ -942,12 +947,12 @@ export const models: Model[] = [
       { url: "/image/2_PRODUCTO/170/INTERIOR/1.webp", w: 560, h: 380 },
       { url: "/image/2_PRODUCTO/170/INTERIOR/2.webp", w: 420, h: 380 },
       { url: "/image/2_PRODUCTO/170/INTERIOR/3.webp", w: 420, h: 380 },
-      { url: "/image/2_PRODUCTO/170/INTERIOR/4.png", w: 420, h: 380 }, // TODO: convertir a .webp
+      { url: "/image/2_PRODUCTO/170/INTERIOR/4.webp", w: 420, h: 380 }, // TODO: convertir a .webp
     ],
     exteriorImages: [
-      { url: "/image/2_PRODUCTO/170/EXTERIOR/2.png", w: 560, h: 380 }, // TODO: convertir a .webp
+      { url: "/image/2_PRODUCTO/170/EXTERIOR/2.webp", w: 560, h: 380 }, // TODO: convertir a .webp
       { url: "/image/2_PRODUCTO/170/EXTERIOR/3.webp", w: 420, h: 380 },
-      { url: "/image/2_PRODUCTO/170/EXTERIOR/5.png", w: 420, h: 380 }, // TODO: convertir a .webp
+      { url: "/image/2_PRODUCTO/170/EXTERIOR/5.webp", w: 420, h: 380 }, // TODO: convertir a .webp
       { url: "/image/2_PRODUCTO/170/EXTERIOR/16.webp", w: 560, h: 380 },
       { url: "/image/2_PRODUCTO/170/EXTERIOR/18.webp", w: 560, h: 380 },
       { url: "/image/2_PRODUCTO/170/EXTERIOR/19.webp", w: 560, h: 380 },
