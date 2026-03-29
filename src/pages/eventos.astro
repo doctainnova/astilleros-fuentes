@@ -78,13 +78,12 @@ const events = [
     detailAlt: "Stand de Classer en el Salón Náutico",
     gallery: [
       { src: cacel01, pos: "center" },
-      { src: cacel02, pos: "top" }, // Grupo de personas
-      { src: cacel03, pos: "top" }, // Grupo de personas
+      { src: cacel03, pos: "center" }, // Grupo de personas
       { src: cacel04, pos: "center" },
-      { src: cacel05, pos: "top" }, // Premiación/Gente
+      { src: cacel05, pos: "center" }, // Premiación/Gente
       { src: cacel06, pos: "center" },
       { src: cacel07, pos: "center" },
-      { src: cacel08, pos: "top" }, // Gente en stand
+      { src: cacel08, pos: "center" }, // Gente en stand
       { src: cacel09, pos: "center" },
       { src: cacel10, pos: "center" },
       { src: cacel11, pos: "center" },
@@ -189,7 +188,6 @@ const events = [
                     src={ev.thumbSrc}
                     alt={ev.thumbAlt}
                     width={600}
-                    height={400}
                     loading={i === 1 ? "eager" : "lazy"}
                     decoding="async"
                     class="ev-card__img"
@@ -239,7 +237,6 @@ const events = [
                   src={ev.detailSrc}
                   alt={ev.detailAlt}
                   width={680}
-                  height={460}
                   loading="lazy"
                   decoding="async"
                   class="detail-img"
@@ -263,7 +260,6 @@ const events = [
                     src={item.src}
                     alt={`${ev.title} — foto ${gi + 1}`}
                     width={500}
-                    height={320}
                     loading="lazy"
                     decoding="async"
                     class="gallery-img"

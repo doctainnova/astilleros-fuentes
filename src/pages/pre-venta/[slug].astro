@@ -1,7 +1,7 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
-import SectionLabel from '../../../components/SectionLabel.astro';
-import { models, getModelBySlug } from '../../../data/models';
+import Layout from '../../layouts/Layout.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import { models, getModelBySlug } from '../../data/models';
 
 export function getStaticPaths() {
   return models.map(m => ({ params: { slug: m.slug } }));
@@ -11,7 +11,7 @@ const { slug } = Astro.params;
 const model = getModelBySlug(slug!);
 
 if (!model) {
-  return Astro.redirect('/classer');
+  return Astro.redirect('/');
 }
 ---
 
@@ -63,6 +63,7 @@ if (!model) {
           muted
           playsinline
           preload="auto"
+          webkit-playsinline
           style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background-color: #000000; display: block; border: none; outline: none;"
         />
 
@@ -120,7 +121,7 @@ if (!model) {
               Pre-venta.
             </p>
             <a
-              href="#contacto"
+              href="https://api.whatsapp.com/send?phone=5493534781206&text=Hola%2C%20me%20interesa%20la%20preventa%20de%20la%20CLASSER%20186.%20%C2%BFMe%20pueden%20contar%20c%C3%B3mo%20funciona%3F"
               id="scroll-video-cta"
               style="display: inline-block; background: #1e90d4; color: #ffffff; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 1rem 2.5rem; border-radius: 4px; text-decoration: none; pointer-events: auto; transition: background 200ms ease;"
             >
@@ -304,6 +305,90 @@ if (!model) {
   font-weight: 600;
   color: #1e2b50 !important;
 }
+
+/* ── Mobile adaptation: scroll-video overlay ──────────────── */
+@media (max-width: 767px) {
+  /*
+   * En PC: panel izquierdo centrado verticalmente (top:50% + translateY(-50%)),
+   *        panel derecho a top:485px + translateY(-120%) a la derecha.
+   * En móvil: ambos paneles anclados al fondo, divididos 50/50 horizontalmente.
+   * Esto replica la estética PC pero adaptada a pantallas angostas.
+   */
+
+  /* Título: reducir de 3-8rem a 1.8-2.8rem para caber en el 50% izquierdo */
+  #scroll-title {
+    font-size: clamp(1.8rem, 8.5vw, 2.8rem) !important;
+    margin-bottom: 0.6rem !important;
+    line-height: 0.88 !important;
+  }
+
+  /* Panel izquierdo: de "centrado vertical a la izquierda" a "anclado abajo-izquierda" */
+  #scroll-info-left {
+    top: auto !important;
+    bottom: 1.75rem !important;
+    left: 1rem !important;
+    right: 50% !important;          /* ocupa el 50% izquierdo */
+    transform: none !important;
+    padding-right: 0.5rem !important;
+  }
+
+  /* Reducir gap entre spec items para ahorrar altura */
+  .scroll-spec-item {
+    gap: 0.4rem !important;
+  }
+
+  /* Ícono circular de spec: ligeramente más pequeño */
+  .scroll-spec-item > span:first-child {
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Imágen dentro del ícono */
+  .scroll-spec-item > span:first-child img {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  /* Valor de spec: ligeramente más pequeño */
+  .scroll-spec-item > div > div:last-child {
+    font-size: 0.85rem !important;
+  }
+
+  /* Panel derecho: de "top:485px + right fijo roto" a "anclado abajo-derecha" */
+  #scroll-info-right {
+    right: 1rem !important;
+    left: 50% !important;           /* ocupa el 50% derecho */
+    top: auto !important;
+    bottom: 5.5rem !important;      /* sube sobre el botón de WhatsApp (56px + 1.5rem) */
+    transform: none !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+  }
+
+  /* "Pre-venta." — reducir de 3-5.5rem a 1.5-2.5rem */
+  #scroll-info-right > p {
+    font-size: clamp(1.5rem, 6.5vw, 2.5rem) !important;
+    margin-bottom: 0.75rem !important;
+    line-height: 1 !important;
+  }
+
+  /* Botón CTA: padding más compacto */
+  #scroll-video-cta {
+    padding: 0.65rem 1.1rem !important;
+    font-size: 0.65rem !important;
+    letter-spacing: 0.12em !important;
+    white-space: nowrap !important;
+  }
+
+  /* Scroll hint: subir un poco para no tapar el botón WA */
+  #scroll-hint {
+    bottom: 0.75rem !important;
+  }
+}
 </style>
 
 <script is:inline>
@@ -323,7 +408,19 @@ if (!model) {
       duration = video.duration || 0;
     }
     video.addEventListener('loadedmetadata', onMeta);
+    video.addEventListener('canplay', onMeta); // iOS necesita este evento para acceso al seek
     if (video.readyState >= 1) onMeta();
+
+    // iOS Safari necesita que el video haga autoplay (muted) para desbloquear el seeking.
+    // Lo pausamos de inmediato y reiniciamos a t=0 para que el scroll tome el control.
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+    if (isIOS) {
+      video.play().then(function () {
+        video.pause();
+        video.currentTime = 0;
+      }).catch(function () {});
+    }
 
     function update() {
       rafId = null;

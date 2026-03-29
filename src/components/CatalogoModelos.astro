@@ -11,6 +11,7 @@ const iconMap: Record<string, string> = {
 const realSpecs: Record<string, { eslora: string; personas: string; motor: string }> = {
   '246':      { eslora: '7,40 m', personas: '14', motor: '200 a 350 hp' },
   '246 SURF': { eslora: '7,40 m', personas: '14', motor: '200 a 350 hp' },
+  '246 DF':   { eslora: '7,40 m', personas: '14', motor: '200 a 350 hp' },
   '246 OB':   { eslora: '7,40 m', personas: '14', motor: '200 a 350 hp' },
   '206 FTX':  { eslora: '6,08 m', personas: '9',  motor: '150 a 200 hp' },
   '186':      { eslora: '5,80 m', personas: '8',  motor: '115 a 150 hp' },
@@ -67,7 +68,7 @@ const lines = Object.keys(groupedModels);
               const specs = realSpecs[modelKey] || { eslora: 'TBD', personas: 'TBD', motor: 'TBD' };
               
               return (
-                <a href={`/classer/${model.slug}`} class="model-card">
+                <a href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`} class="model-card">
                   <div class="model-info">
                     <h3 class="model-name">{modelKey}</h3>
                     <div class="model-visual">
