@@ -1,7 +1,7 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
-import SectionLabel from '../../../components/SectionLabel.astro';
-import { models, getModelBySlug } from '../../../data/models';
+import Layout from '../../layouts/Layout.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import { models, getModelBySlug } from '../../data/models';
 
 export function getStaticPaths() {
   return models.map(m => ({ params: { slug: m.slug } }));
@@ -11,7 +11,7 @@ const { slug } = Astro.params;
 const model = getModelBySlug(slug!);
 
 if (!model) {
-  return Astro.redirect('/classer');
+  return Astro.redirect('/');
 }
 ---
 

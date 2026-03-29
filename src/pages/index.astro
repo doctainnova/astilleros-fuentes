@@ -1,89 +1,78 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import afShieldImg from '../assets/brand/AF 2.webp';
-import classerBrandImg from '../assets/brand/CLASSER 2.webp';
-import ftsImg from '../assets/brand/FTS.webp';
+import HeroSlider from '../components/HeroSlider.astro';
+import Filosofia from '../components/Filosofia.astro';
+import CatalogoModelos from '../components/CatalogoModelos.astro';
+import FabricacionPropia from '../components/FabricacionPropia.astro';
+import PartnersOficiales from '../components/PartnersOficiales.astro';
+import NoticiasEventos from '../components/NoticiasEventos.astro';
+import CTAContacto from '../components/CTAContacto.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import NewsCard from '../components/NewsCard.astro';
+import ContactForm from '../components/ContactForm.astro';
+import ModelCard from '../components/ModelCard.astro';
+import { models } from '../data/models';
+import { newsArticles } from '../data/news';
 
-return Astro.redirect('/classer');
+// Map models to catalog display
+const surfModels = models.filter(m => m.line === 'LINEA SURF' || m.slug === '246');
+const ftxModels = models.filter(m => m.line === 'LINEA FTX');
+
+const catalogModels = [
+  { name: '246 SURF', line: 'LINEA SURF', motorizacion: '250-350hp', eslora: '7.40 m', personas: '14', imageUrl: 'https://placehold.co/320x180/0a0e1a/a8b3c8?text=246+SURF+Illustration', href: '/modelos/246' },
+  { name: '246 OB', line: 'LINEA OB', motorizacion: '250-350hp OB', eslora: '7.80 m', personas: '14', imageUrl: 'https://placehold.co/320x180/0a0e1a/a8b3c8?text=246+OB+Illustration', href: '/modelos/246-ob' },
+  { name: '206 FTX', line: 'LINEA FTX', motorizacion: '150-200hp', eslora: '6.08 m', personas: '9', imageUrl: 'https://placehold.co/320x180/0a0e1a/a8b3c8?text=206+FTX+Illustration', href: '/modelos/206-ftx' },
+];
 ---
 
-<Layout 
-  title="Astillero Fuentes — Bienvenidos" 
-  hideNavbar={true} 
-  hideFooter={true} 
-  noScroll={true}
->
-  <div class="fixed inset-0 bg-[#1b1936] flex flex-col items-center justify-center p-8 md:p-12 overflow-hidden">
-    
-    <!-- 1. TOP BRAND HEADER -->
-    <header class="w-full max-w-[1400px] flex items-center justify-center gap-8 md:gap-20 mb-16 md:mb-24 px-8">
-      <!-- Brand Name -->
-      <span class="hidden md:block text-white italic text-3xl md:text-5xl whitespace-nowrap" style="font-family: 'Rogue Sans Nova Extended', sans-serif; font-weight: 400;">
-        Astillero Fuentes
-      </span>
-      
-      <!-- Shield Logo -->
-      <div class="flex-shrink-0">
-        <Image src={afShieldImg} alt="Escudo Astillero Fuentes" width={100} format="webp" quality={85} loading="eager" decoding="sync" class="text-white color-white invert" />
-      </div>
+<Layout title="CLASSER — Lanchas de Lujo | Astillero Fuentes" fixedNavbar={true} preloadHero={true}>
+  <!-- SECTION 1: HERO SLIDER -->
+  <HeroSlider />
 
-      <!-- Tagline -->
-      <span class="text-white font-light text-base md:text-xl whitespace-nowrap opacity-80" style="letter-spacing: 0.02em;">
-        Más de 50 años navegando juntos.
-      </span>
-    </header>
+  <!-- FILOSOFÍA -->
+  <Filosofia />
 
-    <!-- 2. THREE CARDS GRID -->
-    <div class="w-full max-w-[1550px] grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 px-10">
-      
-      <!-- CARD 1: CLASSER -->
-      <div class="flex flex-col gap-8 items-center">
-        <a 
-          href="/classer" 
-          class="w-full aspect-square bg-[#03050a] flex flex-col items-center justify-center gap-6 transition-all duration-500 hover:scale-[1.03] hover:bg-[#070a14] border border-white/5 shadow-2xl active:scale-[0.98]"
-        >
-          <!-- Swoosh SVG -->
-          <Image src={classerBrandImg} alt="CLASSER — línea de embarcaciones deportivas de lujo" width={350} format="webp" quality={85} loading="eager" decoding="sync" class="text-white color-white invert" />
-        </a>
-        <p class="text-white font-light text-center text-lg md:text-xl max-w-[300px] leading-relaxed opacity-90">
-          Embarcaciones deportivas de lujo.
-        </p>
-      </div>
+  <!-- CATÁLOGO DE MODELOS -->
+  <CatalogoModelos />
 
-      <!-- CARD 2: TM -->
-      <div class="flex flex-col gap-8 items-center">
-        <div 
-          class="w-full aspect-square bg-[#03050a] flex flex-col items-center justify-center opacity-70 border border-white/5"
-        >
-          <span class="text-white italic font-bold leading-none select-none" style="font-family: 'Rogue Sans Nova Extended', sans-serif; font-size: 8rem; letter-spacing: -0.07em;">
-            TM
-          </span>
-        </div>
-        <p class="text-white font-light text-center text-lg md:text-xl max-w-[300px] leading-relaxed opacity-90">
-          Diseños 1 de 1 y restauraciones únicas.
-        </p>
-      </div>
+  <!-- FABRICACIÓN PROPIA -->
+  <FabricacionPropia />
 
-      <!-- CARD 3: FTS -->
-      <div class="flex flex-col gap-8 items-center">
-        <div 
-          class="w-full aspect-square bg-[#03050a] flex flex-col items-center justify-center gap-2 opacity-70 border border-white/5"
-        >
-          <Image src={ftsImg} alt="FTS — Fuentes Technical Service" height={200} format="webp" quality={85} loading="eager" decoding="sync" class="text-white color-white invert" />
-        </div>
-        <p class="text-white font-light text-center text-lg md:text-xl max-w-[300px] leading-relaxed opacity-90">
-          Service a tu lancha y accesorios para el agua.
-        </p>
-      </div>
+  <!-- PARTNERS OFICIALES -->
+  <PartnersOficiales />
 
-    </div>
+  <!-- NOTICIAS Y EVENTOS -->
+  <NoticiasEventos />
 
-  </div>
+  <!-- CTA CONTACTO -->
+  <CTAContacto />
 </Layout>
 
-<style>
-  .font-display {
-    font-family: 'Rogue Sans Nova Condensed', sans-serif;
-  }
-</style>
+<script is:inline>
+  // Drag-to-scroll for catalog
+  document.addEventListener('DOMContentLoaded', () => {
+    const catalogs = document.querySelectorAll('#catalog-scroll, #models-bar, #news-slider');
+    catalogs.forEach(el => {
+      let isDown = false;
+      let startX = 0;
+      let scrollLeft = 0;
+
+      el.addEventListener('mousedown', (e) => {
+        isDown = true;
+        el.classList.add('drag-scroll');
+        startX = e.pageX - el.offsetLeft;
+        scrollLeft = el.scrollLeft;
+      });
+
+      el.addEventListener('mouseleave', () => { isDown = false; });
+      el.addEventListener('mouseup', () => { isDown = false; });
+      el.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - el.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        el.scrollLeft = scrollLeft - walk;
+      });
+    });
+  });
+</script>

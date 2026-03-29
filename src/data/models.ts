@@ -148,6 +148,11 @@ export const models: Model[] = [
         w: 560,
         h: 380,
       },
+      {
+        url: "/image/2_PRODUCTO/246 SURF/EXTERIOR/058A6445.webp",
+        w: 560,
+        h: 380,
+      },
     ],
     exteriorImages: [
       {
@@ -157,11 +162,6 @@ export const models: Model[] = [
       },
       {
         url: "/image/2_PRODUCTO/246 SURF/EXTERIOR/0C9A6864.webp",
-        w: 560,
-        h: 380,
-      },
-      {
-        url: "/image/2_PRODUCTO/246 SURF/EXTERIOR/058A6445.webp",
         w: 560,
         h: 380,
       },

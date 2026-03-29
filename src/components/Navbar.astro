@@ -18,13 +18,13 @@ const { isFixed = false } = Astro.props;
 >
   <div class="container-site h-full flex items-center justify-between">
 
-    <a href="/classer" class="flex-shrink-0" aria-label="CLASSER — Astillero Fuentes">
+    <a href="/" class="flex-shrink-0" aria-label="CLASSER — Astillero Fuentes">
       <Image src={classerLogo} alt="CLASSER — Astillero Fuentes" width={200} format="webp" quality={85} loading="eager" decoding="sync" class="text-white color-white invert" />
     </a>
 
     <!-- Desktop Nav -->
     <nav class="hidden md:flex items-center gap-8" aria-label="Navegación principal">
-      <a href="/classer" class="text-sm font-medium text-text-secondary hover:text-white transition-colors cursor-pointer">Inicio</a>
+      <a href="/" class="text-sm font-medium text-text-secondary hover:text-white transition-colors cursor-pointer">Inicio</a>
 
       <!-- Modelos trigger — hover activates mega menu -->
       <div id="models-trigger" role="navigation" aria-label="Modelos">
@@ -86,7 +86,7 @@ const { isFixed = false } = Astro.props;
         <div id="mobile-models-submenu" class="hidden flex-col" style="background: rgba(255,255,255,0.03);">
           {models.map(model => (
             <a
-              href={model.preVentaVideoUrl ? `/classer/pre-venta/${model.slug}` : `/classer/${model.slug}`}
+              href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`}
               class="flex items-center justify-between"
               style="
                 padding: 0.75rem 1rem;
@@ -121,7 +121,7 @@ const { isFixed = false } = Astro.props;
   <div class="max-w-6xl mx-auto flex flex-row justify-center" style="gap: 2px; align-items: flex-start;">
     {models.map(model => (
       <a
-        href={model.preVentaVideoUrl ? `/classer/pre-venta/${model.slug}` : `/classer/${model.slug}`}
+        href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`}
         class="mega-card group flex flex-col items-center"
       >
         <!-- Thumbnail -->

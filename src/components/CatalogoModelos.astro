@@ -68,7 +68,7 @@ const lines = Object.keys(groupedModels);
               const specs = realSpecs[modelKey] || { eslora: 'TBD', personas: 'TBD', motor: 'TBD' };
               
               return (
-                <a href={`/classer/${model.slug}`} class="model-card">
+                <a href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`} class="model-card">
                   <div class="model-info">
                     <h3 class="model-name">{modelKey}</h3>
                     <div class="model-visual">
