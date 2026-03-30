@@ -33,7 +33,7 @@ import { models } from '../../data/models';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {models.filter(m => m.line === 'LINEA SURF' || m.slug === '246').map(model => (
           <article class="reveal group bg-bg-mid rounded-lg overflow-hidden hover:shadow-deep transition-all duration-300 hover:scale-[1.02] cursor-pointer">
-            <a href={`/modelos/${model.slug}`} class="block overflow-hidden relative">
+            <a href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`} class="block overflow-hidden relative">
               <img
                 src={model.thumbnailUrl}
                 alt={model.name}
@@ -52,7 +52,7 @@ import { models } from '../../data/models';
               <div>
                 <p class="font-barlow text-[0.6rem] uppercase tracking-[0.12em] text-accent-blue mb-1">{model.line}</p>
                 <h3 class="font-display font-bold italic text-2xl text-white group-hover:text-accent-cyan transition-colors">
-                  <a href={`/modelos/${model.slug}`}>{model.name}</a>
+                  <a href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`}>{model.name}</a>
                 </h3>
                 <p class="text-text-muted text-xs mt-1">{model.eslora}</p>
               </div>
@@ -64,7 +64,7 @@ import { models } from '../../data/models';
                   </span>
                 ))}
               </div>
-              <a href={`/modelos/${model.slug}`} class="inline-flex items-center gap-1 text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors mt-1">
+              <a href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`} class="inline-flex items-center gap-1 text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors mt-1">
                 Explorar modelo
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
@@ -86,7 +86,7 @@ import { models } from '../../data/models';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {models.filter(m => m.line === 'LINEA FTX').map(model => (
           <article class="reveal group bg-bg-dark rounded-lg overflow-hidden hover:shadow-deep transition-all duration-300 hover:scale-[1.02] cursor-pointer">
-            <a href={`/modelos/${model.slug}`} class="block overflow-hidden relative">
+            <a href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`} class="block overflow-hidden relative">
               <img
                 src={model.thumbnailUrl}
                 alt={model.name}
@@ -105,7 +105,7 @@ import { models } from '../../data/models';
               <div>
                 <p class="font-barlow text-[0.6rem] uppercase tracking-[0.12em] text-accent-blue mb-1">{model.line}</p>
                 <h3 class="font-display font-bold italic text-2xl text-white group-hover:text-accent-cyan transition-colors">
-                  <a href={`/modelos/${model.slug}`}>{model.name}</a>
+                  <a href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`}>{model.name}</a>
                 </h3>
                 <p class="text-text-muted text-xs mt-1">{model.eslora}</p>
               </div>
@@ -117,7 +117,7 @@ import { models } from '../../data/models';
                   </span>
                 ))}
               </div>
-              <a href={`/modelos/${model.slug}`} class="inline-flex items-center gap-1 text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors mt-1">
+              <a href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`} class="inline-flex items-center gap-1 text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors mt-1">
                 Explorar modelo
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
@@ -139,7 +139,7 @@ import { models } from '../../data/models';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {models.filter(m => m.line === 'LINEA OB').map(model => (
           <article class="reveal group bg-bg-mid rounded-lg overflow-hidden hover:shadow-deep transition-all duration-300 hover:scale-[1.02] cursor-pointer">
-            <a href={`/modelos/${model.slug}`} class="block overflow-hidden relative">
+            <a href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`} class="block overflow-hidden relative">
               <img
                 src={model.thumbnailUrl}
                 alt={model.name}
@@ -153,12 +153,12 @@ import { models } from '../../data/models';
               <div>
                 <p class="font-barlow text-[0.6rem] uppercase tracking-[0.12em] text-accent-blue mb-1">{model.line}</p>
                 <h3 class="font-display font-bold italic text-2xl text-white group-hover:text-accent-cyan transition-colors">
-                  <a href={`/modelos/${model.slug}`}>{model.name}</a>
+                  <a href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`}>{model.name}</a>
                 </h3>
                 <p class="text-text-muted text-xs mt-1">{model.eslora}</p>
               </div>
               <p class="text-text-secondary text-sm leading-relaxed">{model.tagline}</p>
-              <a href={`/modelos/${model.slug}`} class="inline-flex items-center gap-1 text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors mt-1">
+              <a href={model.preVentaVideoUrl ? `/pre-venta/${model.slug}` : `/modelos/${model.slug}`} class="inline-flex items-center gap-1 text-accent-blue text-xs font-medium uppercase tracking-wide hover:text-accent-cyan transition-colors mt-1">
                 Explorar modelo
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>

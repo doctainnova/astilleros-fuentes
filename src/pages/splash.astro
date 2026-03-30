@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import afShieldImg from '../assets/brand/AF 2.webp';
+import classerBrandImg from '../assets/brand/CLASSER 2.webp';
+import ftsImg from '../assets/brand/FTS.webp';
+
+return Astro.redirect('/classer');
+---
+
+<Layout 
+  title="Astillero Fuentes — Bienvenidos" 
+  hideNavbar={true} 
+  hideFooter={true} 
+  noScroll={true}
+>
+  <div class="fixed inset-0 bg-[#1b1936] flex flex-col items-center justify-center p-8 md:p-12 overflow-hidden">
+    
+    <!-- 1. TOP BRAND HEADER -->
+    <header class="w-full max-w-[1400px] flex items-center justify-center gap-8 md:gap-20 mb-16 md:mb-24 px-8">
+      <!-- Brand Name -->
+      <span class="hidden md:block text-white italic text-3xl md:text-5xl whitespace-nowrap" style="font-family: 'Rogue Sans Nova Extended', sans-serif; font-weight: 400;">
+        Astillero Fuentes
+      </span>
+      
+      <!-- Shield Logo -->
+      <div class="flex-shrink-0">
+        <Image src={afShieldImg} alt="Escudo Astillero Fuentes" width={100} format="webp" quality={85} loading="eager" decoding="sync" class="text-white color-white invert" />
+      </div>
+
+      <!-- Tagline -->
+      <span class="text-white font-light text-base md:text-xl whitespace-nowrap opacity-80" style="letter-spacing: 0.02em;">
+        Más de 50 años navegando juntos.
+      </span>
+    </header>
+
+    <!-- 2. THREE CARDS GRID -->
+    <div class="w-full max-w-[1550px] grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 px-10">
+      
+      <!-- CARD 1: CLASSER -->
+      <div class="flex flex-col gap-8 items-center">
+        <a 
+          href="/classer" 
+          class="w-full aspect-square bg-[#03050a] flex flex-col items-center justify-center gap-6 transition-all duration-500 hover:scale-[1.03] hover:bg-[#070a14] border border-white/5 shadow-2xl active:scale-[0.98]"
+        >
+          <!-- Swoosh SVG -->
+          <Image src={classerBrandImg} alt="CLASSER — línea de embarcaciones deportivas de lujo" width={350} format="webp" quality={85} loading="eager" decoding="sync" class="text-white color-white invert" />
+        </a>
+        <p class="text-white font-light text-center text-lg md:text-xl max-w-[300px] leading-relaxed opacity-90">
+          Embarcaciones deportivas de lujo.
+        </p>
+      </div>
+
+      <!-- CARD 2: TM -->
+      <div class="flex flex-col gap-8 items-center">
+        <div 
+          class="w-full aspect-square bg-[#03050a] flex flex-col items-center justify-center opacity-70 border border-white/5"
+        >
+          <span class="text-white italic font-bold leading-none select-none" style="font-family: 'Rogue Sans Nova Extended', sans-serif; font-size: 8rem; letter-spacing: -0.07em;">
+            TM
+          </span>
+        </div>
+        <p class="text-white font-light text-center text-lg md:text-xl max-w-[300px] leading-relaxed opacity-90">
+          Diseños 1 de 1 y restauraciones únicas.
+        </p>
+      </div>
+
+      <!-- CARD 3: FTS -->
+      <div class="flex flex-col gap-8 items-center">
+        <div 
+          class="w-full aspect-square bg-[#03050a] flex flex-col items-center justify-center gap-2 opacity-70 border border-white/5"
+        >
+          <Image src={ftsImg} alt="FTS — Fuentes Technical Service" height={200} format="webp" quality={85} loading="eager" decoding="sync" class="text-white color-white invert" />
+        </div>
+        <p class="text-white font-light text-center text-lg md:text-xl max-w-[300px] leading-relaxed opacity-90">
+          Service a tu lancha y accesorios para el agua.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .font-display {
+    font-family: 'Rogue Sans Nova Condensed', sans-serif;
+  }
+</style>
