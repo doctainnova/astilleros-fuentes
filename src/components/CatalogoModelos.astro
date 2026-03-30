@@ -15,8 +15,8 @@ const realSpecs: Record<string, { eslora: string; personas: string; motor: strin
   '246 OB':   { eslora: '7,40 m', personas: '14', motor: '200 a 350 hp' },
   '206 FTX':  { eslora: '6,08 m', personas: '9',  motor: '150 a 200 hp' },
   '186':      { eslora: '5,80 m', personas: '8',  motor: '115 a 150 hp' },
-  '170':      { eslora: '5,70 m', personas: '7',  motor: '90 a 150 hp' },
-  '165':      { eslora: '5,30 m', personas: '6',  motor: '70 a 115 hp' },
+  '170':      { eslora: '5,10 m', personas: '7',  motor: '90 a 150 hp' },
+  '165':      { eslora: '4,90 m', personas: '6',  motor: '70 a 115 hp' },
 };
 
 const siluetaFileMap: Record<string, string> = {
@@ -68,7 +68,7 @@ const lines = Object.keys(groupedModels);
               const specs = realSpecs[modelKey] || { eslora: 'TBD', personas: 'TBD', motor: 'TBD' };
               
               return (
-                <a href={`/classer/${model.slug}`} class="model-card">
+                <a href={model.preVentaVideoUrl ? `/classer/pre-venta/${model.slug}` : `/classer/${model.slug}`} class="model-card">
                   <div class="model-info">
                     <h3 class="model-name">{modelKey}</h3>
                     <div class="model-visual">

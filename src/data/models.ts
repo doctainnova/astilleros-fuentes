@@ -139,6 +139,11 @@ export const models: Model[] = [
         h: 380,
       },
       {
+        url: "/image/2_PRODUCTO/246 SURF/EXTERIOR/058A6445.webp",
+        w: 560,
+        h: 380,
+      },
+      {
         url: "/image/2_PRODUCTO/246 SURF/INTERIOR/Still 2025-12-30 092528_1.1.1.webp",
         w: 560,
         h: 380,
@@ -160,11 +165,7 @@ export const models: Model[] = [
         w: 560,
         h: 380,
       },
-      {
-        url: "/image/2_PRODUCTO/246 SURF/EXTERIOR/058A6445.webp",
-        w: 560,
-        h: 380,
-      },
+
       {
         url: "/image/2_PRODUCTO/246 SURF/EXTERIOR/dji_fly_20260220_161130_0621_1771639354100_photo.webp",
         w: 560,
@@ -728,7 +729,7 @@ export const models: Model[] = [
     slug: "170",
     name: "Classer 170",
     line: "LINEA CLASSIC",
-    eslora: "5.70M",
+    eslora: "5.10M",
     navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/170.webp",
     thumbnailUrl: "/image/2_PRODUCTO/170/1.webp",
     heroUrl: "/image/2_PRODUCTO/170/1.webp",
@@ -752,7 +753,7 @@ export const models: Model[] = [
       { x: 26, y: 46 }, // 13 Pasamanos inox
     ],
     specs: [
-      { label: "Eslora Máx", value: "5.70m", icon: "ruler" },
+      { label: "Eslora Máx", value: "5.10m", icon: "ruler" },
       { label: "Manga", value: "2.28m", icon: "arrows-horizontal" },
       { label: "Puntal", value: "1.03m", icon: "arrow-up" },
       { label: "Motorización", value: "90-150hp", icon: "lightning" },
@@ -827,7 +828,7 @@ export const models: Model[] = [
     slug: "165",
     name: "Classer 165",
     line: "LINEA CLASSIC",
-    eslora: "5.30M",
+    eslora: "4.90M",
     navbarThumbnailUrl: "/image/2_PRODUCTO/navbar/165.webp",
     thumbnailUrl: "/image/2_PRODUCTO/165/1.webp",
     heroUrl: "/image/2_PRODUCTO/165/1.webp",
@@ -850,7 +851,7 @@ export const models: Model[] = [
       { x: 27, y: 40 }, // 12 Pasamanos inox
     ],
     specs: [
-      { label: "Eslora Máx", value: "5.30m", icon: "ruler" },
+      { label: "Eslora Máx", value: "4.90m", icon: "ruler" },
       { label: "Manga", value: "2.22m", icon: "arrows-horizontal" },
       { label: "Puntal", value: "0.98m", icon: "arrow-up" },
       { label: "Motorización", value: "70-115hp", icon: "lightning" },
