@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import afShieldImg from '../assets/brand/AF 2.webp';
+
+---
+
+<Layout 
+  title="404 — Página no encontrada | Astillero Fuentes" 
+  hideNavbar={true} 
+  hideFooter={true} 
+  noScroll={true}
+>
+  <div class="fixed inset-0 bg-[#1b1936] flex flex-col items-center justify-center p-8 md:p-12 overflow-hidden text-center">
+    
+    <!-- Shield Logo -->
+    <div class="mb-12 opacity-40">
+      <Image 
+        src={afShieldImg} 
+        alt="Escudo Astillero Fuentes" 
+        width={120} 
+        format="webp" 
+        quality={85} 
+        loading="eager" 
+        decoding="sync" 
+        class="text-white color-white invert" 
+      />
+    </div>
+
+    <!-- 404 Text -->
+    <h1 class="text-white italic font-bold leading-none select-none mb-4" style="font-family: 'Rogue Sans Nova Extended', sans-serif; font-size: 8rem; letter-spacing: -0.05em; opacity: 0.15;">
+      404
+    </h1>
+    
+    <div class="relative -mt-16 md:-mt-24 flex flex-col items-center">
+      <h2 class="text-white text-3xl md:text-5xl font-light mb-6" style="letter-spacing: 0.05em;">
+        Esta página no existe
+      </h2>
+      
+      <p class="text-white/60 text-lg md:text-xl font-light max-w-md mb-12 leading-relaxed">
+        Parece que el rumbo que has tomado no lleva a ningún destino. Regresemos al canal principal.
+      </p>
+
+      <a 
+        href="/" 
+        class="inline-block px-10 py-4 bg-white/5 border border-white/20 hover:bg-white/10 hover:border-white/40 text-white font-light tracking-[0.2em] uppercase text-sm transition-all duration-300 active:scale-95"
+      >
+        Volver al inicio
+      </a>
+
+      <p class="mt-8 text-white/30 text-xs uppercase tracking-widest font-light">
+        Serás redirigido automáticamente en <span id="countdown">10</span> segundos
+      </p>
+    </div>
+
+  </div>
+</Layout>
+
+<script>
+  let seconds = 5;
+  const countdownEl = document.getElementById('countdown');
+  
+  const timer = setInterval(() => {
+    seconds--;
+    if (countdownEl) countdownEl.textContent = seconds.toString();
+    
+    if (seconds <= 0) {
+      clearInterval(timer);
+      window.location.href = '/';
+    }
+  }, 1000);
+</script>
+
+<style>
+  /* Animación suave para la entrada */
+  h2, p, a {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  h2 { animation-delay: 0.2s; }
+  p { animation-delay: 0.4s; }
+  a { animation-delay: 0.6s; }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
