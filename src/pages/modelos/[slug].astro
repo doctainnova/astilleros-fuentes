@@ -29,7 +29,7 @@ if (model.preVentaVideoUrl) {
   fixedNavbar={true}
 >
   <!-- STICKY SECONDARY NAV -->
-  <div id="model-subnav" class="fixed top-[72px] left-0 right-0 z-40 bg-bg-white border-b border-black/10 shadow-sm translate-y-[-100%] opacity-0 transition-none" aria-label="Navegación del modelo">
+  <div id="model-subnav" class="fixed top-[72px] left-0 right-0 z-40 bg-bg-white border-b border-black/10 shadow-sm" style="transform: translateY(-100%); opacity: 0;" aria-label="Navegación del modelo">
     <div class="container-site py-3 flex items-center justify-between gap-4">
       <!-- Model name -->
       <div class="flex items-center gap-4">
@@ -38,7 +38,7 @@ if (model.preVentaVideoUrl) {
       </div>
       <!-- Tabs -->
       <nav class="hidden md:flex items-center gap-6" aria-label="Secciones del modelo">
-        {['Especificaciones', 'Exterior', 'Interior', 'Galería'].map(tab => (
+        {['Especificaciones', 'Exterior', 'Interior'].map(tab => (
           <a href={`#${tab.toLowerCase()}`} class="text-text-muted text-xs font-medium uppercase tracking-wide hover:text-accent-blue transition-colors cursor-pointer">
             {tab}
           </a>
@@ -46,7 +46,8 @@ if (model.preVentaVideoUrl) {
       </nav>
       <!-- Brochure CTA -->
       <a
-        href="#"
+        href={model.brochure}
+        download
         class="hidden md:inline-flex items-center gap-2 bg-accent-blue hover:bg-accent-cyan text-white text-xs font-medium px-4 py-2 rounded-full transition-colors duration-200 cursor-pointer"
         aria-label="Descargar brochure del modelo"
       >
@@ -82,8 +83,8 @@ if (model.preVentaVideoUrl) {
     </div>
   </section>
   <!-- SPECS GRID -->
-  <section id="especificaciones" class="bg-bg-deep py-20" aria-label="Especificaciones técnicas">
-    <div class="container-site mb-12">
+  <section class="bg-bg-deep py-20" aria-label="Especificaciones técnicas">
+    <div id="model-mini-menu-anchor" class="container-site mb-12">
       <ModelMiniMenu modelName={model.name.replace('Classer ', '')} brochure={model.brochure} />
     </div>
     
@@ -96,7 +97,7 @@ if (model.preVentaVideoUrl) {
 
   <!-- EXTERIOR DIAGRAM -->
   {model.exteriorFeatures.length > 0 && (
-    <section id="exterior" class="py-28 md:py-36 bg-bg-light" aria-label="Características exteriores">
+    <section id="especificaciones" class="py-28 md:py-36 bg-bg-light" aria-label="Características exteriores">
       <div class="container-site">
 
         {model.technicalDiagramUrl ? (
@@ -233,7 +234,7 @@ if (model.preVentaVideoUrl) {
 
   <!-- EXTERIOR GALLERY -->
   {model.exteriorImages.length > 0 && (
-    <section id="galeria" class="py-20 bg-bg-mid overflow-hidden" aria-label="Galería exterior">
+    <section id="exterior" class="py-20 bg-bg-mid overflow-hidden" aria-label="Galería exterior">
       <!-- Title centered -->
       <div class="container-site">
         <div class="text-center mb-10 reveal">
@@ -380,35 +381,32 @@ if (model.preVentaVideoUrl) {
 </style>
 
 <script is:inline>
-  // Sticky subnav GSAP behavior
-  document.addEventListener('DOMContentLoaded', () => {
-
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      const subnav = document.getElementById('model-subnav');
-      if (subnav) {
-        ScrollTrigger.create({
-          trigger: '#especificaciones',
-          start: 'top top+=72',
-          onEnter: () => {
-            gsap.to(subnav, { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' });
-          },
-          onLeaveBack: () => {
-            gsap.to(subnav, { y: '-100%', opacity: 0, duration: 0.3, ease: 'power2.in' });
-          },
-        });
-      }
-
-      // Reveal animations
-      document.querySelectorAll('.reveal').forEach(el => {
-        gsap.fromTo(el,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 82%' },
+  // Sticky subnav — corre directo (is:inline al final del body, DOM ya disponible)
+  (function() {
+    const subnav = document.getElementById('model-subnav');
+    const anchor = document.getElementById('model-mini-menu-anchor');
+    if (subnav && anchor) {
+      subnav.style.transition = 'transform 0.35s ease, opacity 0.35s ease';
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          const aboveViewport = entry.boundingClientRect.top < 72;
+          if (!entry.isIntersecting && aboveViewport) {
+            // Salió por arriba → mostrar sticky
+            subnav.style.transform = 'translateY(0)';
+            subnav.style.opacity = '1';
+          } else {
+            // En pantalla o todavía debajo → ocultar
+            subnav.style.transform = 'translateY(-100%)';
+            subnav.style.opacity = '0';
           }
-        );
-      });
+        },
+        { rootMargin: '-72px 0px 0px 0px', threshold: 0 }
+      );
+      observer.observe(anchor);
     }
+  })();
+
+  document.addEventListener('DOMContentLoaded', () => {
 
     // Custom Scroll Logic
     function setupCustomScroll(containerId, trackId, thumbId) {
