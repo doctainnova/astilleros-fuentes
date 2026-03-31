@@ -169,6 +169,16 @@ import { models } from '../data/models';
 </style>
 
 <script>
+  // Autocompletar selector de interés desde query param ?modelo=
+  const modeloParam = new URLSearchParams(window.location.search).get('modelo');
+  if (modeloParam) {
+    const select = document.querySelector<HTMLSelectElement>('#c-interes');
+    if (select) {
+      const match = Array.from(select.options).find(o => o.value === modeloParam);
+      if (match) select.value = match.value;
+    }
+  }
+
   const form = document.querySelector<HTMLFormElement>('form[aria-label="Formulario de contacto"]');
   const btn  = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
 

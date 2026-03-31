@@ -73,8 +73,8 @@ if (model.preVentaVideoUrl) {
         {model.name.replace('Classer ', '')}
       </h1>
       
-      <a 
-        href="#contacto" 
+      <a
+        href={`/contacto?modelo=${model.slug}`}
         class="inline-block bg-white text-black font-extrabold text-[0.7rem] md:text-[0.85rem] uppercase tracking-[0.2em] px-10 py-4 hover:bg-opacity-90 transition-all duration-300 shadow-xl"
       >
         COTIZAR AHORA
